@@ -46,6 +46,8 @@ namespace EisEngine::ctx {
         /// \n Initializes and loads Glad.
         static void LoadGLAD();
         /// \n Pointer to the active window.
-        GLFWwindow *window = nullptr;
+        GLFWwindow* window = nullptr;
+        /// \n Initializes and loads ImGUI
+        void LoadImGUI();
     };
 }

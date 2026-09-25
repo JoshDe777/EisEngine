@@ -6,8 +6,9 @@ namespace Maze {
     class Steve {
     public:
         explicit Steve(Game& game);
+        void BringBackToStart() const;
         void Animate();
-        shared_ptr<Entity> entity = nullptr;
+        Entity* entity = nullptr;
     private:
         Entity* torso = nullptr;
         Entity* neck = nullptr;
@@ -15,10 +16,11 @@ namespace Maze {
         Entity* shoulderR = nullptr;
         Entity* hipL = nullptr;
         Entity* hipR = nullptr;
+        Entity* dynamic_light = nullptr;
 
         float animSpeed = 5;
         float stride = 25.0f;
-        float moveSpeed = 0.025f;
+        float moveSpeed = 0.25f;
 
         float animTime = 0;
     };

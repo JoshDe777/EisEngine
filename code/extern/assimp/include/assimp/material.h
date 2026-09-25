@@ -807,7 +807,7 @@ public:
     /** Get the number of textures for a particular texture type.
      *  @param type Texture type to check for
      *  @return Number of textures for this type.
-     *  @note A texture can be easily queried using #GetTexture() */
+     *  @note A texture can be easily queried using #GetDiffuseTexture() */
     unsigned int GetTextureCount(aiTextureType type) const;
 
     // -------------------------------------------------------------------

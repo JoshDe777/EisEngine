@@ -20,7 +20,7 @@
    example, a 16K input buffer and a 64K output buffer, more than 95% of the
    inflate execution time is spent in this routine.
 
-   Entry assumptions:
+   LightEntry assumptions:
 
         state->mode == LEN
         strm->avail_in >= 6

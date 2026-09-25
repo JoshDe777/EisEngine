@@ -48,7 +48,7 @@ import java.util.Set;
 
 
 /**
- * Entry point to the jassimp library.<p>
+ * LightEntry point to the jassimp library.<p>
  * 
  * Use {@link #importFile(String, Set)} to load a file.
  * 

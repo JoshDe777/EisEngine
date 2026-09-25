@@ -8,18 +8,10 @@ namespace EisEngine::ecs{
                    componentManager(componentManager), user_data(userData) {
         if(m_id < 0)
             DEBUG_WARN("<Entity::Entity> Invalid Entity ID")
-        transform = &AddComponent<Transform>();
+        transform = AddComponent<Transform>();
     }
 
-    template<typename C>
-    void Entity::RemoveComponent(Component &component) {
-        component.Invalidate();
-        componentManager.removeComponent<C>(m_id);
-    }
+    Entity::~Entity() {
 
-    template<typename C>
-    void Entity::RemoveComponent() {
-        auto &component = GetComponent<C>();
-        RemoveComponent<C>(component);
     }
 }

@@ -1,14 +1,20 @@
+#include <utility>
+
+#include "engine/Game.h"
 #include "engine/components/PointLight.h"
 
 #include "engine/ecs/Entity.h"
 #include "engine/utilities/rendering/Shader.h"
+#include "engine/systems/LightSystem.h"
 
 namespace EisEngine::components {
     PointLight::PointLight(
             Game& game, guid_t owner,
-            Material *mat
-    ) : Component(game, owner), mat(mat) { }
-    PointLight::PointLight(EisEngine::components::PointLight &&other) noexcept : Component(other) {
+            Material* mat
+    ) : Component(game, owner), mat(mat), engine(game) {
+        LightSystem::MarkLightForUpdate((int) owner);
+    }
+    PointLight::PointLight(EisEngine::components::PointLight &&other) noexcept : Component(other), engine(other.engine) {
         owner = other.owner;
         std::swap(this->mat, other.mat);
     }
@@ -28,5 +34,10 @@ namespace EisEngine::components {
 
     Vector3 PointLight::position() const {
         return entity()->transform->GetGlobalPosition();
+    }
+
+    void PointLight::Invalidate() {
+        engine.lightSystem->RemoveEntity(owner);
+        Component::Invalidate();
     }
 }

@@ -17,6 +17,8 @@ namespace EisEngine::systems {
     /// \n Currently exclusively orthographic projection in -z direction.
     class Camera : public System {
     public:
+        ~Camera() override;
+
         /// \n Creates a new camera for the scene.
         /// @param screenDimensions - Vector2: the width and height of the camera FOV in pixels.
         explicit Camera(Game &engine, const Vector2& screenDimensions, CameraMode cameraMode = PERSPECTIVE);
@@ -25,7 +27,7 @@ namespace EisEngine::systems {
         /// \n Projection matrix being the directions in which the camera is pointing,
         /// \n View matrix being the camera's position in world space.
         /// @return projection x view, a 4x4 matrix representing the camera's FOV from its position
-        glm::mat4 GetVPMatrix();
+        glm::mat4 GetVPMatrix() const;
 
         /// \n Zooms into the scene, restraining the FOV.
         /// @param value: the zoom factor applied to the camera.\n
@@ -46,18 +48,25 @@ namespace EisEngine::systems {
         [[nodiscard]] int GetHeight() const { return m_screenHeight;}
 
         /// \n A pointer to the transform assigned to this object.
-        Transform *transform;
+        Transform* transform;
         /// \n Calculates the projection matrix, representing the transformation from
         /// camera space into 2D screen coordinates.
         [[nodiscard]] glm::mat4 GetProjectionMatrix() const;
+        /// \n Calculates the view matrix, representing the transformation required to
+        /// translate world space transforms to camera space.
+        [[nodiscard]] glm::mat4 CalculateViewMatrix() const;
 
         /// \n Sets a new FOV value for the active camera.
         void SetFOV(const float& val) {fov = val;}
         /// \n Switches camera mode to the requested style.
         void SetCameraMode(const CameraMode& newMode);
+        /// \n [Debug function] outputs the direction towards which the camera is looking.
+        Vector3 viewDirection() const;
+        /// \n Rotates the camera to look at a given point.
+        void LookAt(const Vector3& pos) const;
     private:
         /// \n A pointer to the entity assigned to this object.
-        Entity *entity;
+        Entity* entity;
 
         /// \n The camera's aspect ratio, as width/height.
         float aspectRatio;
@@ -81,9 +90,6 @@ namespace EisEngine::systems {
         CameraMode mode = PERSPECTIVE;
 
         /// \n updates the aspect ratio to width/height.
-        void UpdateAspectRatio() { aspectRatio = (float) m_screenWidth / (float) m_screenHeight; }
-        /// \n Calculates the view matrix, representing the transformation required to
-        /// translate world space transforms to camera space.
-        [[nodiscard]] glm::mat4 CalculateViewMatrix() const;
+        void UpdateAspectRatio() { aspectRatio = m_screenHeight != 0 ? (float) m_screenWidth / (float) m_screenHeight : 0; }
     };
 }

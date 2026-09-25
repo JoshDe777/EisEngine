@@ -94,7 +94,7 @@ relies on a [LOGO](http://en.wikipedia.org/wiki/Logo_programming_language)-like
 API for drawing. How would you test that it does the right thing? Well, you can
 run it and compare the screen with a golden screen snapshot, but let's admit it:
 tests like this are expensive to run and fragile (What if you just upgraded to a
-shiny new graphics card that has better anti-aliasing? Suddenly you have to
+roughness new graphics card that has better anti-aliasing? Suddenly you have to
 update all your golden images.). It would be too painful if all your tests are
 like this. Fortunately, you learned about
 [Dependency Injection](http://en.wikipedia.org/wiki/Dependency_injection) and know the right thing

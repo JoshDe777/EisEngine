@@ -55,7 +55,7 @@ namespace EisEngine{
             [[nodiscard]] bool IsDirty() const { return dirty;}
 
             /// \n Returns the transform's model matrix, condensing full transform data in one object.
-            [[nodiscard]] glm::mat4 GetModelMatrix(){ return modelMatrix;}
+            [[nodiscard]] glm::mat4 GetModelMatrix();
             /// \n Returns a transform's local model matrix, condensing local transform data into one object.
             glm::mat4 GetLocalMatrix();
 
@@ -74,7 +74,7 @@ namespace EisEngine{
 
             /// \n Gets an entity's child entities in the scene graph.
             /// @return std::set&lt;Transform *>: \n a set of pointers to the child entities' Transform components.
-            std::set<Transform *> getChildren() { return children;}
+            std::set<Transform*> getChildren() { return children;}
             /// \n Gets the transform's parent transform.
             /// @return Transform*: a pointer to the parent transform component.
             Transform *parent() { return m_parent;}
@@ -91,11 +91,13 @@ namespace EisEngine{
 
             // All transform::Direction() functions assume objects are created facing negative Z.
             /// \n Calculates the direction to the right hand side of an object, assuming it started facing negative Z.
-            [[nodiscard]] Vector3 Right() const { return Vector3::right.Rotate(localRotation);}
+            [[nodiscard]] Vector3 Right() const { return Vector3::right.Rotate(localRotation).normalized();}
             /// \n Calculates the upwards direction of an object, assuming it started facing negative Z.
-            [[nodiscard]] Vector3 Up() const { return Vector3::up.Rotate(localRotation);}
+            [[nodiscard]] Vector3 Up() const { return Vector3::up.Rotate(localRotation).normalized();}
             /// \n Calculates the forwards direction of an object, assuming it started facing negative Z.
-            [[nodiscard]] Vector3 Forward() const { return Vector3::forward.Rotate(localRotation);}
+            [[nodiscard]] Vector3 Forward() const { return Vector3::forward.Rotate(localRotation).normalized();}
+
+            void PrintRelativeSceneGraph(bool root = true);
         private:
             /// \n Adds a child Transform.
             void AddChild(Transform *transform);
@@ -118,9 +120,9 @@ namespace EisEngine{
             /// \n Indicates whether the transform's position was changed manually in the current frame.
             bool m_scaleChanged = false;
             /// \n pointer to the transform's parent transform.
-            Transform *m_parent = nullptr;
+            Transform* m_parent = nullptr;
             /// \n a set of transform pointers assigned as the current transform's children.
-            std::set<Transform *> children;
+            std::set<Transform*> children;
             /// \n flags whether the object was changed directly in the world.
             bool dirty = true;
 

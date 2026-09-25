@@ -28,12 +28,12 @@ namespace EisEngine {
         void UpdateColor(const Color& color);
 
         /// \n The transform for the line.
-        Transform *transform;
+        Transform* transform;
         /// \n A function called when an object is intentionally deleted.
         void Invalidate();
     private:
         /// \n The entity bundling all the lines together.
-        Entity *entity;
+        Entity* entity;
         /// \n A pointer to the engine instance.
         Game* engine = nullptr;
     };

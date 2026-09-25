@@ -5,6 +5,9 @@
 #include "engine/Game.h"
 #include "engine/components/BoxCollider2D.h"
 
+#include "engine/components/PointLight.h"
+#include "engine/systems/LightSystem.h"
+
 namespace EisEngine::components{
 // helper functions:
 
@@ -73,18 +76,22 @@ namespace EisEngine::components{
         children.clear();
         // remove all entities that aren't marked for deletion. Could result in endless loop!
         if(!entity()->isDeleted())
-            engine.entityManager.deleteEntity(*entity());
+            engine.entityManager->deleteEntity(*entity());
         Component::Invalidate();
     }
 
     // getters
+    glm::mat4 Transform::GetModelMatrix() {
+        if(!m_parent)
+            return modelMatrix;
+
+        return m_parent->GetModelMatrix() * modelMatrix;
+    }
+
     Vector3 Transform::GetGlobalPosition() {
         if(m_parent){
-            // I know this is bad practise but the system assumes scale invariant positions.
-            auto p_scale = m_parent->GetGlobalScale();
-            auto scaleInvariantParentMatrix = glm::scale(m_parent->modelMatrix, glm::vec3(1/p_scale.x, 1/p_scale.y, 1/p_scale.z));
-            // position by matrix instead of just adding parent pos for rotation variance.
-            glm::vec4 worldPos = m_parent->modelMatrix * glm::vec4((glm::vec3) localPosition, 1.0f);
+            auto p_model = m_parent->GetModelMatrix();
+            glm::vec4 worldPos = p_model * glm::vec4((glm::vec3) localPosition, 1.0f);
             return Vector3(worldPos.x, worldPos.y, worldPos.z);
         }
         return localPosition;
@@ -179,7 +186,6 @@ namespace EisEngine::components{
     }
     void Transform::SetLocalRotation(const Vector3& rotation) {
         auto newRotation = NormalizeAngles(rotation);
-        auto angularDiff = CalculateAngularRotation(localRotation, newRotation);
         localRotation = newRotation;
         m_rotationChanged = true;
         MarkDirty();
@@ -247,10 +253,40 @@ namespace EisEngine::components{
 
     void Transform::MarkDirty() {
         dirty = true;
+
+        // flag as dirty to light system if attached to a light source.
+        if(entity()->GetComponent<PointLight>() != nullptr)
+            LightSystem::MarkLightForUpdate(owner);
+
         if(children.empty())
             return;
 
         for(auto child:children)
             child->MarkDirty();
+    }
+
+    void Transform::PrintRelativeSceneGraph(bool root) {
+        if(root)
+            DEBUG_LOG("Printing Parent-Child graph relative to entity '" + entity()->name() + "'.")
+
+        if(children.empty())
+            return;
+
+        std::string comma = ", ";
+        auto i = 0;
+        std::string names;
+        for(auto child: children){
+            names += child->entity()->name();
+            if(i+1 < children.size())
+                names += comma;
+            i++;
+        }
+
+        DEBUG_LOG("Children of entity " + entity()->name() + ": " + names)
+        for(auto child: children)
+            child->PrintRelativeSceneGraph(false);
+
+        if(root)
+            DEBUG_LOG("End Scene Graph Print")
     }
 }

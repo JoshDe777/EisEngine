@@ -6,8 +6,9 @@ namespace Maze {
     class CamController {
         using event_t = Event<CamController, CamController&>;
     public:
-        explicit CamController(Game& game, const shared_ptr<Entity>& minotaur, const shared_ptr<Entity>& steve);
+        explicit CamController(Game& game, Entity* minotaur, Entity* steve);
         event_t onFocusHold;
+        void GoToTopDown();
     private:
         void Update(Game& game);
 
@@ -18,7 +19,7 @@ namespace Maze {
         bool isPerspective = true;
         bool freeRoam = true;
 
-        float movementSpeed = 0.0675f;
+        float movementSpeed = 0.25;
         float flyModifier = 20;
         float rotationSpeed = 50;
         float maxRotationDeg = 360;
