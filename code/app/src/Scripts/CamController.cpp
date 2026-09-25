@@ -3,8 +3,8 @@
 namespace Maze {
     using CameraMode = EisEngine::systems::CameraMode;
 
-    CamController::CamController(EisEngine::Game &game, const shared_ptr<Entity>& minotaur, const shared_ptr<Entity>& steve){
-        camera = &game.camera;
+    CamController::CamController(Game& game, Entity* minotaur, Entity* steve){
+        camera = game.camera.get();
         this->minotaur = minotaur->transform;
         this->steve = steve->transform;
         game.onUpdate.addListener([&](Game& game){
@@ -98,11 +98,7 @@ namespace Maze {
         }
         else if (Input::GetKeyDown(KeyCode::V)){
             if (isPerspective) {
-                camera->transform->SetGlobalPosition(Vector3(0, 99, 0));
-                camera->transform->SetLocalRotation(Vector3(-90, 0, 0));
-                camera->SetCameraMode(CameraMode::ORTHO);
-                camera->SetZoom(-100);
-                isPerspective = false;
+                GoToTopDown();
             }
             else {
                 camera->transform->SetGlobalPosition(Vector3(0, 1, 0));
@@ -117,7 +113,7 @@ namespace Maze {
         if(isPerspective){
             auto mousePos = Input::MousePos();
             // offset from centre
-            auto size = game.context.GetWindowSize();
+            auto size = game.context->GetWindowSize();
             auto normalizedMousePos = Vector2(mousePos.x / size.x, mousePos.y / size.y);
             auto centre = Vector2(0.5f, 0.5f);
             auto centreOffset = normalizedMousePos - centre;
@@ -132,5 +128,13 @@ namespace Maze {
 
             camera->transform->SetLocalRotation(baseRotation + Vector3(xRotation, yRotation, 0));
         }
+    }
+
+    void CamController::GoToTopDown() {
+        camera->transform->SetGlobalPosition(Vector3(0, 99, 0));
+        camera->transform->SetLocalRotation(Vector3(-90, 0, 0));
+        camera->SetCameraMode(CameraMode::ORTHO);
+        camera->SetZoom(-100);
+        isPerspective = false;
     }
 }

@@ -363,7 +363,7 @@ GLFWbool _glfwRefreshContextAttribs(_GLFWwindow* window,
         window->context.getProcAddress("glGetString");
     if (!window->context.GetIntegerv || !window->context.GetString)
     {
-        _glfwInputError(GLFW_PLATFORM_ERROR, "Entry point retrieval is broken");
+        _glfwInputError(GLFW_PLATFORM_ERROR, "LightEntry point retrieval is broken");
         glfwMakeContextCurrent((GLFWwindow*) previous);
         return GLFW_FALSE;
     }
@@ -459,7 +459,7 @@ GLFWbool _glfwRefreshContextAttribs(_GLFWwindow* window,
         if (!window->context.GetStringi)
         {
             _glfwInputError(GLFW_PLATFORM_ERROR,
-                            "Entry point retrieval is broken");
+                            "LightEntry point retrieval is broken");
             glfwMakeContextCurrent((GLFWwindow*) previous);
             return GLFW_FALSE;
         }

@@ -5,6 +5,7 @@
 #include "glm/glm.hpp"
 
 #include "engine/utilities/rendering/Texture2D.h"
+#include "engine/utilities/rendering/Cubemap.h"
 
 namespace fs = std::filesystem;
 
@@ -15,19 +16,33 @@ namespace EisEngine{
 
     using namespace systems;
 
+    enum UniformSamplerIndices{
+        DIFFUSE = 0,
+        NORMAL = 1,
+        CUBEMAP = 2,
+        DEPTH_BACK_FACE = 3,
+        DEPTH_FRONT_FACE = 4
+    };
+
     namespace rendering {
         /// \n Intermediary system from engine code to pixels on screen.
         class Shader {
         public:
             /// \n Creates a shader from the given shader programs.
-            explicit Shader(const unsigned int& vertexShaderProgram, const unsigned int& fragmentShaderProgram);
+            explicit Shader(
+                    const unsigned int& vertexShaderProgram,
+                    const unsigned int& fragmentShaderProgram,
+                    const std::string& name
+                );
             Shader(const Shader& other) = delete;
             Shader(Shader&& other) noexcept;
 
             /// \n Applies the shader to the rendering pipeline.
             void Apply(Camera* camera);
             /// \n Applies a texture to the rendering pipeline.
-            void ApplyTexture(const Texture2D& texture) const;
+            void ApplyTexture2D(const Texture2D& texture, UniformSamplerIndices type) const;
+            /// \n Applies a cubemap texture to the rendering pipeline.
+            void ApplyCubemap(const Cubemap& cubemap) const;
 
             /// \n Sets a given uniform matrix in the shader program to the specified value.
             /// @param uniformName - a string representing the name of the matrix whose values are to be set.
@@ -65,21 +80,13 @@ namespace EisEngine{
             /// @return a 4x4 matrix representing object coordinates in camera space.
             [[nodiscard]] glm::mat4 CalculateMVPMatrix(const glm::mat4& modelMatrix) const { return vpMatrix * modelMatrix;}
 
-            /// \n The relative path to access the default vertex shader program definition.
-            static const fs::path defaultVertexShaderPath;
-            /// \n The relative path to access the default fragment shader program definition.
-            static const fs::path defaultFragmentShaderPath;
-            /// \n The relative path to access the sprite vertex shader program definition.
-            static const fs::path spriteVertexShaderPath;
-            /// \n The relative path to access the sprite fragment shader program definition.
-            static const fs::path spriteFragmentShaderPath;
-            /// \n The relative path to access the UI vertex shader program definition.
-            static const fs::path uiVertexShaderPath;
-
             /// \n A function called when an object is intentionally deleted.
             void Invalidate() const;
             /// \n gets the shader program ID.
-            unsigned int GetShaderID() {return shaderProgram;}
+            unsigned int GetShaderID() const {return shaderProgram;}
+
+            /// \n The shader program's given name.
+            const std::string name;
         private:
             /// \n The OpenGL shader program.
             unsigned int shaderProgram = 0;

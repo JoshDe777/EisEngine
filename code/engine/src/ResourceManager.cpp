@@ -10,7 +10,9 @@
 
 namespace EisEngine {
     std::map<std::string, std::unique_ptr<Texture2D>> ResourceManager::Textures = {};
+    std::map<std::string, std::unique_ptr<Cubemap>> ResourceManager::Cubemaps = {};
     std::map<std::string, std::unique_ptr<Material>> ResourceManager::Materials = {};
+    std::vector<std::unique_ptr<Material>> ResourceManager::MaterialInstances = {};
     std::map<std::string, std::unique_ptr<Shader>> ResourceManager::Shaders = {};
     Assimp::Importer importer;
 
@@ -26,8 +28,9 @@ namespace EisEngine {
 #pragma region 3D asset import
     /// \n Imports mesh data (vertices, normals, indices and UVs) from an assimp mesh.
     PrimitiveMesh3D ImportMesh(const aiMesh* mesh){
+        auto nVerts = mesh->mNumVertices;
         // vertex collection -> take aiMesh's array of vertices and convert to own format of Vec3's
-        std::vector<Vector3> vertices(mesh->mVertices, mesh->mVertices + mesh->mNumVertices);
+        std::vector<Vector3> vertices(mesh->mVertices, mesh->mVertices + nVerts);
 
         // index collection -> iterate through faces & insert the indices for each triangle.
         std::vector<unsigned int> indices = {};
@@ -43,21 +46,42 @@ namespace EisEngine {
 
         // normals collection -> same process as vertex collection
         // (mNormals is always of length mNumVertices, hence the use).
-        std::vector<Vector3> normals(mesh->mNormals, mesh->mNormals + mesh->mNumVertices);
+        std::vector<Vector3> normals(mesh->mNormals, mesh->mNormals + nVerts);
 
         // UV map collection - only collecting from the first channel.
         std::vector<Vector2> uvs;
-        uvs.reserve(mesh->mNumVertices);
+        uvs.reserve(nVerts);
         if(mesh->HasTextureCoords(0)){
-            for(auto i = 0; i < mesh->mNumVertices; i++){
+            for(auto i = 0; i < nVerts; i++){
                 const auto& uv = mesh->mTextureCoords[0][i];
                 uvs.emplace_back(uv);
             }
         }
         else    // if no built-in UVs, give each vertex a texture coord of (0, 0)
-            uvs.assign(mesh->mNumVertices, Vector2(0, 0));
+            uvs.assign(nVerts, Vector2(0, 0));
 
-        return PrimitiveMesh3D(vertices, indices, &normals, &uvs);
+        std::vector<Vector3> tans;
+        tans.reserve(nVerts);
+        for(auto i = 0; i < nVerts; i++){
+            const auto& tan = mesh->mTangents[i];
+            tans.emplace_back(tan);
+        }
+
+        std::vector<Vector3> bitans;
+        bitans.reserve(nVerts);
+        for(auto i = 0; i < nVerts; i++){
+            const auto& bitan = mesh->mBitangents[i];
+            bitans.emplace_back(bitan);
+        }
+
+        return PrimitiveMesh3D(
+                vertices,
+                indices,
+                &normals,
+                &uvs,
+                &tans,
+                &bitans
+            );
     }
 
     void ResourceManager::ImportNode(Game& game, const aiNode* node,
@@ -69,19 +93,19 @@ namespace EisEngine {
         //DEBUG_INFO("Processing entity " + (std::string) node->mName.C_Str() + ".")
 
         // Create entity for node & attach to parent if exists.
-        auto nodeEntity = game.entityManager.createEntity(node->mName.C_Str());
+        auto nodeEntity = game.entityManager->createEntity(node->mName.C_Str());
         if(parent){
-            nodeEntity.transform->SetParent(parent->transform);
+            nodeEntity->transform->SetParent(parent->transform);
         }
 
         // get transform data & update entity transform
         aiVector3D scale, pos;
         aiQuaternion rotation;
         node->mTransformation.Decompose(scale, rotation, pos);
-        nodeEntity.transform->SetLocalScale(Vector3(scale));
+        nodeEntity->transform->SetLocalScale(Vector3(scale));
         Vector3 eulerRotation = Vector3(glm::eulerAngles(glm::quat(rotation.w, rotation.x, rotation.y, rotation.z)));
-        nodeEntity.transform->SetLocalRotation(eulerRotation);
-        nodeEntity.transform->SetLocalPosition(Vector3(pos));
+        nodeEntity->transform->SetLocalRotation(eulerRotation);
+        nodeEntity->transform->SetLocalPosition(Vector3(pos));
 
         // foreach mesh in node->nMeshes
         for(unsigned int i = 0; i < node->mNumMeshes; i++){
@@ -102,15 +126,15 @@ namespace EisEngine {
             auto tex = ImportTextureFromAssimp(assimpMaterial, scene, modelPath);
 
             // add Mesh3D & Renderer components
-            nodeEntity.AddComponent<Mesh3D>(primitive);
-            nodeEntity.AddComponent<Renderer>(tex, mat, "");
+            nodeEntity->AddComponent<Mesh3D>(primitive);
+            nodeEntity->AddComponent<Renderer>(tex, mat, "");
             if(mat->GetEmission() != Vector3::zero)
-                nodeEntity.AddComponent<PointLight>(mat);
+                nodeEntity->AddComponent<PointLight>(mat);
         }
 
         // import all child nodes recursively
         for(unsigned int i = 0; i < node->mNumChildren; i++)
-            ImportNode(game, node->mChildren[i], scene, modelPath, &nodeEntity);
+            ImportNode(game, node->mChildren[i], scene, modelPath, nodeEntity);
     }
 
     ecs::Entity* ResourceManager::Load3DObject(Game& game, const fs::path &path) {
@@ -119,8 +143,13 @@ namespace EisEngine {
         // import the asset with a few optimizations for efficiency:
         // meshes triangulated & optimized, normals generated if not exist, and tangents calculated for normals.
         const aiScene* scene = importer.ReadFile(
-                pathString.c_str(), aiProcess_Triangulate | aiProcess_GenNormals |
-                                    aiProcess_OptimizeMeshes | aiProcess_JoinIdenticalVertices | aiProcess_CalcTangentSpace);
+                pathString.c_str(),
+                aiProcess_Triangulate |
+                aiProcess_GenNormals |
+                aiProcess_OptimizeMeshes |
+                aiProcess_JoinIdenticalVertices |
+                aiProcess_CalcTangentSpace
+            );
 
         // exit with an error message if scene loading failed
         // (scene = nullptr, scene flagged incomplete, or no root node).
@@ -130,11 +159,11 @@ namespace EisEngine {
         }
 
         // recursively import data following the aiScene graph.
-        auto& rootEntity = game.entityManager.createEntity(path.filename().string());
-        ImportNode(game, scene->mRootNode, scene, path.parent_path(), &rootEntity);
+        auto* rootEntity = game.entityManager->createEntity(path.filename().string());
+        ImportNode(game, scene->mRootNode, scene, path.parent_path(), rootEntity);
 
         // return the resulting entity.
-        return &rootEntity;
+        return rootEntity;
     }
 #pragma endregion
 
@@ -197,7 +226,7 @@ namespace EisEngine {
         return Materials[matname].get();
     }
 
-    std::unique_ptr<Material> ResourceManager::GetMaterialInstance(const std::string &matname) {
+    Material* ResourceManager::CreateMaterialInstance(const std::string &matname) {
         // always have a default texture at the ready
         if(matname == "default" && !Materials["default"].get())
             Materials["default"] = std::make_unique<Material>(Material("default"));
@@ -207,7 +236,12 @@ namespace EisEngine {
             return nullptr;
         }
 
-        return std::make_unique<Material>(*Materials[matname].get());
+        auto instance = std::make_unique<Material>(*Materials.at(matname).get());
+        Material* ptr = instance.get();
+        MaterialInstances.push_back(std::move(instance));
+
+        // do instancing process here!
+        return ptr;
     }
 #pragma endregion
 
@@ -226,9 +260,8 @@ namespace EisEngine {
         else if (path.length == 0)
             return GetTexture("default");
         else {
-            DEBUG_INFO(path.C_Str())
             auto texPath = fs::path(modelPath.string() + "\\" + path.C_Str());
-            DEBUG_LOG(texPath.string())
+            DEBUG_INFO(texPath.string())
             return GetTexture("default"); // GenerateTextureFromFile(texPath, path.C_Str());
         }
         auto textureName = std::string(tex->mFilename.C_Str());
@@ -298,7 +331,7 @@ namespace EisEngine {
         return texture;
     }
 
-    Texture2D *ResourceManager::MakeDummyTexture() {
+    Texture2D* ResourceManager::MakeDummyTexture() {
         if(Textures["default"] == nullptr){
             Texture2D texture;
 
@@ -317,10 +350,32 @@ namespace EisEngine {
         return GetTexture("default");
     }
 
-    Texture2D *ResourceManager::GetTexture(const std::string &name) {
+    Texture2D* ResourceManager::MakeDummyNormalMap() {
+        if(Textures["default_normal"] == nullptr){
+            Texture2D texture;
+
+            int width = 1;
+            int height = 1;
+            unsigned char data[4] = {0, 0, 255, 255};
+
+            texture.internalFormat = GL_RGBA;
+            texture.imageFormat = GL_RGBA;
+
+            texture.Generate(width, height, data);
+            Textures["default_normal"] = std::make_unique<Texture2D>(texture);
+        }
+        else
+            DEBUG_WARN("Attempting to overwrite texture 'default_normal'.")
+        return GetTexture("default_normal");
+    }
+
+    Texture2D* ResourceManager::GetTexture(const std::string &name) {
         // always have a default texture at the ready
         if(name == "default" && !Textures["default"].get())
             return MakeDummyTexture();
+
+        if(name == "default_normal" && !Textures["default_normal"].get())
+            return MakeDummyNormalMap();
 
         if(Textures.empty()){
             DEBUG_WARN("No textures created in resource manager system.")
@@ -331,6 +386,69 @@ namespace EisEngine {
     }
 #pragma endregion
 
+#pragma region Cubemap handling
+
+    Cubemap *ResourceManager::GenerateCubemapFromFiles(const std::vector<std::string> &imagePaths,
+                                                       const std::string &cubemapName) {
+        // worth considering an 'overwrite' parameter?
+        if (Cubemaps[cubemapName] == nullptr /*|| overwrite */){
+            Cubemaps[cubemapName] = std::make_unique<Cubemap>(
+                    loadCubemapFromFiles(imagePaths));
+        }
+        else
+            DEBUG_WARN("Attempted to overwrite existing texture " + cubemapName + ".")
+        return GetCubemap(cubemapName);
+    }
+
+    Cubemap *ResourceManager::GetCubemap(const std::string &name) {
+        if(Cubemaps.empty()){
+            DEBUG_WARN("No cubemaps created in resource manager system.")
+            return nullptr;
+        }
+
+        return Cubemaps[name].get();
+    }
+
+    Cubemap ResourceManager::loadCubemapFromFiles(const std::vector<std::string> &filePaths) {
+        Cubemap texture;
+        if(filePaths.size() < 6){
+            DEBUG_ERROR("Not enough textures provided to generate a valid cubemap! (" + std::to_string(filePaths.size()) + ")")
+            return texture;
+        }
+
+        unsigned int i = 0;
+        for(auto& path: filePaths){
+            auto filePath = resolveAssetPath(path);
+            stbi_set_flip_vertically_on_load(0);
+
+            std::string pathString = filePath.string();
+            const char* filename = pathString.c_str();
+
+            int width, height, nrChannels;
+            // try catch here?
+            unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
+
+            if(!data){
+                DEBUG_ERROR("Failed to load image: " + pathString)
+                continue;
+            }
+
+            if(nrChannels == 4) {
+                texture.internalFormat = GL_RGBA;
+                texture.imageFormat = GL_RGBA;
+            }
+
+            texture.Generate(i, width, height, data);
+
+            stbi_image_free(data);
+            i++;
+        }
+
+        texture.SetParams();
+        return texture;
+    }
+#pragma endregion
+
 #pragma region Shader handling
     Shader *ResourceManager::GenerateShaderFromFiles(const fs::path &vertexShaderPath,
                                                      const fs::path &fragmentShaderPath,
@@ -338,7 +456,8 @@ namespace EisEngine {
         if(Shaders[shaderName] == nullptr)
             Shaders[shaderName] = std::make_unique<Shader>(
                     loadAndCompileShader(GL_VERTEX_SHADER, vertexShaderPath),
-                    loadAndCompileShader(GL_FRAGMENT_SHADER, fragmentShaderPath)
+                    loadAndCompileShader(GL_FRAGMENT_SHADER, fragmentShaderPath),
+                    shaderName
             );
         return GetShader(shaderName);
     }
@@ -348,7 +467,7 @@ namespace EisEngine {
             DEBUG_WARN("No shaders created in resource manager system.")
             return nullptr;
         }
-        return Shaders[name].get();
+        return Shaders[name] != nullptr ? Shaders[name].get() : Shaders["Default Blinn-Phong Shader"].get();
     }
 
     unsigned int ResourceManager::loadAndCompileShader(GLuint shaderType, const fs::path &filePath) {
@@ -364,7 +483,7 @@ namespace EisEngine {
         if(compilationStatus.success == GL_FALSE) {
             glGetShaderInfoLog(shaderID, GL_INFO_LOG_LENGTH, nullptr, compilationStatus.infoLog);
             DEBUG_RUNTIME_ERROR( std::string(compilationStatus.shaderName) + " shader compilation failed.\n" +
-                                 std::string(compilationStatus.infoLog))
+                                 std::string(compilationStatus.infoLog) + "\nPath: " + filePath.string())
         }
 
         return shaderID;

@@ -7,7 +7,7 @@ namespace Maze {
     class Torch {
     public:
         explicit Torch(Game& game);
-        shared_ptr<Entity> entity = nullptr;
+        Entity* entity = nullptr;
     private:
         unique_ptr<FastNoiseLite> noise;
         Renderer* flame = nullptr;

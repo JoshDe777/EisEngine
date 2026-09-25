@@ -5,221 +5,637 @@
 #include <algorithm>
 
 // DO NOT UPDATE WITHOUT ALSO UPDATING SAME NAMED MACRO IN FRAGMENT SHADERS!
-#define MAX_LIGHTS 3
-#define DIST_THRESHOLD 5.0f
-#define AMBIENT_FACTOR 0.15f
-#define SPECULAR_FACTOR 100.0f
+#define MAX_LIGHTS 5
+#define DIST_THRESHOLD 10.0f
 
 namespace EisEngine::systems {
-// helper functions:
 
-struct Entry{
-    PointLight* L;
-    float dist2;
-};
+#pragma region rendering parameters
+    // specular factor starts at 1
+    float RenderingSystem::specularFactor = 1.0f;
+    // toon levels default to 8
+    int RenderingSystem::n_toon_levels = 8;
+    // no chromatic aberration
+    Vector3 RenderingSystem::eta = Vector3::zero;
+    // 15% ambiant lighting
+    float RenderingSystem::ambient = 0.15f;
 
-    // used to sort entities by ascending z position.
-    bool CompareZValues(SpriteMesh* a, SpriteMesh* b)
-    { return a->entity()->transform->GetGlobalPosition().z < b->entity()->transform->GetGlobalPosition().z;}
+    bool RenderingSystem::useVoxelGrid = false;
+#pragma endregion
 
-// rendering system methods:
+#pragma region shader definitions
+    // default to plain Blinn-Phong
+    const std::string RenderingSystem::defaultShader = "Blinn-Phong";
+    std::string RenderingSystem::active3DShader = "Blinn-Phong";
+    const std::unordered_map<std::string, std::string> RenderingSystem::shaderNameDict = {
+        {"Normal Blinn-Phong", "nMap Blinn-Phong Shader"},
+        {"Default Blinn-Phong", "Default Blinn-Phong Shader"},
+        {"Cook-Torrance", "Cook-Torrance Shader"},
+        {"Toon", "Toon Shader"}/*,
+        {"Depth", "Depth Mapping"},
+        {"Glassy", "Glassy Shader"}
+        */
+    };
+#pragma endregion
+
+#pragma region other definitions
+    Entity* RenderingSystem::skybox = nullptr;
+    Event<RenderingSystem, const Vector2&> RenderingSystem::onResize = Event();
+
+    struct LightEntry{
+        PointLight* L;
+        float dist2;
+    };
+
     std::vector<Entity*> RenderingSystem::Loaders = {};
+#pragma endregion
 
-    constexpr float CELL_SIZE = 4.0f;
-
-    inline Vector2 WorldToCell(const glm::vec3& pos) {
-        return Vector2{
-                floor(pos.x / CELL_SIZE),
-                floor(pos.z / CELL_SIZE)
-        };
+#pragma region non-class helper functions
+    // used to sort entities by ascending z position.
+    bool CompareZValues(SpriteMesh* a, SpriteMesh* b) {
+        return a->entity()->transform->GetGlobalPosition().z < b->entity()->transform->GetGlobalPosition().z;
     }
+#pragma endregion
 
-    void RenderingSystem::MarkAsLoader(EisEngine::ecs::Entity *ptr) {
-        Loaders.push_back(ptr);
-    }
-
+    // rendering system constructor
     RenderingSystem::RenderingSystem(EisEngine::Game &engine) : System(engine) {
-        camera = &engine.camera;
+        #pragma region setup
+        SetActiveShader("Default Blinn-Phong");
+
+        camera = engine.camera.get();
         if(!camera)
             DEBUG_RUNTIME_ERROR("Cannot initialize rendering; Camera not found.")
 
-        engine.onUpdate.addListener([&] (Game& engine){ Draw();});
+        lightSystem = engine.lightSystem.get();
 
+        engine.onUpdate.addListener([&] (Game& engine){ Draw();});
+        #pragma endregion
+
+        #pragma region buffer initialization
         VAO = {};
         for(unsigned int & i : VAO)
             glGenVertexArrays(1, &i);
 
+        int width, height;
+        glfwGetWindowSize(engine.getWindow(), &width, &height);
+        // init FBOs
+        InitFBO(0, Vector2((float) width, (float) height));
+        InitFBO(1, Vector2((float) width, (float) height));
+        onResize.addListener([this](const Vector2& v){
+            ResizeFBOItems(v);
+        });
+        // add callback to window resize to reallocate depth texture size & rbo sizes on window resize.
+        glfwSetWindowSizeCallback(engine.getWindow(), [](GLFWwindow* window, int width, int height){
+            RenderingSystem::onResize.invoke(Vector2((float) width, (float) height));
+        });
+
+        // init SSBO
+        glGenBuffers(1, &lightCutSSBO);
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, lightCutSSBO);
+        glBufferData(GL_SHADER_STORAGE_BUFFER, 0, nullptr, GL_DYNAMIC_DRAW);
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+        #pragma endregion
+
+        #pragma region shader program creation
         // generate default shader (mesh2D & lines)
-        ResourceManager::GenerateShaderFromFiles("shaders/vertexShader.vert",
-                                                 "shaders/fragmentShader.frag",
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-no_normals.vert",
+                                                 "shaders/frag-material_debug_unlit.frag",
                                                  "Default Shader");
         // generate default sprite shader
-        ResourceManager::GenerateShaderFromFiles( "shaders/betterVertexShader.vert",
-                                                  "shaders/spriteFragmentShader.frag",
+        ResourceManager::GenerateShaderFromFiles( "shaders/vert-shader3D.vert",
+                                                  "shaders/frag-sprite_unlit.frag",
                                                   "Sprite Shader");
         // generate ui sprite shader
-        ResourceManager::GenerateShaderFromFiles("shaders/betterVertexShader.vert",
-                                                 "shaders/spriteFragmentShader.frag",
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-no_normals.vert",
+                                                 "shaders/frag-sprite_unlit.frag",
                                                  "UI Shader");
-        // generate 3D shader
-        ResourceManager::GenerateShaderFromFiles("shaders/betterVertexShader.vert",
-                                                 "shaders/fragmentShader3D.frag",
-                                                 "3D Shader");
+        // generate regular Blinn-Phong shader
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-shader3D.vert",
+                                                 "shaders/frag-blinn_phong.frag",
+                                                 "Default Blinn-Phong Shader");
+        // generate normal mapped Blinn-Phong shader
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-shader3D.vert",
+                                                 "shaders/frag-nMap_blinn_phong.frag",
+                                                 "nMap Blinn-Phong Shader");
+        // generate Cook-Torrance shader
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-shader3D.vert",
+                                                 "shaders/frag-cook_torrance.frag",
+                                                 "Cook-Torrance Shader");
+        // generate Toon shader
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-shader3D.vert",
+                                                 "shaders/frag-toon.frag",
+                                                 "Toon Shader");
+
+        // generate Depth Mapping shader
+        /*ResourceManager::GenerateShaderFromFiles("shaders/vert-geometry_debug.vert",
+                                                 "shaders/frag-depth_mapping.frag",
+                                                 "Depth Mapping");
+
+        // generate Glassy shader
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-shader3D.vert",
+                                                 "shaders/frag-glassy.frag",
+                                                 "Glassy Shader");*/
+
+        ResourceManager::GenerateShaderFromFiles("shaders/vert-skybox.vert",
+                                                 "shaders/frag-skybox.frag",
+                                                 "Skybox Shader");
+        #pragma endregion
 
         glDisable(GL_CULL_FACE);
     }
 
-    void RenderingSystem::BuildLightGrid() {
-        LightGrid.clear();
+#pragma region rendering system variable setters
+    void RenderingSystem::MarkAsLoader(EisEngine::ecs::Entity *ptr) {
+        Loaders.push_back(ptr);
+    }
 
-        if(engine.componentManager.hasComponentOfType<PointLight>()){
-            engine.componentManager.forEachComponent<PointLight>([&](PointLight& light){
-                auto pos = light.position();
-                Vector2 cell = WorldToCell(pos);
-                LightGrid[cell].push_back(light.GetOwner());
+    void RenderingSystem::SetSpecularFactor(const float &val) { specularFactor = val;}
+
+    void RenderingSystem::SetActiveShader(const std::string &shaderName) {
+        for(const auto& pair : shaderNameDict)
+            if(shaderName == pair.first){
+                active3DShader = shaderName;
+                return;
+            }
+        DEBUG_WARN("Attempted to set shader to invalid value [" + shaderName + "].")
+    }
+
+    void RenderingSystem::SetSkyboxEntity(EisEngine::ecs::Entity *ptr) {
+        skybox = ptr;
+    }
+#pragma endregion
+
+#pragma region glassy shader setup
+    void RenderingSystem::InitFBO(const int& index, const Vector2& screenDims) {
+        // gen framebuffer
+        glGenFramebuffers(1, &FBO[index]);
+        glBindFramebuffer(GL_FRAMEBUFFER, FBO[index]);
+
+        // gen depth texture
+        glGenTextures(1, &depthTex[index]);
+        glBindTexture(GL_TEXTURE_2D, depthTex[index]);
+
+        glTexImage2D(
+                GL_TEXTURE_2D,
+                0,
+                GL_R32F,
+                (int) screenDims.x,
+                (int) screenDims.y,
+                0,
+                GL_RED,
+                GL_FLOAT,
+                nullptr
+        );
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+        glFramebufferTexture2D(
+                GL_FRAMEBUFFER,
+                GL_COLOR_ATTACHMENT0,
+                GL_TEXTURE_2D,
+                depthTex[index],
+                0
+        );
+
+        // gen RBO for depth cache (?)
+        glGenRenderbuffers(1, &RBO[index]);
+        glBindRenderbuffer(GL_RENDERBUFFER, RBO[index]);
+        glRenderbufferStorage(
+                GL_RENDERBUFFER,
+                GL_DEPTH_COMPONENT24,
+                (int) screenDims.x,
+                (int) screenDims.y
+        );
+
+        glFramebufferRenderbuffer(
+                GL_FRAMEBUFFER,
+                GL_DEPTH_ATTACHMENT,
+                GL_RENDERBUFFER,
+                RBO[index]
+        );
+
+        // add draw buffer
+        GLenum drawBufs[] = { GL_COLOR_ATTACHMENT0 };
+        glDrawBuffers(1, drawBufs);
+
+        assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
+
+        glBindRenderbuffer(GL_RENDERBUFFER, 0);
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+
+    void RenderingSystem::ResizeFBOItems(const EisEngine::Vector2 &newScreenDims) {
+        for(int i = 0; i < FBO.size(); i++){
+            glBindRenderbuffer(GL_RENDERBUFFER, FBO[i]);
+
+            glBindTexture(GL_TEXTURE_2D, depthTex[i]);
+            glTexImage2D(
+                    GL_TEXTURE_2D,
+                    0,
+                    GL_R32F,
+                    (int) newScreenDims.x,
+                    (int) newScreenDims.y,
+                    0,
+                    GL_RED,
+                    GL_FLOAT,
+                    nullptr
+            );
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+            // gen RBO for depth cache (?)
+            glBindRenderbuffer(GL_RENDERBUFFER, RBO[i]);
+            glRenderbufferStorage(
+                    GL_RENDERBUFFER,
+                    GL_DEPTH_COMPONENT24,
+                    (int) newScreenDims.x,
+                    (int) newScreenDims.y
+            );
+
+            assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
+
+            glBindRenderbuffer(GL_RENDERBUFFER, 0);
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        }
+    }
+#pragma endregion
+
+#pragma region drawing process
+
+    void RenderingSystem::GetGridLights(EisEngine::systems::RenderingSystem::Mesh3D &mesh,
+                                        EisEngine::rendering::Shader *activeShader) {
+        auto pos = mesh.entity()->transform->GetGlobalPosition();
+        float lodDist = 100000000000000000.0f;
+        // base LOD --> if within distance of loader object, render normally else render ambiant
+        if(!Loaders.empty())
+            for(auto obj : Loaders){
+                auto objPos = obj->transform->GetGlobalPosition();
+                //objPos.y = 2;
+                lodDist = std::min(lodDist, Vector3::Distance(objPos, pos));
+            }
+
+        // if dist to any LOD object < dist threshold
+        // compute lighting
+        if(lodDist > DIST_THRESHOLD) {
+            // implicit LOD culling by setting no lights --> ambiant
+            // better than outright branching in the GPU
+            activeShader->setInt("nLights", 0);
+            return;
+        }
+
+        // get lights in grid
+        auto results = lightSystem->QueryNearbyLights(pos);
+        std::vector<LightEntry> list;
+        list.reserve(results.size());
+
+        // for each entry in the results, create an LightEntry object
+        for (int id : results) {
+            auto* e = engine.entityManager->getEntity(id);
+            if (!e) continue;
+
+            auto* L = e->GetComponent<PointLight>();
+            if (!L) continue;
+
+            float d2 = Vector3::Distance(L->position(), pos);
+            list.push_back({L, d2});
+        }
+
+        // sort entries by distance
+        std::sort(list.begin(), list.end(),
+                  [](auto& a, auto& b){
+                      return a.dist2 < b.dist2;
+                  });
+
+        // resize list to acceptable size -> keeps the m closest lights.
+        if (list.size() > MAX_LIGHTS)
+            list.resize(MAX_LIGHTS);
+
+        std::vector<ShaderLightStruct> entries = {};
+        for(auto light : list){
+            auto source = light.L;
+            entries.push_back({
+                source->position(),
+                0,
+                source->GetEmission(),
+                source->GetIntensity()
             });
         }
+
+        // unwrap
+        ApplyLightEntriesToShader(entries, activeShader);
     }
 
-    std::vector<int> RenderingSystem::QueryNearbyLights(const glm::vec3& objectPos) {
-        Vector2 c = WorldToCell(objectPos);
+    void RenderingSystem::ApplyLightEntriesToShader(std::vector<ShaderLightStruct>& entries, Shader* activeShader) const{
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, lightCutSSBO);
 
-        std::vector<int> result;
-        result.reserve(16); // fast
+        size_t newSize = entries.size() * sizeof(LightEntry);
+        // clear & resize buffer to fit
+        glBufferData(
+                GL_SHADER_STORAGE_BUFFER,
+                (GLsizeiptr) newSize,
+                nullptr,
+                GL_DYNAMIC_DRAW
+        );
 
-        for (int dx = -1; dx <= 1; dx++) {
-            for (int dz = -1; dz <= 1; dz++) {
-                Vector2 nc{ c.x + dx, c.y + dz };
+        // apply data & bind to base location 0.
+        glBufferSubData(
+                GL_SHADER_STORAGE_BUFFER,
+                0,
+                (GLsizeiptr) newSize,
+                entries.data()
+                );
+        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, lightCutSSBO);
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 
-                auto it = LightGrid.find(nc);
-                if (it != LightGrid.end()) {
-                    const auto& list = it->second;
-                    result.insert(result.end(), list.begin(), list.end());
-                }
+        activeShader->setInt("nLights", (int) entries.size());
+    }
+
+    void RenderingSystem::GetLightClusters(EisEngine::systems::RenderingSystem::Mesh3D &mesh,
+                                           EisEngine::rendering::Shader *activeShader) {
+        // get LOD level -> dist to player
+        // (maybe logistic function where the closer to a loader, the lower the error threshold?)
+        auto pos = mesh.entity()->transform->GetGlobalPosition();
+        float lodDist = 100000000000000000.0f;
+        // base LOD --> if within distance of loader object, render normally else render ambiant
+        if(!Loaders.empty())
+            for(auto obj : Loaders){
+                auto objPos = obj->transform->GetGlobalPosition();
+                //objPos.y = 2;
+                lodDist = std::min(lodDist, Vector3::Distance(objPos, pos));
             }
+
+        // calculate light cuts based on LOD level & activate cuts.
+        auto results = lightSystem->ComputeLightCut(pos, lodDist);
+        std::vector<ShaderLightStruct> entries = {};
+        entries.reserve(results.size());
+
+        // make structs that mirror the way PointLights are applied.
+        // 0 serves as padding for the memory buffer (vec3 values expected at start of a 16 byte sequence
+        // but fills 12 bytes -> next vec3 xval essentially discarded if no padding apparently)
+        for(auto cluster: results){
+            entries.push_back({
+                  cluster->representative->position(),
+                  0,
+                  cluster->representative->GetEmission(),
+                  cluster->total_intensity
+          });
+        }
+        // apply light cuts & return.
+        // this automatically applies LOD, should we just ignore it? -> yes
+        ApplyLightEntriesToShader(entries, activeShader);
+    }
+
+    void RenderingSystem::Prepare3DDraw(Mesh3D& mesh, Shader* activeShader){
+        // could be streamlined? maybe a shader properties object
+        // that discards value assignments if don't exist in shader.
+
+#pragma region model matrix calculations
+        auto model = mesh.entity()->transform->GetModelMatrix();
+        activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
+        // model matrices
+        activeShader->setMatrix("model", model);
+        auto normalMat = glm::mat3(model);
+        // if mat is inversible, apply inverse transposed matrix
+        normalMat = glm::transpose(glm::inverse(glm::mat3(model)));
+        if(abs(glm::determinant(model)) < 1e-6f) {
+            // normalize matrix to kill scale variance
+            normalMat[0] = glm::normalize(normalMat[0]);
+            normalMat[1] = glm::normalize(normalMat[1]);
+            normalMat[2] = glm::normalize(normalMat[2]);
+        }
+        activeShader->setMatrix("normalMat", normalMat);
+#pragma endregion
+
+        // material
+        auto renderer = mesh.entity()->GetComponent<Renderer>();
+        if(renderer)
+            renderer->ApplyData(*activeShader);
+
+        // togleable switch between old system made 3D-dynamic and new BH system.
+        if(useVoxelGrid)
+            GetGridLights(mesh, activeShader);
+        else
+            GetLightClusters(mesh, activeShader);
+
+        activeShader->setInt("n_levels", n_toon_levels);
+    }
+
+    void RenderingSystem::DrawMesh2D(EisEngine::components::Mesh2D &mesh,
+                                     EisEngine::rendering::Shader *activeShader) {
+        auto model = mesh.entity()->transform->GetModelMatrix();
+        activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
+        auto renderer = mesh.entity()->GetComponent<Renderer>();
+        if(renderer)
+            renderer->ApplyData(*activeShader);
+        mesh.draw();
+    }
+
+    void RenderingSystem::DrawLine(EisEngine::systems::RenderingSystem::Line &mesh,
+                                   EisEngine::rendering::Shader *activeShader) {
+        auto renderer = mesh.entity()->GetComponent<Renderer>();
+        if(renderer)
+            renderer->ApplyData(*activeShader);
+        auto model = mesh.entity()->transform->GetModelMatrix();
+        activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
+        mesh.draw();
+    }
+
+    void RenderingSystem::DrawSkybox(Shader* activeShader) {
+        if(skybox != nullptr){
+            glDisable(GL_CULL_FACE);
+
+            DEBUG_OPENGL("Skybox")
+            activeShader = ResourceManager::GetShader("Skybox Shader");
+            activeShader->Apply(camera);
+
+            glDepthMask(GL_FALSE);
+            glDepthFunc(GL_LEQUAL);
+            auto view = glm::mat4(glm::mat3(camera->CalculateViewMatrix()));
+            auto proj = camera->GetProjectionMatrix();
+
+            activeShader->setMatrix("vp", proj * view);
+
+            // apply cubemap
+            auto renderer = skybox->GetComponent<CubemapRenderer>();
+            renderer->ApplyData(*activeShader);
+
+            auto mesh = skybox->GetComponent<Mesh3D>();
+            mesh->draw(activeShader->GetShaderID());
+
+            glDepthFunc(GL_LESS);
+            glDepthMask(GL_TRUE);
+        }
+    }
+
+    void RenderingSystem::DrawTransparentObjects(std::vector<Mesh3D *> &transparentMeshes, Shader* activeShader) {
+        // no reflection if no skybox -> abort rendering (would be clear anyways >:p
+        if(skybox == nullptr)
+            return;
+
+        // shader setup
+        activeShader = ResourceManager::GetShader(shaderNameDict.at("Depth"));
+        activeShader->Apply(camera);
+        activeShader->setFloat("ambient", ambient);
+        activeShader->setFloat("specular", specularFactor);
+
+#pragma region backward pass
+        // bind thickness fbo
+        // clear color & depth
+        // cull front faces
+        glBindFramebuffer(GL_FRAMEBUFFER, FBO[0]);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
+        glDisable(GL_BLEND);
+        glDepthMask(GL_TRUE);
+
+        for(auto mesh: transparentMeshes){
+            // I think I just need geometry for this one; Edit to fit.
+            // Prepare3DDraw(*mesh, activeShader);
+            auto model = mesh->entity()->transform->GetModelMatrix();
+            activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
+            auto view = camera->CalculateViewMatrix();
+            activeShader->setMatrix("mv", view * model);
+            mesh->draw(activeShader->GetShaderID());
+        }
+#pragma endregion
+
+        // redo a second pass for front face.
+#pragma region forward pass
+        glBindFramebuffer(GL_FRAMEBUFFER, FBO[1]);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glCullFace(GL_BACK);
+
+        for(auto mesh: transparentMeshes){
+            // I think I just need geometry for this one; Edit to fit.
+            // Prepare3DDraw(*mesh, activeShader);
+            auto model = mesh->entity()->transform->GetModelMatrix();
+            activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
+            auto view = camera->CalculateViewMatrix();
+            activeShader->setMatrix("mv", view * model);
+            mesh->draw(activeShader->GetShaderID());
         }
 
-        return result;
+#pragma endregion
+
+#pragma region glassy shader setup
+        // bind "base" fbo (none)
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_DEPTH_TEST);
+        // turn off depth writing
+        glDepthMask(GL_FALSE);
+        glDisable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+
+        activeShader = ResourceManager::GetShader(shaderNameDict.at("Glassy"));
+        activeShader->Apply(camera);
+        activeShader->setFloat("ambient", ambient);
+        activeShader->setFloat("specular", specularFactor);
+
+        auto dims = engine.context->GetWindowSize();
+        activeShader->setInt("screenWidth", (int) dims.x);
+        activeShader->setInt("screenHeight", (int) dims.y);
+        activeShader->setVector("eta", eta);
+#pragma endregion
+
+#pragma region sampler assignments
+        // apply cubemap
+        auto renderer = skybox->GetComponent<CubemapRenderer>();
+        renderer->ApplyData(*activeShader);
+
+        // bind back depth texture
+        glActiveTexture(GL_TEXTURE0 + UniformSamplerIndices::DEPTH_BACK_FACE);
+        glBindTexture(GL_TEXTURE_2D, depthTex[0]);
+        // bind front depth texture
+        glActiveTexture(GL_TEXTURE0 + UniformSamplerIndices::DEPTH_FRONT_FACE);
+        glBindTexture(GL_TEXTURE_2D, depthTex[1]);
+
+        GLint boundCube;
+        glActiveTexture(GL_TEXTURE0 + UniformSamplerIndices::CUBEMAP);
+        glGetIntegerv(GL_TEXTURE_BINDING_CUBE_MAP, &boundCube);
+        assert(boundCube != 0);
+#pragma endregion
+
+        for(auto mesh: transparentMeshes){
+            Prepare3DDraw(*mesh, activeShader);
+            mesh->draw(activeShader->GetShaderID());
+        }
+
+        glDepthMask(GL_TRUE);
+        glDisable(GL_BLEND);
     }
+#pragma endregion
 
     void RenderingSystem::Draw() {
-        if(LightGrid.empty())
-            BuildLightGrid();
-
-        // re-enable depth testing for 'regular' entities.
+        // re-enable depth testing for 'regular' entities. (just in case)
         glEnable(GL_DEPTH_TEST);
+        // shader / VAO counter
         auto i = 0;
 
         #pragma region Default Shader
         auto activeShader = ResourceManager::GetShader("Default Shader");
 
         // Mesh2D rendering
-        if(engine.componentManager.hasComponentOfType<Mesh2D>()){
-            glBindVertexArray(VAO[i++]);
+        glBindVertexArray(VAO[i++]);
+        if(engine.componentManager->hasComponentOfType<Mesh2D>()){
             activeShader->Apply(camera);
-            engine.componentManager.forEachComponent<Mesh2D>([&](Mesh2D& mesh){
-                auto model = mesh.entity()->transform->GetModelMatrix();
-                activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
-                auto renderer = mesh.entity()->GetComponent<Renderer>();
-                if(renderer)
-                    renderer->ApplyData(*activeShader);
-                mesh.draw();
+            engine.componentManager->forEachComponent<Mesh2D>([&](Mesh2D& mesh){
+                DrawMesh2D(mesh, activeShader);
             });
         }
 
         // line rendering (same shader as Mesh2D's)
-        if(engine.componentManager.hasComponentOfType<Line>()){
-            glBindVertexArray(VAO[i++]);
-            engine.componentManager.forEachComponent<Line>([&] (Line& mesh){
-                auto renderer = mesh.entity()->GetComponent<Renderer>();
-                if(renderer)
-                    renderer->ApplyData(*activeShader);
-                auto model = mesh.entity()->transform->GetModelMatrix();
-                activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
-                mesh.draw();
+        glBindVertexArray(VAO[i++]);
+        if(engine.componentManager->hasComponentOfType<Line>()){
+            engine.componentManager->forEachComponent<Line>([&] (Line& mesh){
+                DrawLine(mesh, activeShader);
             });
         }
         #pragma endregion
 
         #pragma region 3D rendering
+        glBindVertexArray(VAO[i++]);
+        DrawSkybox(activeShader);
+
         // Mesh3D rendering
-        activeShader = ResourceManager::GetShader("3D Shader");
-        activeShader->setFloat("ambient", AMBIENT_FACTOR);
-        activeShader->setFloat("specular", SPECULAR_FACTOR);
-        if(engine.componentManager.hasComponentOfType<Mesh3D>()){
-            glBindVertexArray(VAO[i++]);
-            activeShader->Apply(camera);
-            engine.componentManager.forEachComponent<Mesh3D>([&](Mesh3D& mesh){
-                auto model = mesh.entity()->transform->GetModelMatrix();
-                activeShader->setMatrix("model", model);
-                activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
-                auto normalMat = glm::mat3(model);
-                // if mat is inversible, apply inverse transposed matrix
-                normalMat = glm::transpose(glm::inverse(glm::mat3(model)));
-                if(abs(glm::determinant(model)) < 1e-6f) {
-                    // normalize matrix to kill scale variance
-                    normalMat[0] = glm::normalize(normalMat[0]);
-                    normalMat[1] = glm::normalize(normalMat[1]);
-                    normalMat[2] = glm::normalize(normalMat[2]);
-                }
-                activeShader->setMatrix("normalMat", normalMat);
-                auto renderer = mesh.entity()->GetComponent<Renderer>();
-                if(renderer)
-                    renderer->ApplyData(*activeShader);
+        activeShader = ResourceManager::GetShader(shaderNameDict.at(active3DShader));
+        activeShader->Apply(camera);
+        activeShader->setFloat("ambient", ambient);
+        activeShader->setFloat("specular", specularFactor);
 
-                auto pos = mesh.entity()->transform->GetGlobalPosition();
-                pos.y = 2;
-                float lodDist = 100000000000000000.0f;
-                if(!Loaders.empty())
-                    for(auto obj : Loaders){
-                        auto objPos = obj->transform->GetGlobalPosition();
-                        objPos.y = 2;
-                        lodDist = std::min(lodDist, Vector3::Distance(objPos, pos));
-                    }
+        std::vector<Mesh3D*> transparentMeshes = {};
 
-                // if dist to any LOD object < dist threshold
-                // compute lighting
-                if(lodDist < DIST_THRESHOLD){
-                    activeShader->setInt("LOD", 1);
+        if(engine.componentManager->hasComponentOfType<Mesh3D>()){
+            engine.componentManager->forEachComponent<Mesh3D>([&](Mesh3D& mesh){
+                // don't render skybox object.
+                if(skybox != nullptr && *mesh.entity() == *skybox)
+                    return;
 
-                    // get lights in grid
-                    auto results = QueryNearbyLights(pos);
-                    std::vector<Entry> list;
-                    list.reserve(results.size());
+                /*auto renderer = mesh.entity()->GetComponent<Renderer>();
+                // early exit if transparent mesh (separate shaders).
+                if(renderer && renderer->material->GetOpacity() != 1.0f){
+                    transparentMeshes.emplace_back(&mesh);
+                    return;
+                }*/
 
-                    // for each entry in the results, create an Entry object
-                    for (int id : results) {
-                        auto* e = engine.entityManager.getEntity(id);
-                        if (!e) continue;
-
-                        auto* L = e->GetComponent<PointLight>();
-                        if (!L) continue;
-
-                        float d2 = Vector3::Distance(L->position(), pos);
-                        list.push_back({L, d2});
-                    }
-
-                    // sort entries by distance
-                    std::sort(list.begin(), list.end(),
-                              [](auto& a, auto& b){ return a.dist2 < b.dist2; });
-
-                    // resize list to acceptable size
-                    if (list.size() > MAX_LIGHTS)
-                        list.resize(MAX_LIGHTS);
-
-                    // unwrap
-                    for (int i = 0; i < list.size(); i++)
-                        list[i].L->Apply(*activeShader, i);
-                    activeShader->setInt("nLights", (int) list.size());
-                }
-                else{
-                    // else default to ambient.
-                    activeShader->setInt("LOD", 0);
-                }
-
+                Prepare3DDraw(mesh, activeShader);
                 mesh.draw(activeShader->GetShaderID());
             });
         }
+
+        /*if(!transparentMeshes.empty()){
+            DrawTransparentObjects(transparentMeshes, activeShader);
+        }*/
         #pragma endregion
 
         #pragma region Sprite Rendering
@@ -230,10 +646,10 @@ struct Entry{
         // weed out UI Sprites for later overlay rendering
         std::vector<SpriteMesh*> uiSprites = {};
 
-        if(engine.componentManager.hasComponentOfType<SpriteMesh>()){
-            glBindVertexArray(VAO[i++]);
+        glBindVertexArray(VAO[i++]);
+        if(engine.componentManager->hasComponentOfType<SpriteMesh>()){
             activeShader->Apply(camera);
-            engine.componentManager.forEachComponent<SpriteMesh>([&] (SpriteMesh& mesh){
+            engine.componentManager->forEachComponent<SpriteMesh>([&] (SpriteMesh& mesh){
                 auto renderer = mesh.entity()->GetComponent<Renderer>();
                 if(!renderer){
                     DEBUG_ERROR("No sprite renderer attached to mesh on entity " + mesh.entity()->name())
@@ -243,10 +659,11 @@ struct Entry{
                     uiSprites.emplace_back(&mesh);
                     return;
                 }
+
                 renderer->ApplyData(*activeShader);
                 auto model = mesh.entity()->transform->GetModelMatrix();
                 activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
-                mesh.draw();
+                mesh.draw(activeShader->GetShaderID());
             });
         }
 
@@ -273,8 +690,17 @@ struct Entry{
                                          - (float) screenHeight / 2, (float) screenHeight / 2);
             auto modelProjection = projection * mesh->entity()->transform->GetModelMatrix();
             activeShader->setMatrix("mvp", modelProjection);
-            mesh->draw();
+            mesh->draw(activeShader->GetShaderID());
         }
         #pragma endregion
+    }
+
+    float RenderingSystem::GetMaxBRDF(const std::string &brdfFunc) {
+        if(brdfFunc != "Blinn-Phong")
+            return -1.0f;
+
+        // specular lobe in shader = angle ^ (specularFactor) where the max value angle can take is 1
+        // --> 1^n = 1
+        return 1.0f;
     }
 }

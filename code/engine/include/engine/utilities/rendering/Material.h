@@ -43,11 +43,11 @@ namespace EisEngine {
         #pragma region getters
         const Vector3& GetDiffuse() {return diffuse;}
         const Vector3& GetEmission() {return emission;}
-        const float& GetOpacity() const {return opacity;}
-        const float& GetMetallic() const {return metallic;}
-        const float& GetRoughness() const {return roughness;}
-        const float& GetTiling() const {return tiling;}
-        const float& GetIntensity() const {return intensity;}
+        [[nodiscard]] const float& GetOpacity() const {return opacity;}
+        [[nodiscard]] const float& GetMetallic() const {return metallic;}
+        [[nodiscard]] const float& GetRoughness() const {return roughness;}
+        [[nodiscard]] const float& GetTiling() const {return tiling;}
+        [[nodiscard]] const float& GetIntensity() const {return intensity;}
         const std::string& Name() {return name;}
         #pragma endregion
 

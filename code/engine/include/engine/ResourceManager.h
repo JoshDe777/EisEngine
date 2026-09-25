@@ -18,7 +18,15 @@ namespace fs = std::filesystem;
 namespace EisEngine {
     inline fs::path resolveAssetPath(const fs::path &relativeAssetPath) {
         auto mergedPath = (GET_DIR(ASSET_ROOT) / relativeAssetPath).make_preferred();
-        return fs::canonical(mergedPath);
+        fs::path path;
+        try{
+            path = fs::canonical(mergedPath);
+        }
+        catch(exception& e){
+            DEBUG_ERROR("Couldn't resolve file " + mergedPath.string())
+            return fs::path("Invalid");
+        }
+        return path;
     }
 
     /// \n Struct used to debug shader creation.
@@ -50,10 +58,14 @@ namespace EisEngine {
         /// \n fetches a texture using its name.
         static Texture2D* GetTexture(const std::string& name);
 
+        /// \n Generates a cubemap texture from 6 images in order right - left - top - bottom - front - back.
+        static Cubemap* GenerateCubemapFromFiles(const std::vector<std::string>& imagePaths, const std::string& cubemapName);
+        static Cubemap* GetCubemap(const std::string& name);
+
         /// \n fetches a material using its name.
         static Material* GetMaterial(const std::string& matname);
         /// \n creates an instance of a material using its name.
-        static std::unique_ptr<Material> GetMaterialInstance(const std::string& matname);
+        static Material* CreateMaterialInstance(const std::string& matname);
 
         /// \n fetches a shader using its name.
         static Shader* GetShader(const std::string& name);
@@ -75,10 +87,14 @@ namespace EisEngine {
 
         /// \n A dictionary of textures associated to their file name.
         static std::map<std::string, std::unique_ptr<Texture2D>> Textures;
+        /// \n A dictionary of textures associated to their file name.
+        static std::map<std::string, std::unique_ptr<Cubemap>> Cubemaps;
         /// \n A dictionary of shaders associated to their name.
         static std::map<std::string, std::unique_ptr<Shader>> Shaders;
         /// \n A dictionary of materials associated to their name.
         static std::map<std::string, std::unique_ptr<Material>> Materials;
+        /// \n A dictionary of materials associated to their name.
+        static std::vector<std::unique_ptr<Material>> MaterialInstances;
 
         /// \n Compiles a file path to a std::string.
         static std::string ReadText(const fs::path& path);
@@ -104,6 +120,12 @@ namespace EisEngine {
 
         /// \n creates a dummy, white texture.
         static Texture2D* MakeDummyTexture();
+        /// \n creates a dummy, blue texture.
+        static Texture2D* MakeDummyNormalMap();
+        #pragma endregion
+
+        #pragma region Cubemaps
+        static Cubemap loadCubemapFromFiles(const std::vector<std::string>& filePaths);
         #pragma endregion
 
         #pragma region Materials

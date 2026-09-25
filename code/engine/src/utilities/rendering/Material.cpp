@@ -3,6 +3,8 @@
 #include "engine/utilities/rendering/Material.h"
 #include "engine/utilities/rendering/Shader.h"
 #include "engine/utilities/Debug.h"
+#include "engine/utilities/Math.h"
+#include "engine/utilities/Vector3.h"
 
 namespace EisEngine {
     Material::Material(std::string  name, const Vector3& diffuse, const Vector3 &emission,
@@ -15,7 +17,8 @@ namespace EisEngine {
         shader.setVector("diffuse", diffuse);
         shader.setFloat("alpha", opacity);
         shader.setFloat("tiling", tiling);
-        shader.setFloat("shiny", metallic * (1 - roughness));
+        shader.setFloat("metallic", metallic);
+        shader.setFloat("roughness", roughness);
     }
 
     void Material::Print() {

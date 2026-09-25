@@ -2,7 +2,21 @@
 #include "engine/systems/Camera.h"
 #include "engine/Game.h"
 
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtc/quaternion.hpp>
+
 namespace EisEngine::systems {
+    inline Vector3 ConvertMatrixToEuler(const glm::mat4& mat) {
+        glm::vec3 euler;
+        glm::extractEulerAngleYXZ(mat, euler.y, euler.x, euler.z);
+
+        return Vector3(
+                Math::RadiansToDegrees(euler.x),
+                Math::RadiansToDegrees(euler.y),
+                Math::RadiansToDegrees(euler.z)
+        );
+    }
+
     Camera::Camera(EisEngine::Game &engine, const Vector2& screenDimensions, CameraMode cameraMode):
     System(engine),
     m_screenWidth((int) screenDimensions.x),
@@ -11,7 +25,7 @@ namespace EisEngine::systems {
     nearClip(cameraMode == PERSPECTIVE ? 0.1f : -1),
     farClip(100)
     {
-        entity = &engine.entityManager.createEntity("Camera");
+        entity = engine.entityManager->createEntity("Camera");
         transform = entity->transform;
         engine.onUpdate.addListener([&] (Game &game){
             // save old known window dimensions.
@@ -19,7 +33,7 @@ namespace EisEngine::systems {
             int oldHeight = m_screenHeight;
 
             // get current window dimensions
-            auto dimensions = game.context.GetWindowSize();
+            auto dimensions = game.context->GetWindowSize();
             m_screenWidth = (int) dimensions.x;
             m_screenHeight = (int) dimensions.y;
 
@@ -37,7 +51,18 @@ namespace EisEngine::systems {
         nearClip = mode == PERSPECTIVE ? 0.1f : -1;
     }
 
-    glm::mat4 Camera::GetVPMatrix() {
+    Vector3 Camera::viewDirection() const {
+        return transform->Forward();
+    }
+
+    void Camera::LookAt(const EisEngine::Vector3 &pos) const {
+        auto q = glm::quatLookAt((glm::vec3) (pos - transform->GetGlobalPosition()).normalized(),
+                                 (glm::vec3) Vector3::up);
+        auto res = Vector3(eulerAngles(q));
+        transform->SetLocalRotation(res);
+    }
+
+    glm::mat4 Camera::GetVPMatrix() const {
         auto view = CalculateViewMatrix();
         auto projection = GetProjectionMatrix();
         return projection * view;
@@ -67,5 +92,9 @@ namespace EisEngine::systems {
                                   farClip);
         }
         return glm::mat4(1.0f);
+    }
+
+    Camera::~Camera(){
+        //DEBUG_INFO("DELETING CAMERA!!!!!")
     }
 }

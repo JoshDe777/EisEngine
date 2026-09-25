@@ -5,13 +5,34 @@
 #include "engine/systems/Camera.h"
 
 namespace EisEngine::rendering {
-    Shader::Shader(const unsigned int &vertexShaderProgram, const unsigned int &fragmentShaderProgram) :
+    Shader::Shader(
+            const unsigned int &vertexShaderProgram,
+            const unsigned int &fragmentShaderProgram,
+            const std::string& name
+        ) :
     vertexShader(vertexShaderProgram),
-    fragmentShader(fragmentShaderProgram) {
+    fragmentShader(fragmentShaderProgram),
+    name(name){
         shaderProgram = glCreateProgram();
+
         glAttachShader(shaderProgram, vertexShader);
         glAttachShader(shaderProgram, fragmentShader);
+
         glLinkProgram(shaderProgram);
+
+        glValidateProgram(shaderProgram);
+
+        DEBUG_OPENGL("Shader " + name)
+
+        GLint status;
+        glGetProgramiv(shaderProgram, GL_VALIDATE_STATUS, &status);
+        if (status != GL_TRUE)
+        {
+            char log[1024];
+            glGetProgramInfoLog(shaderProgram, 1024, nullptr, log);
+            std::cerr << name << " - " << log << std::endl;
+        }
+
         glDetachShader(shaderProgram, vertexShader);
         glDetachShader(shaderProgram, fragmentShader);
     }
@@ -29,47 +50,74 @@ namespace EisEngine::rendering {
 
     void Shader::Apply(Camera* camera) {
         glUseProgram(shaderProgram);
+        DEBUG_OPENGL("Shader " + name)
         vpMatrix = camera->GetVPMatrix();
-        setMatrix("mvp", vpMatrix);
-        setVector("camPos", camera->transform->GetGlobalPosition());
+        auto mvpLoc = glGetUniformLocation(shaderProgram, "mvp");
+        if(mvpLoc != -1)
+            setMatrix("mvp", vpMatrix);
+        DEBUG_OPENGL("Shader " + name)
+        auto camPosLoc = glGetUniformLocation(shaderProgram, "camPos");
+        if(camPosLoc != -1)
+            setVector("camPos", camera->transform->GetGlobalPosition());
+        DEBUG_OPENGL("Shader " + name)
+
+        setInt("image", UniformSamplerIndices::DIFFUSE);
+        setInt("nMap", UniformSamplerIndices::NORMAL);
+        setInt("cubeMap", UniformSamplerIndices::CUBEMAP);
+        setInt("backDepthMap", UniformSamplerIndices::DEPTH_BACK_FACE);
+        setInt("frontDepthMap", UniformSamplerIndices::DEPTH_FRONT_FACE);
+        DEBUG_OPENGL("Shader " + name)
     }
 
-    void Shader::ApplyTexture(const Texture2D& texture) const {
-        glActiveTexture(GL_TEXTURE0);
+    void Shader::ApplyTexture2D(const Texture2D& texture, UniformSamplerIndices type) const {
+        GLint maxUnits = 0;
+        glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &maxUnits);
+        if(type > maxUnits){
+            DEBUG_WARN("Attempting to bind texture to invalid ID!")
+            return;
+        }
+
+        glActiveTexture(GL_TEXTURE0 + type);
         texture.Bind();
-        setInt("image", 0);
+        DEBUG_OPENGL("Shader " + name)
+    }
+
+    void Shader::ApplyCubemap(const Cubemap& cubemap) const {
+        glActiveTexture(GL_TEXTURE0 + UniformSamplerIndices::CUBEMAP);
+        cubemap.Bind();
+        DEBUG_OPENGL("Shader " + name)
     }
 
     void Shader::setMatrix(const std::string &uniformName, glm::mat4 mat4) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat4));
+        if(uniformLocation != -1)
+            glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat4));
     }
     void Shader::setMatrix(const std::string &uniformName, glm::mat3 mat3) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat3));
+        if(uniformLocation != -1)
+            glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat3));
     }
     void Shader::setVector(const std::string &uniformName, glm::vec4 vec4) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniform4fv(uniformLocation, 1, glm::value_ptr(vec4));
+        if(uniformLocation != -1)
+            glUniform4fv(uniformLocation, 1, glm::value_ptr(vec4));
     }
     void Shader::setVector(const std::string &uniformName, glm::vec3 vec3) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniform3fv(uniformLocation, 1, glm::value_ptr(vec3));
+        if(uniformLocation != -1)
+            glUniform3fv(uniformLocation, 1, glm::value_ptr(vec3));
     }
 
     void Shader::setInt(const std::string &uniformName, const int &val) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniform1i(uniformLocation, val);
+        if(uniformLocation != -1)
+            glUniform1i(uniformLocation, val);
     }
 
     void Shader::setFloat(const std::string &uniformName, const float &val) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniform1f(uniformLocation, val);
+        if(uniformLocation != -1)
+            glUniform1f(uniformLocation, val);
     }
-
-    const fs::path Shader::defaultVertexShaderPath = "shaders/vertexShader.vert";
-    const fs::path Shader::defaultFragmentShaderPath = "shaders/fragmentShader.frag";
-    const fs::path Shader::spriteVertexShaderPath = "shaders/spriteVertexShader.vert";
-    const fs::path Shader::spriteFragmentShaderPath = "shaders/spriteFragmentShader.frag";
-    const fs::path Shader::uiVertexShaderPath = "shaders/uiVertexShader.vert";
 }

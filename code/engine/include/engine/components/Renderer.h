@@ -14,16 +14,18 @@ namespace EisEngine {
         /// \n *deprecated* Contains rendering data for any type of mesh.
         /// \n Use specialized renderers tailored to a specific mesh type instead.
         class Renderer : public Component {
+            friend class ecs::Entity;
         public:
             /// \n Creates a renderer.
-            /// @param tex - Texture2D*: A pointer to a texture item. Can be null.
+            /// @param diffTex - Texture2D*: A pointer to a texture item. Can be null.
             /// @param mat - Material*: A pointer to a material item.
             /// @param layer - std::string: The rendering layer for meshes paired with a renderer.
             /// \n Currently supported: {"UI" for UI Elements, and [any other string] for regular rendering}.
             Renderer(Game &engine, guid_t owner,
-                     Texture2D* tex = nullptr,
+                     Texture2D* diffTex = nullptr,
                      Material* mat = nullptr,
-                     std::string  layer = "Background");
+                     std::string  layer = "Background",
+                     Texture2D* normMap = nullptr);
             Renderer(const Renderer &renderer) = delete;
             Renderer(Renderer &&other) noexcept;
 
@@ -33,17 +35,19 @@ namespace EisEngine {
             [[nodiscard]] std::string GetLayer() { return m_layer;}
 
             /// \n Sets a new texture for the corresponding sprite.
-            void SetNewTexture(Texture2D* newTexture) {texture = newTexture;}
+            void SetDiffuseTexture(Texture2D* newTexture) { diffuseTexture = newTexture;}
+            void SetNormalMap(Texture2D* newTexture) { normalMap = newTexture;}
             /// \n Returns a pointer to the texture assigned to a renderer.
-            Texture2D* GetTexture() { return texture;}
+            Texture2D* GetDiffuseTexture() { return diffuseTexture;}
+            Texture2D* GetNormalMap(){ return normalMap;}
 
             /// \n The material attributed to the associated mesh.
-            shared_ptr<Material> material;
+            Material* material;
         protected:
-            /// \n A function called when a component is intentionally deleted.
-            void Invalidate() override;
-            /// \n the texture attributed to the associated mesh.
-            Texture2D* texture;
+            /// \n the diffuse/albedo texture attributed to the associated mesh.
+            Texture2D* diffuseTexture;
+            /// \n the normal map attributed to the associated mesh.
+            Texture2D* normalMap;
             /// \n The rendering layer of the associated mesh.
             std::string m_layer;
         };

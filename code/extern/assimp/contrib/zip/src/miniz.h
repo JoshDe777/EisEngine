@@ -1230,7 +1230,7 @@ typedef struct {
   mz_uint16 m_internal_attr;
   mz_uint32 m_external_attr;
 
-  /* Entry's local header file offset in bytes. */
+  /* LightEntry's local header file offset in bytes. */
   mz_uint64 m_local_header_ofs;
 
   /* Size of comment in bytes. */

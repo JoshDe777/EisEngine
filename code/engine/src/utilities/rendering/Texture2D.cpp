@@ -1,4 +1,6 @@
 #include "engine/utilities/rendering/Texture2D.h"
+#include "engine/utilities/rendering/Shader.h"
+#include "engine/utilities/Debug.h"
 
 namespace EisEngine {
     Texture2D::Texture2D() :
@@ -24,7 +26,20 @@ namespace EisEngine {
     }
 
     void Texture2D::Bind() const {
-        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, textureID);
+    }
+
+    void Texture2D::SetFilteringMode(FilterModes mode) {
+        minFilterMode = mode == NEAREST ? GL_NEAREST :
+                        mode == LINEAR ? GL_LINEAR :
+                        mode == MIPMAP_NEAREST ? GL_NEAREST_MIPMAP_NEAREST :
+                        GL_LINEAR_MIPMAP_LINEAR;
+        maxFilterMode = mode == NEAREST ? GL_NEAREST :
+                        GL_LINEAR;
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (GLint) minFilterMode);
+        DEBUG_OPENGL("Texture " + std::to_string(textureID))
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (GLint) maxFilterMode);
+        DEBUG_OPENGL("Texture " + std::to_string(textureID))
     }
 }

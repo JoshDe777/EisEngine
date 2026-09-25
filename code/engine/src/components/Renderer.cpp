@@ -5,38 +5,51 @@
 namespace EisEngine::components {
     Renderer::Renderer(EisEngine::Game &engine,
                        EisEngine::ecs::guid_t owner,
-                       EisEngine::Texture2D *tex,
+                       EisEngine::Texture2D* diffTex,
                        EisEngine::Material* mat,
-                       std::string layer) :
-                       Component(engine, owner),
-                       texture(tex),
-                       material(mat),
-                       m_layer(std::move(layer)) {
-        if(!tex)
-            texture = ResourceManager::GetTexture("default");
+                       std::string layer,
+                       Texture2D* normMap) :
+            Component(engine, owner),
+            diffuseTexture(diffTex),
+            material(mat),
+            m_layer(std::move(layer)),
+            normalMap(normMap) {
+        if(!diffTex)
+            diffuseTexture = ResourceManager::GetTexture("default");
         if(!mat)
-            material = ResourceManager::GetMaterialInstance("default");
+            material = ResourceManager::CreateMaterialInstance("default");
+        if(!normMap)
+            normalMap = ResourceManager::GetTexture("default_normal");
     }
 
     Renderer::Renderer(EisEngine::components::Renderer &&other) noexcept :
-            Component(other) {
+            Component(other),
+            diffuseTexture(std::move(other.diffuseTexture)),
+            normalMap(std::move(other.normalMap)),
+            material(std::move(other.material)),
+            m_layer(std::move(other.m_layer)){
         owner = other.owner;
-        std::swap(this->texture, other.texture);
-        std::swap(this->material, other.material);
-        std::swap(this->m_layer, other.m_layer);
+        other.owner = -1;
     }
 
     // applies the selected color to the active shader.
     void Renderer::ApplyData(Shader& shader) {
         material->ApplyMatData(shader);
 
-        if(!texture)
-            return;
+        if(diffuseTexture != nullptr){
+            auto diffPos = glGetUniformLocation(shader.GetShaderID(), "image");
+            if(diffPos != -1) {
+                shader.ApplyTexture2D(*diffuseTexture, DIFFUSE);
+            }
+        }
 
-        shader.ApplyTexture(*texture);
-    }
 
-    void Renderer::Invalidate() {
-        Component::Invalidate();
+        if(normalMap != nullptr) {
+            auto nPos = glGetUniformLocation(shader.GetShaderID(), "nMap");
+            if(nPos != -1) {
+                shader.ApplyTexture2D(*normalMap, NORMAL);
+                DEBUG_INFO(entity()->name() + " normal map applied.")
+            }
+        }
     }
 }

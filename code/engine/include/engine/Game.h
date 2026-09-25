@@ -12,6 +12,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/string_cast.hpp>
+
 #include "engine/Utilities.h"
 #include "engine/Systems.h"
 #include "engine/Context.h"
@@ -60,21 +61,25 @@ namespace EisEngine {
         /// \n an event invoked every frame when a behaviour is instantiated.
         event_t onEntityStart;
 
-        /// \n the game's component manager.
-        ComponentManager componentManager;
-        /// \n the game's entity manager.
-        EntityManager entityManager;
-        /// \n The game context. Gives information about the window / software side of the game.
-        Context context;
-        /// \n the main camera rendering the scene.
-        Camera camera;
-        /// \n The system running game physics.
-        PhysicsSystem physics;
-        /// \n The system synchronizing transforms and rigidbodies.
-        PhysicsUpdater physicsUpdater;
+    private:
+        /// \n The EisEngine time manager.
+        Time time;
 
-        /// \n a transform component determining the game's origin point (0, 0, 0).
-        Transform *origin = nullptr;
+    public:
+        /// \n the game's component manager.
+        unique_ptr<ComponentManager> componentManager;
+        /// \n the game's entity manager.
+        unique_ptr<EntityManager> entityManager;
+        /// \n The game context. Gives information about the window / software side of the game.
+        unique_ptr<Context> context;
+        /// \n the main camera rendering the scene.
+        unique_ptr<Camera> camera;
+        /// \n The system running game physics.
+        unique_ptr<PhysicsSystem> physics;
+        /// \n The system synchronizing transforms and rigidbodies.
+        unique_ptr<PhysicsUpdater> physicsUpdater;
+        /// \n A system used to update light positions
+        unique_ptr<LightSystem> lightSystem;
     protected:
         /// \n Utility function called every frame.
         virtual void update(GLFWwindow *window);
@@ -86,15 +91,13 @@ namespace EisEngine {
         void GameLoop();
 
         /// \n A system used to draw lines.
-        RenderingSystem renderingSystem;
+        unique_ptr<RenderingSystem> renderingSystem;
         /// \n A system tasked with managing transform relations.
-        SceneGraphPruner sceneGraphPruner;
+        unique_ptr<SceneGraphPruner> sceneGraphPruner;
         /// \n A system tasked with updating transforms.
-        SceneGraphUpdater sceneGraphUpdater;
+        unique_ptr<SceneGraphUpdater> sceneGraphUpdater;
     private:
         /// \n The EisEngine input manager.
-        Input input;
-        /// \n The EisEngine time manager.
-        Time time;
+        unique_ptr<Input> input;
     };
 }

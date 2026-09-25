@@ -89,7 +89,7 @@ namespace EisEngine::systems {
                                                                       const Vector2& v3,
                                                                       const Vector2& v4) {
         std::vector<PhysicsBody2D*> bodiesInRange = {};
-        engine->componentManager.forEachComponent<PhysicsBody2D>([&] (PhysicsBody2D& body){
+        engine->componentManager->forEachComponent<PhysicsBody2D>([&] (PhysicsBody2D& body){
             if(IsVectorWithinBounds(body.entity()->transform->GetGlobalPosition(), v1, v2, v3, v4))
                 bodiesInRange.emplace_back(&body);
         });
