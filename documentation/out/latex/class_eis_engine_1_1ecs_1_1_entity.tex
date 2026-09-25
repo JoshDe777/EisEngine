@@ -1,0 +1,131 @@
+\doxysection{Eis\+Engine\+::ecs\+::Entity Class Reference}
+\hypertarget{class_eis_engine_1_1ecs_1_1_entity}{}\label{class_eis_engine_1_1ecs_1_1_entity}\index{EisEngine::ecs::Entity@{EisEngine::ecs::Entity}}
+
+
+~\newline
+ Represents an object of a game with data and/or logic to it.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a3c9befd1b97bdab7be1757c18df4525e}\label{class_eis_engine_1_1ecs_1_1_entity_a3c9befd1b97bdab7be1757c18df4525e} 
+guid\+\_\+t {\bfseries guid} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Gets the entity\textquotesingle{}s unique ID. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_abf9620c56e6582a277178b33e5a21168}\label{class_eis_engine_1_1ecs_1_1_entity_abf9620c56e6582a277178b33e5a21168} 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether an entity is marked for deletion. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a5a8e6e5c6d4c4fe0479fe73e5154ce35}\label{class_eis_engine_1_1ecs_1_1_entity_a5a8e6e5c6d4c4fe0479fe73e5154ce35} 
+bool {\bfseries Compare\+Tag} (const std\+::string \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}})
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Checks if the given string matches the entity\textquotesingle{}s tag. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a0eaa178aa10783f888ba8508ff5da0e1}\label{class_eis_engine_1_1ecs_1_1_entity_a0eaa178aa10783f888ba8508ff5da0e1} 
+std\+::string {\bfseries name} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Gets the entity\textquotesingle{}s name. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}\label{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37} 
+std\+::string {\bfseries tag} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Gets the entity\textquotesingle{}s tag. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_aabe12f8e876178d3e404a6141dfccbd7}\label{class_eis_engine_1_1ecs_1_1_entity_aabe12f8e876178d3e404a6141dfccbd7} 
+void {\bfseries set\+Tag} (const std\+::string \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}})
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Changes the entity\textquotesingle{}s tag. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a4a9559b624a16780479bed61ed967250}\label{class_eis_engine_1_1ecs_1_1_entity_a4a9559b624a16780479bed61ed967250} 
+void {\bfseries rename} (const std\+::string \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a0eaa178aa10783f888ba8508ff5da0e1}{name}})
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Changes the entity\textquotesingle{}s name. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename C , typename ... Args$>$ }\\C \& \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_ac12071875216e2c3eafe44d4dc406029}{Add\+Component}} (Args ...args)
+\item 
+{\footnotesize template$<$typename C $>$ }\\C \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a6e6038a7e6fbfb9e0be0da2e53bbefe2}{Get\+Component}} ()
+\item 
+{\footnotesize template$<$typename C $>$ }\\void \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a5308ebba1646b34b4895760c4de78925}{Remove\+Component}} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}} \&component)
+\item 
+{\footnotesize template$<$typename C $>$ }\\void \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a37c4a82ae5103ca49d29134d1aec71c4}{Remove\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a740f4e751c95884ea29373f5da0229f9}\label{class_eis_engine_1_1ecs_1_1_entity_a740f4e751c95884ea29373f5da0229f9} 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} {\bfseries transform} = nullptr
+\begin{DoxyCompactList}\small\item\em ~\newline
+ a pointer to the transform assigned to an entity. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a265e95b7e459b9d386a3458ac58960ba}\label{class_eis_engine_1_1ecs_1_1_entity_a265e95b7e459b9d386a3458ac58960ba} 
+void \texorpdfstring{$\ast$}{*} {\bfseries user\+\_\+data} = nullptr
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A void pointer allowing for users to bridge between their systems and an Eis\+Engine entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a6f579cda6059d102e9074e11a27e0282}\label{class_eis_engine_1_1ecs_1_1_entity_a6f579cda6059d102e9074e11a27e0282} 
+class {\bfseries Entity\+Manager}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Represents an object of a game with data and/or logic to it. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_ac12071875216e2c3eafe44d4dc406029}\label{class_eis_engine_1_1ecs_1_1_entity_ac12071875216e2c3eafe44d4dc406029} 
+\index{EisEngine::ecs::Entity@{EisEngine::ecs::Entity}!AddComponent@{AddComponent}}
+\index{AddComponent@{AddComponent}!EisEngine::ecs::Entity@{EisEngine::ecs::Entity}}
+\doxysubsubsection{\texorpdfstring{AddComponent()}{AddComponent()}}
+{\footnotesize\ttfamily template$<$typename C , typename ... Args$>$ \\
+C \& Eis\+Engine\+::ecs\+::\+Entity\+::\+Add\+Component (\begin{DoxyParamCaption}\item[{Args ...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Adds a component of the given type to an entity. \begin{DoxyReturn}{Returns}
+{\itshape \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component}\&} -\/ a reference to the newly instantiated \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component}. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a6e6038a7e6fbfb9e0be0da2e53bbefe2}\label{class_eis_engine_1_1ecs_1_1_entity_a6e6038a7e6fbfb9e0be0da2e53bbefe2} 
+\index{EisEngine::ecs::Entity@{EisEngine::ecs::Entity}!GetComponent@{GetComponent}}
+\index{GetComponent@{GetComponent}!EisEngine::ecs::Entity@{EisEngine::ecs::Entity}}
+\doxysubsubsection{\texorpdfstring{GetComponent()}{GetComponent()}}
+{\footnotesize\ttfamily template$<$typename C $>$ \\
+C \texorpdfstring{$\ast$}{*} Eis\+Engine\+::ecs\+::\+Entity\+::\+Get\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Gets a component from this entity. \begin{DoxyReturn}{Returns}
+Component\texorpdfstring{$\ast$}{*} -\/ a pointer to the retrieved \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component}. ~\newline
+ returns nullptr if none is found. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a37c4a82ae5103ca49d29134d1aec71c4}\label{class_eis_engine_1_1ecs_1_1_entity_a37c4a82ae5103ca49d29134d1aec71c4} 
+\index{EisEngine::ecs::Entity@{EisEngine::ecs::Entity}!RemoveComponent@{RemoveComponent}}
+\index{RemoveComponent@{RemoveComponent}!EisEngine::ecs::Entity@{EisEngine::ecs::Entity}}
+\doxysubsubsection{\texorpdfstring{RemoveComponent()}{RemoveComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename C $>$ \\
+void Eis\+Engine\+::ecs\+::\+Entity\+::\+Remove\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+~\newline
+ Removes any component from this entity. 
+\begin{DoxyParams}{Parameters}
+{\em C} & -\/ the type of component to be removed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_a5308ebba1646b34b4895760c4de78925}\label{class_eis_engine_1_1ecs_1_1_entity_a5308ebba1646b34b4895760c4de78925} 
+\index{EisEngine::ecs::Entity@{EisEngine::ecs::Entity}!RemoveComponent@{RemoveComponent}}
+\index{RemoveComponent@{RemoveComponent}!EisEngine::ecs::Entity@{EisEngine::ecs::Entity}}
+\doxysubsubsection{\texorpdfstring{RemoveComponent()}{RemoveComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename C $>$ \\
+void Eis\+Engine\+::ecs\+::\+Entity\+::\+Remove\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}} \&}]{component }\end{DoxyParamCaption})}
+
+~\newline
+ Removes a specific component from this entity. 
+\begin{DoxyParams}{Parameters}
+{\em C} & -\/ the type of component to be removed. \\
+\hline
+{\em component} & -\/ a reference to the exact component to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/Entity.\+h\end{DoxyCompactItemize}

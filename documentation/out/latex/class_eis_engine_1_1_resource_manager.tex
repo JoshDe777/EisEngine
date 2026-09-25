@@ -1,0 +1,77 @@
+\doxysection{Eis\+Engine\+::Resource\+Manager Class Reference}
+\hypertarget{class_eis_engine_1_1_resource_manager}{}\label{class_eis_engine_1_1_resource_manager}\index{EisEngine::ResourceManager@{EisEngine::ResourceManager}}
+
+
+~\newline
+ Manages files associated with the engine.  
+
+
+
+
+{\ttfamily \#include $<$Resource\+Manager.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1_resource_manager_ab3bead9ec779f991a6a6c92b61807651}{Generate\+Texture\+From\+File}} (const fs\+::path \&image\+Path, const std\+::string \&texture\+Name)
+\item 
+\Hypertarget{class_eis_engine_1_1_resource_manager_a7a63ca33e889312335eb7bf4fff7132c}\label{class_eis_engine_1_1_resource_manager_a7a63ca33e889312335eb7bf4fff7132c} 
+static \mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Texture} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ fetches a texture using its name. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_resource_manager_ab0ed4b69c096530a8c197b77bc424ed8}\label{class_eis_engine_1_1_resource_manager_ab0ed4b69c096530a8c197b77bc424ed8} 
+static \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Shader} (const std\+::string \&name)
+\item 
+static \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1_resource_manager_a857eefe7de4e97c119cfb1813855d09e}{Generate\+Shader\+From\+Files}} (const fs\+::path \&vertex\+Shader\+Path, const fs\+::path \&fragment\+Shader\+Path, const std\+::string \&shader\+Name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_resource_manager_aa2fab026580d6f14280c2ffb8063a314}\label{class_eis_engine_1_1_resource_manager_aa2fab026580d6f14280c2ffb8063a314} 
+class {\bfseries Game}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Manages files associated with the engine. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1_resource_manager_a857eefe7de4e97c119cfb1813855d09e}\label{class_eis_engine_1_1_resource_manager_a857eefe7de4e97c119cfb1813855d09e} 
+\index{EisEngine::ResourceManager@{EisEngine::ResourceManager}!GenerateShaderFromFiles@{GenerateShaderFromFiles}}
+\index{GenerateShaderFromFiles@{GenerateShaderFromFiles}!EisEngine::ResourceManager@{EisEngine::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{GenerateShaderFromFiles()}{GenerateShaderFromFiles()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \texorpdfstring{$\ast$}{*} Eis\+Engine\+::\+Resource\+Manager\+::\+Generate\+Shader\+From\+Files (\begin{DoxyParamCaption}\item[{const fs\+::path \&}]{vertex\+Shader\+Path,  }\item[{const fs\+::path \&}]{fragment\+Shader\+Path,  }\item[{const std\+::string \&}]{shader\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Generates a shader program from the given file. 
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Shader\+Path} & -\/ std\+::filesystem\+::path\+: the relative path from the assets folder to the vertex shader definition. \\
+\hline
+{\em fragment\+Shader\+Path} & -\/ std\+::filesystem\+::path\+: the relative path from the assets folder to the fragment shader definition. \\
+\hline
+{\em shader\+Name} & -\/ std\+::string\+: the UNIQUE name for the shader. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_resource_manager_ab3bead9ec779f991a6a6c92b61807651}\label{class_eis_engine_1_1_resource_manager_ab3bead9ec779f991a6a6c92b61807651} 
+\index{EisEngine::ResourceManager@{EisEngine::ResourceManager}!GenerateTextureFromFile@{GenerateTextureFromFile}}
+\index{GenerateTextureFromFile@{GenerateTextureFromFile}!EisEngine::ResourceManager@{EisEngine::ResourceManager}}
+\doxysubsubsection{\texorpdfstring{GenerateTextureFromFile()}{GenerateTextureFromFile()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}} \texorpdfstring{$\ast$}{*} Eis\+Engine\+::\+Resource\+Manager\+::\+Generate\+Texture\+From\+File (\begin{DoxyParamCaption}\item[{const fs\+::path \&}]{image\+Path,  }\item[{const std\+::string \&}]{texture\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Generates a texture from the given file. 
+\begin{DoxyParams}{Parameters}
+{\em image\+Path} & -\/ fs\+::path\+: the absolute path from the assets folder to the desired file. \\
+\hline
+{\em alpha} & -\/ bool\+: Determines whether the texture has an alpha channel or not ~\newline
+ (e.\+g. x.\+png = true, x.\+jpg = false) \\
+\hline
+{\em texture\+Name} & -\/ std\+::string\+: the name of the given texture. Must be unique! \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Resource\+Manager.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,24 @@
+\doxysection{Script.\+h}
+\hypertarget{_script_8h_source}{}\label{_script_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Script.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Script.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{EisEngine::ecs::Component}};}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }EisEngine::components\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_script}{Script}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_script_af59560f3ee08cbf0b51addb25ee44546}{Script}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},\ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}});}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_script_a68f81f6e9d86e04f1840213924cd37d7}{Start}}()\ \{\ \}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_script_a913fe68fd352166fd2eb9e98283d65d7}{Update}}()\ \{\ \}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_script_a5fbde58cd94e4425787329f34f2f0b95}{Invalidate}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ EisEngine::events::Event<Game,\ Game\&>::handle\_t\ updateHandle;}
+\DoxyCodeLine{00023\ \ \ \ \ \};}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,29 @@
+\doxysection{Time.\+h}
+\hypertarget{_time_8h_source}{}\label{_time_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Time.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Time.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/System.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/Events.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{using\ }ecs::System;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{namespace\ }systems\{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_time}{Time}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1_game}{Game}};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_time_a43cb675e01505e58493d4fea82bede2d}{Time}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}});}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_time_ae72d1fb5ae37466a58925a2766e7306f}{deltaTime}};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ lastFrameTime\ =\ 1.0f/60;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \_deltaTime\ =\ 1.0f/60;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateDeltaTime();}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \}}
+
+\end{DoxyCode}

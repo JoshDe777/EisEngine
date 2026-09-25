@@ -1,0 +1,2 @@
+Health bar background edited from an asset provided in Kenney's UI Pack (www.kenney.nl/)
+Compass rose from Pace Smith on OpenGameArt.org (https://opengameart.org/content/compass-rose)

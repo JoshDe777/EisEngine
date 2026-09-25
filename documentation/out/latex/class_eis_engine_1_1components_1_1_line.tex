@@ -1,0 +1,132 @@
+\doxysection{Eis\+Engine\+::components\+::Line Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_line}{}\label{class_eis_engine_1_1components_1_1_line}\index{EisEngine::components::Line@{EisEngine::components::Line}}
+
+
+{\ttfamily \#include $<$Line.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Line\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1components_1_1_line}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_aa1a59e88f53d522e5975b25b9389f162}{Line}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&start, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&end)
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_a28ffbb97d0db52481f487bd583e42066}{Invalidate}} () override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called when the component is intentionally deleted. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_line_a578c106a4968763864728ddb687a49bd}\label{class_eis_engine_1_1components_1_1_line_a578c106a4968763864728ddb687a49bd} 
+const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \& {\bfseries Get\+Start\+Point} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ returns a \doxylink{class_eis_engine_1_1_vector3}{Vector3} representing this line\textquotesingle{}s start point in world space. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_line_acbd710c24dbe340801bff524d8dbfed9}\label{class_eis_engine_1_1components_1_1_line_acbd710c24dbe340801bff524d8dbfed9} 
+const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \& {\bfseries Get\+End\+Point} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ returns a vector3 representing this line\textquotesingle{}s end point in world space. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_line_a37698f48e69a2d5e5d66e43d18073d7f}\label{class_eis_engine_1_1components_1_1_line_a37698f48e69a2d5e5d66e43d18073d7f} 
+void {\bfseries Set\+Start\+Point} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&start)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ sets a line\textquotesingle{}s start point. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_line_a8702afe5954a4c34ee6c78f30fed0694}\label{class_eis_engine_1_1components_1_1_line_a8702afe5954a4c34ee6c78f30fed0694} 
+void {\bfseries Set\+End\+Point} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&end)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ sets a line\textquotesingle{}s end point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_ae176878fd708df2b25f6865814ed3674}{Set\+Points}} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&start, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&end)
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_line_a2f1833ac98bcd4d7e5b0200339392003}\label{class_eis_engine_1_1components_1_1_line_a2f1833ac98bcd4d7e5b0200339392003} 
+void {\bfseries draw} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ draws the line onto the screen once per frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ A line between two points. ~\newline
+ It is recommended to add a \doxylink{class_eis_engine_1_1components_1_1_line_renderer}{Line\+Renderer} component for colors. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_line_aa1a59e88f53d522e5975b25b9389f162}\label{class_eis_engine_1_1components_1_1_line_aa1a59e88f53d522e5975b25b9389f162} 
+\index{EisEngine::components::Line@{EisEngine::components::Line}!Line@{Line}}
+\index{Line@{Line}!EisEngine::components::Line@{EisEngine::components::Line}}
+\doxysubsubsection{\texorpdfstring{Line()}{Line()}}
+{\footnotesize\ttfamily Eis\+Engine\+::components\+::\+Line\+::\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{guid\+\_\+t}]{owner,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{start,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{end }\end{DoxyParamCaption})}
+
+~\newline
+ Creates a line between two points in the given color. 
+\begin{DoxyParams}{Parameters}
+{\em start} & -\/ \doxylink{class_eis_engine_1_1_vector3}{Vector3}\+: the start point of the line in world space. \\
+\hline
+{\em end} & -\/ \doxylink{class_eis_engine_1_1_vector3}{Vector3}\+: the end point of the line in world space. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_line_a28ffbb97d0db52481f487bd583e42066}\label{class_eis_engine_1_1components_1_1_line_a28ffbb97d0db52481f487bd583e42066} 
+\index{EisEngine::components::Line@{EisEngine::components::Line}!Invalidate@{Invalidate}}
+\index{Invalidate@{Invalidate}!EisEngine::components::Line@{EisEngine::components::Line}}
+\doxysubsubsection{\texorpdfstring{Invalidate()}{Invalidate()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Line\+::\+Invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ A function called when the component is intentionally deleted. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Eis\+Engine\+::ecs\+::\+Component}}.
+
+\Hypertarget{class_eis_engine_1_1components_1_1_line_ae176878fd708df2b25f6865814ed3674}\label{class_eis_engine_1_1components_1_1_line_ae176878fd708df2b25f6865814ed3674} 
+\index{EisEngine::components::Line@{EisEngine::components::Line}!SetPoints@{SetPoints}}
+\index{SetPoints@{SetPoints}!EisEngine::components::Line@{EisEngine::components::Line}}
+\doxysubsubsection{\texorpdfstring{SetPoints()}{SetPoints()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Line\+::\+Set\+Points (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{start,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{end }\end{DoxyParamCaption})}
+
+~\newline
+ sets both end points for this line. 
+\begin{DoxyParams}{Parameters}
+{\em start} & -\/ \doxylink{class_eis_engine_1_1_vector3}{Vector3}\+: the line\textquotesingle{}s new start point in world space. \\
+\hline
+{\em end} & -\/ \doxylink{class_eis_engine_1_1_vector3}{Vector3}\+: the line\textquotesingle{}s new end point in world space. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/Line.\+h\end{DoxyCompactItemize}

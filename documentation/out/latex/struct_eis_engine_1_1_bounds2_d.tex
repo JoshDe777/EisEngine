@@ -1,0 +1,76 @@
+\doxysection{Eis\+Engine\+::Bounds2D Struct Reference}
+\hypertarget{struct_eis_engine_1_1_bounds2_d}{}\label{struct_eis_engine_1_1_bounds2_d}\index{EisEngine::Bounds2D@{EisEngine::Bounds2D}}
+
+
+~\newline
+ Defines the boundaries of a 2D-\/rectangular object.  
+
+
+
+
+{\ttfamily \#include $<$Bounds2\+D.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_a22349c2824784a02d799004d0e9baa02}\label{struct_eis_engine_1_1_bounds2_d_a22349c2824784a02d799004d0e9baa02} 
+{\bfseries Bounds2D} (float top\+Bound=0.\+5f, float right\+Bound=0.\+5f, float bottom\+Bound=-\/0.\+5f, float left\+Bound=-\/0.\+5f)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a new bounds object. \end{DoxyCompactList}\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_ac496c3842d2cee3cba2ae2c85c1834c3}\label{struct_eis_engine_1_1_bounds2_d_ac496c3842d2cee3cba2ae2c85c1834c3} 
+\mbox{\hyperlink{struct_eis_engine_1_1_bounds2_d}{Bounds2D}} \& {\bfseries normalize} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&scale)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ normalizes the bounds. \end{DoxyCompactList}\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_a018b9c85d3a6286016a45ebb28924149}\label{struct_eis_engine_1_1_bounds2_d_a018b9c85d3a6286016a45ebb28924149} 
+\mbox{\hyperlink{struct_eis_engine_1_1_bounds2_d}{Bounds2D}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v)
+\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_a0b8aabf24ea8d13324701fdd9d49aab7}\label{struct_eis_engine_1_1_bounds2_d_a0b8aabf24ea8d13324701fdd9d49aab7} 
+{\bfseries operator std\+::string} () const
+\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_a6e463fa000d3fe433d9bce190af3a527}\label{struct_eis_engine_1_1_bounds2_d_a6e463fa000d3fe433d9bce190af3a527} 
+void {\bfseries Reevaluate\+Size} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Recalculates the size vectors for the bounds. \end{DoxyCompactList}\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_aa7218fd6dc9b24e8cf4d23845b03aec0}\label{struct_eis_engine_1_1_bounds2_d_aa7218fd6dc9b24e8cf4d23845b03aec0} 
+bool {\bfseries Contains} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v) const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a point is within the bounds or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_ab7777e389a78fb919fba368c751533f6}\label{struct_eis_engine_1_1_bounds2_d_ab7777e389a78fb919fba368c751533f6} 
+float {\bfseries top}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the top boundary of the box shape (y-\/axis). \end{DoxyCompactList}\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_af79d6c0bc846d44a7ca8619b54cc1121}\label{struct_eis_engine_1_1_bounds2_d_af79d6c0bc846d44a7ca8619b54cc1121} 
+float {\bfseries right}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the right boundary of the box shape (x-\/axis). \end{DoxyCompactList}\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_a2a7461c496b5ac1d7031504718c8c79a}\label{struct_eis_engine_1_1_bounds2_d_a2a7461c496b5ac1d7031504718c8c79a} 
+float {\bfseries bottom}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the bottom boundary of the box shape (y-\/axis). \end{DoxyCompactList}\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_a9cfd2118072f7d9c17334017c9d5c991}\label{struct_eis_engine_1_1_bounds2_d_a9cfd2118072f7d9c17334017c9d5c991} 
+float {\bfseries left}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the left boundary of the box shape (x-\/axis). \end{DoxyCompactList}\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_abd173b24a8c8b93ac326751ba98b857e}\label{struct_eis_engine_1_1_bounds2_d_abd173b24a8c8b93ac326751ba98b857e} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries size}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the size of the box shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_eis_engine_1_1_bounds2_d_a1084737d5c5be0a77eb77dc13dcc7a71}\label{struct_eis_engine_1_1_bounds2_d_a1084737d5c5be0a77eb77dc13dcc7a71} 
+static const \mbox{\hyperlink{struct_eis_engine_1_1_bounds2_d}{Bounds2D}} {\bfseries Square1x1}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ classic 1x1 square bounds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Defines the boundaries of a 2D-\/rectangular object. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Bounds2\+D.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,74 @@
+\doxysection{Eis\+Engine\+::systems\+::Scene\+Graph\+Pruner Class Reference}
+\hypertarget{class_eis_engine_1_1systems_1_1_scene_graph_pruner}{}\label{class_eis_engine_1_1systems_1_1_scene_graph_pruner}\index{EisEngine::systems::SceneGraphPruner@{EisEngine::systems::SceneGraphPruner}}
+
+
+{\ttfamily \#include $<$Scene\+Graph\+Pruner.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::systems\+::Scene\+Graph\+Pruner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1systems_1_1_scene_graph_pruner}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_pruner_a126db2eb5167e5f6c71a8fe65f62e9c7}{Scene\+Graph\+Pruner}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_pruner_a526719c7f2f86e096f2d89384d695172}{Prune\+Transforms}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_acf2d2288baac144c6412ca0ab5e779c6}{System}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\item 
+{\bfseries System} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&\&)=delete
+\item 
+{\bfseries System} (const \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access components and entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ A system taking for deleting unwanted Transform components. Searches for Transform instances flagged for deletion and deletes the transform and its associated entity. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_scene_graph_pruner_a126db2eb5167e5f6c71a8fe65f62e9c7}\label{class_eis_engine_1_1systems_1_1_scene_graph_pruner_a126db2eb5167e5f6c71a8fe65f62e9c7} 
+\index{EisEngine::systems::SceneGraphPruner@{EisEngine::systems::SceneGraphPruner}!SceneGraphPruner@{SceneGraphPruner}}
+\index{SceneGraphPruner@{SceneGraphPruner}!EisEngine::systems::SceneGraphPruner@{EisEngine::systems::SceneGraphPruner}}
+\doxysubsubsection{\texorpdfstring{SceneGraphPruner()}{SceneGraphPruner()}}
+{\footnotesize\ttfamily Eis\+Engine\+::systems\+::\+Scene\+Graph\+Pruner\+::\+Scene\+Graph\+Pruner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates an instance of the \doxylink{class_eis_engine_1_1systems_1_1_scene_graph_pruner}{Scene\+Graph\+Pruner} system. 
+\begin{DoxyParams}{Parameters}
+{\em engine} & -\/ a reference to the game using the \doxylink{class_eis_engine_1_1systems_1_1_scene_graph_pruner}{Scene\+Graph\+Pruner} system. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_scene_graph_pruner_a526719c7f2f86e096f2d89384d695172}\label{class_eis_engine_1_1systems_1_1_scene_graph_pruner_a526719c7f2f86e096f2d89384d695172} 
+\index{EisEngine::systems::SceneGraphPruner@{EisEngine::systems::SceneGraphPruner}!PruneTransforms@{PruneTransforms}}
+\index{PruneTransforms@{PruneTransforms}!EisEngine::systems::SceneGraphPruner@{EisEngine::systems::SceneGraphPruner}}
+\doxysubsubsection{\texorpdfstring{PruneTransforms()}{PruneTransforms()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::systems\+::\+Scene\+Graph\+Pruner\+::\+Prune\+Transforms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine }\end{DoxyParamCaption})}
+
+~\newline
+ Iterates through all transforms and deletes the entities of transforms flagged for deletion. 
+\begin{DoxyParams}{Parameters}
+{\em engine} & -\/ a reference to the game using the system. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Scene\+Graph\+Pruner.\+h\end{DoxyCompactItemize}

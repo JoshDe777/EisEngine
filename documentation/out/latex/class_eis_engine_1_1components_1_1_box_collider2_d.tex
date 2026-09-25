@@ -1,0 +1,120 @@
+\doxysection{Eis\+Engine\+::components\+::Box\+Collider2D Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d}{}\label{class_eis_engine_1_1components_1_1_box_collider2_d}\index{EisEngine::components::BoxCollider2D@{EisEngine::components::BoxCollider2D}}
+
+
+{\ttfamily \#include $<$Box\+Collider2\+D.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Box\+Collider2D\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1components_1_1_box_collider2_d}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_box_collider2_d_a62da215b250680072d18a7f19aa158e3}{Box\+Collider2D}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}})
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_aae9320bb0a422ee42390cfcd8dc54df3}\label{class_eis_engine_1_1components_1_1_box_collider2_d_aae9320bb0a422ee42390cfcd8dc54df3} 
+\mbox{\hyperlink{struct_eis_engine_1_1_bounds2_d}{Bounds2D}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Bounds} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Gets the collider\textquotesingle{}s boundaries. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_a24f895616ed04e7e615bb67ad6a55420}\label{class_eis_engine_1_1components_1_1_box_collider2_d_a24f895616ed04e7e615bb67ad6a55420} 
+void {\bfseries Set\+Bounds} (\mbox{\hyperlink{struct_eis_engine_1_1_bounds2_d}{Bounds2D}} new\+Bounds)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets new boundaries for the collider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_a9820dd925a31448a10f137a0297a603c}\label{class_eis_engine_1_1components_1_1_box_collider2_d_a9820dd925a31448a10f137a0297a603c} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries On\+Collision\+Enter}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ An event called whenever this collider enters contact with another collider. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_ab8eda97894282c7891ef4ae1708c7808}\label{class_eis_engine_1_1components_1_1_box_collider2_d_ab8eda97894282c7891ef4ae1708c7808} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries On\+Collision\+Exit}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ An event called whenever this collider exits contact with another collider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_box_collider2_d_ab2c6bd6a7652ff54ec062ba985691dff}{Invalidate}} () override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called when a component is intentionally deleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_a60dcb177f208afef9864b04ec483a960}\label{class_eis_engine_1_1components_1_1_box_collider2_d_a60dcb177f208afef9864b04ec483a960} 
+class {\bfseries Physics\+Body2D}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_af851b4d9aacd1a871da33592334b8d72}\label{class_eis_engine_1_1components_1_1_box_collider2_d_af851b4d9aacd1a871da33592334b8d72} 
+class {\bfseries Transform}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ This component represents an entity\textquotesingle{}s ability to interact with other entities through collisions and triggers. ~\newline
+ Requires a Physics\+Body component for proper use. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_a62da215b250680072d18a7f19aa158e3}\label{class_eis_engine_1_1components_1_1_box_collider2_d_a62da215b250680072d18a7f19aa158e3} 
+\index{EisEngine::components::BoxCollider2D@{EisEngine::components::BoxCollider2D}!BoxCollider2D@{BoxCollider2D}}
+\index{BoxCollider2D@{BoxCollider2D}!EisEngine::components::BoxCollider2D@{EisEngine::components::BoxCollider2D}}
+\doxysubsubsection{\texorpdfstring{BoxCollider2D()}{BoxCollider2D()}}
+{\footnotesize\ttfamily Eis\+Engine\+::components\+::\+Box\+Collider2\+D\+::\+Box\+Collider2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{guid\+\_\+t}]{owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a \doxylink{class_eis_engine_1_1components_1_1_box_collider2_d}{Box\+Collider2D} Component. Bounds will be set to fully contain any mesh, or in its absence a simple 1x1 box; 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_box_collider2_d_ab2c6bd6a7652ff54ec062ba985691dff}\label{class_eis_engine_1_1components_1_1_box_collider2_d_ab2c6bd6a7652ff54ec062ba985691dff} 
+\index{EisEngine::components::BoxCollider2D@{EisEngine::components::BoxCollider2D}!Invalidate@{Invalidate}}
+\index{Invalidate@{Invalidate}!EisEngine::components::BoxCollider2D@{EisEngine::components::BoxCollider2D}}
+\doxysubsubsection{\texorpdfstring{Invalidate()}{Invalidate()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Box\+Collider2\+D\+::\+Invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ A function called when a component is intentionally deleted. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Eis\+Engine\+::ecs\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Box\+Collider2\+D.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,70 @@
+\doxysection{Eis\+Engine\+::systems\+::Physics\+Updater Class Reference}
+\hypertarget{class_eis_engine_1_1systems_1_1_physics_updater}{}\label{class_eis_engine_1_1systems_1_1_physics_updater}\index{EisEngine::systems::PhysicsUpdater@{EisEngine::systems::PhysicsUpdater}}
+
+
+~\newline
+ This system is designed to synchronize physics bodies to their transforms.  
+
+
+
+
+{\ttfamily \#include $<$Physics\+Updater.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::systems\+::Physics\+Updater\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1systems_1_1_physics_updater}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_updater_a96e33cd77ef99ff376b8426b92ff3dc3}{Physics\+Updater}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_acf2d2288baac144c6412ca0ab5e779c6}{System}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\item 
+{\bfseries System} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&\&)=delete
+\item 
+{\bfseries System} (const \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_updater_ad6abc84590f70079b4919b1d0b10a255}\label{class_eis_engine_1_1systems_1_1_physics_updater_ad6abc84590f70079b4919b1d0b10a255} 
+static void {\bfseries Sync\+Bodies\+To\+Transforms} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Is called every frame to synchronize every Body component with its corresponding transform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access components and entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ This system is designed to synchronize physics bodies to their transforms. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_updater_a96e33cd77ef99ff376b8426b92ff3dc3}\label{class_eis_engine_1_1systems_1_1_physics_updater_a96e33cd77ef99ff376b8426b92ff3dc3} 
+\index{EisEngine::systems::PhysicsUpdater@{EisEngine::systems::PhysicsUpdater}!PhysicsUpdater@{PhysicsUpdater}}
+\index{PhysicsUpdater@{PhysicsUpdater}!EisEngine::systems::PhysicsUpdater@{EisEngine::systems::PhysicsUpdater}}
+\doxysubsubsection{\texorpdfstring{PhysicsUpdater()}{PhysicsUpdater()}}
+{\footnotesize\ttfamily Eis\+Engine\+::systems\+::\+Physics\+Updater\+::\+Physics\+Updater (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a Physics Updater instance 
+\begin{DoxyParams}{Parameters}
+{\em engine} & -\/ a reference to the engine instance to access components and entities. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Physics\+Updater.\+h\end{DoxyCompactItemize}

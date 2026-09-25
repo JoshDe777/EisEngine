@@ -1,0 +1,77 @@
+\doxysection{Eis\+Engine\+::systems\+::Scene\+Graph\+Updater Class Reference}
+\hypertarget{class_eis_engine_1_1systems_1_1_scene_graph_updater}{}\label{class_eis_engine_1_1systems_1_1_scene_graph_updater}\index{EisEngine::systems::SceneGraphUpdater@{EisEngine::systems::SceneGraphUpdater}}
+
+
+{\ttfamily \#include $<$Scene\+Graph\+Updater.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::systems\+::Scene\+Graph\+Updater\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1systems_1_1_scene_graph_updater}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater_a559ef02cc066168337ad7019b57de7e0}{Scene\+Graph\+Updater}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&game)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_acf2d2288baac144c6412ca0ab5e779c6}{System}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\item 
+{\bfseries System} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&\&)=delete
+\item 
+{\bfseries System} (const \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater_a9406637a786ef9d458b861ebf8efa6da}{Update\+Transforms}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&game)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access components and entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ a system that updates transforms throughout the game\textquotesingle{}s lifespan. updates every transform\textquotesingle{}s model matrix every frame. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_scene_graph_updater_a559ef02cc066168337ad7019b57de7e0}\label{class_eis_engine_1_1systems_1_1_scene_graph_updater_a559ef02cc066168337ad7019b57de7e0} 
+\index{EisEngine::systems::SceneGraphUpdater@{EisEngine::systems::SceneGraphUpdater}!SceneGraphUpdater@{SceneGraphUpdater}}
+\index{SceneGraphUpdater@{SceneGraphUpdater}!EisEngine::systems::SceneGraphUpdater@{EisEngine::systems::SceneGraphUpdater}}
+\doxysubsubsection{\texorpdfstring{SceneGraphUpdater()}{SceneGraphUpdater()}}
+{\footnotesize\ttfamily Eis\+Engine\+::systems\+::\+Scene\+Graph\+Updater\+::\+Scene\+Graph\+Updater (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates an instance of the \doxylink{class_eis_engine_1_1systems_1_1_scene_graph_updater}{Scene\+Graph\+Updater} system. 
+\begin{DoxyParams}{Parameters}
+{\em game} & -\/ a reference to the game using the \doxylink{class_eis_engine_1_1systems_1_1_scene_graph_updater}{Scene\+Graph\+Updater} system. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_scene_graph_updater_a9406637a786ef9d458b861ebf8efa6da}\label{class_eis_engine_1_1systems_1_1_scene_graph_updater_a9406637a786ef9d458b861ebf8efa6da} 
+\index{EisEngine::systems::SceneGraphUpdater@{EisEngine::systems::SceneGraphUpdater}!UpdateTransforms@{UpdateTransforms}}
+\index{UpdateTransforms@{UpdateTransforms}!EisEngine::systems::SceneGraphUpdater@{EisEngine::systems::SceneGraphUpdater}}
+\doxysubsubsection{\texorpdfstring{UpdateTransforms()}{UpdateTransforms()}}
+{\footnotesize\ttfamily static void Eis\+Engine\+::systems\+::\+Scene\+Graph\+Updater\+::\+Update\+Transforms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Iterates through all transforms in the game and updates their model matrix. 
+\begin{DoxyParams}{Parameters}
+{\em game} & -\/ a reference to the game whose transforms are to be updated. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Scene\+Graph\+Updater.\+h\end{DoxyCompactItemize}

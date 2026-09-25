@@ -1,0 +1,24 @@
+\doxysection{Primitive\+Mesh.\+h}
+\hypertarget{_primitive_mesh_8h_source}{}\label{_primitive_mesh_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/rendering/PrimitiveMesh.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/rendering/PrimitiveMesh.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../Vector3.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }EisEngine::rendering\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh}{PrimitiveMesh}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh}{PrimitiveMesh}}(\textcolor{keyword}{const}\ std::vector<Vector3>\&\ shapeVertices,\ \textcolor{keyword}{const}\ std::vector<unsigned\ int>\&\ shapeIndices)\ :}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh_a9c3098661938c9a96d6e5d201250a7f4}{indices}}(shapeIndices),}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh_a25478e50b05358a680b8213745ded6e3}{indexCount}}(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(shapeIndices.size()))\ \{\ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<unsigned\ int>\ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh_a9c3098661938c9a96d6e5d201250a7f4}{indices}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh_a25478e50b05358a680b8213745ded6e3}{indexCount}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{virtual}\ std::vector<Vector3>\ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh_a17a2653676401938e505eb960b86d32c}{GetVertices}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \};}
+\DoxyCodeLine{00022\ \}}
+
+\end{DoxyCode}

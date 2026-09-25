@@ -1,0 +1,59 @@
+\doxysection{Entity\+Manager.\+h}
+\hypertarget{_entity_manager_8h_source}{}\label{_entity_manager_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/EntityManager.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/EntityManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Entity.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/ComponentManager.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }EisEngine\{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{class\ }Game;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{namespace\ }ecs\{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager}{EntityManager}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a52c4c7ee8d5d821b1e35411250833157}{EntityManager}}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}}\ \&componentManager,\ \mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&engine);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a45d471ad35e0e076f8ce4cd1b5b389cf}{createEntity}}(\textcolor{keyword}{const}\ std::string\ \&name\ =\ \textcolor{stringliteral}{"{}Entity"{}},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&tag\ =\ \textcolor{stringliteral}{"{}Untagged"{}},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ userData\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ *\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a8317edbbe94594c80a3efbb05ecda4fb}{getEntity}}(guid\_t\ guid);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ *\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a8140ee2db753e7786b558fbadc6ae32e}{Find}}(\textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::vector<Entity\ *>\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a450f9b53f7c7083294442bce76d0063d}{FindAll}}(\textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ *\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a8caf771097c53048f45d20acf111c481}{FindWithTag}}(\textcolor{keyword}{const}\ std::string\ \&tag);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::vector<Entity\ *>\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a6e0872054239dc1d66cff11ec8dd3da8}{FindAllWithTag}}(\textcolor{keyword}{const}\ std::string\ \&tag);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ C*\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a1e9cb9e6d1ee846d61607e2c50b994b5}{FindEntityOfType}}()\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<guid\_t,\ std::unique\_ptr<Entity>>::iterator\ i;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ entities.begin();\ i\ !=\ entities.end();\ i++)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ component\ =\ i-\/>second-\/>GetComponent<C>();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(component)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ component;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_acef4498a0e8f351ba00b84bf4b5eb273}{deleteEntity}}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ \&entity);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ purgeEntities();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}}\ \&componentManager;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<guid\_t,\ std::unique\_ptr<Entity>>\ entities;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<guid\_t>\ deleteList;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ entityCounter\ =\ 0;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \}}
+
+\end{DoxyCode}

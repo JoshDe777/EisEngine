@@ -1,0 +1,40 @@
+\doxysection{Line.\+h}
+\hypertarget{_line_8h_source}{}\label{_line_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/Line.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/Line.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <OpenGL/OpenGlInclude.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }EisEngine::components\{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{using\ }Component\ =\ ecs::Component;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_line}{Line}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_aa1a59e88f53d522e5975b25b9389f162}{Line}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},\ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ start,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ end);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_a28ffbb97d0db52481f487bd583e42066}{Invalidate}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_a578c106a4968763864728ddb687a49bd}{GetStartPoint}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ startPoint;\ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_acbd710c24dbe340801bff524d8dbfed9}{GetEndPoint}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ endPoint;\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_a37698f48e69a2d5e5d66e43d18073d7f}{SetStartPoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ start);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_a8702afe5954a4c34ee6c78f30fed0694}{SetEndPoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ end);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_ae176878fd708df2b25f6865814ed3674}{SetPoints}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ start,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ end);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_a2f1833ac98bcd4d7e5b0200339392003}{draw}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateBufferData();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ startPoint;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ endPoint;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ VBO;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ std::vector<glm::vec3>\ lineCoordinates;}
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+
+\end{DoxyCode}

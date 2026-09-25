@@ -1,0 +1,113 @@
+\doxysection{Eis\+Engine\+::Debug Class Reference}
+\hypertarget{class_eis_engine_1_1_debug}{}\label{class_eis_engine_1_1_debug}\index{EisEngine::Debug@{EisEngine::Debug}}
+
+
+{\ttfamily \#include $<$Debug.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_eis_engine_1_1_debug_aea2502f8f7663640be4ddf52790b6687}{Log}} (const char \texorpdfstring{$\ast$}{*}file, int line, const std\+::string \&text)
+\item 
+static void \mbox{\hyperlink{class_eis_engine_1_1_debug_a887a0a495eaa9f4266851c00cbda1ac1}{Info}} (const char \texorpdfstring{$\ast$}{*}file, int line, const std\+::string \&text)
+\item 
+static void \mbox{\hyperlink{class_eis_engine_1_1_debug_a677b1c988770ce8bd81a5a8cd0438ca6}{Warn}} (const char \texorpdfstring{$\ast$}{*}file, int line, const std\+::string \&warning)
+\item 
+static void \mbox{\hyperlink{class_eis_engine_1_1_debug_ae931d09e7d7c51f3772f61993a1d45f4}{Error}} (const char \texorpdfstring{$\ast$}{*}file, int line, const std\+::string \&error\+Text)
+\item 
+static void \mbox{\hyperlink{class_eis_engine_1_1_debug_aafb92a9b1de3732c5e244094c1c73662}{Runtime\+Error}} (const char \texorpdfstring{$\ast$}{*}file, int line, const std\+::string \&err)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ \{DEPRECATED\} A utility class used for debugging purposes -\/ provides more practical console inputs than the standard library\textquotesingle{}s console interactions.~\newline
+~\newline
+ Deprecated -\/ use provided macros instead (DEBUG\+\_\+\+LOG(message) instead of \doxylink{class_eis_engine_1_1_debug_aea2502f8f7663640be4ddf52790b6687}{Debug\+::\+Log}({\bfseries{FILE}}, {\bfseries{LINE}}, message)) 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1_debug_ae931d09e7d7c51f3772f61993a1d45f4}\label{class_eis_engine_1_1_debug_ae931d09e7d7c51f3772f61993a1d45f4} 
+\index{EisEngine::Debug@{EisEngine::Debug}!Error@{Error}}
+\index{Error@{Error}!EisEngine::Debug@{EisEngine::Debug}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily static void Eis\+Engine\+::\+Debug\+::\+Error (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{int}]{line,  }\item[{const std\+::string \&}]{error\+Text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+~\newline
+ sends an error message to the console. 
+\begin{DoxyParams}{Parameters}
+{\em file} & -\/ \mbox{[}use {\bfseries{FILE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives file information to the file the statement is called from. \\
+\hline
+{\em line} & -\/ \mbox{[}use {\bfseries{LINE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives the line the statement was called from. \\
+\hline
+{\em error\+Text} & -\/ a string to be displayed as the explanation behind the error message. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_debug_a887a0a495eaa9f4266851c00cbda1ac1}\label{class_eis_engine_1_1_debug_a887a0a495eaa9f4266851c00cbda1ac1} 
+\index{EisEngine::Debug@{EisEngine::Debug}!Info@{Info}}
+\index{Info@{Info}!EisEngine::Debug@{EisEngine::Debug}}
+\doxysubsubsection{\texorpdfstring{Info()}{Info()}}
+{\footnotesize\ttfamily static void Eis\+Engine\+::\+Debug\+::\+Info (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{int}]{line,  }\item[{const std\+::string \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+~\newline
+ sends an information message to the console. 
+\begin{DoxyParams}{Parameters}
+{\em file} & -\/ \mbox{[}use {\bfseries{FILE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives file information to the file the statement is called from. \\
+\hline
+{\em line} & -\/ \mbox{[}use {\bfseries{LINE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives the line the statement was called from. \\
+\hline
+{\em text} & -\/ a string to be displayed as information. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_debug_aea2502f8f7663640be4ddf52790b6687}\label{class_eis_engine_1_1_debug_aea2502f8f7663640be4ddf52790b6687} 
+\index{EisEngine::Debug@{EisEngine::Debug}!Log@{Log}}
+\index{Log@{Log}!EisEngine::Debug@{EisEngine::Debug}}
+\doxysubsubsection{\texorpdfstring{Log()}{Log()}}
+{\footnotesize\ttfamily static void Eis\+Engine\+::\+Debug\+::\+Log (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{int}]{line,  }\item[{const std\+::string \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+~\newline
+ sends a specific line of text to the console. 
+\begin{DoxyParams}{Parameters}
+{\em file} & -\/ \mbox{[}use {\bfseries{FILE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives file information to the file the statement is called from. \\
+\hline
+{\em line} & -\/ \mbox{[}use {\bfseries{LINE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives the line the statement was called from. \\
+\hline
+{\em text} & -\/ a string to be sent to the console. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_debug_aafb92a9b1de3732c5e244094c1c73662}\label{class_eis_engine_1_1_debug_aafb92a9b1de3732c5e244094c1c73662} 
+\index{EisEngine::Debug@{EisEngine::Debug}!RuntimeError@{RuntimeError}}
+\index{RuntimeError@{RuntimeError}!EisEngine::Debug@{EisEngine::Debug}}
+\doxysubsubsection{\texorpdfstring{RuntimeError()}{RuntimeError()}}
+{\footnotesize\ttfamily static void Eis\+Engine\+::\+Debug\+::\+Runtime\+Error (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{int}]{line,  }\item[{const std\+::string \&}]{err }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+~\newline
+ throws a runtime error, crashing the game and logging the error message in the process. 
+\begin{DoxyParams}{Parameters}
+{\em file} & -\/ \mbox{[}use {\bfseries{FILE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives file information to the file the statement is called from. \\
+\hline
+{\em line} & -\/ \mbox{[}use {\bfseries{LINE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives the line the statement was called from. \\
+\hline
+{\em err} & -\/ the error message to be displayed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_debug_a677b1c988770ce8bd81a5a8cd0438ca6}\label{class_eis_engine_1_1_debug_a677b1c988770ce8bd81a5a8cd0438ca6} 
+\index{EisEngine::Debug@{EisEngine::Debug}!Warn@{Warn}}
+\index{Warn@{Warn}!EisEngine::Debug@{EisEngine::Debug}}
+\doxysubsubsection{\texorpdfstring{Warn()}{Warn()}}
+{\footnotesize\ttfamily static void Eis\+Engine\+::\+Debug\+::\+Warn (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{int}]{line,  }\item[{const std\+::string \&}]{warning }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+~\newline
+ sends a warning message to the console 
+\begin{DoxyParams}{Parameters}
+{\em file} & -\/ \mbox{[}use {\bfseries{FILE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives file information to the file the statement is called from. \\
+\hline
+{\em line} & -\/ \mbox{[}use {\bfseries{LINE}}\mbox{]} -\/\texorpdfstring{$>$}{>} gives the line the statement was called from. \\
+\hline
+{\em warning} & -\/ a string to be displayed as a warning message. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Debug.\+h\end{DoxyCompactItemize}

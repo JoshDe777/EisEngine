@@ -1,0 +1,47 @@
+\doxysection{Quaternion.\+h}
+\hypertarget{_quaternion_8h_source}{}\label{_quaternion_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Quaternion.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Quaternion.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}};}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a99cb1cee0e9aefbf072ea6296bb2ec9a}{Quaternion}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_add42b26dafa64ed3badcb807ad95da3e}{x}}\ =\ 0,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a3977b6c5b79cd30ef5ba5defa4c58685}{y}}\ =\ 0,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a934efae66df5e068b00a9eaed520478f}{z}}\ =\ 0,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a66e73f33ef66bcaf8abb6a75b0517967}{r}}\ =\ 0):\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_add42b26dafa64ed3badcb807ad95da3e}{x}}(\mbox{\hyperlink{class_eis_engine_1_1_quaternion_add42b26dafa64ed3badcb807ad95da3e}{x}}),\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a3977b6c5b79cd30ef5ba5defa4c58685}{y}}(\mbox{\hyperlink{class_eis_engine_1_1_quaternion_a3977b6c5b79cd30ef5ba5defa4c58685}{y}}),\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a934efae66df5e068b00a9eaed520478f}{z}}(\mbox{\hyperlink{class_eis_engine_1_1_quaternion_a934efae66df5e068b00a9eaed520478f}{z}}),\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a66e73f33ef66bcaf8abb6a75b0517967}{r}}(\mbox{\hyperlink{class_eis_engine_1_1_quaternion_a66e73f33ef66bcaf8abb6a75b0517967}{r}})\ \{\}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_add42b26dafa64ed3badcb807ad95da3e}{x}};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a3977b6c5b79cd30ef5ba5defa4c58685}{y}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a934efae66df5e068b00a9eaed520478f}{z}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a66e73f33ef66bcaf8abb6a75b0517967}{r}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ std::string()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ operator+(\mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \textcolor{keyword}{const}\ \&q)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ operator-\/(\mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \textcolor{keyword}{const}\ \&q)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ operator*(\mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \textcolor{keyword}{const}\ \&q)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ operator*(\textcolor{keywordtype}{float}\ \textcolor{keyword}{const}\&\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ operator*(\textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\&\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\&\ operator+=(\mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \textcolor{keyword}{const}\ \&q);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\&\ operator-\/=(\mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \textcolor{keyword}{const}\ \&q);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \&\ operator*=(\textcolor{keywordtype}{float}\ \textcolor{keyword}{const}\ \&c);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \&\ operator*=(\textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\ \&c);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_ae40582471a47ce688ca4616115f63c1b}{Identity}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_ad5636637de367f2a48aa0e0cab85d0e3}{magnitude}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a8fbf4ba8e01b546a7285f6998c275048}{normalized}}()\{\ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this}\ *\ (1/this-\/>\mbox{\hyperlink{class_eis_engine_1_1_quaternion_ad5636637de367f2a48aa0e0cab85d0e3}{magnitude}}()));\}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_acf586ca62b79256c5946ce6dcde1b83f}{conjugated}}()\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion_a99cb1cee0e9aefbf072ea6296bb2ec9a}{Quaternion}}(\mbox{\hyperlink{class_eis_engine_1_1_quaternion_a66e73f33ef66bcaf8abb6a75b0517967}{r}},\ -\/\mbox{\hyperlink{class_eis_engine_1_1_quaternion_add42b26dafa64ed3badcb807ad95da3e}{x}},\ -\/\mbox{\hyperlink{class_eis_engine_1_1_quaternion_a3977b6c5b79cd30ef5ba5defa4c58685}{y}},\ -\/\mbox{\hyperlink{class_eis_engine_1_1_quaternion_a934efae66df5e068b00a9eaed520478f}{z}});\}}
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}

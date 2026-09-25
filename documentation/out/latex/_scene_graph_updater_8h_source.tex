@@ -1,0 +1,24 @@
+\doxysection{Scene\+Graph\+Updater.\+h}
+\hypertarget{_scene_graph_updater_8h_source}{}\label{_scene_graph_updater_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/SceneGraphUpdater.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/SceneGraphUpdater.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/System.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/components/Transform.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{EisEngine::ecs::System}};}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{EisEngine::components::Transform}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }EisEngine::systems\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater}{SceneGraphUpdater}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater_a559ef02cc066168337ad7019b57de7e0}{SceneGraphUpdater}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&game);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater_a9406637a786ef9d458b861ebf8efa6da}{UpdateTransforms}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&game);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ glm::mat4\ calculateModelMatrix(\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ \&transform);}
+\DoxyCodeLine{00024\ \ \ \ \ \};}
+\DoxyCodeLine{00025\ \}}
+
+\end{DoxyCode}

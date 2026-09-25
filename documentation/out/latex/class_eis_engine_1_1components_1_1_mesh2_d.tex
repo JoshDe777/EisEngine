@@ -1,0 +1,111 @@
+\doxysection{Eis\+Engine\+::components\+::Mesh2D Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_mesh2_d}{}\label{class_eis_engine_1_1components_1_1_mesh2_d}\index{EisEngine::components::Mesh2D@{EisEngine::components::Mesh2D}}
+
+
+{\ttfamily \#include $<$Mesh2\+D.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Mesh2D\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1components_1_1_mesh2_d}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_a949286587a08de5cc96ed4607070b3aa}{Mesh2D}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, const \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}{Primitive\+Mesh2D}} \&\+\_\+primitive)
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_ab28eeb0078a23ec73a3a82f80026028a}\label{class_eis_engine_1_1components_1_1_mesh2_d_ab28eeb0078a23ec73a3a82f80026028a} 
+{\bfseries Mesh2D} (const \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D}} \&other)=delete
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_add068f8b890004cbf825d61cc9f095eb}\label{class_eis_engine_1_1components_1_1_mesh2_d_add068f8b890004cbf825d61cc9f095eb} 
+{\bfseries Mesh2D} (\mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D}} \&\&other) noexcept
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_a700ad19c07db3d94e663f78e8678adfe}{Invalidate}} () override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called when a component is intentionally deleted. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_afca032c646fa93e2fee1758e76210686}\label{class_eis_engine_1_1components_1_1_mesh2_d_afca032c646fa93e2fee1758e76210686} 
+void {\bfseries draw} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Draws the mesh onto the screen once per frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_a7e9a1b9089db80ce569a8d48cda757d5}\label{class_eis_engine_1_1components_1_1_mesh2_d_a7e9a1b9089db80ce569a8d48cda757d5} 
+const \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}{Primitive\+Mesh2D}} {\bfseries primitive}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ primitive mesh definition, stores vertex and edge data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ This component represents an entity\textquotesingle{}s shape in the game world. ~\newline
+ It is recommended to define a \doxylink{class_eis_engine_1_1components_1_1_mesh2_d_renderer}{Mesh2\+DRenderer} to provide a color to fragments. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_a949286587a08de5cc96ed4607070b3aa}\label{class_eis_engine_1_1components_1_1_mesh2_d_a949286587a08de5cc96ed4607070b3aa} 
+\index{EisEngine::components::Mesh2D@{EisEngine::components::Mesh2D}!Mesh2D@{Mesh2D}}
+\index{Mesh2D@{Mesh2D}!EisEngine::components::Mesh2D@{EisEngine::components::Mesh2D}}
+\doxysubsubsection{\texorpdfstring{Mesh2D()}{Mesh2D()}}
+{\footnotesize\ttfamily Eis\+Engine\+::components\+::\+Mesh2\+D\+::\+Mesh2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{guid\+\_\+t}]{owner,  }\item[{const \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}{Primitive\+Mesh2D}} \&}]{\+\_\+primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a 2D Mesh component. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+primitive} & -\/ a primitive mesh containing vertex and edge data. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_a700ad19c07db3d94e663f78e8678adfe}\label{class_eis_engine_1_1components_1_1_mesh2_d_a700ad19c07db3d94e663f78e8678adfe} 
+\index{EisEngine::components::Mesh2D@{EisEngine::components::Mesh2D}!Invalidate@{Invalidate}}
+\index{Invalidate@{Invalidate}!EisEngine::components::Mesh2D@{EisEngine::components::Mesh2D}}
+\doxysubsubsection{\texorpdfstring{Invalidate()}{Invalidate()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Mesh2\+D\+::\+Invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ A function called when a component is intentionally deleted. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Eis\+Engine\+::ecs\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/Mesh2\+D.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,197 @@
+\doxysection{Eis\+Engine\+::components\+::Physics\+Body2D Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d}{}\label{class_eis_engine_1_1components_1_1_physics_body2_d}\index{EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}}
+
+
+{\ttfamily \#include $<$Physics\+Body2\+D.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Physics\+Body2D\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1components_1_1_physics_body2_d}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_acbdb5429f063594776f374094ffc11c8}{Physics\+Body2D}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, b2\+Body\+Type type=b2\+\_\+dynamic\+Body)
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_aaf5fea1687c71bf2f47bb4a62f3712c5}{Add\+Force}} (const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&force) const
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a8abaef45ef16e2f731f3d372dc63d4da}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a8abaef45ef16e2f731f3d372dc63d4da} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries Get\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the body\textquotesingle{}s current velocity. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_ac69fe23593bf669d783f6dbc3c5f3eec}\label{class_eis_engine_1_1components_1_1_physics_body2_d_ac69fe23593bf669d783f6dbc3c5f3eec} 
+float {\bfseries Get\+Friction} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the body\textquotesingle{}s current friction value. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a102b0ba02f81408c863b354a21ddcf00}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a102b0ba02f81408c863b354a21ddcf00} 
+float {\bfseries Get\+Density} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the body\textquotesingle{}s current density value. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_add108d0a5406acf95b71b69aca8aa604}\label{class_eis_engine_1_1components_1_1_physics_body2_d_add108d0a5406acf95b71b69aca8aa604} 
+float {\bfseries Get\+Bounciness} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the body\textquotesingle{}s current restitution or bounciness value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a00d043464726800df221c026d88ec0a6}{Is\+Sensor}} () const
+\item 
+bool \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_af4174f69c58d3cd9ee933963eee2c6b8}{Is\+Kinematic}} () const
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a32ec127bd2728ba6b6add01516eb3aba}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a32ec127bd2728ba6b6add01516eb3aba} 
+bool {\bfseries Uses\+Gravity} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns whether the body is affected by gravity or not. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a035d4b1a7e7a4f3d84834795525e9523}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a035d4b1a7e7a4f3d84834795525e9523} 
+void {\bfseries Set\+Velocity} (const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&velocity) const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets the body\textquotesingle{}s linear velocity to a given value. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_aff01075cff80e56e43079aab9335985a}\label{class_eis_engine_1_1components_1_1_physics_body2_d_aff01075cff80e56e43079aab9335985a} 
+void {\bfseries Set\+Friction} (float value)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets the body\textquotesingle{}s friction to a given value. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a229f31af889847ee2af7eb2b0b256414}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a229f31af889847ee2af7eb2b0b256414} 
+void {\bfseries Set\+Density} (float value)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets the body\textquotesingle{}s density to a given value. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_ad2d8b383af6099c104b0b026a5312849}\label{class_eis_engine_1_1components_1_1_physics_body2_d_ad2d8b383af6099c104b0b026a5312849} 
+void {\bfseries Set\+Bounciness} (float value)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets the body\textquotesingle{}s bounciness to a given value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a924b336ee4716598e2192c4edb48252d}{Set\+Sensor\+Status}} (bool value)
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_ab581e96c3fbdf415c8294454120c963c}{Set\+Gravity\+Use}} (bool value)
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a784f2919411d9e7247abf4df922fa7c3}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a784f2919411d9e7247abf4df922fa7c3} 
+void {\bfseries Ignore\+All\+Collisions} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Instructs the physics body to ignore all collisions. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a0ef04acfc6a76e6e426e336831cea18a}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a0ef04acfc6a76e6e426e336831cea18a} 
+void {\bfseries Enable\+All\+Collisions} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Instructs the physics body to stop ignoring collisions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a89e5817922f7e503b94d9545d5dda690}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a89e5817922f7e503b94d9545d5dda690} 
+b2\+Body \texorpdfstring{$\ast$}{*} {\bfseries body} = nullptr
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The b2\+Body linking Eis\+Engine to Box2D\textquotesingle{}s physics engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_ae5e915b753caa5273de73badf505458f}\label{class_eis_engine_1_1components_1_1_physics_body2_d_ae5e915b753caa5273de73badf505458f} 
+class {\bfseries Box\+Collider2D}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ This component represents an entity\textquotesingle{}s physical presence in 2D world space. it bases on the Box2D physics simulation and is an encapsulation of the b2\+Body type. ~\newline
+ REQUIRES a PREVIOUSLY CREATED \doxylink{class_eis_engine_1_1components_1_1_box_collider2_d}{Box\+Collider2D} component for proper use! 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_acbdb5429f063594776f374094ffc11c8}\label{class_eis_engine_1_1components_1_1_physics_body2_d_acbdb5429f063594776f374094ffc11c8} 
+\index{EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}!PhysicsBody2D@{PhysicsBody2D}}
+\index{PhysicsBody2D@{PhysicsBody2D}!EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}}
+\doxysubsubsection{\texorpdfstring{PhysicsBody2D()}{PhysicsBody2D()}}
+{\footnotesize\ttfamily Eis\+Engine\+::components\+::\+Physics\+Body2\+D\+::\+Physics\+Body2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{guid\+\_\+t}]{owner,  }\item[{b2\+Body\+Type}]{type = {\ttfamily b2\+\_\+dynamicBody} }\end{DoxyParamCaption})}
+
+~\newline
+ Creates a Body component using Box2D. 
+\begin{DoxyParams}{Parameters}
+{\em type} & -\/ a b2\+Body\+Type defining the type of body, defaulting as a dynamic body. For a full list of options please refer to the box2d API. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_aaf5fea1687c71bf2f47bb4a62f3712c5}\label{class_eis_engine_1_1components_1_1_physics_body2_d_aaf5fea1687c71bf2f47bb4a62f3712c5} 
+\index{EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}!AddForce@{AddForce}}
+\index{AddForce@{AddForce}!EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}}
+\doxysubsubsection{\texorpdfstring{AddForce()}{AddForce()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Physics\+Body2\+D\+::\+Add\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{force }\end{DoxyParamCaption}) const}
+
+~\newline
+ Applies the given force once to the rigidbody. 
+\begin{DoxyParams}{Parameters}
+{\em force} & -\/ \doxylink{class_eis_engine_1_1_vector2}{Vector2}\+: the direction and strength of the force to be applied. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_af4174f69c58d3cd9ee933963eee2c6b8}\label{class_eis_engine_1_1components_1_1_physics_body2_d_af4174f69c58d3cd9ee933963eee2c6b8} 
+\index{EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}!IsKinematic@{IsKinematic}}
+\index{IsKinematic@{IsKinematic}!EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}}
+\doxysubsubsection{\texorpdfstring{IsKinematic()}{IsKinematic()}}
+{\footnotesize\ttfamily bool Eis\+Engine\+::components\+::\+Physics\+Body2\+D\+::\+Is\+Kinematic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+~\newline
+ Returns whether or not the body is affected by physics in general or not. ~\newline
+ If true, the body is affected by physics. \Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a00d043464726800df221c026d88ec0a6}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a00d043464726800df221c026d88ec0a6} 
+\index{EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}!IsSensor@{IsSensor}}
+\index{IsSensor@{IsSensor}!EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}}
+\doxysubsubsection{\texorpdfstring{IsSensor()}{IsSensor()}}
+{\footnotesize\ttfamily bool Eis\+Engine\+::components\+::\+Physics\+Body2\+D\+::\+Is\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+~\newline
+ Returns whether body is a sensor or not. ~\newline
+ If true, the body does not react physically to collisions. \Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_ab581e96c3fbdf415c8294454120c963c}\label{class_eis_engine_1_1components_1_1_physics_body2_d_ab581e96c3fbdf415c8294454120c963c} 
+\index{EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}!SetGravityUse@{SetGravityUse}}
+\index{SetGravityUse@{SetGravityUse}!EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}}
+\doxysubsubsection{\texorpdfstring{SetGravityUse()}{SetGravityUse()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Physics\+Body2\+D\+::\+Set\+Gravity\+Use (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+~\newline
+ Sets whether or not the body is affected by gravity. 
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ if true, body will be affected by world gravity~\newline
+if false, body will not be affected by gravity whatsoever. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1components_1_1_physics_body2_d_a924b336ee4716598e2192c4edb48252d}\label{class_eis_engine_1_1components_1_1_physics_body2_d_a924b336ee4716598e2192c4edb48252d} 
+\index{EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}!SetSensorStatus@{SetSensorStatus}}
+\index{SetSensorStatus@{SetSensorStatus}!EisEngine::components::PhysicsBody2D@{EisEngine::components::PhysicsBody2D}}
+\doxysubsubsection{\texorpdfstring{SetSensorStatus()}{SetSensorStatus()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Physics\+Body2\+D\+::\+Set\+Sensor\+Status (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+~\newline
+ Determines whether the current rigidbody counts as a sensor. 
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ if true, body will detect collisions but not physically react to them~\newline
+if false reacts to collisions physically as well. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Physics\+Body2\+D.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,72 @@
+\doxysection{Eis\+Engine\+::events\+::Event\texorpdfstring{$<$}{<} Owner, Args \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_eis_engine_1_1events_1_1_event}{}\label{class_eis_engine_1_1events_1_1_event}\index{EisEngine::events::Event$<$ Owner, Args $>$@{EisEngine::events::Event$<$ Owner, Args $>$}}
+
+
+{\ttfamily \#include $<$Events.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1events_1_1_event_acd5d02e9f172416b57c0d7b0fa7aa4e9}\label{class_eis_engine_1_1events_1_1_event_acd5d02e9f172416b57c0d7b0fa7aa4e9} 
+using {\bfseries listener\+\_\+t} = typename std\+::function$<$void(Args...)$>$
+\item 
+\Hypertarget{class_eis_engine_1_1events_1_1_event_a674e7c318c8977cb758be24b538da399}\label{class_eis_engine_1_1events_1_1_event_a674e7c318c8977cb758be24b538da399} 
+using {\bfseries container\+\_\+t} = typename std\+::list$<$listener\+\_\+t$>$
+\item 
+\Hypertarget{class_eis_engine_1_1events_1_1_event_a32a7b0466c8b7c59d8c167313e22ecb8}\label{class_eis_engine_1_1events_1_1_event_a32a7b0466c8b7c59d8c167313e22ecb8} 
+using {\bfseries handle\+\_\+t} = typename container\+\_\+t\+::iterator
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+handle\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event_ab26b55ff622ec49cf9df04985d759de1}{add\+Listener}} (listener\+\_\+t listener)
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event_ab4f0a3dda1305c9cf47dbfdc557d38d7}{remove\+Listener}} (handle\+\_\+t handle)
+\item 
+\Hypertarget{class_eis_engine_1_1events_1_1_event_a056e4eb4a083b796427573ff640b8f9e}\label{class_eis_engine_1_1events_1_1_event_a056e4eb4a083b796427573ff640b8f9e} 
+void {\bfseries reset} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Resets the event, removing all listeners. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Owner, typename ... Args$>$\newline
+class Eis\+Engine\+::events\+::\+Event$<$ Owner, Args $>$}
+~\newline
+ Represents an event that listeners can subscribe to. Events have an owner and an arbitrary number of arguments that are passed to the listener when invoked. Only the owner is allowed to invoke the event. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1events_1_1_event_ab26b55ff622ec49cf9df04985d759de1}\label{class_eis_engine_1_1events_1_1_event_ab26b55ff622ec49cf9df04985d759de1} 
+\index{EisEngine::events::Event$<$ Owner, Args $>$@{EisEngine::events::Event$<$ Owner, Args $>$}!addListener@{addListener}}
+\index{addListener@{addListener}!EisEngine::events::Event$<$ Owner, Args $>$@{EisEngine::events::Event$<$ Owner, Args $>$}}
+\doxysubsubsection{\texorpdfstring{addListener()}{addListener()}}
+{\footnotesize\ttfamily template$<$typename Owner , typename ... Args$>$ \\
+handle\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{Eis\+Engine\+::events\+::\+Event}}$<$ Owner, Args $>$\+::add\+Listener (\begin{DoxyParamCaption}\item[{listener\+\_\+t}]{listener }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Adds an event listener. All registered event listeners are called when the event is invoked. 
+\begin{DoxyParams}{Parameters}
+{\em listener} & -\/ an event listener. Its function signature is defined by the {\itshape listener\+\_\+t} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\itshape handle\+\_\+t} -\/ a handle you can pass to the {\itshape remove\+Listener} function use to remove the listener 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1events_1_1_event_ab4f0a3dda1305c9cf47dbfdc557d38d7}\label{class_eis_engine_1_1events_1_1_event_ab4f0a3dda1305c9cf47dbfdc557d38d7} 
+\index{EisEngine::events::Event$<$ Owner, Args $>$@{EisEngine::events::Event$<$ Owner, Args $>$}!removeListener@{removeListener}}
+\index{removeListener@{removeListener}!EisEngine::events::Event$<$ Owner, Args $>$@{EisEngine::events::Event$<$ Owner, Args $>$}}
+\doxysubsubsection{\texorpdfstring{removeListener()}{removeListener()}}
+{\footnotesize\ttfamily template$<$typename Owner , typename ... Args$>$ \\
+void \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{Eis\+Engine\+::events\+::\+Event}}$<$ Owner, Args $>$\+::remove\+Listener (\begin{DoxyParamCaption}\item[{handle\+\_\+t}]{handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Removes an event listener. Removed event listeners are no longer called when the event is invoked. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & -\/ the handle returned by the {\itshape add\+Listener} function. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Events.\+h\end{DoxyCompactItemize}

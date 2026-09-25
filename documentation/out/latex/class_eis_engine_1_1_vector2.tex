@@ -1,0 +1,193 @@
+\doxysection{Eis\+Engine\+::Vector2 Class Reference}
+\hypertarget{class_eis_engine_1_1_vector2}{}\label{class_eis_engine_1_1_vector2}\index{EisEngine::Vector2@{EisEngine::Vector2}}
+
+
+~\newline
+ The timeless two-\/dimensional vector (x, y).  
+
+
+
+
+{\ttfamily \#include $<$Vector2.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2_ab5622ce4fa668cc46ae1626a5dcf3195}{Vector2}} (const float \&\mbox{\hyperlink{class_eis_engine_1_1_vector2_a8042db266206b25192f66323c207d5d9}{x}}=0, const float \&\mbox{\hyperlink{class_eis_engine_1_1_vector2_a3f52a58058d3f692a8b41f74e0479246}{y}}=0)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a0eab8d2065543f394d53696148568a9b}\label{class_eis_engine_1_1_vector2_a0eab8d2065543f394d53696148568a9b} 
+{\bfseries Vector2} (b2\+Vec2 const \&v)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a 2-\/dimensional vector from an existing b2\+Vec2. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_aa5af7923a03afa63a63ca01a9aa60bfb}\label{class_eis_engine_1_1_vector2_aa5af7923a03afa63a63ca01a9aa60bfb} 
+{\bfseries Vector2} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v)=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a 2-\/dimensional vector from an existing \doxylink{class_eis_engine_1_1_vector2}{Vector2}. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a71dc1ee2ed2b5b82ceb3d7bc0233fe36}\label{class_eis_engine_1_1_vector2_a71dc1ee2ed2b5b82ceb3d7bc0233fe36} 
+float {\bfseries magnitude} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the size of the vector. returns the square root of all vector values squared. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a8d76a0f6a2b1813845a6958e1c29b2a3}\label{class_eis_engine_1_1_vector2_a8d76a0f6a2b1813845a6958e1c29b2a3} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries normalized} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Normalizes the vector to have the same direction but with magnitude 0. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a22486ddd909c910bba9c0941ad914c1a}\label{class_eis_engine_1_1_vector2_a22486ddd909c910bba9c0941ad914c1a} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries Clamp\+Magnitude} (const float \&min\+Magnitude, const float \&max\+Magnitude)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Clamps a \doxylink{class_eis_engine_1_1_vector2}{Vector2}\textquotesingle{}s magnitude and returns a vector scaled to fit the given range. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_ab298a276633e0b9a4a58dff7c61b7163}\label{class_eis_engine_1_1_vector2_ab298a276633e0b9a4a58dff7c61b7163} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries Rotate} (const float \&angle) const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Rotates the vector by the given angle in degrees. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_af9ccc9f97ee74d62cb83e7398a686589}\label{class_eis_engine_1_1_vector2_af9ccc9f97ee74d62cb83e7398a686589} 
+{\bfseries operator Vector3} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a8d74e043123162263702eeb50ba5290a}\label{class_eis_engine_1_1_vector2_a8d74e043123162263702eeb50ba5290a} 
+{\bfseries operator Quaternion} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a34c2850f4c53fe816aedf8e7476c9260}\label{class_eis_engine_1_1_vector2_a34c2850f4c53fe816aedf8e7476c9260} 
+{\bfseries operator glm\+::vec3} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a85865d66a5ee6795f5e724a051041d54}\label{class_eis_engine_1_1_vector2_a85865d66a5ee6795f5e724a051041d54} 
+{\bfseries operator glm\+::vec2} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_acc6d7e408c9a37f77a81654ce448a2a9}\label{class_eis_engine_1_1_vector2_acc6d7e408c9a37f77a81654ce448a2a9} 
+{\bfseries operator b2\+Vec2} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a011e73f820d87bdd2165d48772144746}\label{class_eis_engine_1_1_vector2_a011e73f820d87bdd2165d48772144746} 
+{\bfseries operator std\+::string} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a92695dd6e646cc88d38abae00fa2d45d}\label{class_eis_engine_1_1_vector2_a92695dd6e646cc88d38abae00fa2d45d} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator+} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_ab108d49b462b83c8582f7359880f8824}\label{class_eis_engine_1_1_vector2_ab108d49b462b83c8582f7359880f8824} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator-\/} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a624350657804014bcc572aeee0d8e1aa}\label{class_eis_engine_1_1_vector2_a624350657804014bcc572aeee0d8e1aa} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (float const \&c) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_af112cf24f55d01114f23a569c4d97e71}\label{class_eis_engine_1_1_vector2_af112cf24f55d01114f23a569c4d97e71} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (int const \&c) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a080e224c0338067ff62bc00fc2d55fde}\label{class_eis_engine_1_1_vector2_a080e224c0338067ff62bc00fc2d55fde} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator/} (float const \&c) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a3e5c9758c34e9515960b229dee7e3397}\label{class_eis_engine_1_1_vector2_a3e5c9758c34e9515960b229dee7e3397} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator/} (int const \&c) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a98226f7e5ac753d49017f1debfe396bd}\label{class_eis_engine_1_1_vector2_a98226f7e5ac753d49017f1debfe396bd} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \& {\bfseries operator+=} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_afac950527db681e69365707a225677f8}\label{class_eis_engine_1_1_vector2_afac950527db681e69365707a225677f8} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \& {\bfseries operator-\/=} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a7b37ce784a85f7f2fd3d732d56b7c3da}\label{class_eis_engine_1_1_vector2_a7b37ce784a85f7f2fd3d732d56b7c3da} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (float const \&c)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a8f237cb287069a8bf1d2c980c8ec31cb}\label{class_eis_engine_1_1_vector2_a8f237cb287069a8bf1d2c980c8ec31cb} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (int const \&c)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a1141314824ab00db9b4f5f29415c58cb}\label{class_eis_engine_1_1_vector2_a1141314824ab00db9b4f5f29415c58cb} 
+bool {\bfseries operator==} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a1b157bdea4fdb89d51b7a1d9fe053d56}\label{class_eis_engine_1_1_vector2_a1b157bdea4fdb89d51b7a1d9fe053d56} 
+bool {\bfseries operator!=} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a60a8eb9c1595aed407d46451772d23a5}\label{class_eis_engine_1_1_vector2_a60a8eb9c1595aed407d46451772d23a5} 
+static float {\bfseries Distance} (const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v2)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the distance between two \doxylink{class_eis_engine_1_1_vector2}{Vector2}\textquotesingle{}s. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_vector2_ade5292b65e1413b7d5e2c1a37efc6a44}{Dot\+Product}} (const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v2)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a2139df06fe711f81e77a0b7827d132a8}\label{class_eis_engine_1_1_vector2_a2139df06fe711f81e77a0b7827d132a8} 
+static float {\bfseries Cross\+Product} (const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v2)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the cross product of two \doxylink{class_eis_engine_1_1_vector2}{Vector2}\textquotesingle{}s. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_aeb7f9e1139642608195c87eb1b7259a1}\label{class_eis_engine_1_1_vector2_aeb7f9e1139642608195c87eb1b7259a1} 
+static float {\bfseries Angle} (const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v2)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the angle between the provided \doxylink{class_eis_engine_1_1_vector2}{Vector2}\textquotesingle{}s in radians. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a8042db266206b25192f66323c207d5d9}\label{class_eis_engine_1_1_vector2_a8042db266206b25192f66323c207d5d9} 
+float {\bfseries x}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The x value of the vector (right/left in world space). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a3f52a58058d3f692a8b41f74e0479246}\label{class_eis_engine_1_1_vector2_a3f52a58058d3f692a8b41f74e0479246} 
+float {\bfseries y}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The y value of the vector (up/down in world space). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a57f782fa466d894129310ad270e40557}\label{class_eis_engine_1_1_vector2_a57f782fa466d894129310ad270e40557} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries zero}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector2}{Vector2} constant equal to (0, 0). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_afca6ccb18d0c72e60ebae04817365d9d}\label{class_eis_engine_1_1_vector2_afca6ccb18d0c72e60ebae04817365d9d} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries one}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector2}{Vector2} constant equal to (1, 1). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_ad006ee2b569d57f14f8c6ce2c34927a1}\label{class_eis_engine_1_1_vector2_ad006ee2b569d57f14f8c6ce2c34927a1} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries right}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector2}{Vector2} constant equal to (1, 0). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector2_afefac1c376d62d4dc8417e117fa8d0e5}\label{class_eis_engine_1_1_vector2_afefac1c376d62d4dc8417e117fa8d0e5} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries up}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector2}{Vector2} constant equal to (0, 1). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a0828c19acefc553e17ab5dc4a41837a5}\label{class_eis_engine_1_1_vector2_a0828c19acefc553e17ab5dc4a41837a5} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (float scalar, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a7293c56a1ae5b8dccabfe6bcef6b7825}\label{class_eis_engine_1_1_vector2_a7293c56a1ae5b8dccabfe6bcef6b7825} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (int scalar, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a1565e67324c4a4eeb30eddb10b9e4ed9}\label{class_eis_engine_1_1_vector2_a1565e67324c4a4eeb30eddb10b9e4ed9} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator/} (float scalar, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector2_a1ff112824b6677f1cbdeaf00b2cb7c1c}\label{class_eis_engine_1_1_vector2_a1ff112824b6677f1cbdeaf00b2cb7c1c} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries operator/} (int scalar, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ The timeless two-\/dimensional vector (x, y). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1_vector2_ab5622ce4fa668cc46ae1626a5dcf3195}\label{class_eis_engine_1_1_vector2_ab5622ce4fa668cc46ae1626a5dcf3195} 
+\index{EisEngine::Vector2@{EisEngine::Vector2}!Vector2@{Vector2}}
+\index{Vector2@{Vector2}!EisEngine::Vector2@{EisEngine::Vector2}}
+\doxysubsubsection{\texorpdfstring{Vector2()}{Vector2()}}
+{\footnotesize\ttfamily Eis\+Engine\+::\+Vector2\+::\+Vector2 (\begin{DoxyParamCaption}\item[{const float \&}]{x = {\ttfamily 0},  }\item[{const float \&}]{y = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+~\newline
+ Creates a 2-\/dimensional vector. 
+\begin{DoxyParams}{Parameters}
+{\em x} & -\/ float\+: the x value of the vector (right/left in world space). \\
+\hline
+{\em y} & -\/ float\+: the y value of the vector (up/down in world space). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1_vector2_ade5292b65e1413b7d5e2c1a37efc6a44}\label{class_eis_engine_1_1_vector2_ade5292b65e1413b7d5e2c1a37efc6a44} 
+\index{EisEngine::Vector2@{EisEngine::Vector2}!DotProduct@{DotProduct}}
+\index{DotProduct@{DotProduct}!EisEngine::Vector2@{EisEngine::Vector2}}
+\doxysubsubsection{\texorpdfstring{DotProduct()}{DotProduct()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Vector2\+::\+Dot\+Product (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{v1,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Calculates the dot product of two \doxylink{class_eis_engine_1_1_vector2}{Vector2}\textquotesingle{}s. Represents the sum of the products of each vector axis. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Vector2.\+h\end{DoxyCompactItemize}

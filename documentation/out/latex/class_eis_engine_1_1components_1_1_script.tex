@@ -1,0 +1,97 @@
+\doxysection{Eis\+Engine\+::components\+::Script Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_script}{}\label{class_eis_engine_1_1components_1_1_script}\index{EisEngine::components::Script@{EisEngine::components::Script}}
+
+
+~\newline
+ A script component, used to add custom behaviours to entities.  
+
+
+
+
+{\ttfamily \#include $<$Script.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Script\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1components_1_1_script}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_script_af59560f3ee08cbf0b51addb25ee44546}\label{class_eis_engine_1_1components_1_1_script_af59560f3ee08cbf0b51addb25ee44546} 
+{\bfseries Script} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}})
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a new \doxylink{class_eis_engine_1_1components_1_1_script}{Script}. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_script_a68f81f6e9d86e04f1840213924cd37d7}\label{class_eis_engine_1_1components_1_1_script_a68f81f6e9d86e04f1840213924cd37d7} 
+virtual void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ This function is called once at the start of the script\textquotesingle{}s lifetime. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_script_a913fe68fd352166fd2eb9e98283d65d7}\label{class_eis_engine_1_1components_1_1_script_a913fe68fd352166fd2eb9e98283d65d7} 
+virtual void {\bfseries Update} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ This function is called once every frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_script_a5fbde58cd94e4425787329f34f2f0b95}{Invalidate}} () override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called when a component is intentionally deleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ A script component, used to add custom behaviours to entities. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_script_a5fbde58cd94e4425787329f34f2f0b95}\label{class_eis_engine_1_1components_1_1_script_a5fbde58cd94e4425787329f34f2f0b95} 
+\index{EisEngine::components::Script@{EisEngine::components::Script}!Invalidate@{Invalidate}}
+\index{Invalidate@{Invalidate}!EisEngine::components::Script@{EisEngine::components::Script}}
+\doxysubsubsection{\texorpdfstring{Invalidate()}{Invalidate()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Script\+::\+Invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ A function called when a component is intentionally deleted. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Eis\+Engine\+::ecs\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Script.\+h\end{DoxyCompactItemize}

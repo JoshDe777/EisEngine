@@ -1,0 +1,203 @@
+\doxysection{Eis\+Engine\+::Vector3 Class Reference}
+\hypertarget{class_eis_engine_1_1_vector3}{}\label{class_eis_engine_1_1_vector3}\index{EisEngine::Vector3@{EisEngine::Vector3}}
+
+
+~\newline
+ The one and only 3-\/dimensional vector (x, y, z).  
+
+
+
+
+{\ttfamily \#include $<$Vector3.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3_a5b4b6d684bad38f0f78b41ca3970d33e}{Vector3}} (const float \&\mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}=0, const float \&\mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}=0, const float \&\mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}}=0)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a3014d770dfaca2e4f17336cec2b1bfcd}\label{class_eis_engine_1_1_vector3_a3014d770dfaca2e4f17336cec2b1bfcd} 
+{\bfseries Vector3} (const b2\+Vec2 \&v)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a 3-\/dimensional vector from an existing b2\+Vec2, setting z to 0. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a5cad6381b603b7aacf07a4985152369e}\label{class_eis_engine_1_1_vector3_a5cad6381b603b7aacf07a4985152369e} 
+{\bfseries Vector3} (const glm\+::vec3 \&v)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a 3-\/dimensional vector from an existing glm vec3. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_abd1a83d2d2aac9772569af7885d941ec}\label{class_eis_engine_1_1_vector3_abd1a83d2d2aac9772569af7885d941ec} 
+float {\bfseries magnitude} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the size of the vector. returns the square root of all vector values squared. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ae19f4db68341691e3885a2fde4b2bc61}\label{class_eis_engine_1_1_vector3_ae19f4db68341691e3885a2fde4b2bc61} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries normalized} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Normalizes the vector to have the same direction but with magnitude 0. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a1cc5bbdb56e6e3ec97a1d9b5a15e4324}\label{class_eis_engine_1_1_vector3_a1cc5bbdb56e6e3ec97a1d9b5a15e4324} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Clamp\+Magnitude} (const float \&min\+Magnitude, const float \&max\+Magnitude)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Clamps a \doxylink{class_eis_engine_1_1_vector3}{Vector3}\textquotesingle{}s magnitude and returns a vector scaled to fit the given range. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ae2fd37e3af7a74cd6661204df56efe52}\label{class_eis_engine_1_1_vector3_ae2fd37e3af7a74cd6661204df56efe52} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Rotate} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&rotation\+Angles) const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Rotates the vector by the given vector in degrees. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a8c931a1db0ece36e30b2e53366f47822}\label{class_eis_engine_1_1_vector3_a8c931a1db0ece36e30b2e53366f47822} 
+{\bfseries operator Vector2} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a67d7aa6be587e0208481d82a7684c6f0}\label{class_eis_engine_1_1_vector3_a67d7aa6be587e0208481d82a7684c6f0} 
+{\bfseries operator Quaternion} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_abaf63ce2df540759e6ff171fd7524adf}\label{class_eis_engine_1_1_vector3_abaf63ce2df540759e6ff171fd7524adf} 
+{\bfseries operator glm\+::vec3} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a32d8ddbab034667a9ec76420b4e1108f}\label{class_eis_engine_1_1_vector3_a32d8ddbab034667a9ec76420b4e1108f} 
+{\bfseries operator glm\+::vec2} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ae0b5702d29ae4f0dcd5348aaf1c23474}\label{class_eis_engine_1_1_vector3_ae0b5702d29ae4f0dcd5348aaf1c23474} 
+{\bfseries operator b2\+Vec2} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a65a062a1d6187e2124d6e405fec488cc}\label{class_eis_engine_1_1_vector3_a65a062a1d6187e2124d6e405fec488cc} 
+{\bfseries operator std\+::string} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a5eb7ac50fb14c6b573e3cc928f4e9e92}\label{class_eis_engine_1_1_vector3_a5eb7ac50fb14c6b573e3cc928f4e9e92} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator-\/} () const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_abfba747773c414adfe5cdaf8b91cdcd9}\label{class_eis_engine_1_1_vector3_abfba747773c414adfe5cdaf8b91cdcd9} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator+} (\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a2bebe786752c023a765f6e3227a49a01}\label{class_eis_engine_1_1_vector3_a2bebe786752c023a765f6e3227a49a01} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator-\/} (\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a62a108d332ae64b838439737e9848152}\label{class_eis_engine_1_1_vector3_a62a108d332ae64b838439737e9848152} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (float const \&c) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a468befb055dd0d0a14416b8c868d7fa9}\label{class_eis_engine_1_1_vector3_a468befb055dd0d0a14416b8c868d7fa9} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (int const \&c) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_aa682cafbc035ea1a580e17cac7308f4b}\label{class_eis_engine_1_1_vector3_aa682cafbc035ea1a580e17cac7308f4b} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const glm\+::mat4 \&m) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ad8ddb74a90730824a835bc3ffec207ee}\label{class_eis_engine_1_1_vector3_ad8ddb74a90730824a835bc3ffec207ee} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \& {\bfseries operator+=} (\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} const \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_aa591ee97bdf9b64bf32e9a3a6408ea13}\label{class_eis_engine_1_1_vector3_aa591ee97bdf9b64bf32e9a3a6408ea13} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \& {\bfseries operator-\/=} (\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} const \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a73cd5930b04a359545a4bec880c938cf}\label{class_eis_engine_1_1_vector3_a73cd5930b04a359545a4bec880c938cf} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (float const \&c)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a61d908d7c33c61178c63aec3190e5748}\label{class_eis_engine_1_1_vector3_a61d908d7c33c61178c63aec3190e5748} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (int const \&c)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a8a6098fa4579d96d054fbe2f1461a086}\label{class_eis_engine_1_1_vector3_a8a6098fa4579d96d054fbe2f1461a086} 
+bool {\bfseries operator==} (\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a45612b0c14d4db4abd244b325a5bb0f8}\label{class_eis_engine_1_1_vector3_a45612b0c14d4db4abd244b325a5bb0f8} 
+bool {\bfseries operator==} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ab8513ea674b0e272acb03224888a04f2}\label{class_eis_engine_1_1_vector3_ab8513ea674b0e272acb03224888a04f2} 
+bool {\bfseries operator!=} (\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} const \&v) const
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ac76715693d8b537948813177d66ea9b2}\label{class_eis_engine_1_1_vector3_ac76715693d8b537948813177d66ea9b2} 
+bool {\bfseries operator!=} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} const \&v) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a86206fbc5256e8edae4824700bc7a459}\label{class_eis_engine_1_1_vector3_a86206fbc5256e8edae4824700bc7a459} 
+static float {\bfseries Distance} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v2)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the distance between two \doxylink{class_eis_engine_1_1_vector3}{Vector3}\textquotesingle{}s. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_vector3_a7bdb67e90b5e4bda185b501a61d294cf}{Dot\+Product}} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v2)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a6639617955a26784c499d7eac7b2ab5c}\label{class_eis_engine_1_1_vector3_a6639617955a26784c499d7eac7b2ab5c} 
+static \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Cross\+Product} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v2)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the cross product of two \doxylink{class_eis_engine_1_1_vector3}{Vector3}\textquotesingle{}s. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a2b7f0cdf460296e46cbadee4583f0cad}\label{class_eis_engine_1_1_vector3_a2b7f0cdf460296e46cbadee4583f0cad} 
+static float {\bfseries Angle} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v2)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the angle between both vectors in radians. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}\label{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f} 
+float {\bfseries x}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The x-\/value of this vector (right/left in local space). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}\label{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1} 
+float {\bfseries y}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The y-\/value of this vector (up/down in local space). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}\label{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db} 
+float {\bfseries z}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The z-\/value of this vector (forward/backward in local space). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a74e7523c2e29153b82fce4e0a5b9c4e5}\label{class_eis_engine_1_1_vector3_a74e7523c2e29153b82fce4e0a5b9c4e5} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries zero}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector3}{Vector3} constant with values (0, 0, 0). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a4a3eb8768677840824e27a1b4fdf6889}\label{class_eis_engine_1_1_vector3_a4a3eb8768677840824e27a1b4fdf6889} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries one}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector3}{Vector3} constant with values (1, 1, 1). \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_af7221606de1213e01cabad759dadf180}\label{class_eis_engine_1_1_vector3_af7221606de1213e01cabad759dadf180} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries right}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector3}{Vector3} constant with values (1, 0, 0), representing the positive x direction in world space. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a3a22e37059f01408a17448a7f449d861}\label{class_eis_engine_1_1_vector3_a3a22e37059f01408a17448a7f449d861} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries up}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector3}{Vector3} constant with values (0, 1, 0), representing the positive y direction in world space. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ae1d39f260f2966046a04e53c6eed46c8}\label{class_eis_engine_1_1_vector3_ae1d39f260f2966046a04e53c6eed46c8} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries forward}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A \doxylink{class_eis_engine_1_1_vector3}{Vector3} constant with values (0, 0, 1), representing the positive z direction in world space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_ab802119751dca18b922f4813da75489c}\label{class_eis_engine_1_1_vector3_ab802119751dca18b922f4813da75489c} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const float \&scalar, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v)
+\item 
+\Hypertarget{class_eis_engine_1_1_vector3_a6b5a1b74d1fdab75fe89c931367366d9}\label{class_eis_engine_1_1_vector3_a6b5a1b74d1fdab75fe89c931367366d9} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const int \&scalar, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&v)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ The one and only 3-\/dimensional vector (x, y, z). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1_vector3_a5b4b6d684bad38f0f78b41ca3970d33e}\label{class_eis_engine_1_1_vector3_a5b4b6d684bad38f0f78b41ca3970d33e} 
+\index{EisEngine::Vector3@{EisEngine::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!EisEngine::Vector3@{EisEngine::Vector3}}
+\doxysubsubsection{\texorpdfstring{Vector3()}{Vector3()}}
+{\footnotesize\ttfamily Eis\+Engine\+::\+Vector3\+::\+Vector3 (\begin{DoxyParamCaption}\item[{const float \&}]{x = {\ttfamily 0},  }\item[{const float \&}]{y = {\ttfamily 0},  }\item[{const float \&}]{z = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+~\newline
+ Creates a 3-\/dimensional vector. 
+\begin{DoxyParams}{Parameters}
+{\em x} & -\/ the x value of the vector. (right/left in world space) \\
+\hline
+{\em y} & -\/ the y value of the vector. (up/down in world space) \\
+\hline
+{\em z} & -\/ the z value of the vector. (forwards/backwards in world space) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1_vector3_a7bdb67e90b5e4bda185b501a61d294cf}\label{class_eis_engine_1_1_vector3_a7bdb67e90b5e4bda185b501a61d294cf} 
+\index{EisEngine::Vector3@{EisEngine::Vector3}!DotProduct@{DotProduct}}
+\index{DotProduct@{DotProduct}!EisEngine::Vector3@{EisEngine::Vector3}}
+\doxysubsubsection{\texorpdfstring{DotProduct()}{DotProduct()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Vector3\+::\+Dot\+Product (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{v1,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Calculates the dot product of two \doxylink{class_eis_engine_1_1_vector3}{Vector3}\textquotesingle{}s. Represents the sum of the products of each vector axis. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Vector3.\+h\end{DoxyCompactItemize}

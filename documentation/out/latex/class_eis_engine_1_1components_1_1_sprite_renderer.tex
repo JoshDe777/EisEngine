@@ -1,0 +1,140 @@
+\doxysection{Eis\+Engine\+::components\+::Sprite\+Renderer Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_sprite_renderer}{}\label{class_eis_engine_1_1components_1_1_sprite_renderer}\index{EisEngine::components::SpriteRenderer@{EisEngine::components::SpriteRenderer}}
+
+
+{\ttfamily \#include $<$Sprite\+Renderer.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Sprite\+Renderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eis_engine_1_1components_1_1_sprite_renderer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_renderer_aa579bee15493246f883efcc46c4a0e06}{Sprite\+Renderer}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, const fs\+::path \&sprite\+Path="{}images/ui/blank.\+png"{}, const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \&color=\mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color\+::white}}, const std\+::string \&layer="{}Background"{})
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_renderer_acb1bd874b1f0217962c3887a46ba1a95}{Apply\+Data}} (\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \&shader) override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Applies rendering data to the active shader before drawing meshes. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_renderer_a4e19ff5abc01eb77b7e4cb32fc9cc314}\label{class_eis_engine_1_1components_1_1_sprite_renderer_a4e19ff5abc01eb77b7e4cb32fc9cc314} 
+void {\bfseries Set\+New\+Texture} (\mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}} \texorpdfstring{$\ast$}{*}new\+Texture)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets a new texture for the corresponding sprite. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_renderer_aba6d1e0c07e1d6c33b5e6099100974e8}\label{class_eis_engine_1_1components_1_1_sprite_renderer_aba6d1e0c07e1d6c33b5e6099100974e8} 
+\mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Texture} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns a pointer to the texture assigned to a renderer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Eis\+Engine\+::components\+::\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a13d38f29ce7bfd502f70227593ca1c44}{Renderer}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \&color=\mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color\+::white}}, std\+::string layer="{}Background"{})
+\item 
+{\bfseries Renderer} (const \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}} \&renderer)=delete
+\item 
+{\bfseries Renderer} (\mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}} \&\&other) noexcept
+\item 
+void {\bfseries Set\+Color} (\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} new\+Color)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets a renderer\textquotesingle{}s color to the provided value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} {\bfseries Get\+Color} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ returns the renderer\textquotesingle{}s color in RGBA\%. \end{DoxyCompactList}\item 
+std\+::string {\bfseries Get\+Layer} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ returns a renderer\textquotesingle{}s rendering layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Invalidate}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function made to encompass what needs to be done when a component is intentionally deleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Eis\+Engine\+::components\+::\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} {\bfseries m\+\_\+color}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The color given to fragments rendered with this renderer. \end{DoxyCompactList}\item 
+std\+::string {\bfseries m\+\_\+layer}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The rendering layer of the associated mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Contains rendering data for sprites. ~\newline
+ Requires a \doxylink{class_eis_engine_1_1components_1_1_sprite_mesh}{Sprite\+Mesh} component for proper use. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_renderer_aa579bee15493246f883efcc46c4a0e06}\label{class_eis_engine_1_1components_1_1_sprite_renderer_aa579bee15493246f883efcc46c4a0e06} 
+\index{EisEngine::components::SpriteRenderer@{EisEngine::components::SpriteRenderer}!SpriteRenderer@{SpriteRenderer}}
+\index{SpriteRenderer@{SpriteRenderer}!EisEngine::components::SpriteRenderer@{EisEngine::components::SpriteRenderer}}
+\doxysubsubsection{\texorpdfstring{SpriteRenderer()}{SpriteRenderer()}}
+{\footnotesize\ttfamily Eis\+Engine\+::components\+::\+Sprite\+Renderer\+::\+Sprite\+Renderer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{guid\+\_\+t}]{owner,  }\item[{const fs\+::path \&}]{sprite\+Path = {\ttfamily "{}images/ui/blank.png"{}},  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \&}]{color = {\ttfamily \mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color\+::white}}},  }\item[{const std\+::string \&}]{layer = {\ttfamily "{}Background"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a sprite renderer. 
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Path} & -\/ std\+::filesystem\+::path\+: the path from the assets folder to the image to be rendered as a sprite. \\
+\hline
+{\em color} & -\/ \doxylink{class_eis_engine_1_1_color}{Color}\+: A 4D vector representing a mesh\textquotesingle{}s color in RGBA\%. \\
+\hline
+{\em layer} & -\/ std\+::string\+: The rendering layer for meshes paired with a renderer. ~\newline
+ Currently supported\+: \{"{}\+UI"{} for UI Elements, and \mbox{[}any other string\mbox{]} for regular rendering\}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_renderer_acb1bd874b1f0217962c3887a46ba1a95}\label{class_eis_engine_1_1components_1_1_sprite_renderer_acb1bd874b1f0217962c3887a46ba1a95} 
+\index{EisEngine::components::SpriteRenderer@{EisEngine::components::SpriteRenderer}!ApplyData@{ApplyData}}
+\index{ApplyData@{ApplyData}!EisEngine::components::SpriteRenderer@{EisEngine::components::SpriteRenderer}}
+\doxysubsubsection{\texorpdfstring{ApplyData()}{ApplyData()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Sprite\+Renderer\+::\+Apply\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \&}]{shader }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ Applies rendering data to the active shader before drawing meshes. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a7c2a1adbcf1ee56dfd309ddcbe55158b}{Eis\+Engine\+::components\+::\+Renderer}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/renderers/Sprite\+Renderer.\+h\end{DoxyCompactItemize}

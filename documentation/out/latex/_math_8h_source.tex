@@ -1,0 +1,47 @@
+\doxysection{Math.\+h}
+\hypertarget{_math_8h_source}{}\label{_math_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Math.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Math.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{enum}\ AngleType\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ DEGREES,}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ RADIANS}
+\DoxyCodeLine{00010\ \ \ \ \ \};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_math}{Math}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_af048747fd191fe3ba3f107ea0bf16fa9}{PI}}\ =\ 3.14159265358979323846f;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a04565dc4cd8ee51e5b9cf67ca4fc07e1}{Cos}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ angle,\ AngleType\ angleType\ =\ RADIANS);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a0d2c9e6948d0ab922589325d83c6c3f2}{Arccos}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ cosVal,\ AngleType\ angleType\ =\ RADIANS);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a5e52faa545899b18d16e945e005f1029}{Sin}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ angle,\ AngleType\ angleType\ =\ RADIANS);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a061225688b411cb5dd2328520c91331f}{Arcsin}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ sinVal,\ AngleType\ angleType\ =\ RADIANS);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_ade3775dbcd27ecafa5853fca5df24f0a}{Tan}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ angle,\ AngleType\ angleType\ =\ RADIANS);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_af585ef1d9add76f3685129b0907bfe94}{Arctan}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ sinVal,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ cosVal,\ AngleType\ angleType\ =\ RADIANS);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a735163c107f2cf985e6b3a834acea3af}{DegreesToRadians}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ angle);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a839eed2111224cbff91c93716422e74a}{RadiansToDegrees}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ angle);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a8fd5d511412ba4f800575ce8e5906dcb}{Clamp}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ floatToClamp,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ minValue,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ maxValue);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a194b46ed533121d27885209b60f7c49e}{Floor}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ val);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a9581e00eb11e31e097d6f64baf4bcfde}{Dist}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ val1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ val2);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_a759539a3cc7d3ba813252c228b7b3f26}{Mod}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ val1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ modVal);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_math_aa9ae230c849f09732062db3a2ef5653f}{Sqrt}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ val);}
+\DoxyCodeLine{00074\ \ \ \ \ \};}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}

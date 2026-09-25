@@ -1,0 +1,160 @@
+\doxysection{Eis\+Engine\+::Game Class Reference}
+\hypertarget{class_eis_engine_1_1_game}{}\label{class_eis_engine_1_1_game}\index{EisEngine::Game@{EisEngine::Game}}
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game_a1ca13ff82c986ddb7e5df39052950b85}{Game}} (const std\+::string \&title)
+\item 
+\Hypertarget{class_eis_engine_1_1_game_a96ff0c0ae9ca06b84cb07d7d9954a45a}\label{class_eis_engine_1_1_game_a96ff0c0ae9ca06b84cb07d7d9954a45a} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Game} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Terminates the instance of the game. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a3fd1b90caec4ca0a2f369a3642c07e00}\label{class_eis_engine_1_1_game_a3fd1b90caec4ca0a2f369a3642c07e00} 
+virtual void {\bfseries run} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Runs the game life until demanded to terminate. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a8d4ade8c3429c39498fa73bfe31c221d}\label{class_eis_engine_1_1_game_a8d4ade8c3429c39498fa73bfe31c221d} 
+void {\bfseries Quit} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Signals the engine to close the game window. \end{DoxyCompactList}\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1_game_a2e173f8d8811dacceceb7f057a5e58ad}{get\+Window}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_game_a881ae16180297660ddc9f6ebe1890bc5}\label{class_eis_engine_1_1_game_a881ae16180297660ddc9f6ebe1890bc5} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+Startup}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked right at the start of the game\textquotesingle{}s lifetime. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_af764013be0e004ad2a8115ab66d7fc69}\label{class_eis_engine_1_1_game_af764013be0e004ad2a8115ab66d7fc69} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+After\+Startup}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked right before the first iteration of the game loop. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a65630543a9001e5682e53454ae4da3c5}\label{class_eis_engine_1_1_game_a65630543a9001e5682e53454ae4da3c5} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+Before\+Update}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked at the beginning of every frame. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_af6f78a357e8b7da383ce1787996db0bd}\label{class_eis_engine_1_1_game_af6f78a357e8b7da383ce1787996db0bd} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+Update}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked in the middle of every frame. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a2dfab48406364c1968faf70c63f7c861}\label{class_eis_engine_1_1_game_a2dfab48406364c1968faf70c63f7c861} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+After\+Update}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked at the end of every frame. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a9a5a9e3336c156de158ec3dd0ea1f9d6}\label{class_eis_engine_1_1_game_a9a5a9e3336c156de158ec3dd0ea1f9d6} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+Before\+Shutdown}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked right after the game has been asked to terminate. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a6dd6592034535901ff1c5bba83b01eb9}\label{class_eis_engine_1_1_game_a6dd6592034535901ff1c5bba83b01eb9} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+Shutdown}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked right before fully shutting down the game. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a1cd7045935c4270a8e5f92e73718a84f}\label{class_eis_engine_1_1_game_a1cd7045935c4270a8e5f92e73718a84f} 
+\mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\+\_\+t}} {\bfseries on\+Entity\+Start}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ an event invoked every frame when a behaviour is instantiated. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a44fe22474eb6a1d6ba56148074c922ec}\label{class_eis_engine_1_1_game_a44fe22474eb6a1d6ba56148074c922ec} 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{Component\+Manager}} {\bfseries component\+Manager}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the game\textquotesingle{}s component manager. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_af914f8407da4897174e99ff954aeccba}\label{class_eis_engine_1_1_game_af914f8407da4897174e99ff954aeccba} 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager}{Entity\+Manager}} {\bfseries entity\+Manager}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the game\textquotesingle{}s entity manager. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a69d09accf4c85405d3c63ef67597c17d}\label{class_eis_engine_1_1_game_a69d09accf4c85405d3c63ef67597c17d} 
+\mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context}{Context}} {\bfseries context}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The game context. Gives information about the window / software side of the game. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a0ac5f3f1f18d1857c899da0d938ce4b1}\label{class_eis_engine_1_1_game_a0ac5f3f1f18d1857c899da0d938ce4b1} 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera}{Camera}} {\bfseries camera}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the main camera rendering the scene. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_afa0cad1ea1889e34415d2aa65e95b5b6}\label{class_eis_engine_1_1_game_afa0cad1ea1889e34415d2aa65e95b5b6} 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system}{Physics\+System}} {\bfseries physics}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The system running game physics. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_ad593fe51e1f7c153af62f272ed424e7b}\label{class_eis_engine_1_1_game_ad593fe51e1f7c153af62f272ed424e7b} 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_updater}{Physics\+Updater}} {\bfseries physics\+Updater}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The system synchronizing transforms and rigidbodies. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_ac06316c0233592703be730a58cf74f9e}\label{class_eis_engine_1_1_game_ac06316c0233592703be730a58cf74f9e} 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} {\bfseries origin} = nullptr
+\begin{DoxyCompactList}\small\item\em ~\newline
+ a transform component determining the game\textquotesingle{}s origin point (0, 0, 0). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_game_a0f0a598669f49b09255fa5030ac2ab15}\label{class_eis_engine_1_1_game_a0f0a598669f49b09255fa5030ac2ab15} 
+virtual void {\bfseries update} (GLFWwindow \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Utility function called every frame. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a66de07dcace50448404f7b1d206caf8f}\label{class_eis_engine_1_1_game_a66de07dcace50448404f7b1d206caf8f} 
+virtual void {\bfseries start} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Utility function called once at the start of the game\textquotesingle{}s lifetime. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a0218230743cfcf116b122d4be7a3e7e0}\label{class_eis_engine_1_1_game_a0218230743cfcf116b122d4be7a3e7e0} 
+void {\bfseries Check\+For\+Close\+Window\+Signal} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Called every frame. Defines conditions for game termination. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a55798dfd3b019c34005bfabbbf380c67}\label{class_eis_engine_1_1_game_a55798dfd3b019c34005bfabbbf380c67} 
+void {\bfseries Game\+Loop} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The game loop, defines the sequence of actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_game_aa0723485aa3494ba367376392f8a4dc1}\label{class_eis_engine_1_1_game_aa0723485aa3494ba367376392f8a4dc1} 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_rendering_system}{Rendering\+System}} {\bfseries rendering\+System}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A system used to draw lines. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_aa79a8f550851b7976c35d066d73b11ce}\label{class_eis_engine_1_1_game_aa79a8f550851b7976c35d066d73b11ce} 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_pruner}{Scene\+Graph\+Pruner}} {\bfseries scene\+Graph\+Pruner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A system tasked with managing transform relations. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_game_a512ecff47c9575fb6b6e44e06d3d2080}\label{class_eis_engine_1_1_game_a512ecff47c9575fb6b6e44e06d3d2080} 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater}{Scene\+Graph\+Updater}} {\bfseries scene\+Graph\+Updater}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A system tasked with updating transforms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ The central class for games created using Eis-\/\+Engine. ~\newline
+ Runs the game loop and holds references to all systems required for running a game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1_game_a1ca13ff82c986ddb7e5df39052950b85}\label{class_eis_engine_1_1_game_a1ca13ff82c986ddb7e5df39052950b85} 
+\index{EisEngine::Game@{EisEngine::Game}!Game@{Game}}
+\index{Game@{Game}!EisEngine::Game@{EisEngine::Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily Eis\+Engine\+::\+Game\+::\+Game (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{title }\end{DoxyParamCaption})}
+
+~\newline
+ Creates an instance of a game. 
+\begin{DoxyParams}{Parameters}
+{\em title} & -\/ game window title. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1_game_a2e173f8d8811dacceceb7f057a5e58ad}\label{class_eis_engine_1_1_game_a2e173f8d8811dacceceb7f057a5e58ad} 
+\index{EisEngine::Game@{EisEngine::Game}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!EisEngine::Game@{EisEngine::Game}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily GLFWwindow \texorpdfstring{$\ast$}{*} Eis\+Engine\+::\+Game\+::get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+~\newline
+ Fetches the game window. \begin{DoxyReturn}{Returns}
+{\itshape GLFWwindow\texorpdfstring{$\ast$}{*}} -\/ a pointer to a GLFW window. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Game.\+h\end{DoxyCompactItemize}

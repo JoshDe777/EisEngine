@@ -1,0 +1,75 @@
+\doxysection{Vector3.\+h}
+\hypertarget{_vector3_8h_source}{}\label{_vector3_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Vector3.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Vector3.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <box2d/box2d.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}};}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{class\ }Quaternion;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a5b4b6d684bad38f0f78b41ca3970d33e}{Vector3}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}}\ =\ 0)\ :\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}(\mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}),\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}(\mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}),\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}}(\mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}})\ \{\}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a3014d770dfaca2e4f17336cec2b1bfcd}{Vector3}}(\textcolor{keyword}{const}\ b2Vec2\ \&v)\ :\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}(v.\mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}),\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}(v.\mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}),\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}}(0)\ \{\}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a5cad6381b603b7aacf07a4985152369e}{Vector3}}(\textcolor{keyword}{const}\ glm::vec3\ \&v):\mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}(v.\mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}),\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}(v.\mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}),\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}}(0)\ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_abd1a83d2d2aac9772569af7885d941ec}{magnitude}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ae19f4db68341691e3885a2fde4b2bc61}{normalized}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a1cc5bbdb56e6e3ec97a1d9b5a15e4324}{ClampMagnitude}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ minMagnitude,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ maxMagnitude);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a86206fbc5256e8edae4824700bc7a459}{Distance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v2);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a7bdb67e90b5e4bda185b501a61d294cf}{DotProduct}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v2);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a6639617955a26784c499d7eac7b2ab5c}{CrossProduct}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v2);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a2b7f0cdf460296e46cbadee4583f0cad}{Angle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v2);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a74e7523c2e29153b82fce4e0a5b9c4e5}{zero}};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a4a3eb8768677840824e27a1b4fdf6889}{one}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_af7221606de1213e01cabad759dadf180}{right}};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a3a22e37059f01408a17448a7f449d861}{up}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ae1d39f260f2966046a04e53c6eed46c8}{forward}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ae2fd37e3af7a74cd6661204df56efe52}{Rotate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ rotationAngles)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{class_eis_engine_1_1_quaternion}{Quaternion}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ glm::vec3()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ glm::vec2()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ b2Vec2()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ std::string()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator-\/()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator+(\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \textcolor{keyword}{const}\ \&v)\textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator-\/(\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \textcolor{keyword}{const}\ \&v)\textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator*(\textcolor{keywordtype}{float}\ \textcolor{keyword}{const}\ \&c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator*(\textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\ \&c)\textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator*(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\&\ scalar,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator*(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ scalar,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ v);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ operator*(\textcolor{keyword}{const}\ glm::mat4\&\ m)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \&operator+=(\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \textcolor{keyword}{const}\ \&v);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \&operator-\/=(\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \textcolor{keyword}{const}\ \&v);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \&operator*=(\textcolor{keywordtype}{float}\ \textcolor{keyword}{const}\ \&c);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \&operator*=(\textcolor{keywordtype}{int}\ \textcolor{keyword}{const}\ \&c);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \textcolor{keyword}{const}\ \&v)\textcolor{keyword}{\ const}\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}\ ==\ v.\mbox{\hyperlink{class_eis_engine_1_1_vector3_ad14b8e276201ebbf4f24d6ad8f92543f}{x}}\ \&\&\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}\ ==\ v.\mbox{\hyperlink{class_eis_engine_1_1_vector3_aacefbb71cf1882cd1783fa9025d272d1}{y}}\ \&\&\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}}\ ==\ v.\mbox{\hyperlink{class_eis_engine_1_1_vector3_a059d02446f0a7815ab8c412a90e085db}{z}};\}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ \textcolor{keyword}{const}\ \&v)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \textcolor{keyword}{const}\ \&v)\textcolor{keyword}{\ const}\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ v);\}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ \textcolor{keyword}{const}\ \&v)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ v);\}}
+\DoxyCodeLine{00092\ \ \ \ \ \};}
+\DoxyCodeLine{00093\ \}}
+
+\end{DoxyCode}

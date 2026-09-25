@@ -1,0 +1,88 @@
+\doxysection{Eis\+Engine\+::ctx\+::Context Class Reference}
+\hypertarget{class_eis_engine_1_1ctx_1_1_context}{}\label{class_eis_engine_1_1ctx_1_1_context}\index{EisEngine::ctx::Context@{EisEngine::ctx::Context}}
+
+
+~\newline
+ A class handling all the relevant background information of a game.  
+
+
+
+
+{\ttfamily \#include $<$Context.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1ctx_1_1_context_a449e7cf361a9f437a4d3686a700e7a74}\label{class_eis_engine_1_1ctx_1_1_context_a449e7cf361a9f437a4d3686a700e7a74} 
+using {\bfseries Callback} = std\+::function$<$void(\mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context}{Context}}\&)$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_af29f4fa074a16291ab0bda54a3901f69}{Context}} (const std\+::string \&title="{}Game"{})
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_a3e65edffc960b52d179f0b7fd18c5fa9}{run}} (const Callback \&update)
+\item 
+\Hypertarget{class_eis_engine_1_1ctx_1_1_context_a668fc09512e5721b4e6a724c5a20d223}\label{class_eis_engine_1_1ctx_1_1_context_a668fc09512e5721b4e6a724c5a20d223} 
+void {\bfseries Close\+Window} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Gives the signal for the active window to close. \end{DoxyCompactList}\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_aede9bfe49f3fdd3467ccd8fdc70b98b2}{get\+Window}} ()
+\item 
+\Hypertarget{class_eis_engine_1_1ctx_1_1_context_a07f490c0f2894002685a53a808a9c75a}\label{class_eis_engine_1_1ctx_1_1_context_a07f490c0f2894002685a53a808a9c75a} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries Get\+Window\+Size} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Gets the dimensions of the game window by {\bfseries{editing}} the provided width and height variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ A class handling all the relevant background information of a game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1ctx_1_1_context_af29f4fa074a16291ab0bda54a3901f69}\label{class_eis_engine_1_1ctx_1_1_context_af29f4fa074a16291ab0bda54a3901f69} 
+\index{EisEngine::ctx::Context@{EisEngine::ctx::Context}!Context@{Context}}
+\index{Context@{Context}!EisEngine::ctx::Context@{EisEngine::ctx::Context}}
+\doxysubsubsection{\texorpdfstring{Context()}{Context()}}
+{\footnotesize\ttfamily Eis\+Engine\+::ctx\+::\+Context\+::\+Context (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{title = {\ttfamily "{}Game"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a context instance. 
+\begin{DoxyParams}{Parameters}
+{\em width} & -\/ the width of the game window. \\
+\hline
+{\em height} & -\/ the height of the game window. \\
+\hline
+{\em title} & -\/ the title of the game window. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1ctx_1_1_context_aede9bfe49f3fdd3467ccd8fdc70b98b2}\label{class_eis_engine_1_1ctx_1_1_context_aede9bfe49f3fdd3467ccd8fdc70b98b2} 
+\index{EisEngine::ctx::Context@{EisEngine::ctx::Context}!getWindow@{getWindow}}
+\index{getWindow@{getWindow}!EisEngine::ctx::Context@{EisEngine::ctx::Context}}
+\doxysubsubsection{\texorpdfstring{getWindow()}{getWindow()}}
+{\footnotesize\ttfamily GLFWwindow \texorpdfstring{$\ast$}{*} Eis\+Engine\+::ctx\+::\+Context\+::get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Fetches a pointer to the window. \begin{DoxyReturn}{Returns}
+{\itshape GLFWwindow\texorpdfstring{$\ast$}{*}} -\/ a pointer to the game\textquotesingle{}s window. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ctx_1_1_context_a3e65edffc960b52d179f0b7fd18c5fa9}\label{class_eis_engine_1_1ctx_1_1_context_a3e65edffc960b52d179f0b7fd18c5fa9} 
+\index{EisEngine::ctx::Context@{EisEngine::ctx::Context}!run@{run}}
+\index{run@{run}!EisEngine::ctx::Context@{EisEngine::ctx::Context}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::ctx\+::\+Context\+::run (\begin{DoxyParamCaption}\item[{const Callback \&}]{update }\end{DoxyParamCaption})}
+
+~\newline
+ Begins the run of a window context. 
+\begin{DoxyParams}{Parameters}
+{\em update} & -\/ a callback function to be executed each frame. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Context.\+h\end{DoxyCompactItemize}

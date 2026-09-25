@@ -1,0 +1,64 @@
+\doxysection{Eis\+Engine\+::Debug\+Line Class Reference}
+\hypertarget{class_eis_engine_1_1_debug_line}{}\label{class_eis_engine_1_1_debug_line}\index{EisEngine::DebugLine@{EisEngine::DebugLine}}
+
+
+~\newline
+ Draws a line between two given points on screen, in the given color.  
+
+
+
+
+{\ttfamily \#include $<$Debug\+Line.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_debug_line_a93e9d80b5deb8d3060e7d2b2c4daafc9}{Debug\+Line}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&engine, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&start\+Point, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&end\+Point, const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \&color)
+\item 
+\Hypertarget{class_eis_engine_1_1_debug_line_ab1aa503a11610b72e1882eb0d089d760}\label{class_eis_engine_1_1_debug_line_ab1aa503a11610b72e1882eb0d089d760} 
+void {\bfseries Update\+Line\+Position} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&start\+Point, const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&end\+Point)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets new line positions. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_debug_line_a5043ed29d8697b9650db9e4d9b91adc0}\label{class_eis_engine_1_1_debug_line_a5043ed29d8697b9650db9e4d9b91adc0} 
+void {\bfseries Update\+Color} (const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \&color)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets a new color for the line. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_debug_line_ab07ebc40a1e95418161906bdf101a86f}\label{class_eis_engine_1_1_debug_line_ab07ebc40a1e95418161906bdf101a86f} 
+void {\bfseries Invalidate} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called when an object is intentionally deleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_debug_line_a1d4060d3f2c5a081a304132202b0aee3}\label{class_eis_engine_1_1_debug_line_a1d4060d3f2c5a081a304132202b0aee3} 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} {\bfseries transform}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The transform for the line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Draws a line between two given points on screen, in the given color. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1_debug_line_a93e9d80b5deb8d3060e7d2b2c4daafc9}\label{class_eis_engine_1_1_debug_line_a93e9d80b5deb8d3060e7d2b2c4daafc9} 
+\index{EisEngine::DebugLine@{EisEngine::DebugLine}!DebugLine@{DebugLine}}
+\index{DebugLine@{DebugLine}!EisEngine::DebugLine@{EisEngine::DebugLine}}
+\doxysubsubsection{\texorpdfstring{DebugLine()}{DebugLine()}}
+{\footnotesize\ttfamily Eis\+Engine\+::\+Debug\+Line\+::\+Debug\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{start\+Point,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&}]{end\+Point,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \&}]{color }\end{DoxyParamCaption})}
+
+~\newline
+ Creates a new \doxylink{class_eis_engine_1_1_debug_line}{Debug\+Line} object. 
+\begin{DoxyParams}{Parameters}
+{\em start\+Point} & -\/ \doxylink{class_eis_engine_1_1_vector3}{Vector3}\+: The local position of where the line should start. \\
+\hline
+{\em end\+Point} & -\/ \doxylink{class_eis_engine_1_1_vector3}{Vector3}\+: The local position of where the line should end. \\
+\hline
+{\em color} & -\/ \doxylink{class_eis_engine_1_1_color}{Color}\+: The line\textquotesingle{}s color on screen. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Debug\+Line.\+h\end{DoxyCompactItemize}

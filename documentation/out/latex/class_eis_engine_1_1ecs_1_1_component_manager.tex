@@ -1,0 +1,124 @@
+\doxysection{Eis\+Engine\+::ecs\+::Component\+Manager Class Reference}
+\hypertarget{class_eis_engine_1_1ecs_1_1_component_manager}{}\label{class_eis_engine_1_1ecs_1_1_component_manager}\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+
+
+{\ttfamily \#include $<$Component\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_aa3d889f4eaad835b7a2de563eea880fd}{Component\+Manager}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&engine)
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} C , \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} ... Args$>$ }\\C \& \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a1a0387c36103f685ca404becb16dab91}{add\+Component}} (guid\+\_\+t owner, \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{Args}} ...\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{args}})
+\item 
+{\footnotesize template$<$typename C $>$ }\\C \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{get\+Component}} (guid\+\_\+t owner)
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} C $>$ }\\\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_afe32c2ba82e6c4f35d696d14b4c2d3b5}{for\+Each\+Component}} (std\+::function$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}}(C \&)$>$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{f}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} C $>$ }\\\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_aed24f71f2025ba798aaaa67f52b03a1a}{remove\+Component}} (guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entity\+ID}})
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_acbc60e7875c8dbdc06eab6ac9c37f92f}{get\+Each\+Component\+Of\+Entity}} (guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entity\+ID}})
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a513572c2efd497f06987cd9e68f9d978}{remove\+Components}} (guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entity\+ID}})
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_ab479b9ae2c196a7024b74129b1513a83}\label{class_eis_engine_1_1ecs_1_1_component_manager_ab479b9ae2c196a7024b74129b1513a83} 
+{\footnotesize template$<$\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} C $>$ }\\\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{bool}} {\bfseries has\+Component\+Of\+Type} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ determines whether there is an existing component of the given type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Represents the \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component} management system. Handles allocating and deallocating components to entities as well as the deletion process for components of all kind. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_aa3d889f4eaad835b7a2de563eea880fd}\label{class_eis_engine_1_1ecs_1_1_component_manager_aa3d889f4eaad835b7a2de563eea880fd} 
+\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}!ComponentManager@{ComponentManager}}
+\index{ComponentManager@{ComponentManager}!EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+\doxysubsubsection{\texorpdfstring{ComponentManager()}{ComponentManager()}}
+{\footnotesize\ttfamily Eis\+Engine\+::ecs\+::\+Component\+Manager\+::\+Component\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a {\itshape \doxylink{class_eis_engine_1_1ecs_1_1_component_manager}{Component\+Manager}} instance 
+\begin{DoxyParams}{Parameters}
+{\em engine} & a reference to the game\textquotesingle{}s instance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_a1a0387c36103f685ca404becb16dab91}\label{class_eis_engine_1_1ecs_1_1_component_manager_a1a0387c36103f685ca404becb16dab91} 
+\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+\doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} C , \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} ... Args$>$ \\
+C \& Eis\+Engine\+::ecs\+::\+Component\+Manager\+::add\+Component (\begin{DoxyParamCaption}\item[{guid\+\_\+t}]{owner,  }\item[{\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{Args}} ...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Creates a component of the given type and assigns it to an entity. \begin{DoxyReturn}{Returns}
+\doxylink{class_eis_engine_1_1ecs_1_1_component}{Component}\& -\/ a reference to the newly created \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component}. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_afe32c2ba82e6c4f35d696d14b4c2d3b5}\label{class_eis_engine_1_1ecs_1_1_component_manager_afe32c2ba82e6c4f35d696d14b4c2d3b5} 
+\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}!forEachComponent@{forEachComponent}}
+\index{forEachComponent@{forEachComponent}!EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+\doxysubsubsection{\texorpdfstring{forEachComponent()}{forEachComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} C $>$ \\
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}} Eis\+Engine\+::ecs\+::\+Component\+Manager\+::for\+Each\+Component (\begin{DoxyParamCaption}\item[{std\+::function$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}}(C \&)$>$}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Iterates through all components of a given type and executes a function on all of them. 
+\begin{DoxyParams}{Parameters}
+{\em C} & -\/ the (sub-\/)type of \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component} to be iterated through. \\
+\hline
+{\em f} & -\/ a function with return type {\itshape null} that will be executed on all components. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}\label{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473} 
+\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
+{\footnotesize\ttfamily template$<$typename C $>$ \\
+C \texorpdfstring{$\ast$}{*} Eis\+Engine\+::ecs\+::\+Component\+Manager\+::get\+Component (\begin{DoxyParamCaption}\item[{guid\+\_\+t}]{owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Gets a \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component} of the given type from the specified entity. \begin{DoxyReturn}{Returns}
+Component\texorpdfstring{$\ast$}{*} -\/ a pointer to the component if found on the owner entity. ~\newline
+ Returns a nullptr if no component was found. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_acbc60e7875c8dbdc06eab6ac9c37f92f}\label{class_eis_engine_1_1ecs_1_1_component_manager_acbc60e7875c8dbdc06eab6ac9c37f92f} 
+\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}!getEachComponentOfEntity@{getEachComponentOfEntity}}
+\index{getEachComponentOfEntity@{getEachComponentOfEntity}!EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+\doxysubsubsection{\texorpdfstring{getEachComponentOfEntity()}{getEachComponentOfEntity()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}} \texorpdfstring{$\ast$}{*} $>$ Eis\+Engine\+::ecs\+::\+Component\+Manager\+::get\+Each\+Component\+Of\+Entity (\begin{DoxyParamCaption}\item[{guid\+\_\+t}]{entity\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Returns each component assigned to the given entity. ASSUMPTION ONLY ONE COMPONENT OF ANY TYPE PER ENTITY! \Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_aed24f71f2025ba798aaaa67f52b03a1a}\label{class_eis_engine_1_1ecs_1_1_component_manager_aed24f71f2025ba798aaaa67f52b03a1a} 
+\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}!removeComponent@{removeComponent}}
+\index{removeComponent@{removeComponent}!EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+\doxysubsubsection{\texorpdfstring{removeComponent()}{removeComponent()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{typename}} C $>$ \\
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}} Eis\+Engine\+::ecs\+::\+Component\+Manager\+::remove\+Component (\begin{DoxyParamCaption}\item[{guid\+\_\+t}]{entity\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Removes a \doxylink{class_eis_engine_1_1ecs_1_1_component}{Component} from the given entity. 
+\begin{DoxyParams}{Parameters}
+{\em entity\+ID} & -\/ the unique ID of the entity whose component is to be removed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_manager_a513572c2efd497f06987cd9e68f9d978}\label{class_eis_engine_1_1ecs_1_1_component_manager_a513572c2efd497f06987cd9e68f9d978} 
+\index{EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}!removeComponents@{removeComponents}}
+\index{removeComponents@{removeComponents}!EisEngine::ecs::ComponentManager@{EisEngine::ecs::ComponentManager}}
+\doxysubsubsection{\texorpdfstring{removeComponents()}{removeComponents()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{void}} Eis\+Engine\+::ecs\+::\+Component\+Manager\+::remove\+Components (\begin{DoxyParamCaption}\item[{guid\+\_\+t}]{entity\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Removes all components from the given entity. 
+\begin{DoxyParams}{Parameters}
+{\em entity\+ID} & -\/ the unique ID of the entity whose components are to be deleted. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/Component\+Manager.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,64 @@
+\doxysection{Entity.\+h}
+\hypertarget{_entity_8h_source}{}\label{_entity_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/Entity.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/Entity.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}ecs.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/ComponentManager.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}engine/components/Transform.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }EisEngine::ecs\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ final\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager}{EntityManager}};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{EisEngine::components::Transform}};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ [[nodiscard]]\ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a3c9befd1b97bdab7be1757c18df4525e}{guid}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_id;\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_abf9620c56e6582a277178b33e5a21168}{isDeleted}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ deleted;\ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a5a8e6e5c6d4c4fe0479fe73e5154ce35}{CompareTag}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}}\ ==\ m\_tag;\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a0eaa178aa10783f888ba8508ff5da0e1}{name}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ m\_name;\}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ m\_tag;\}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_aabe12f8e876178d3e404a6141dfccbd7}{setTag}}(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}})\ \{\ m\_tag\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}};\}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a4a9559b624a16780479bed61ed967250}{rename}}(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a0eaa178aa10783f888ba8508ff5da0e1}{name}})\{\ m\_name\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a0eaa178aa10783f888ba8508ff5da0e1}{name}};\}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C,\ \textcolor{keyword}{typename}\ ...Args>}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ C\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_ac12071875216e2c3eafe44d4dc406029}{AddComponent}}(Args\ ...args)\ \{\ \textcolor{keywordflow}{return}\ componentManager.\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a1a0387c36103f685ca404becb16dab91}{addComponent}}<C>(m\_id,\ args...);\}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ C\ *\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a6e6038a7e6fbfb9e0be0da2e53bbefe2}{GetComponent}}()\ \{\ \textcolor{keywordflow}{return}\ componentManager.\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{getComponent}}<C>(m\_id);\}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a5308ebba1646b34b4895760c4de78925}{RemoveComponent}}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \&component);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a37c4a82ae5103ca49d29134d1aec71c4}{RemoveComponent}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}*\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a740f4e751c95884ea29373f5da0229f9}{transform}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a265e95b7e459b9d386a3458ac58960ba}{user\_data}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}(guid\_t\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a0eaa178aa10783f888ba8508ff5da0e1}{name}},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}}\ \&componentManager,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_a9c750a6d0109a633e459cb4a528bcc37}{tag}}\ =\ \textcolor{stringliteral}{"{}Untagged"{}},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ userData\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ deleteAllComponents()\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ component\ :\ componentManager.getEachComponentOfEntity(m\_id))}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ component-\/>Invalidate();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ componentManager.\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a513572c2efd497f06987cd9e68f9d978}{removeComponents}}(m\_id);\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ guid\_t\ m\_id\ =\ invalidID;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ std::string\ m\_name;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ std::string\ m\_tag;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ deleted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}}\ \&componentManager;}
+\DoxyCodeLine{00088\ \ \ \ \ \};}
+\DoxyCodeLine{00089\ \}}
+
+\end{DoxyCode}

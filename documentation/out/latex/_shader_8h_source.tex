@@ -1,0 +1,47 @@
+\doxysection{Shader.\+h}
+\hypertarget{_shader_8h_source}{}\label{_shader_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/rendering/Shader.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/rendering/Shader.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <OpenGL/OpenGlInclude.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}glm/glm.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}engine/utilities/rendering/Texture2D.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }fs\ =\ std::filesystem;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }EisEngine::rendering\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_a834162d153f12efc3847a535bb0ffff6}{Shader}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ vertexShaderProgram,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ fragmentShaderProgram);}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}}(\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}}\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_a0d75eddbb176aeb817772a0c3b39e635}{Apply}}(\textcolor{keyword}{const}\ glm::mat4\&\ newVPMatrix);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_a8c4f1ceb89fa8539870e08d9e81b35ce}{ApplyTexture}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}}\&\ texture);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_ae3e423f88e16a50b91f3e483558e4551}{setMatrix}}(\textcolor{keyword}{const}\ std::string\ \&uniformName,\ glm::mat4\ matrix)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_a26ee68bcaa51741832a65f40410b6f38}{setVector}}(\textcolor{keyword}{const}\ std::string\ \&uniformName,\ glm::vec4\ vector)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ [[nodiscard]]\ glm::mat4\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_af719e1d8240854351f5664de7798519d}{CalculateMVPMatrix}}(\textcolor{keyword}{const}\ glm::mat4\&\ modelMatrix)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ vpMatrix\ *\ modelMatrix;\}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ fs::path\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_af4a2faac8c08d7edc738e5b960b97fe4}{defaultVertexShaderPath}};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ fs::path\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_afd638e863d369eced4678048847b8973}{defaultFragmentShaderPath}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ fs::path\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_a0b4c70beaa076f19360c4f1f481e5bf9}{spriteVertexShaderPath}};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ fs::path\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_a1191abacf3da8e8c07d1007a87cea729}{spriteFragmentShaderPath}};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ fs::path\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_afeda2c5e4545b4dee0ff0f5c1be9a476}{uiVertexShaderPath}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_affbb2ad2d99ef6338c09bd952433798d}{Invalidate}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ shaderProgram\ =\ 0;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ vertexShader\ =\ 0;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ fragmentShader\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ glm::mat4\ vpMatrix\ =\ glm::mat4(1.0f);}
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ \}}
+
+\end{DoxyCode}

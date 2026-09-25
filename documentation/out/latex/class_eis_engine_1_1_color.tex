@@ -1,0 +1,151 @@
+\doxysection{Eis\+Engine\+::Color Class Reference}
+\hypertarget{class_eis_engine_1_1_color}{}\label{class_eis_engine_1_1_color}\index{EisEngine::Color@{EisEngine::Color}}
+
+
+~\newline
+ A 4-\/dimensional vector representing the RGBA\% (each value representing a \% of 255) values of a colour.  
+
+
+
+
+{\ttfamily \#include $<$Color.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_color_abc9f49a911eff6048a370e2f4b602649}{Color}} (float \+\_\+r=1, float \+\_\+g=1, float \+\_\+b=1, float \+\_\+a=1)
+\item 
+\Hypertarget{class_eis_engine_1_1_color_a3d24b2fc4d84ea2a825d7e2695a76989}\label{class_eis_engine_1_1_color_a3d24b2fc4d84ea2a825d7e2695a76989} 
+{\bfseries operator glm\+::vec4} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_color_a48dbded51b3f513c7cc0f5125d3c3ead}\label{class_eis_engine_1_1_color_a48dbded51b3f513c7cc0f5125d3c3ead} 
+float {\bfseries r}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A float representing the colour\textquotesingle{}s red values in \% of 255. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_color_a93ee51a4a8a6b2b07a8c76092d598561}\label{class_eis_engine_1_1_color_a93ee51a4a8a6b2b07a8c76092d598561} 
+float {\bfseries g}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A float representing the colour\textquotesingle{}s green values in \% of 255. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_color_ab4a2628ffa47cd3097901f258bde0d2a}\label{class_eis_engine_1_1_color_ab4a2628ffa47cd3097901f258bde0d2a} 
+float {\bfseries b}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A float representing the colour\textquotesingle{}s blue values in \% of 255. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_eis_engine_1_1_color_adc1608c1261ab77af3ac4bb07589ee78}{a}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{white}}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_a4154e74e4e2931dd9bc47f4560c606e8}{blue}}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_a794667ca411dbc189f60f20f7b3dbaf8}{red}}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_af19fb8fe215712822a5ce9244f68148b}{green}}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_a770e0807f5d7f5d2b6405ff6705db93b}{yellow}}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_a8ebe356ddc1f930782ac675074ef5414}{black}}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_a7f0bc7afa61b7f907b398b4d96ea3a5d}{orange}}
+\item 
+static const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \mbox{\hyperlink{class_eis_engine_1_1_color_ae18393ced2b9975874c898ab3f604e1e}{transparent}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ A 4-\/dimensional vector representing the RGBA\% (each value representing a \% of 255) values of a colour. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1_color_abc9f49a911eff6048a370e2f4b602649}\label{class_eis_engine_1_1_color_abc9f49a911eff6048a370e2f4b602649} 
+\index{EisEngine::Color@{EisEngine::Color}!Color@{Color}}
+\index{Color@{Color}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{Color()}{Color()}}
+{\footnotesize\ttfamily Eis\+Engine\+::\+Color\+::\+Color (\begin{DoxyParamCaption}\item[{float}]{\+\_\+r = {\ttfamily 1},  }\item[{float}]{\+\_\+g = {\ttfamily 1},  }\item[{float}]{\+\_\+b = {\ttfamily 1},  }\item[{float}]{\+\_\+a = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+~\newline
+ Defines a color for use in Eis\+Engine. ~\newline
+ All values are to be within the range \mbox{[}0, 1\mbox{]}, representing percentage of 255. Anything outside of the range will be clamped to this range. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_eis_engine_1_1_color_adc1608c1261ab77af3ac4bb07589ee78}\label{class_eis_engine_1_1_color_adc1608c1261ab77af3ac4bb07589ee78} 
+\index{EisEngine::Color@{EisEngine::Color}!a@{a}}
+\index{a@{a}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily float Eis\+Engine\+::\+Color\+::a}
+
+~\newline
+ A float representing the colour\textquotesingle{}s transparency value. ~\newline
+ a = 0 being fully transparent, a = 1 being fully opaque. \Hypertarget{class_eis_engine_1_1_color_a8ebe356ddc1f930782ac675074ef5414}\label{class_eis_engine_1_1_color_a8ebe356ddc1f930782ac675074ef5414} 
+\index{EisEngine::Color@{EisEngine::Color}!black@{black}}
+\index{black@{black}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{black}{black}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::black\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ The color black. ~\newline
+ {\bfseries{r}} = 0; {\bfseries{g}} = 0, {\bfseries{b}} = 0, {\bfseries{a}} = 1. \Hypertarget{class_eis_engine_1_1_color_a4154e74e4e2931dd9bc47f4560c606e8}\label{class_eis_engine_1_1_color_a4154e74e4e2931dd9bc47f4560c606e8} 
+\index{EisEngine::Color@{EisEngine::Color}!blue@{blue}}
+\index{blue@{blue}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{blue}{blue}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::blue\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ The color blue. ~\newline
+ {\bfseries{r}} = 0; {\bfseries{g}} = 0, {\bfseries{b}} = 1, {\bfseries{a}} = 1. \Hypertarget{class_eis_engine_1_1_color_af19fb8fe215712822a5ce9244f68148b}\label{class_eis_engine_1_1_color_af19fb8fe215712822a5ce9244f68148b} 
+\index{EisEngine::Color@{EisEngine::Color}!green@{green}}
+\index{green@{green}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{green}{green}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::green\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ The color green. ~\newline
+ {\bfseries{r}} = 0; {\bfseries{g}} = 1, {\bfseries{b}} = 0, {\bfseries{a}} = 1. \Hypertarget{class_eis_engine_1_1_color_a7f0bc7afa61b7f907b398b4d96ea3a5d}\label{class_eis_engine_1_1_color_a7f0bc7afa61b7f907b398b4d96ea3a5d} 
+\index{EisEngine::Color@{EisEngine::Color}!orange@{orange}}
+\index{orange@{orange}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{orange}{orange}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::orange\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ The color orange. ~\newline
+ {\bfseries{r}} = 1; {\bfseries{g}} \texorpdfstring{$\sim$}{\string~} 0.\+647, {\bfseries{b}} = 0, {\bfseries{a}} = 1. \Hypertarget{class_eis_engine_1_1_color_a794667ca411dbc189f60f20f7b3dbaf8}\label{class_eis_engine_1_1_color_a794667ca411dbc189f60f20f7b3dbaf8} 
+\index{EisEngine::Color@{EisEngine::Color}!red@{red}}
+\index{red@{red}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{red}{red}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::red\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ The color red. ~\newline
+ {\bfseries{r}} = 1; {\bfseries{g}} = 0, {\bfseries{b}} = 0, {\bfseries{a}} = 1. \Hypertarget{class_eis_engine_1_1_color_ae18393ced2b9975874c898ab3f604e1e}\label{class_eis_engine_1_1_color_ae18393ced2b9975874c898ab3f604e1e} 
+\index{EisEngine::Color@{EisEngine::Color}!transparent@{transparent}}
+\index{transparent@{transparent}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{transparent}{transparent}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::transparent\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Full Transparency. ~\newline
+ {\bfseries{r}} = 1, {\bfseries{g}} = 1, {\bfseries{b}} = 1, {\bfseries{a}} = 0. \Hypertarget{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}\label{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389} 
+\index{EisEngine::Color@{EisEngine::Color}!white@{white}}
+\index{white@{white}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{white}{white}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::white\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ The color white. ~\newline
+ {\bfseries{r}} = 1; {\bfseries{g}} = 1, {\bfseries{b}} = 1, {\bfseries{a}} = 1. \Hypertarget{class_eis_engine_1_1_color_a770e0807f5d7f5d2b6405ff6705db93b}\label{class_eis_engine_1_1_color_a770e0807f5d7f5d2b6405ff6705db93b} 
+\index{EisEngine::Color@{EisEngine::Color}!yellow@{yellow}}
+\index{yellow@{yellow}!EisEngine::Color@{EisEngine::Color}}
+\doxysubsubsection{\texorpdfstring{yellow}{yellow}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} Eis\+Engine\+::\+Color\+::yellow\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ The color yellow. ~\newline
+ {\bfseries{r}} = 1; {\bfseries{g}} = 1, {\bfseries{b}} = 0, {\bfseries{a}} = 1. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Color.\+h\end{DoxyCompactItemize}

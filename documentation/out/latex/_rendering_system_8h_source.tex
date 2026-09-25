@@ -1,0 +1,24 @@
+\doxysection{Rendering\+System.\+h}
+\hypertarget{_rendering_system_8h_source}{}\label{_rendering_system_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/RenderingSystem.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/RenderingSystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <OpenGL/OpenGlInclude.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/System.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Camera.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/utilities/rendering/Shader.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }EisEngine::systems\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }rendering;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_rendering_system}{RenderingSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_rendering_system_a9a3d9e88dc22828eef7d04c937105139}{RenderingSystem}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\&\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}});}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_rendering_system_a8a95bfaecb5d5be3a3ce339b3f298c5c}{Draw}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera}{Camera}}*\ camera\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::array<GLuint,\ 4>\ VAO;}
+\DoxyCodeLine{00022\ \ \ \ \ \};}
+\DoxyCodeLine{00023\ \}}
+
+\end{DoxyCode}

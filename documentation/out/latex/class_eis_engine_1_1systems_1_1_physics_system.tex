@@ -1,0 +1,128 @@
+\doxysection{Eis\+Engine\+::systems\+::Physics\+System Class Reference}
+\hypertarget{class_eis_engine_1_1systems_1_1_physics_system}{}\label{class_eis_engine_1_1systems_1_1_physics_system}\index{EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}}
+
+
+~\newline
+ This system runs the game world\textquotesingle{}s physics simulation.  
+
+
+
+
+{\ttfamily \#include $<$Physics\+System.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::systems\+::Physics\+System\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1systems_1_1_physics_system}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_ada3672b048bd104e61359a5e2dbcfb7a}{Physics\+System}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&game, \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \+\_\+gravity=\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a7a92422344e6177cd8a2468be1965ed2}{Earth\+Gravity\+Vector}})
+\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_a24bbc9931b38e75d3677fb0b61c44f2d}\label{class_eis_engine_1_1systems_1_1_physics_system_a24bbc9931b38e75d3677fb0b61c44f2d} 
+void {\bfseries Disable\+Global\+Gravity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Disables gravity for the current physics simulation. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_a3518e4144e8e5bb912996c176b62ff82}\label{class_eis_engine_1_1systems_1_1_physics_system_a3518e4144e8e5bb912996c176b62ff82} 
+void {\bfseries Enable\+Global\+Gravity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Enables gravity for the current physics simulation at its last value. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_adace78ab2f727b88a14cb341fe82d7f9}\label{class_eis_engine_1_1systems_1_1_physics_system_adace78ab2f727b88a14cb341fe82d7f9} 
+void {\bfseries Set\+Global\+Gravity} (\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} new\+Gravity)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets the global gravity to the given value. \end{DoxyCompactList}\item 
+b2\+Body \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a7c3c0edd12839290aff68cae542fcc06}{Create\+Body}} (b2\+Body\+Def \&body\+Def)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_acf2d2288baac144c6412ca0ab5e779c6}{System}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\item 
+{\bfseries System} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&\&)=delete
+\item 
+{\bfseries System} (const \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_afcff187e850210abab883683a63b1eec}{Delete\+Body}} (b2\+Body \texorpdfstring{$\ast$}{*}body)
+\item 
+static std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d}{Physics\+Body2D}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_ae29b66dfc33a08906b9172e753ed38b4}{Find\+Bodies\+Within\+Bounds}} (const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v1, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v2, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v3, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&v4)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_a7a92422344e6177cd8a2468be1965ed2}\label{class_eis_engine_1_1systems_1_1_physics_system_a7a92422344e6177cd8a2468be1965ed2} 
+static const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} {\bfseries Earth\+Gravity\+Vector}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The standard earth gravity vector (0, -\/9.\+81). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access components and entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ This system runs the game world\textquotesingle{}s physics simulation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_ada3672b048bd104e61359a5e2dbcfb7a}\label{class_eis_engine_1_1systems_1_1_physics_system_ada3672b048bd104e61359a5e2dbcfb7a} 
+\index{EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}!PhysicsSystem@{PhysicsSystem}}
+\index{PhysicsSystem@{PhysicsSystem}!EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{PhysicsSystem()}{PhysicsSystem()}}
+{\footnotesize\ttfamily Eis\+Engine\+::systems\+::\+Physics\+System\+::\+Physics\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{game,  }\item[{\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}}]{\+\_\+gravity = {\ttfamily \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a7a92422344e6177cd8a2468be1965ed2}{Earth\+Gravity\+Vector}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a new physics engine for the game, with default gravity being Earth\textquotesingle{}s 9.\+81 towards negative y 
+\begin{DoxyParams}{Parameters}
+{\em game} & -\/ a reference to the engine systems to add physics simulations into the game loop. \\
+\hline
+{\em \+\_\+gravity} & -\/ a 2D vector describing the desired gravity in the world. Defaults to (0, -\/9.\+81). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_a7c3c0edd12839290aff68cae542fcc06}\label{class_eis_engine_1_1systems_1_1_physics_system_a7c3c0edd12839290aff68cae542fcc06} 
+\index{EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}!CreateBody@{CreateBody}}
+\index{CreateBody@{CreateBody}!EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{CreateBody()}{CreateBody()}}
+{\footnotesize\ttfamily b2\+Body \texorpdfstring{$\ast$}{*} Eis\+Engine\+::systems\+::\+Physics\+System\+::\+Create\+Body (\begin{DoxyParamCaption}\item[{b2\+Body\+Def \&}]{body\+Def }\end{DoxyParamCaption})}
+
+~\newline
+ Creates a physical body based on a box2d definition. 
+\begin{DoxyParams}{Parameters}
+{\em body\+Def} & -\/ a b2\+Body definition serving as a blueprint for objects of this type. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_afcff187e850210abab883683a63b1eec}\label{class_eis_engine_1_1systems_1_1_physics_system_afcff187e850210abab883683a63b1eec} 
+\index{EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}!DeleteBody@{DeleteBody}}
+\index{DeleteBody@{DeleteBody}!EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{DeleteBody()}{DeleteBody()}}
+{\footnotesize\ttfamily static void Eis\+Engine\+::systems\+::\+Physics\+System\+::\+Delete\+Body (\begin{DoxyParamCaption}\item[{b2\+Body \texorpdfstring{$\ast$}{*}}]{body }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Marks a body for deletion and deletes it at the next possible moment. 
+\begin{DoxyParams}{Parameters}
+{\em body} & -\/ b2\+Body\texorpdfstring{$\ast$}{*}\+: A pointer to the b2 body to be deleted. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1systems_1_1_physics_system_ae29b66dfc33a08906b9172e753ed38b4}\label{class_eis_engine_1_1systems_1_1_physics_system_ae29b66dfc33a08906b9172e753ed38b4} 
+\index{EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}!FindBodiesWithinBounds@{FindBodiesWithinBounds}}
+\index{FindBodiesWithinBounds@{FindBodiesWithinBounds}!EisEngine::systems::PhysicsSystem@{EisEngine::systems::PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{FindBodiesWithinBounds()}{FindBodiesWithinBounds()}}
+{\footnotesize\ttfamily static std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d}{Physics\+Body2D}} \texorpdfstring{$\ast$}{*} $>$ Eis\+Engine\+::systems\+::\+Physics\+System\+::\+Find\+Bodies\+Within\+Bounds (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{v1,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{v2,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{v3,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{v4 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Returns a list of all bodies within the given bounds. ~\newline
+ Vectors should be arranged to form a square with edges \texorpdfstring{$<$}{<}v1-\/v2, v2-\/v3, v3-\/v4, v4-\/v1\texorpdfstring{$>$}{>}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Physics\+System.\+h\end{DoxyCompactItemize}

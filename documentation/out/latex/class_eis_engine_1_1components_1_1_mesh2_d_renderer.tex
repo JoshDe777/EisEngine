@@ -1,0 +1,109 @@
+\doxysection{Eis\+Engine\+::components\+::Mesh2\+DRenderer Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_renderer}{}\label{class_eis_engine_1_1components_1_1_mesh2_d_renderer}\index{EisEngine::components::Mesh2DRenderer@{EisEngine::components::Mesh2DRenderer}}
+
+
+{\ttfamily \#include $<$Mesh2\+DRenderer.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Mesh2\+DRenderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eis_engine_1_1components_1_1_mesh2_d_renderer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_renderer_ac2bada638b1f3fd64cfd920e8faed003}{Mesh2\+DRenderer}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} color=\mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color\+::white}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Eis\+Engine\+::components\+::\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a13d38f29ce7bfd502f70227593ca1c44}{Renderer}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, const \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} \&color=\mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color\+::white}}, std\+::string layer="{}Background"{})
+\item 
+{\bfseries Renderer} (const \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}} \&renderer)=delete
+\item 
+{\bfseries Renderer} (\mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}} \&\&other) noexcept
+\item 
+virtual void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a7c2a1adbcf1ee56dfd309ddcbe55158b}{Apply\+Data}} (\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \&shader)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Applies rendering data to the active shader before drawing meshes. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Color} (\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} new\+Color)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets a renderer\textquotesingle{}s color to the provided value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} {\bfseries Get\+Color} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ returns the renderer\textquotesingle{}s color in RGBA\%. \end{DoxyCompactList}\item 
+std\+::string {\bfseries Get\+Layer} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ returns a renderer\textquotesingle{}s rendering layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Invalidate}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function made to encompass what needs to be done when a component is intentionally deleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Eis\+Engine\+::components\+::\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}} {\bfseries m\+\_\+color}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The color given to fragments rendered with this renderer. \end{DoxyCompactList}\item 
+std\+::string {\bfseries m\+\_\+layer}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The rendering layer of the associated mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Contains rendering data for primitive 2D meshes. ~\newline
+ Requires a \doxylink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D} component for proper use. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_mesh2_d_renderer_ac2bada638b1f3fd64cfd920e8faed003}\label{class_eis_engine_1_1components_1_1_mesh2_d_renderer_ac2bada638b1f3fd64cfd920e8faed003} 
+\index{EisEngine::components::Mesh2DRenderer@{EisEngine::components::Mesh2DRenderer}!Mesh2DRenderer@{Mesh2DRenderer}}
+\index{Mesh2DRenderer@{Mesh2DRenderer}!EisEngine::components::Mesh2DRenderer@{EisEngine::components::Mesh2DRenderer}}
+\doxysubsubsection{\texorpdfstring{Mesh2DRenderer()}{Mesh2DRenderer()}}
+{\footnotesize\ttfamily Eis\+Engine\+::components\+::\+Mesh2\+DRenderer\+::\+Mesh2\+DRenderer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{guid\+\_\+t}]{owner,  }\item[{\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}}]{color = {\ttfamily \mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color\+::white}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Creates a primitive mesh renderer. 
+\begin{DoxyParams}{Parameters}
+{\em color} & -\/ a 4D vector representing the mesh\textquotesingle{}s color in RGBA\%. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/renderers/Mesh2\+DRenderer.\+h\end{DoxyCompactItemize}

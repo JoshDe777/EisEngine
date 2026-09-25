@@ -1,0 +1,73 @@
+\doxysection{Game.\+h}
+\hypertarget{_game_8h_source}{}\label{_game_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Game.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Game.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <box2d/box2d.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <soloud.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <soloud\_wav.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <OpenGL/OpenGlInclude.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <glm/gtc/type\_ptr.hpp>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <glm/gtx/string\_cast.hpp>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}engine/Utilities.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}engine/Systems.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}engine/Context.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/EntityManager.h"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{using\ }event\_t\ =\ events::Event<Game,\ Game\&>;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{using\ }ecs::ComponentManager;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }ecs::EntityManager;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{using\ }components::Transform;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }ctx::Context;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_game_a1ca13ff82c986ddb7e5df39052950b85}{Game}}(\textcolor{keyword}{const}\ std::string\ \&title);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a96ff0c0ae9ca06b84cb07d7d9954a45a}{\string~Game}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a3fd1b90caec4ca0a2f369a3642c07e00}{run}}();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a8d4ade8c3429c39498fa73bfe31c221d}{Quit}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ [[nodiscard]]\ GLFWwindow\ *\mbox{\hyperlink{class_eis_engine_1_1_game_a2e173f8d8811dacceceb7f057a5e58ad}{getWindow}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a881ae16180297660ddc9f6ebe1890bc5}{onStartup}};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_af764013be0e004ad2a8115ab66d7fc69}{onAfterStartup}};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a65630543a9001e5682e53454ae4da3c5}{onBeforeUpdate}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_af6f78a357e8b7da383ce1787996db0bd}{onUpdate}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a2dfab48406364c1968faf70c63f7c861}{onAfterUpdate}};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a9a5a9e3336c156de158ec3dd0ea1f9d6}{onBeforeShutdown}};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a6dd6592034535901ff1c5bba83b01eb9}{onShutdown}};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1events_1_1_event}{event\_t}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a1cd7045935c4270a8e5f92e73718a84f}{onEntityStart}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a44fe22474eb6a1d6ba56148074c922ec}{componentManager}};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager}{EntityManager}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_af914f8407da4897174e99ff954aeccba}{entityManager}};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context}{Context}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a69d09accf4c85405d3c63ef67597c17d}{context}};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera}{Camera}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a0ac5f3f1f18d1857c899da0d938ce4b1}{camera}};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system}{PhysicsSystem}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_afa0cad1ea1889e34415d2aa65e95b5b6}{physics}};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_updater}{PhysicsUpdater}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_ad593fe51e1f7c153af62f272ed424e7b}{physicsUpdater}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *\mbox{\hyperlink{class_eis_engine_1_1_game_ac06316c0233592703be730a58cf74f9e}{origin}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a0f0a598669f49b09255fa5030ac2ab15}{update}}(GLFWwindow\ *window);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a66de07dcace50448404f7b1d206caf8f}{start}}()\ \{\}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a0218230743cfcf116b122d4be7a3e7e0}{CheckForCloseWindowSignal}}();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a55798dfd3b019c34005bfabbbf380c67}{GameLoop}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_rendering_system}{RenderingSystem}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_aa0723485aa3494ba367376392f8a4dc1}{renderingSystem}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_pruner}{SceneGraphPruner}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_aa79a8f550851b7976c35d066d73b11ce}{sceneGraphPruner}};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater}{SceneGraphUpdater}}\ \mbox{\hyperlink{class_eis_engine_1_1_game_a512ecff47c9575fb6b6e44e06d3d2080}{sceneGraphUpdater}};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_input}{Input}}\ input;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_time}{Time}}\ time;}
+\DoxyCodeLine{00099\ \ \ \ \ \};}
+\DoxyCodeLine{00100\ \}}
+
+\end{DoxyCode}

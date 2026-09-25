@@ -1,0 +1,25 @@
+\doxysection{Contact\+Listener.\+h}
+\hypertarget{_contact_listener_8h_source}{}\label{_contact_listener_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/ContactListener.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/ContactListener.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <box2d/box2d.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }EisEngine\{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{class\ }Game;}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{namespace\ }systems\{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system}{PhysicsSystem}};\}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{namespace\ }physics\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1physics_1_1_contact_listener}{ContactListener}}\ :\ \textcolor{keyword}{public}\ b2ContactListener\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system}{systems::PhysicsSystem}};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1physics_1_1_contact_listener_a549024ea7b2e203615b9de317fa2276f}{BeginContact}}(b2Contact*\ contact)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1physics_1_1_contact_listener_ad7868795d2fc60e9c50cf44f30e409fc}{EndContact}}(b2Contact*\ contact)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ *engine\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \}}
+
+\end{DoxyCode}

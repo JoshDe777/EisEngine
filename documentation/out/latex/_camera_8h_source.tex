@@ -1,0 +1,48 @@
+\doxysection{Camera.\+h}
+\hypertarget{_camera_8h_source}{}\label{_camera_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Camera.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Camera.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/System.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Entity.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }EisEngine::systems\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{EisEngine::components::Transform}};}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{using\ }System\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{EisEngine::ecs::System}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera}{Camera}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_ac9ec4035044e683ccc5030da0ec79ab6}{Camera}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\&\ screenDimensions);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_ac1c26e9834322b41ebdf527d5d2240ba}{GetVPMatrix}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a152625110d63c56eb5a2e2a54322a2f1}{Zoom}}(\textcolor{keywordtype}{float}\ value)\{\ m\_zoom\ =\ clamp(m\_zoom\ +\ value,\ minZoomVal,\ maxZoomVal);\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_aa6cc54889fcf9ab22b166d51cc10878e}{SetZoom}}(\textcolor{keywordtype}{float}\ value\ =\ 1)\ \{\ m\_zoom\ =\ clamp(value,\ minZoomVal,\ maxZoomVal);\}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a400acdc28548c56d53a98462eb12b202}{GetZoomFactor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_zoom;\}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a30a1745d9fe594ff1eb1335634748d1f}{GetWidth}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_screenWidth;\}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a0fceb4d10120a03cebc924873b87d872}{GetHeight}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_screenHeight;\}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a2e503982adc5ef709250d3250f085c0e}{transform}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ [[nodiscard]]\ glm::mat4\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a2ee9e24591c9fc2a8fd649f230ada470}{GetProjectionMatrix}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ *entity;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ aspectRatio;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ nearClip\ =\ -\/1;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ farClip\ =\ 10;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\_screenWidth;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\_screenHeight;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ m\_zoom\ =\ 1.0f;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ minZoomVal\ =\ 0.01f;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ maxZoomVal\ =\ 5.0f;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateAspectRatio()\ \{\ aspectRatio\ =\ (float)\ m\_screenWidth\ /\ (\textcolor{keywordtype}{float})\ m\_screenHeight;\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ [[nodiscard]]\ glm::mat4\ CalculateViewMatrix()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ \ \ \ \ \};}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}

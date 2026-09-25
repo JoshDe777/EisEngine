@@ -1,0 +1,94 @@
+\doxysection{Eis\+Engine\+::ecs\+::Component Class Reference}
+\hypertarget{class_eis_engine_1_1ecs_1_1_component}{}\label{class_eis_engine_1_1ecs_1_1_component}\index{EisEngine::ecs::Component@{EisEngine::ecs::Component}}
+
+
+{\ttfamily \#include $<$Component.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::ecs\+::Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=9.000000cm]{class_eis_engine_1_1ecs_1_1_component}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a9e3aaa0f314b7530ab1065257fbf8d56}\label{class_eis_engine_1_1ecs_1_1_component_a9e3aaa0f314b7530ab1065257fbf8d56} 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a9322e3ad42d1da830311bbb1fd2995c6}\label{class_eis_engine_1_1ecs_1_1_component_a9322e3ad42d1da830311bbb1fd2995c6} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a4edfadf49efd162b1e5522ce7e9f0593}\label{class_eis_engine_1_1ecs_1_1_component_a4edfadf49efd162b1e5522ce7e9f0593} 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a6949fd3f85710cd3f76d8bb958ed0b95}\label{class_eis_engine_1_1ecs_1_1_component_a6949fd3f85710cd3f76d8bb958ed0b95} 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a37145c86d98a36d34b8cd1046b4d1fff}\label{class_eis_engine_1_1ecs_1_1_component_a37145c86d98a36d34b8cd1046b4d1fff} 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Invalidate}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function made to encompass what needs to be done when a component is intentionally deleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}\label{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd} 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_abb240b69f2a1f2fb76a889d09e7c2aa5}\label{class_eis_engine_1_1ecs_1_1_component_abb240b69f2a1f2fb76a889d09e7c2aa5} 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}\label{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89} 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a4542618ef05fbb881e9783ae3755240a}\label{class_eis_engine_1_1ecs_1_1_component_a4542618ef05fbb881e9783ae3755240a} 
+class {\bfseries Component\+Manager}
+\item 
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a614439ccac0344926adc4c0165d64060}\label{class_eis_engine_1_1ecs_1_1_component_a614439ccac0344926adc4c0165d64060} 
+class {\bfseries Entity}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ A generic class for Components in Eis-\/\+Engine\textquotesingle{}s Entity-\/\+Component-\/\+System ~\newline
+ Represents any form of data attributed to an entity. ~\newline
+ Components all derive directly or indirectly from this class. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}\label{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f} 
+\index{EisEngine::ecs::Component@{EisEngine::ecs::Component}!Invalidate@{Invalidate}}
+\index{Invalidate@{Invalidate}!EisEngine::ecs::Component@{EisEngine::ecs::Component}}
+\doxysubsubsection{\texorpdfstring{Invalidate()}{Invalidate()}}
+{\footnotesize\ttfamily virtual void Eis\+Engine\+::ecs\+::\+Component\+::\+Invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ A function made to encompass what needs to be done when a component is intentionally deleted. 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_eis_engine_1_1components_1_1_box_collider2_d_ab2c6bd6a7652ff54ec062ba985691dff}{Eis\+Engine\+::components\+::\+Box\+Collider2D}}, \mbox{\hyperlink{class_eis_engine_1_1components_1_1_line_a28ffbb97d0db52481f487bd583e42066}{Eis\+Engine\+::components\+::\+Line}}, \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_a700ad19c07db3d94e663f78e8678adfe}{Eis\+Engine\+::components\+::\+Mesh2D}}, \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh_adbb4ecf29413443c8ae7b08a6e20d75b}{Eis\+Engine\+::components\+::\+Sprite\+Mesh}}, \mbox{\hyperlink{class_eis_engine_1_1components_1_1_script_a5fbde58cd94e4425787329f34f2f0b95}{Eis\+Engine\+::components\+::\+Script}}, and \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_ab347587b63a8d4234106d1aa59ab1834}{Eis\+Engine\+::components\+::\+Transform}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/Component.\+h\end{DoxyCompactItemize}

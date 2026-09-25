@@ -1,0 +1,136 @@
+\doxysection{Eis\+Engine\+::systems\+::Camera Class Reference}
+\hypertarget{class_eis_engine_1_1systems_1_1_camera}{}\label{class_eis_engine_1_1systems_1_1_camera}\index{EisEngine::systems::Camera@{EisEngine::systems::Camera}}
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::systems\+::Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1systems_1_1_camera}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_ac9ec4035044e683ccc5030da0ec79ab6}{Camera}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}}, const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&screen\+Dimensions)
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_ac1c26e9834322b41ebdf527d5d2240ba}{Get\+VPMatrix}} ()
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a152625110d63c56eb5a2e2a54322a2f1}{Zoom}} (float value)
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_aa6cc54889fcf9ab22b166d51cc10878e}{Set\+Zoom}} (float value=1)
+\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_a400acdc28548c56d53a98462eb12b202}\label{class_eis_engine_1_1systems_1_1_camera_a400acdc28548c56d53a98462eb12b202} 
+float {\bfseries Get\+Zoom\+Factor} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the current zoom factor. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_a30a1745d9fe594ff1eb1335634748d1f}\label{class_eis_engine_1_1systems_1_1_camera_a30a1745d9fe594ff1eb1335634748d1f} 
+int {\bfseries Get\+Width} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns screen width in pixels. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_a0fceb4d10120a03cebc924873b87d872}\label{class_eis_engine_1_1systems_1_1_camera_a0fceb4d10120a03cebc924873b87d872} 
+int {\bfseries Get\+Height} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns screen height in pixels. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_camera_a2ee9e24591c9fc2a8fd649f230ada470}{Get\+Projection\+Matrix}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_acf2d2288baac144c6412ca0ab5e779c6}{System}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system_ac5d4441531864fcb600576252b7010c5}{engine}})
+\item 
+{\bfseries System} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&\&)=delete
+\item 
+{\bfseries System} (const \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_a2e503982adc5ef709250d3250f085c0e}\label{class_eis_engine_1_1systems_1_1_camera_a2e503982adc5ef709250d3250f085c0e} 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} {\bfseries transform}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the transform assigned to this object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{Eis\+Engine\+::ecs\+::\+System}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access components and entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ The system taking care of the camera, framing the game\textquotesingle{}s graphics to the screen\textquotesingle{}s display. ~\newline
+ Currently exclusively orthographic projection in -\/z direction. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_ac9ec4035044e683ccc5030da0ec79ab6}\label{class_eis_engine_1_1systems_1_1_camera_ac9ec4035044e683ccc5030da0ec79ab6} 
+\index{EisEngine::systems::Camera@{EisEngine::systems::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!EisEngine::systems::Camera@{EisEngine::systems::Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily Eis\+Engine\+::systems\+::\+Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{const \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}} \&}]{screen\+Dimensions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a new camera for the scene. 
+\begin{DoxyParams}{Parameters}
+{\em screen\+Dimensions} & -\/ \doxylink{class_eis_engine_1_1_vector2}{Vector2}\+: the width and height of the camera FOV in pixels. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_a2ee9e24591c9fc2a8fd649f230ada470}\label{class_eis_engine_1_1systems_1_1_camera_a2ee9e24591c9fc2a8fd649f230ada470} 
+\index{EisEngine::systems::Camera@{EisEngine::systems::Camera}!GetProjectionMatrix@{GetProjectionMatrix}}
+\index{GetProjectionMatrix@{GetProjectionMatrix}!EisEngine::systems::Camera@{EisEngine::systems::Camera}}
+\doxysubsubsection{\texorpdfstring{GetProjectionMatrix()}{GetProjectionMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Eis\+Engine\+::systems\+::\+Camera\+::\+Get\+Projection\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+~\newline
+ Calculates the projection matrix, representing the transformation from camera space into 2D screen coordinates. \Hypertarget{class_eis_engine_1_1systems_1_1_camera_ac1c26e9834322b41ebdf527d5d2240ba}\label{class_eis_engine_1_1systems_1_1_camera_ac1c26e9834322b41ebdf527d5d2240ba} 
+\index{EisEngine::systems::Camera@{EisEngine::systems::Camera}!GetVPMatrix@{GetVPMatrix}}
+\index{GetVPMatrix@{GetVPMatrix}!EisEngine::systems::Camera@{EisEngine::systems::Camera}}
+\doxysubsubsection{\texorpdfstring{GetVPMatrix()}{GetVPMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Eis\+Engine\+::systems\+::\+Camera\+::\+Get\+VPMatrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+~\newline
+ Calculates and returns the view-\/projection matrix. ~\newline
+ Projection matrix being the directions in which the camera is pointing, ~\newline
+ View matrix being the camera\textquotesingle{}s position in world space. \begin{DoxyReturn}{Returns}
+projection x view, a 4x4 matrix representing the camera\textquotesingle{}s FOV from its position 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_aa6cc54889fcf9ab22b166d51cc10878e}\label{class_eis_engine_1_1systems_1_1_camera_aa6cc54889fcf9ab22b166d51cc10878e} 
+\index{EisEngine::systems::Camera@{EisEngine::systems::Camera}!SetZoom@{SetZoom}}
+\index{SetZoom@{SetZoom}!EisEngine::systems::Camera@{EisEngine::systems::Camera}}
+\doxysubsubsection{\texorpdfstring{SetZoom()}{SetZoom()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::systems\+::\+Camera\+::\+Set\+Zoom (\begin{DoxyParamCaption}\item[{float}]{value = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Hard set of the camera\textquotesingle{}s zoom value. 
+\begin{DoxyParams}{Parameters}
+{\em value} & the zoom factor the camera will take on with this call. \textbackslash{}default {\bfseries{value}} = 1. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1systems_1_1_camera_a152625110d63c56eb5a2e2a54322a2f1}\label{class_eis_engine_1_1systems_1_1_camera_a152625110d63c56eb5a2e2a54322a2f1} 
+\index{EisEngine::systems::Camera@{EisEngine::systems::Camera}!Zoom@{Zoom}}
+\index{Zoom@{Zoom}!EisEngine::systems::Camera@{EisEngine::systems::Camera}}
+\doxysubsubsection{\texorpdfstring{Zoom()}{Zoom()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::systems\+::\+Camera\+::\+Zoom (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Zooms into the scene, restraining the FOV. 
+\begin{DoxyParams}{Parameters}
+{\em value} & the zoom factor applied to the camera.~\newline
+\textbackslash{}zoom {\bfseries{in\+:}} value \texorpdfstring{$>$}{>} 0 ~\newline
+=\texorpdfstring{$>$}{>} camera will zoom IN on the scene, RESTRAINING the FOV.~\newline
+~\newline
+ {\bfseries{out\+:}} value \&lt 0 ~\newline
+=\texorpdfstring{$>$}{>} camera will zoom OUT of the scene, WIDENING the FOV. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/Camera.\+h\end{DoxyCompactItemize}

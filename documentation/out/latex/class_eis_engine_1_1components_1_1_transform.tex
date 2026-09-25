@@ -1,0 +1,208 @@
+\doxysection{Eis\+Engine\+::components\+::Transform Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_transform}{}\label{class_eis_engine_1_1components_1_1_transform}\index{EisEngine::components::Transform@{EisEngine::components::Transform}}
+
+
+{\ttfamily \#include $<$Transform.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Transform\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1components_1_1_transform}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a0d2951adcb35829b5dbe5a61be498d09}\label{class_eis_engine_1_1components_1_1_transform_a0d2951adcb35829b5dbe5a61be498d09} 
+{\bfseries Transform} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*}parent\+Transform=nullptr, \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} position=\mbox{\hyperlink{class_eis_engine_1_1_vector3_a74e7523c2e29153b82fce4e0a5b9c4e5}{Vector3\+::zero}}, \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} rotation=\mbox{\hyperlink{class_eis_engine_1_1_vector3_a74e7523c2e29153b82fce4e0a5b9c4e5}{Vector3\+::zero}}, \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} scale=\mbox{\hyperlink{class_eis_engine_1_1_vector3_a4a3eb8768677840824e27a1b4fdf6889}{Vector3\+::one}})
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a new transform. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_aee8b1c15f39f220ac3e2f67fd389cfcb}\label{class_eis_engine_1_1components_1_1_transform_aee8b1c15f39f220ac3e2f67fd389cfcb} 
+{\bfseries Transform} (const \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \&)=delete
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a2ae5b19288704b8bf0adf75984323c47}\label{class_eis_engine_1_1components_1_1_transform_a2ae5b19288704b8bf0adf75984323c47} 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \&)=delete
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a66bcae2c363fd2e65196613331565430}\label{class_eis_engine_1_1components_1_1_transform_a66bcae2c363fd2e65196613331565430} 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \& {\bfseries operator=} (\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \&\&)=delete
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_ab31844c123d8c8e92fe1d762497dd27a}\label{class_eis_engine_1_1components_1_1_transform_ab31844c123d8c8e92fe1d762497dd27a} 
+{\bfseries Transform} (\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \&\&other) noexcept
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_ab347587b63a8d4234106d1aa59ab1834}{Invalidate}} () override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Function called when the component is marked for deletion as a component \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a28d24d7be0a4c633d26fdb51eb1032d0}\label{class_eis_engine_1_1components_1_1_transform_a28d24d7be0a4c633d26fdb51eb1032d0} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Get\+Global\+Position} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the object\textquotesingle{}s position relative to the world origin. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a627afa352cd9b9b1aa212eedde406840}\label{class_eis_engine_1_1components_1_1_transform_a627afa352cd9b9b1aa212eedde406840} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Get\+Global\+Rotation} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the object\textquotesingle{}s rotation relative to the world origin. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_ac66b06d3f7d78b03cae3ae804a47003a}\label{class_eis_engine_1_1components_1_1_transform_ac66b06d3f7d78b03cae3ae804a47003a} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Get\+Global\+Scale} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the object\textquotesingle{}s scale relative to the world origin. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a204fd90ca5f12b84bb1b05fd4b0c9a3f}\label{class_eis_engine_1_1components_1_1_transform_a204fd90ca5f12b84bb1b05fd4b0c9a3f} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Get\+Local\+Position} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the object\textquotesingle{}s position relative to its parent object. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_ae255ca1a442cd621d84c6e3bf69add77}\label{class_eis_engine_1_1components_1_1_transform_ae255ca1a442cd621d84c6e3bf69add77} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Get\+Local\+Rotation} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the object\textquotesingle{}s rotation relative to its parent object. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a56f1e7d3650b32f23d5c153eb6e24913}\label{class_eis_engine_1_1components_1_1_transform_a56f1e7d3650b32f23d5c153eb6e24913} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Get\+Local\+Scale} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the object\textquotesingle{}s scale relative to its parent object. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_ab973c2c5f9ce96b10b39bdd1dbd18051}\label{class_eis_engine_1_1components_1_1_transform_ab973c2c5f9ce96b10b39bdd1dbd18051} 
+glm\+::mat4 {\bfseries Get\+Model\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the transform\textquotesingle{}s model matrix, condensing full transform data in one object. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a0ba96cbb995f08552839cc45bcfc98a1}\label{class_eis_engine_1_1components_1_1_transform_a0ba96cbb995f08552839cc45bcfc98a1} 
+void {\bfseries Set\+Global\+Position} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&pos)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets transform position in world space. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_acf439bbc7a8af58c99658a625ddf8b1f}\label{class_eis_engine_1_1components_1_1_transform_acf439bbc7a8af58c99658a625ddf8b1f} 
+void {\bfseries Set\+Global\+Rotation} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&rotation)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets transform rotation in world space. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a04bd4862836b4c7e9e7737cf959377dc}\label{class_eis_engine_1_1components_1_1_transform_a04bd4862836b4c7e9e7737cf959377dc} 
+void {\bfseries Set\+Global\+Scale} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&scale)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets transform scale in world space. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_aad3fc79e4029eecb51fe7201110b1425}\label{class_eis_engine_1_1components_1_1_transform_aad3fc79e4029eecb51fe7201110b1425} 
+void {\bfseries Set\+Local\+Position} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&pos)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets transform position relative to its parent object. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a662c2175437620db58d54d808670de14}\label{class_eis_engine_1_1components_1_1_transform_a662c2175437620db58d54d808670de14} 
+void {\bfseries Set\+Local\+Rotation} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&rotation)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets transform rotation relative to its parent object. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a54483fb89297ea03ada4271ed0bbe303}\label{class_eis_engine_1_1components_1_1_transform_a54483fb89297ea03ada4271ed0bbe303} 
+void {\bfseries Set\+Local\+Scale} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&scale)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets transform scale relative to its parent object. \end{DoxyCompactList}\item 
+std\+::set$<$ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a4ffb1184b7ac576fee5a8f2628cfc412}{get\+Children}} ()
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a19667c00ab1b5e045030b42d38357c8d}{parent}} ()
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_add3cad70c9cb0e1db7bd3139b0854170}{Set\+Parent}} (\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*}transform)
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_abae37d33b00e0ab70716e1ff1db5164d}\label{class_eis_engine_1_1components_1_1_transform_abae37d33b00e0ab70716e1ff1db5164d} 
+void {\bfseries Translate} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&direction)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Moves the transform by the given vector. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_acaa558159efe46ae6c2b42bf00cda7a3}\label{class_eis_engine_1_1components_1_1_transform_acaa558159efe46ae6c2b42bf00cda7a3} 
+void {\bfseries Rotate} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&vector)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Rotates the transform by the given Euler angles. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_ad391f5ebdfb90138e17a97ab4cef4b36}\label{class_eis_engine_1_1components_1_1_transform_ad391f5ebdfb90138e17a97ab4cef4b36} 
+void {\bfseries Rescale} (const \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} \&scaling\+Factors)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Scales the transform with the given vector. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a6c5ac5c6cdf99741e51cd22f28e9b6ee}\label{class_eis_engine_1_1components_1_1_transform_a6c5ac5c6cdf99741e51cd22f28e9b6ee} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Right} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the direction to the right hand side of an object, assuming it started facing negative Z. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a9aed0c607e5ac45267b5a512504a4fa8}\label{class_eis_engine_1_1components_1_1_transform_a9aed0c607e5ac45267b5a512504a4fa8} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Up} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the upwards direction of an object, assuming it started facing negative Z. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a1d48d1af29f6030bd393f53e01d2e425}\label{class_eis_engine_1_1components_1_1_transform_a1d48d1af29f6030bd393f53e01d2e425} 
+\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} {\bfseries Forward} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the forwards direction of an object, assuming it started facing negative Z. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Represents an entity\textquotesingle{}s transform data. ~\newline
+ It is heavily advised NOT to add more than one transform to an entity, which automatically creates one on creation. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a4ffb1184b7ac576fee5a8f2628cfc412}\label{class_eis_engine_1_1components_1_1_transform_a4ffb1184b7ac576fee5a8f2628cfc412} 
+\index{EisEngine::components::Transform@{EisEngine::components::Transform}!getChildren@{getChildren}}
+\index{getChildren@{getChildren}!EisEngine::components::Transform@{EisEngine::components::Transform}}
+\doxysubsubsection{\texorpdfstring{getChildren()}{getChildren()}}
+{\footnotesize\ttfamily std\+::set$<$ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} $>$ Eis\+Engine\+::components\+::\+Transform\+::get\+Children (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Gets an entity\textquotesingle{}s child entities in the scene graph. \begin{DoxyReturn}{Returns}
+std\+::set\texorpdfstring{$<$}{<}\doxylink{class_eis_engine_1_1components_1_1_transform}{Transform} \texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>}\+: ~\newline
+ a set of pointers to the child entities\textquotesingle{} \doxylink{class_eis_engine_1_1components_1_1_transform}{Transform} components. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_ab347587b63a8d4234106d1aa59ab1834}\label{class_eis_engine_1_1components_1_1_transform_ab347587b63a8d4234106d1aa59ab1834} 
+\index{EisEngine::components::Transform@{EisEngine::components::Transform}!Invalidate@{Invalidate}}
+\index{Invalidate@{Invalidate}!EisEngine::components::Transform@{EisEngine::components::Transform}}
+\doxysubsubsection{\texorpdfstring{Invalidate()}{Invalidate()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Transform\+::\+Invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ Function called when the component is marked for deletion as a component 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Eis\+Engine\+::ecs\+::\+Component}}.
+
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_a19667c00ab1b5e045030b42d38357c8d}\label{class_eis_engine_1_1components_1_1_transform_a19667c00ab1b5e045030b42d38357c8d} 
+\index{EisEngine::components::Transform@{EisEngine::components::Transform}!parent@{parent}}
+\index{parent@{parent}!EisEngine::components::Transform@{EisEngine::components::Transform}}
+\doxysubsubsection{\texorpdfstring{parent()}{parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*} Eis\+Engine\+::components\+::\+Transform\+::parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Gets the transform\textquotesingle{}s parent transform. \begin{DoxyReturn}{Returns}
+Transform\texorpdfstring{$\ast$}{*}\+: a pointer to the parent transform component. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1components_1_1_transform_add3cad70c9cb0e1db7bd3139b0854170}\label{class_eis_engine_1_1components_1_1_transform_add3cad70c9cb0e1db7bd3139b0854170} 
+\index{EisEngine::components::Transform@{EisEngine::components::Transform}!SetParent@{SetParent}}
+\index{SetParent@{SetParent}!EisEngine::components::Transform@{EisEngine::components::Transform}}
+\doxysubsubsection{\texorpdfstring{SetParent()}{SetParent()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Transform\+::\+Set\+Parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}} \texorpdfstring{$\ast$}{*}}]{transform }\end{DoxyParamCaption})}
+
+~\newline
+ Sets a new parent transform. 
+\begin{DoxyParams}{Parameters}
+{\em transform} & -\/ Transform\texorpdfstring{$\ast$}{*}\+: a pointer to the parent-\/to-\/be transform. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Transform.\+h\end{DoxyCompactItemize}

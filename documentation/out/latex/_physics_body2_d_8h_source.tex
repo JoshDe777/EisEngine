@@ -1,0 +1,70 @@
+\doxysection{Physics\+Body2\+D.\+h}
+\hypertarget{_physics_body2_d_8h_source}{}\label{_physics_body2_d_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/PhysicsBody2D.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/PhysicsBody2D.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <box2d/box2d.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}engine/components/Transform.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/Utilities.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{namespace\ }systems\{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_updater}{PhysicsUpdater}};\}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }Game;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{using\ }systems::PhysicsUpdater;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }EisEngine::ecs;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{namespace\ }components\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d}{PhysicsBody2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_box_collider2_d}{BoxCollider2D}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_updater}{PhysicsUpdater}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_acbdb5429f063594776f374094ffc11c8}{PhysicsBody2D}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},\ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}},\ b2BodyType\ type\ =\ b2\_dynamicBody);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_aaf5fea1687c71bf2f47bb4a62f3712c5}{AddForce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ \&force)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a8abaef45ef16e2f731f3d372dc63d4da}{GetVelocity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_ac69fe23593bf669d783f6dbc3c5f3eec}{GetFriction}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a102b0ba02f81408c863b354a21ddcf00}{GetDensity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_add108d0a5406acf95b71b69aca8aa604}{GetBounciness}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a00d043464726800df221c026d88ec0a6}{IsSensor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_af4174f69c58d3cd9ee933963eee2c6b8}{IsKinematic}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a32ec127bd2728ba6b6add01516eb3aba}{UsesGravity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a035d4b1a7e7a4f3d84834795525e9523}{SetVelocity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\&\ velocity)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_aff01075cff80e56e43079aab9335985a}{SetFriction}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a229f31af889847ee2af7eb2b0b256414}{SetDensity}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_ad2d8b383af6099c104b0b026a5312849}{SetBounciness}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a924b336ee4716598e2192c4edb48252d}{SetSensorStatus}}(\textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_ab581e96c3fbdf415c8294454120c963c}{SetGravityUse}}(\textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a784f2919411d9e7247abf4df922fa7c3}{IgnoreAllCollisions}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a0ef04acfc6a76e6e426e336831cea18a}{EnableAllCollisions}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ b2Body*\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d_a89e5817922f7e503b94d9545d5dda690}{body}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_box_collider2_d_ab2c6bd6a7652ff54ec062ba985691dff}{Invalidate}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SyncPhysics();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *transform\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isSensor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isKinematic\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ usesGravity\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ density\ =\ 1;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ friction\ =\ 1;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ bounciness\ =\ 0;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ scale\ =\ \mbox{\hyperlink{class_eis_engine_1_1_vector2_afca6ccb18d0c72e60ebae04817365d9d}{Vector2::one}};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<b2Vec2>\ rawVertices;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \}}
+
+\end{DoxyCode}

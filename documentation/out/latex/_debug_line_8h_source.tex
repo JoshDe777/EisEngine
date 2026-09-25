@@ -1,0 +1,35 @@
+\doxysection{Debug\+Line.\+h}
+\hypertarget{_debug_line_8h_source}{}\label{_debug_line_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/DebugLine.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/DebugLine.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/Utilities.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{class\ }Game;}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{namespace\ }ecs\ \{\ \textcolor{keyword}{class\ }Entity;\}}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{namespace\ }components\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_line}{Line}};}
+\DoxyCodeLine{00011\ \ \ \ \ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ yes\ name\ is\ confusing/bad.\ Was\ initially\ created\ to\ debug\ physics\ and\ kept\ the\ name\ for\ lack\ of\ a\ better\ one...}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_debug_line}{DebugLine}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{ecs::Entity}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{components::Transform}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_debug_line_a93e9d80b5deb8d3060e7d2b2c4daafc9}{DebugLine}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&engine,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ startPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ endPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}\ \&color);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_line_ab1aa503a11610b72e1882eb0d089d760}{UpdateLinePosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ startPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ endPoint);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_line_a5043ed29d8697b9650db9e4d9b91adc0}{UpdateColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}\&\ color);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *\mbox{\hyperlink{class_eis_engine_1_1_debug_line_a1d4060d3f2c5a081a304132202b0aee3}{transform}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_line_ab07ebc40a1e95418161906bdf101a86f}{Invalidate}}();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}}\ *entity;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}*\ engine\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ \}}
+
+\end{DoxyCode}

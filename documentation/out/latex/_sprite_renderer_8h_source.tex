@@ -1,0 +1,26 @@
+\doxysection{Sprite\+Renderer.\+h}
+\hypertarget{_sprite_renderer_8h_source}{}\label{_sprite_renderer_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/renderers/SpriteRenderer.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/renderers/SpriteRenderer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Renderer.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }EisEngine::components\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_renderer}{SpriteRenderer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_renderer_aa579bee15493246f883efcc46c4a0e06}{SpriteRenderer}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}},}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ fs::path\&\ spritePath\ =\ \textcolor{stringliteral}{"{}images/ui/blank.png"{}},}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}\&\ color\ =\ \mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color::white}},}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ layer\ =\ \textcolor{stringliteral}{"{}Background"{}});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_renderer_acb1bd874b1f0217962c3887a46ba1a95}{ApplyData}}(\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}}\&\ shader)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_renderer_a4e19ff5abc01eb77b7e4cb32fc9cc314}{SetNewTexture}}(\mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}}*\ newTexture)\ \{texture\ =\ newTexture;\}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}}*\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_renderer_aba6d1e0c07e1d6c33b5e6099100974e8}{GetTexture}}()\ \{\ \textcolor{keywordflow}{return}\ texture;\}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}}\ *texture;}
+\DoxyCodeLine{00031\ \ \ \ \ \};}
+\DoxyCodeLine{00032\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,92 @@
+\doxysection{Eis\+Engine\+::rendering\+::Primitive\+Mesh2D Struct Reference}
+\hypertarget{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}{}\label{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}\index{EisEngine::rendering::PrimitiveMesh2D@{EisEngine::rendering::PrimitiveMesh2D}}
+
+
+~\newline
+ Contains vertex and edge data for primitive 2D meshes.  
+
+
+
+
+{\ttfamily \#include $<$Primitive\+Mesh2\+D.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::rendering\+::Primitive\+Mesh2D\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_adf32679dd8fad1b746e6cc7ea59da2ff}{Primitive\+Mesh2D}} (const std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \&primitive\+Vertices, const std\+::vector$<$ unsigned int $>$ \&shape\+Indices)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_a6d5ed9f164457ebe99beb3e7ed554691}{Get\+Vertices}} () const override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Access the mesh\textquotesingle{}s vertices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh}{Eis\+Engine\+::rendering\+::\+Primitive\+Mesh}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Primitive\+Mesh} (const std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \&shape\+Vertices, const std\+::vector$<$ unsigned int $>$ \&shape\+Indices)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_a5f0e4280920ce013d4c5f2fd87f8f4e1}\label{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_a5f0e4280920ce013d4c5f2fd87f8f4e1} 
+static const \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}{Primitive\+Mesh2D}} {\bfseries Square}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A standard 1x1 square. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh}{Eis\+Engine\+::rendering\+::\+Primitive\+Mesh}}}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::vector$<$ unsigned int $>$ {\bfseries indices}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The triangle indices for this mesh. \end{DoxyCompactList}\item 
+const int {\bfseries index\+Count}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The amount of indices used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Contains vertex and edge data for primitive 2D meshes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_adf32679dd8fad1b746e6cc7ea59da2ff}\label{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_adf32679dd8fad1b746e6cc7ea59da2ff} 
+\index{EisEngine::rendering::PrimitiveMesh2D@{EisEngine::rendering::PrimitiveMesh2D}!PrimitiveMesh2D@{PrimitiveMesh2D}}
+\index{PrimitiveMesh2D@{PrimitiveMesh2D}!EisEngine::rendering::PrimitiveMesh2D@{EisEngine::rendering::PrimitiveMesh2D}}
+\doxysubsubsection{\texorpdfstring{PrimitiveMesh2D()}{PrimitiveMesh2D()}}
+{\footnotesize\ttfamily Eis\+Engine\+::rendering\+::\+Primitive\+Mesh2\+D\+::\+Primitive\+Mesh2D (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \&}]{primitive\+Vertices,  }\item[{const std\+::vector$<$ unsigned int $>$ \&}]{shape\+Indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a primitive 2D mesh. 
+\begin{DoxyParams}{Parameters}
+{\em primitive\+Vertices} & -\/ std\+::vector\texorpdfstring{$<$}{<}\doxylink{class_eis_engine_1_1_vector3}{Vector3}\texorpdfstring{$>$}{>}\+: describes the vertex positions. \\
+\hline
+{\em shape\+Indices} & -\/ std\+::vector\texorpdfstring{$<$}{<}unsigned int\texorpdfstring{$>$}{>}\+: serves as an indicator for Open\+GL triangles. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_a6d5ed9f164457ebe99beb3e7ed554691}\label{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d_a6d5ed9f164457ebe99beb3e7ed554691} 
+\index{EisEngine::rendering::PrimitiveMesh2D@{EisEngine::rendering::PrimitiveMesh2D}!GetVertices@{GetVertices}}
+\index{GetVertices@{GetVertices}!EisEngine::rendering::PrimitiveMesh2D@{EisEngine::rendering::PrimitiveMesh2D}}
+\doxysubsubsection{\texorpdfstring{GetVertices()}{GetVertices()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ Eis\+Engine\+::rendering\+::\+Primitive\+Mesh2\+D\+::\+Get\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ Access the mesh\textquotesingle{}s vertices. 
+
+
+
+Implements \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh_a17a2653676401938e505eb960b86d32c}{Eis\+Engine\+::rendering\+::\+Primitive\+Mesh}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/rendering/Primitive\+Mesh2\+D.\+h\end{DoxyCompactItemize}

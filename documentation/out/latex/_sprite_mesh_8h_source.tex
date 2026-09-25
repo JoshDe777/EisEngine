@@ -1,0 +1,30 @@
+\doxysection{Sprite\+Mesh.\+h}
+\hypertarget{_sprite_mesh_8h_source}{}\label{_sprite_mesh_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/SpriteMesh.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/SpriteMesh.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/utilities/rendering/PrimitiveSpriteMesh.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{using\ }ecs::Component;}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{using\ }rendering::PrimitiveSpriteMesh;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{namespace\ }components\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh}{SpriteMesh}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh_a753c7a1741d891f8689a459a00c6947e}{SpriteMesh}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},\ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}},}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}{PrimitiveSpriteMesh}}\ \_primitive\ =\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a8810345339f1fd9a34d273847914def4}{PrimitiveSpriteMesh::SquareSpriteMesh}});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh_adbb4ecf29413443c8ae7b08a6e20d75b}{Invalidate}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}{PrimitiveSpriteMesh}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh_a5f0fd5664a116678bb2711e6eb48a805}{primitive}};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh_a5510815ce048182f9ca38354d8d42f58}{draw}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ VBO;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ EBO;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}

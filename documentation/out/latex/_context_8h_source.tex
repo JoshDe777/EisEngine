@@ -1,0 +1,41 @@
+\doxysection{Context.\+h}
+\hypertarget{_context_8h_source}{}\label{_context_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Context.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/Context.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <OpenGL/OpenGlInclude.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/utilities/Vector2.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }EisEngine::ctx\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context}{Context}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Callback\ =\ std::function<void(\mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context}{Context}}\&)>;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_af29f4fa074a16291ab0bda54a3901f69}{Context}}(\textcolor{keyword}{const}\ std::string\ \&title\ =\ \textcolor{stringliteral}{"{}Game"{}});}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context}{\string~Context}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_a3e65edffc960b52d179f0b7fd18c5fa9}{run}}(\textcolor{keyword}{const}\ Callback\&\ update);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_a668fc09512e5721b4e6a724c5a20d223}{CloseWindow}}()\{\ glfwSetWindowShouldClose(window,\ \textcolor{keyword}{true});\}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ [[nodiscard]]\ GLFWwindow\ *\mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_aede9bfe49f3fdd3467ccd8fdc70b98b2}{getWindow}}()\ \{\ \textcolor{keywordflow}{return}\ window;\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_eis_engine_1_1ctx_1_1_context_a07f490c0f2894002685a53a808a9c75a}{GetWindowSize}}()\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ height\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ glfwGetWindowSize(window,\ \&width,\ \&height);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}(width,\ height);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ InitializeGLFW();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ createWindow(\textcolor{keyword}{const}\ std::string\ \&title);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ LoadGLAD();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ GLFWwindow\ *window\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00050\ \ \ \ \ \};}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}

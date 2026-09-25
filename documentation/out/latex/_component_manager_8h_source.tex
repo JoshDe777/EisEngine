@@ -1,0 +1,112 @@
+\doxysection{Component\+Manager.\+h}
+\hypertarget{_component_manager_8h_source}{}\label{_component_manager_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/ComponentManager.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/ComponentManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/ecs.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{class\ }Game;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{namespace\ }ecs\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_aa3d889f4eaad835b7a2de563eea880fd}{ComponentManager}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&engine);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C,\ \textcolor{keyword}{typename}\ ...Args>}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ C\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a1a0387c36103f685ca404becb16dab91}{addComponent}}(guid\_t\ owner,\ Args\ ...args)\{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ container\ =\ containers[\textcolor{keyword}{typeid}(C).hash\_code()];}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ component\ =\ std::make\_unique<C>(engine,\ owner,\ args...);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ container[owner]\ =\ std::move(component);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{getComponent<C>}}(owner);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ C\ *\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{getComponent}}(guid\_t\ owner)\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ nullptr\ if\ no\ component\ of\ given\ type\ or\ if\ none\ assigned\ to\ the\ owner\ id}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{hasComponentOfType<C>}}()\ ||}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ containers.at(\textcolor{keyword}{typeid}(C).hash\_code()).find(owner)\ ==}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ containers.at(\textcolor{keyword}{typeid}(C).hash\_code()).end()}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}C*\textcolor{keyword}{>}(containers.at(\textcolor{keyword}{typeid}(C).\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{hash\_code}}()).at(owner).get());}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (std::exception\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{e}})\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DEBUG\_ERROR(\textcolor{stringliteral}{"{}ComponentManager::getComponent<"{}}\ +\ (std::string)\ \textcolor{keyword}{typeid}(C).name()\ +\ \textcolor{stringliteral}{"{}>"{}}\ +\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{e}}.what())}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_afe32c2ba82e6c4f35d696d14b4c2d3b5}{forEachComponent}}(std::function<\textcolor{keywordtype}{void}(C\&)>\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{f}})\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{hasComponentOfType<C>}}())}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&[\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{\_}},\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}]:\ containers.at(\textcolor{keyword}{typeid}(C).\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{hash\_code}}()))\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{f}}(*\textcolor{keyword}{reinterpret\_cast<}C*\textcolor{keyword}{>}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}.get()));}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_aed24f71f2025ba798aaaa67f52b03a1a}{removeComponent}}(guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}})\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}\ =\ containers[\textcolor{keyword}{typeid}(C).\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{hash\_code}}()];}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}.find(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentExistsInContainer}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}\ !=\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}.end();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentExistsInContainer}})\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}-\/>second-\/>deleted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}-\/>second-\/>Invalidate();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteList.emplace\_back(\ \textcolor{keyword}{typeid}(C).hash\_code(),\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Component*>\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_acbc60e7875c8dbdc06eab6ac9c37f92f}{getEachComponentOfEntity}}(guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}})\{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Component*>\ components\ =\ \{\};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ \&[\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentTypeID}},\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}]\ :\ containers)\{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}.find(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}\ !=\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}.end())}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ components.emplace\_back(\&*\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}-\/>second);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ components;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a513572c2efd497f06987cd9e68f9d978}{removeComponents}}(guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}})\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ \&[\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentTypeID}},\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}]:\ containers)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}.find(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentExistsInContainer}}\ =\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}\ !=\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentContainer}}.end();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentExistsInContainer}})}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{component}}-\/>second-\/>deleted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteList.emplace\_back(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentTypeID}},\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{entityID}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_ab479b9ae2c196a7024b74129b1513a83}{hasComponentOfType}}()\ \{\ \textcolor{keywordflow}{return}\ containers.count(\textcolor{keyword}{typeid}(C).\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{hash\_code}}())\ !=\ 0;\}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ purgeComponents()\{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&[\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentTypeID}},\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{ownerID}}]:\ deleteList)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ containers.\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{at}}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{componentTypeID}}).\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{erase}}(\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager_a2418633ce2b2142e74bffcd461b3b473}{ownerID}});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteList.clear();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ComponentContainer\ =\ std::map<guid\_t,\ std::unique\_ptr<Component>>;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<size\_t,\ ComponentContainer>\ containers;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::pair<size\_t,\ guid\_t>>\ deleteList;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&engine;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,34 @@
+\doxysection{Renderer.\+h}
+\hypertarget{_renderer_8h_source}{}\label{_renderer_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/renderers/Renderer.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/renderers/Renderer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/utilities/rendering/Shader.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{using\ }ecs::Component;}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{using\ }rendering::Shader;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{namespace\ }components\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a13d38f29ce7bfd502f70227593ca1c44}{Renderer}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},\ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}},}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}\&\ color\ =\ \mbox{\hyperlink{class_eis_engine_1_1_color_a810fbb29f2070f59efa7f408ff02b389}{Color::white}},\ std::string\ \ layer\ =\ \textcolor{stringliteral}{"{}Background"{}});}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a13d38f29ce7bfd502f70227593ca1c44}{Renderer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}}\ \&renderer)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a13d38f29ce7bfd502f70227593ca1c44}{Renderer}}(\mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer}{Renderer}}\ \&\&other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a7c2a1adbcf1ee56dfd309ddcbe55158b}{ApplyData}}(\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}}\&\ shader);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a2381175b257d827df870d06c4f9fa87e}{SetColor}}(\mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}\ newColor)\ \{\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a97ba9ffb247020fb7d987a76ba711c78}{m\_color}}\ =\ newColor;\};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a8dc8b7975028bcce43c3d980edd554ef}{GetColor}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a97ba9ffb247020fb7d987a76ba711c78}{m\_color}};\}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a35f692615f8755fa8b7af4405254780f}{GetLayer}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a3d026a657d40cbe27f88eb24c90aa750}{m\_layer}};\}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_color}{Color}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a97ba9ffb247020fb7d987a76ba711c78}{m\_color}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_renderer_a3d026a657d40cbe27f88eb24c90aa750}{m\_layer}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \}}
+
+\end{DoxyCode}

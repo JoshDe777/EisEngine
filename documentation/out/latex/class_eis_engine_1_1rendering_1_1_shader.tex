@@ -1,0 +1,126 @@
+\doxysection{Eis\+Engine\+::rendering\+::Shader Class Reference}
+\hypertarget{class_eis_engine_1_1rendering_1_1_shader}{}\label{class_eis_engine_1_1rendering_1_1_shader}\index{EisEngine::rendering::Shader@{EisEngine::rendering::Shader}}
+
+
+~\newline
+ Intermediary system from engine code to pixels on screen.  
+
+
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_a834162d153f12efc3847a535bb0ffff6}\label{class_eis_engine_1_1rendering_1_1_shader_a834162d153f12efc3847a535bb0ffff6} 
+{\bfseries Shader} (const unsigned int \&vertex\+Shader\+Program, const unsigned int \&fragment\+Shader\+Program)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Creates a shader from the given shader programs. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_a59fdbedb6baa7a8585f5f2057ca52a8e}\label{class_eis_engine_1_1rendering_1_1_shader_a59fdbedb6baa7a8585f5f2057ca52a8e} 
+{\bfseries Shader} (const \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \&other)=delete
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_ab35f1cea86511670e5fc5555d80d2371}\label{class_eis_engine_1_1rendering_1_1_shader_ab35f1cea86511670e5fc5555d80d2371} 
+{\bfseries Shader} (\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader}{Shader}} \&\&other) noexcept
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_a0d75eddbb176aeb817772a0c3b39e635}\label{class_eis_engine_1_1rendering_1_1_shader_a0d75eddbb176aeb817772a0c3b39e635} 
+void {\bfseries Apply} (const glm\+::mat4 \&new\+VPMatrix)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Applies the shader to the rendering pipeline. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_ae3e423f88e16a50b91f3e483558e4551}{set\+Matrix}} (const std\+::string \&uniform\+Name, glm\+::mat4 matrix) const
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_a26ee68bcaa51741832a65f40410b6f38}{set\+Vector}} (const std\+::string \&uniform\+Name, glm\+::vec4 vector) const
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_shader_af719e1d8240854351f5664de7798519d}{Calculate\+MVPMatrix}} (const glm\+::mat4 \&model\+Matrix) const
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_affbb2ad2d99ef6338c09bd952433798d}\label{class_eis_engine_1_1rendering_1_1_shader_affbb2ad2d99ef6338c09bd952433798d} 
+void {\bfseries Invalidate} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called when an object is intentionally deleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_a8c4f1ceb89fa8539870e08d9e81b35ce}\label{class_eis_engine_1_1rendering_1_1_shader_a8c4f1ceb89fa8539870e08d9e81b35ce} 
+static void {\bfseries Apply\+Texture} (const \mbox{\hyperlink{class_eis_engine_1_1_texture2_d}{Texture2D}} \&texture)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Applies a texture to the rendering pipeline. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_af4a2faac8c08d7edc738e5b960b97fe4}\label{class_eis_engine_1_1rendering_1_1_shader_af4a2faac8c08d7edc738e5b960b97fe4} 
+static const fs\+::path {\bfseries default\+Vertex\+Shader\+Path}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The relative path to access the default vertex shader program definition. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_afd638e863d369eced4678048847b8973}\label{class_eis_engine_1_1rendering_1_1_shader_afd638e863d369eced4678048847b8973} 
+static const fs\+::path {\bfseries default\+Fragment\+Shader\+Path}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The relative path to access the default fragment shader program definition. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_a0b4c70beaa076f19360c4f1f481e5bf9}\label{class_eis_engine_1_1rendering_1_1_shader_a0b4c70beaa076f19360c4f1f481e5bf9} 
+static const fs\+::path {\bfseries sprite\+Vertex\+Shader\+Path}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The relative path to access the sprite vertex shader program definition. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_a1191abacf3da8e8c07d1007a87cea729}\label{class_eis_engine_1_1rendering_1_1_shader_a1191abacf3da8e8c07d1007a87cea729} 
+static const fs\+::path {\bfseries sprite\+Fragment\+Shader\+Path}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The relative path to access the sprite fragment shader program definition. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_afeda2c5e4545b4dee0ff0f5c1be9a476}\label{class_eis_engine_1_1rendering_1_1_shader_afeda2c5e4545b4dee0ff0f5c1be9a476} 
+static const fs\+::path {\bfseries ui\+Vertex\+Shader\+Path}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The relative path to access the UI vertex shader program definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Intermediary system from engine code to pixels on screen. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_af719e1d8240854351f5664de7798519d}\label{class_eis_engine_1_1rendering_1_1_shader_af719e1d8240854351f5664de7798519d} 
+\index{EisEngine::rendering::Shader@{EisEngine::rendering::Shader}!CalculateMVPMatrix@{CalculateMVPMatrix}}
+\index{CalculateMVPMatrix@{CalculateMVPMatrix}!EisEngine::rendering::Shader@{EisEngine::rendering::Shader}}
+\doxysubsubsection{\texorpdfstring{CalculateMVPMatrix()}{CalculateMVPMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Eis\+Engine\+::rendering\+::\+Shader\+::\+Calculate\+MVPMatrix (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{model\+Matrix }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Multiplies the provided view-\/projection with the model matrix to give object position in camera space. 
+\begin{DoxyParams}{Parameters}
+{\em model\+Matrix} & a 4x4 matrix representing object coordinates in world space. \\
+\hline
+{\em vp\+Matrix} & a 4x4 matrix representing the screen projection from the camera\textquotesingle{}s position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 4x4 matrix representing object coordinates in camera space. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_ae3e423f88e16a50b91f3e483558e4551}\label{class_eis_engine_1_1rendering_1_1_shader_ae3e423f88e16a50b91f3e483558e4551} 
+\index{EisEngine::rendering::Shader@{EisEngine::rendering::Shader}!setMatrix@{setMatrix}}
+\index{setMatrix@{setMatrix}!EisEngine::rendering::Shader@{EisEngine::rendering::Shader}}
+\doxysubsubsection{\texorpdfstring{setMatrix()}{setMatrix()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::rendering\+::\+Shader\+::set\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uniform\+Name,  }\item[{glm\+::mat4}]{matrix }\end{DoxyParamCaption}) const}
+
+~\newline
+ Sets a given uniform matrix in the shader program to the specified value. 
+\begin{DoxyParams}{Parameters}
+{\em uniform\+Name} & -\/ a string representing the name of the matrix whose values are to be set. \\
+\hline
+{\em matrix} & -\/ a 4x4 matrix representing the new desired value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1rendering_1_1_shader_a26ee68bcaa51741832a65f40410b6f38}\label{class_eis_engine_1_1rendering_1_1_shader_a26ee68bcaa51741832a65f40410b6f38} 
+\index{EisEngine::rendering::Shader@{EisEngine::rendering::Shader}!setVector@{setVector}}
+\index{setVector@{setVector}!EisEngine::rendering::Shader@{EisEngine::rendering::Shader}}
+\doxysubsubsection{\texorpdfstring{setVector()}{setVector()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::rendering\+::\+Shader\+::set\+Vector (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uniform\+Name,  }\item[{glm\+::vec4}]{vector }\end{DoxyParamCaption}) const}
+
+~\newline
+ Sets a given uniform vector in the shader program to the specified value. 
+\begin{DoxyParams}{Parameters}
+{\em uniform\+Name} & -\/ a string representing the name of the vector whose values are to be set. \\
+\hline
+{\em vector} & -\/ a 4D-\/vector representing the new desired value. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/rendering/Shader.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,194 @@
+\doxysection{Eis\+Engine\+::Math Class Reference}
+\hypertarget{class_eis_engine_1_1_math}{}\label{class_eis_engine_1_1_math}\index{EisEngine::Math@{EisEngine::Math}}
+
+
+~\newline
+ Provides convenient math and angle operations in one static class.  
+
+
+
+
+{\ttfamily \#include $<$Math.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_a04565dc4cd8ee51e5b9cf67ca4fc07e1}{Cos}} (const float \&angle, Angle\+Type angle\+Type=RADIANS)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_a0d2c9e6948d0ab922589325d83c6c3f2}{Arccos}} (const float \&cos\+Val, Angle\+Type angle\+Type=RADIANS)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_a5e52faa545899b18d16e945e005f1029}{Sin}} (const float \&angle, Angle\+Type angle\+Type=RADIANS)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_a061225688b411cb5dd2328520c91331f}{Arcsin}} (const float \&sin\+Val, Angle\+Type angle\+Type=RADIANS)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_ade3775dbcd27ecafa5853fca5df24f0a}{Tan}} (const float \&angle, Angle\+Type angle\+Type=RADIANS)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_af585ef1d9add76f3685129b0907bfe94}{Arctan}} (const float \&sin\+Val, const float \&cos\+Val, Angle\+Type angle\+Type=RADIANS)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_a735163c107f2cf985e6b3a834acea3af}{Degrees\+To\+Radians}} (const float \&angle)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_a839eed2111224cbff91c93716422e74a}{Radians\+To\+Degrees}} (const float \&angle)
+\item 
+static float \mbox{\hyperlink{class_eis_engine_1_1_math_a8fd5d511412ba4f800575ce8e5906dcb}{Clamp}} (const float \&float\+To\+Clamp, const float \&min\+Value, const float \&max\+Value)
+\item 
+\Hypertarget{class_eis_engine_1_1_math_a194b46ed533121d27885209b60f7c49e}\label{class_eis_engine_1_1_math_a194b46ed533121d27885209b60f7c49e} 
+static float {\bfseries Floor} (const float \&val)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ rounds the given value down to the next integer. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_math_a9581e00eb11e31e097d6f64baf4bcfde}\label{class_eis_engine_1_1_math_a9581e00eb11e31e097d6f64baf4bcfde} 
+static float {\bfseries Dist} (const float \&val1, const float \&val2)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the distance between two floats. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_math_a759539a3cc7d3ba813252c228b7b3f26}\label{class_eis_engine_1_1_math_a759539a3cc7d3ba813252c228b7b3f26} 
+static float {\bfseries Mod} (const float \&val1, const float \&mod\+Val)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ unsigned modulo function mapping the provided value to the interval \mbox{[}0, mod\+Val\mbox{[}. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1_math_aa9ae230c849f09732062db3a2ef5653f}\label{class_eis_engine_1_1_math_aa9ae230c849f09732062db3a2ef5653f} 
+static float {\bfseries Sqrt} (const float \&val)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Calculates the square root of the given value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1_math_af048747fd191fe3ba3f107ea0bf16fa9}\label{class_eis_engine_1_1_math_af048747fd191fe3ba3f107ea0bf16fa9} 
+static constexpr const float {\bfseries PI} = 3.\+14159265358979323846f
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The iconic pi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Provides convenient math and angle operations in one static class. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1_math_a0d2c9e6948d0ab922589325d83c6c3f2}\label{class_eis_engine_1_1_math_a0d2c9e6948d0ab922589325d83c6c3f2} 
+\index{EisEngine::Math@{EisEngine::Math}!Arccos@{Arccos}}
+\index{Arccos@{Arccos}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{Arccos()}{Arccos()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Arccos (\begin{DoxyParamCaption}\item[{const float \&}]{cos\+Val,  }\item[{Angle\+Type}]{angle\+Type = {\ttfamily RADIANS} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Returns the angle assigned to the provided cos value. 
+\begin{DoxyParams}{Parameters}
+{\em cos\+Val} & -\/ float\+: the cos value of the desired angle. \\
+\hline
+{\em angle\+Type} & -\/ Angle\+Type\+: the angle type. Defaults to radians. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_a061225688b411cb5dd2328520c91331f}\label{class_eis_engine_1_1_math_a061225688b411cb5dd2328520c91331f} 
+\index{EisEngine::Math@{EisEngine::Math}!Arcsin@{Arcsin}}
+\index{Arcsin@{Arcsin}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{Arcsin()}{Arcsin()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Arcsin (\begin{DoxyParamCaption}\item[{const float \&}]{sin\+Val,  }\item[{Angle\+Type}]{angle\+Type = {\ttfamily RADIANS} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Returns the angle assigned to the provided sin value. 
+\begin{DoxyParams}{Parameters}
+{\em sin\+Val} & -\/ float\+: the sin value of the desired angle. \\
+\hline
+{\em angle\+Type} & -\/ Angle\+Type\+: the angle type. Defaults to radians. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_af585ef1d9add76f3685129b0907bfe94}\label{class_eis_engine_1_1_math_af585ef1d9add76f3685129b0907bfe94} 
+\index{EisEngine::Math@{EisEngine::Math}!Arctan@{Arctan}}
+\index{Arctan@{Arctan}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{Arctan()}{Arctan()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Arctan (\begin{DoxyParamCaption}\item[{const float \&}]{sin\+Val,  }\item[{const float \&}]{cos\+Val,  }\item[{Angle\+Type}]{angle\+Type = {\ttfamily RADIANS} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Calculates the angle from the given sin and cos values. 
+\begin{DoxyParams}{Parameters}
+{\em sin\+Val} & -\/ float\+: the angle\textquotesingle{}s sin value. \\
+\hline
+{\em cos\+Val} & -\/ float\+: the angles cos value. \\
+\hline
+{\em angle\+Type} & -\/ the angle type. Defaults to radians. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_a8fd5d511412ba4f800575ce8e5906dcb}\label{class_eis_engine_1_1_math_a8fd5d511412ba4f800575ce8e5906dcb} 
+\index{EisEngine::Math@{EisEngine::Math}!Clamp@{Clamp}}
+\index{Clamp@{Clamp}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{Clamp()}{Clamp()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Clamp (\begin{DoxyParamCaption}\item[{const float \&}]{float\+To\+Clamp,  }\item[{const float \&}]{min\+Value,  }\item[{const float \&}]{max\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Clamps the given float to fit between the provided min and max values. 
+\begin{DoxyParams}{Parameters}
+{\em float\+To\+Clamp} & -\/ float\+: the value to be clamped. \\
+\hline
+{\em min\+Value} & -\/ float\+: the minimum value the variable should be allowed to take on. \\
+\hline
+{\em max\+Value} & -\/ float\+: the maximum value the variable should be allowed to take on. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_a04565dc4cd8ee51e5b9cf67ca4fc07e1}\label{class_eis_engine_1_1_math_a04565dc4cd8ee51e5b9cf67ca4fc07e1} 
+\index{EisEngine::Math@{EisEngine::Math}!Cos@{Cos}}
+\index{Cos@{Cos}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{Cos()}{Cos()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Cos (\begin{DoxyParamCaption}\item[{const float \&}]{angle,  }\item[{Angle\+Type}]{angle\+Type = {\ttfamily RADIANS} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Returns the cos value of the given angle 
+\begin{DoxyParams}{Parameters}
+{\em angle} & -\/ float\+: the angle in the given angle type. \\
+\hline
+{\em angle\+Type} & -\/ Angle\+Type\+: the angle type. Defaults to radians. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_a735163c107f2cf985e6b3a834acea3af}\label{class_eis_engine_1_1_math_a735163c107f2cf985e6b3a834acea3af} 
+\index{EisEngine::Math@{EisEngine::Math}!DegreesToRadians@{DegreesToRadians}}
+\index{DegreesToRadians@{DegreesToRadians}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{DegreesToRadians()}{DegreesToRadians()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Degrees\+To\+Radians (\begin{DoxyParamCaption}\item[{const float \&}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Converts an angle from degrees to radians. 
+\begin{DoxyParams}{Parameters}
+{\em angle} & -\/ float\+: the angle in degrees. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_a839eed2111224cbff91c93716422e74a}\label{class_eis_engine_1_1_math_a839eed2111224cbff91c93716422e74a} 
+\index{EisEngine::Math@{EisEngine::Math}!RadiansToDegrees@{RadiansToDegrees}}
+\index{RadiansToDegrees@{RadiansToDegrees}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{RadiansToDegrees()}{RadiansToDegrees()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Radians\+To\+Degrees (\begin{DoxyParamCaption}\item[{const float \&}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Converts an angle from radians to degrees. 
+\begin{DoxyParams}{Parameters}
+{\em angle} & -\/ float\+: the angle in radians. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_a5e52faa545899b18d16e945e005f1029}\label{class_eis_engine_1_1_math_a5e52faa545899b18d16e945e005f1029} 
+\index{EisEngine::Math@{EisEngine::Math}!Sin@{Sin}}
+\index{Sin@{Sin}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{Sin()}{Sin()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Sin (\begin{DoxyParamCaption}\item[{const float \&}]{angle,  }\item[{Angle\+Type}]{angle\+Type = {\ttfamily RADIANS} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Returns the sin value of the given angle 
+\begin{DoxyParams}{Parameters}
+{\em angle} & -\/ float\+: the angle in the given angle type. \\
+\hline
+{\em angle\+Type} & -\/ Angle\+Type\+: the angle type. Defaults to radians. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1_math_ade3775dbcd27ecafa5853fca5df24f0a}\label{class_eis_engine_1_1_math_ade3775dbcd27ecafa5853fca5df24f0a} 
+\index{EisEngine::Math@{EisEngine::Math}!Tan@{Tan}}
+\index{Tan@{Tan}!EisEngine::Math@{EisEngine::Math}}
+\doxysubsubsection{\texorpdfstring{Tan()}{Tan()}}
+{\footnotesize\ttfamily static float Eis\+Engine\+::\+Math\+::\+Tan (\begin{DoxyParamCaption}\item[{const float \&}]{angle,  }\item[{Angle\+Type}]{angle\+Type = {\ttfamily RADIANS} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+~\newline
+ Calculates the tangent value of the provided angle. 
+\begin{DoxyParams}{Parameters}
+{\em angle} & -\/ float\+: the angle in the given angle type. \\
+\hline
+{\em angle\+Type} & -\/ Angle\+Type\+: the angle type. Defaults to radians. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Math.\+h\end{DoxyCompactItemize}

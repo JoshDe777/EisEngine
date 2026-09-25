@@ -1,0 +1,30 @@
+\doxysection{Mesh2\+D.\+h}
+\hypertarget{_mesh2_d_8h_source}{}\label{_mesh2_d_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/Mesh2D.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/Mesh2D.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/utilities/rendering/PrimitiveMesh2D.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }ecs;}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{namespace\ }components\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_a949286587a08de5cc96ed4607070b3aa}{Mesh2D}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},\ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}{PrimitiveMesh2D}}\ \&\_primitive);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D}}\ \&other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D}}(\mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d}{Mesh2D}}\ \&\&other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_a700ad19c07db3d94e663f78e8678adfe}{Invalidate}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_afca032c646fa93e2fee1758e76210686}{draw}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh2_d}{PrimitiveMesh2D}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_mesh2_d_a7e9a1b9089db80ce569a8d48cda757d5}{primitive}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ VBO\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ EBO\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}

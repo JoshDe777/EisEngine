@@ -1,0 +1,97 @@
+\doxysection{Eis\+Engine\+::rendering\+::Primitive\+Sprite\+Mesh Class Reference}
+\hypertarget{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}{}\label{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}\index{EisEngine::rendering::PrimitiveSpriteMesh@{EisEngine::rendering::PrimitiveSpriteMesh}}
+
+
+~\newline
+ a primitive sprite mesh. Stores vertex data and maps them to texture coordinates.  
+
+
+
+
+{\ttfamily \#include $<$Primitive\+Sprite\+Mesh.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::rendering\+::Primitive\+Sprite\+Mesh\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a24d46362eac07f77c8b2b50bd9882b00}{Primitive\+Sprite\+Mesh}} (const std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \&primitive\+Vertices, const std\+::vector$<$ unsigned int $>$ \&shape\+Indices)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a535c80d72bbfbe247905c18d78c450d1}{Get\+Vertices}} () const override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Access the mesh\textquotesingle{}s vertices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh}{Eis\+Engine\+::rendering\+::\+Primitive\+Mesh}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Primitive\+Mesh} (const std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \&shape\+Vertices, const std\+::vector$<$ unsigned int $>$ \&shape\+Indices)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a701d94733a12e409f5cf5849492a7f46}\label{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a701d94733a12e409f5cf5849492a7f46} 
+\mbox{\hyperlink{struct_eis_engine_1_1_bounds2_d}{Bounds2D}} {\bfseries bounds}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh}{Eis\+Engine\+::rendering\+::\+Primitive\+Mesh}}}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::vector$<$ unsigned int $>$ {\bfseries indices}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The triangle indices for this mesh. \end{DoxyCompactList}\item 
+const int {\bfseries index\+Count}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The amount of indices used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a8810345339f1fd9a34d273847914def4}\label{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a8810345339f1fd9a34d273847914def4} 
+static const \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}{Primitive\+Sprite\+Mesh}} {\bfseries Square\+Sprite\+Mesh}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A simple 1x1 square mesh to hold a Sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ a primitive sprite mesh. Stores vertex data and maps them to texture coordinates. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a24d46362eac07f77c8b2b50bd9882b00}\label{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a24d46362eac07f77c8b2b50bd9882b00} 
+\index{EisEngine::rendering::PrimitiveSpriteMesh@{EisEngine::rendering::PrimitiveSpriteMesh}!PrimitiveSpriteMesh@{PrimitiveSpriteMesh}}
+\index{PrimitiveSpriteMesh@{PrimitiveSpriteMesh}!EisEngine::rendering::PrimitiveSpriteMesh@{EisEngine::rendering::PrimitiveSpriteMesh}}
+\doxysubsubsection{\texorpdfstring{PrimitiveSpriteMesh()}{PrimitiveSpriteMesh()}}
+{\footnotesize\ttfamily Eis\+Engine\+::rendering\+::\+Primitive\+Sprite\+Mesh\+::\+Primitive\+Sprite\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ \&}]{primitive\+Vertices,  }\item[{const std\+::vector$<$ unsigned int $>$ \&}]{shape\+Indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a new primitive sprite mesh from the given information. 
+\begin{DoxyParams}{Parameters}
+{\em primitive\+Vertices} & -\/ std\+::vector\texorpdfstring{$<$}{<}\doxylink{class_eis_engine_1_1_vector3}{Vector3}\texorpdfstring{$>$}{>}\+: A list of vertex coordinates forming the shape. \\
+\hline
+{\em shape\+Indices} & -\/ std\+::vector\texorpdfstring{$<$}{<}unsigned int\texorpdfstring{$>$}{>}\+: A list of integers linking vertices to form triangles. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a535c80d72bbfbe247905c18d78c450d1}\label{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a535c80d72bbfbe247905c18d78c450d1} 
+\index{EisEngine::rendering::PrimitiveSpriteMesh@{EisEngine::rendering::PrimitiveSpriteMesh}!GetVertices@{GetVertices}}
+\index{GetVertices@{GetVertices}!EisEngine::rendering::PrimitiveSpriteMesh@{EisEngine::rendering::PrimitiveSpriteMesh}}
+\doxysubsubsection{\texorpdfstring{GetVertices()}{GetVertices()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}} $>$ Eis\+Engine\+::rendering\+::\+Primitive\+Sprite\+Mesh\+::\+Get\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ Access the mesh\textquotesingle{}s vertices. 
+
+
+
+Implements \mbox{\hyperlink{struct_eis_engine_1_1rendering_1_1_primitive_mesh_a17a2653676401938e505eb960b86d32c}{Eis\+Engine\+::rendering\+::\+Primitive\+Mesh}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/rendering/Primitive\+Sprite\+Mesh.\+h\end{DoxyCompactItemize}

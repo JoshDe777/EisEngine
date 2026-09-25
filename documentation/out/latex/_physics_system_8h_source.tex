@@ -1,0 +1,52 @@
+\doxysection{Physics\+System.\+h}
+\hypertarget{_physics_system_8h_source}{}\label{_physics_system_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/PhysicsSystem.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/systems/PhysicsSystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <box2d/box2d.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ContactListener.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/System.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/Utilities.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }ecs;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{using\ }physics::ContactListener;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{namespace\ }components\{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d}{PhysicsBody2D}};\}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{using\ }components::PhysicsBody2D;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{namespace\ }systems\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system}{PhysicsSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_system}{System}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a7a92422344e6177cd8a2468be1965ed2}{EarthGravityVector}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_ada3672b048bd104e61359a5e2dbcfb7a}{PhysicsSystem}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&game,\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ \_gravity\ =\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a7a92422344e6177cd8a2468be1965ed2}{EarthGravityVector}});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a24bbc9931b38e75d3677fb0b61c44f2d}{DisableGlobalGravity}}()\{\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_adace78ab2f727b88a14cb341fe82d7f9}{SetGlobalGravity}}(\mbox{\hyperlink{class_eis_engine_1_1_vector2_a57f782fa466d894129310ad270e40557}{Vector2::zero}});\}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a3518e4144e8e5bb912996c176b62ff82}{EnableGlobalGravity}}()\{\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_adace78ab2f727b88a14cb341fe82d7f9}{SetGlobalGravity}}(gravity);\}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_adace78ab2f727b88a14cb341fe82d7f9}{SetGlobalGravity}}(\mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ newGravity);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ b2Body*\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a7c3c0edd12839290aff68cae542fcc06}{CreateBody}}(b2BodyDef\ \&bodyDef);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_afcff187e850210abab883683a63b1eec}{DeleteBody}}(b2Body*\ body);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<PhysicsBody2D*>\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_ae29b66dfc33a08906b9172e753ed38b4}{FindBodiesWithinBounds}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\&\ v1,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\&\ v2,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\&\ v3,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\&\ v4);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Step();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector2}{Vector2}}\ gravity\ =\ \ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_physics_system_a7a92422344e6177cd8a2468be1965ed2}{EarthGravityVector}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ b2World\ physicsWorld\{gravity\};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1physics_1_1_contact_listener}{ContactListener}}\ contactListenerInstance;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ int32\_t\ velocityIterations\ =\ 10;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ int32\_t\ positionIterations\ =\ 8;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<b2Body*>\ bodiesToDelete;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}*\ engine;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \}}
+
+\end{DoxyCode}

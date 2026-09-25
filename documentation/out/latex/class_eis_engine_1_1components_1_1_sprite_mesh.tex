@@ -1,0 +1,105 @@
+\doxysection{Eis\+Engine\+::components\+::Sprite\+Mesh Class Reference}
+\hypertarget{class_eis_engine_1_1components_1_1_sprite_mesh}{}\label{class_eis_engine_1_1components_1_1_sprite_mesh}\index{EisEngine::components::SpriteMesh@{EisEngine::components::SpriteMesh}}
+
+
+{\ttfamily \#include $<$Sprite\+Mesh.\+h$>$}
+
+Inheritance diagram for Eis\+Engine\+::components\+::Sprite\+Mesh\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eis_engine_1_1components_1_1_sprite_mesh}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh_a753c7a1741d891f8689a459a00c6947e}{Sprite\+Mesh}} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}, \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}{Primitive\+Sprite\+Mesh}} \+\_\+primitive=\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a8810345339f1fd9a34d273847914def4}{Primitive\+Sprite\+Mesh\+::\+Square\+Sprite\+Mesh}})
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1components_1_1_sprite_mesh_adbb4ecf29413443c8ae7b08a6e20d75b}{Invalidate}} () override
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called when a component is intentionally deleted. \end{DoxyCompactList}\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_mesh_a5510815ce048182f9ca38354d8d42f58}\label{class_eis_engine_1_1components_1_1_sprite_mesh_a5510815ce048182f9ca38354d8d42f58} 
+void {\bfseries draw} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A function called once every frame to display the mesh on screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Component} (\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}}, guid\+\_\+t \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}}=invalid\+ID)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructs the component and assigns it to the owner. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Flags the component for deletion. \end{DoxyCompactList}\item 
+guid\+\_\+t {\bfseries Get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Returns the unique ID of the entity attached to this component. \end{DoxyCompactList}\item 
+bool {\bfseries is\+Deleted} () const
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether a component has been flagged for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} {\bfseries entity} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A pointer to the entity owning this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_mesh_a5f0fd5664a116678bb2711e6eb48a805}\label{class_eis_engine_1_1components_1_1_sprite_mesh_a5f0fd5664a116678bb2711e6eb48a805} 
+const \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}{Primitive\+Sprite\+Mesh}} {\bfseries primitive}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ the primitive mesh shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Eis\+Engine\+::ecs\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+guid\+\_\+t {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ The unique ID of the entity this component is assigned to. \end{DoxyCompactList}\item 
+bool {\bfseries deleted} = false
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Determines whether the component is marked for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \& {\bfseries engine}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ A reference to the engine instance to access the entity manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ A mesh displaying a sprite. ~\newline
+ Requires a \doxylink{class_eis_engine_1_1components_1_1_sprite_renderer}{Sprite\+Renderer} component for proper use, unlocking the use of colors and textures. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_mesh_a753c7a1741d891f8689a459a00c6947e}\label{class_eis_engine_1_1components_1_1_sprite_mesh_a753c7a1741d891f8689a459a00c6947e} 
+\index{EisEngine::components::SpriteMesh@{EisEngine::components::SpriteMesh}!SpriteMesh@{SpriteMesh}}
+\index{SpriteMesh@{SpriteMesh}!EisEngine::components::SpriteMesh@{EisEngine::components::SpriteMesh}}
+\doxysubsubsection{\texorpdfstring{SpriteMesh()}{SpriteMesh()}}
+{\footnotesize\ttfamily Eis\+Engine\+::components\+::\+Sprite\+Mesh\+::\+Sprite\+Mesh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine,  }\item[{guid\+\_\+t}]{owner,  }\item[{\mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh}{Primitive\+Sprite\+Mesh}}}]{\+\_\+primitive = {\ttfamily \mbox{\hyperlink{class_eis_engine_1_1rendering_1_1_primitive_sprite_mesh_a8810345339f1fd9a34d273847914def4}{Primitive\+Sprite\+Mesh\+::\+Square\+Sprite\+Mesh}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+~\newline
+ Creates a new sprite mesh. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+primitive} & -\/ Primitive\+Mesh2D\+: The primitive shape of the mesh. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1components_1_1_sprite_mesh_adbb4ecf29413443c8ae7b08a6e20d75b}\label{class_eis_engine_1_1components_1_1_sprite_mesh_adbb4ecf29413443c8ae7b08a6e20d75b} 
+\index{EisEngine::components::SpriteMesh@{EisEngine::components::SpriteMesh}!Invalidate@{Invalidate}}
+\index{Invalidate@{Invalidate}!EisEngine::components::SpriteMesh@{EisEngine::components::SpriteMesh}}
+\doxysubsubsection{\texorpdfstring{Invalidate()}{Invalidate()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::components\+::\+Sprite\+Mesh\+::\+Invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+~\newline
+ A function called when a component is intentionally deleted. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a1b76f045d40581f8a9908757d04ddf5f}{Eis\+Engine\+::ecs\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/rendering/meshes/Sprite\+Mesh.\+h\end{DoxyCompactItemize}

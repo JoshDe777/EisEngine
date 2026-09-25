@@ -1,0 +1,130 @@
+\doxysection{Debug.\+h}
+\hypertarget{_debug_8h_source}{}\label{_debug_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Debug.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/utilities/Debug.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }EisEngine\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{enum}\ LogPriority\{\ DebugP,\ InfoP,\ WarnP,\ ErrorP,\ FatalP\};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ DEBUG\_INFO}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\ \ \ \ \#define\ DEBUG\_INFO(message)\ Debug::Info(\_\_FILE\_\_,\ \_\_LINE\_\_,\ message);}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ DEBUG\_LOG}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \#define\ DEBUG\_LOG(message)\ Debug::Log(\_\_FILE\_\_,\ \_\_LINE\_\_,\ message);}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ DEBUG\_WARN}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ \#define\ DEBUG\_WARN(message)\ Debug::Warn(\_\_FILE\_\_,\ \_\_LINE\_\_,\ message);}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ DEBUG\_ERROR}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \#define\ DEBUG\_ERROR(message)\ Debug::Error(\_\_FILE\_\_,\ \_\_LINE\_\_,\ message);}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ DEBUG\_RUNTIME\_ERROR}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \#define\ DEBUG\_RUNTIME\_ERROR(message)\ Debug::RuntimeError(\_\_FILE\_\_,\ \_\_LINE\_\_,\ message);}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1_debug}{Debug}}\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_aea2502f8f7663640be4ddf52790b6687}{Log}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ std::string\ \&text)\{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ CreateLog(DebugP,\ file,\ line,\ text);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_a887a0a495eaa9f4266851c00cbda1ac1}{Info}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ std::string\ \&text)\{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ CreateLog(InfoP,\ file,\ line,\ text);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_a677b1c988770ce8bd81a5a8cd0438ca6}{Warn}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ std::string\ \&warning)\{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ CreateLog(WarnP,\ file,\ line,\ warning);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_ae931d09e7d7c51f3772f61993a1d45f4}{Error}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ std::string\ \&errorText)\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ CreateLog(ErrorP,\ file,\ line,\ errorText);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1_debug_aafb92a9b1de3732c5e244094c1c73662}{RuntimeError}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ std::string\ \&err)\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ CreateLog(FatalP,\ file,\ line,\ err);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ CreateLog(LogPriority\ priority,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ line,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&message)\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ time\ =\ GetTime();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ logStream;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ logStream\ <<\ \textcolor{stringliteral}{"{}["{}}<<\ file\ <<\textcolor{stringliteral}{"{}("{}}<<\ line\ <<\ \textcolor{stringliteral}{"{})]:\(\backslash\)n"{}};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ logStream\ <<\ \textcolor{stringliteral}{"{}["{}}\ <<\ PriorityToString(priority)\ <<\ \textcolor{stringliteral}{"{}]\ -\/\ ("{}}\ <<\ time\ <<\ \textcolor{stringliteral}{"{}):\ "{}};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ logStream\ <<\ message;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(priority)\{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DebugP:}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ InfoP:}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ logStream.str()\ <<\ std::endl;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WarnP:}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetConsoleTextAttribute(hConsole,\ 6);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ logStream.str()\ <<\ std::endl;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ErrorP:}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetConsoleTextAttribute(hConsole,\ 12);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ logStream.str()\ <<\ std::endl;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ FatalP:}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetConsoleTextAttribute(hConsole,\ 12);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ logStream.str()\ <<\ std::endl;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(logStream.str());}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ SetConsoleTextAttribute(hConsole,\ 7);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::string\ PriorityToString(LogPriority\ p)\{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (p)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DebugP:}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Debug"{}};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ InfoP:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Info"{}};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WarnP:}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Warning"{}};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ErrorP:}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Error"{}};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ FatalP:}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Fatal"{}};}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Unexpected\ log\ priority\ "{}};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::string\ GetTime()\{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ time\_t\ currentTime;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }tm*\ localTime;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ time(\&currentTime);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ localTime\ =\ localtime(\&currentTime);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::array<int,\ 3>\ time\{localTime-\/>tm\_hour,\ localTime-\/>tm\_min,\ localTime-\/>tm\_sec\};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CompileTimeToString(time);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::string\ CompileTimeToString(\textcolor{keyword}{const}\ std::array<int,\ 3>\ \&time)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ to\_string(time[0])\ +\ \textcolor{stringliteral}{"{}:"{}}\ +\ to\_string(time[1])\ +\ \textcolor{stringliteral}{"{}:"{}}\ +\ to\_string(time[2]);\}}
+\DoxyCodeLine{00188\ \ \ \ \ \};}
+\DoxyCodeLine{00189\ \}}
+
+\end{DoxyCode}

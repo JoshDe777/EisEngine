@@ -1,0 +1,155 @@
+\doxysection{Eis\+Engine\+::ecs\+::Entity\+Manager Class Reference}
+\hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager}{}\label{class_eis_engine_1_1ecs_1_1_entity_manager}\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+
+
+{\ttfamily \#include $<$Entity\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a52c4c7ee8d5d821b1e35411250833157}{Entity\+Manager}} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{Component\+Manager}} \&component\+Manager, \mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&engine)
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \& \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a45d471ad35e0e076f8ce4cd1b5b389cf}{create\+Entity}} (const std\+::string \&name="{}Entity"{}, const std\+::string \&tag="{}Untagged"{}, void \texorpdfstring{$\ast$}{*}user\+Data=nullptr)
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a8317edbbe94594c80a3efbb05ecda4fb}{get\+Entity}} (guid\+\_\+t guid)
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a8140ee2db753e7786b558fbadc6ae32e}{Find}} (const std\+::string \&name)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a450f9b53f7c7083294442bce76d0063d}{Find\+All}} (const std\+::string \&name)
+\item 
+\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a8caf771097c53048f45d20acf111c481}{Find\+With\+Tag}} (const std\+::string \&tag)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a6e0872054239dc1d66cff11ec8dd3da8}{Find\+All\+With\+Tag}} (const std\+::string \&tag)
+\item 
+{\footnotesize template$<$typename C $>$ }\\C \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_a1e9cb9e6d1ee846d61607e2c50b994b5}{Find\+Entity\+Of\+Type}} ()
+\item 
+void \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity_manager_acef4498a0e8f351ba00b84bf4b5eb273}{delete\+Entity}} (\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \&entity)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+~\newline
+ Represents the entity management system. ~\newline
+ Handles the creation, referencing and deletion of entities in a game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a52c4c7ee8d5d821b1e35411250833157}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a52c4c7ee8d5d821b1e35411250833157} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!EntityManager@{EntityManager}}
+\index{EntityManager@{EntityManager}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{EntityManager()}{EntityManager()}}
+{\footnotesize\ttfamily Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::\+Entity\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{Component\+Manager}} \&}]{component\+Manager,  }\item[{\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}} \&}]{engine }\end{DoxyParamCaption})}
+
+~\newline
+ Creates an instance of the entity manager. 
+\begin{DoxyParams}{Parameters}
+{\em component\+Manager} & -\/ \doxylink{class_eis_engine_1_1ecs_1_1_component_manager}{Component\+Manager}\&\+: a reference to the game\textquotesingle{}s component manager. \\
+\hline
+{\em engine} & -\/ \doxylink{class_eis_engine_1_1_game}{Game}\&\+: a reference to the engine instance. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a45d471ad35e0e076f8ce4cd1b5b389cf}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a45d471ad35e0e076f8ce4cd1b5b389cf} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!createEntity@{createEntity}}
+\index{createEntity@{createEntity}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{createEntity()}{createEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \& Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::create\+Entity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name = {\ttfamily "{}Entity"{}},  }\item[{const std\+::string \&}]{tag = {\ttfamily "{}Untagged"{}},  }\item[{void \texorpdfstring{$\ast$}{*}}]{user\+Data = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+~\newline
+ Creates an entity. 
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ std\+::string\+: the name of the new entity. Defaults to \textquotesingle{}\doxylink{class_eis_engine_1_1ecs_1_1_entity}{Entity}\textquotesingle{}. \\
+\hline
+{\em tag} & -\/ std\+::string\+: the tag given to the entity. Defaults to \textquotesingle{}Untagged\textquotesingle{}. \\
+\hline
+{\em user\+Data} & -\/ void\texorpdfstring{$\ast$}{*}\+: A pointer to any user-\/defined object. Defaults to nullptr. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_eis_engine_1_1ecs_1_1_entity}{Entity}\& -\/ a reference to the created entity. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_acef4498a0e8f351ba00b84bf4b5eb273}\label{class_eis_engine_1_1ecs_1_1_entity_manager_acef4498a0e8f351ba00b84bf4b5eb273} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!deleteEntity@{deleteEntity}}
+\index{deleteEntity@{deleteEntity}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{deleteEntity()}{deleteEntity()}}
+{\footnotesize\ttfamily void Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::delete\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \&}]{entity }\end{DoxyParamCaption})}
+
+~\newline
+ Flags a specific entity for deletion. 
+\begin{DoxyParams}{Parameters}
+{\em entity} & -\/ a reference to the entity to be deleted. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a8140ee2db753e7786b558fbadc6ae32e}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a8140ee2db753e7786b558fbadc6ae32e} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!Find@{Find}}
+\index{Find@{Find}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{Find()}{Find()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::\+Find (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+~\newline
+ Fetches an entity by name. \begin{DoxyReturn}{Returns}
+Entity\texorpdfstring{$\ast$}{*} -\/ a pointer to the first entity with a fitting name. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a450f9b53f7c7083294442bce76d0063d}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a450f9b53f7c7083294442bce76d0063d} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!FindAll@{FindAll}}
+\index{FindAll@{FindAll}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{FindAll()}{FindAll()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::\+Find\+All (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+~\newline
+ Fetches all entities with the given name. \begin{DoxyReturn}{Returns}
+std\+::vector\texorpdfstring{$<$}{<}Entity\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>} -\/ a vector of pointers to all corresponding entities. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a6e0872054239dc1d66cff11ec8dd3da8}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a6e0872054239dc1d66cff11ec8dd3da8} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!FindAllWithTag@{FindAllWithTag}}
+\index{FindAllWithTag@{FindAllWithTag}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{FindAllWithTag()}{FindAllWithTag()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::\+Find\+All\+With\+Tag (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{tag }\end{DoxyParamCaption})}
+
+~\newline
+ Fetches all entities with the given tag. \begin{DoxyReturn}{Returns}
+std\+::vector\texorpdfstring{$<$}{<}Entity\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>} -\/ a vector of pointers to all corresponding entities. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a1e9cb9e6d1ee846d61607e2c50b994b5}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a1e9cb9e6d1ee846d61607e2c50b994b5} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!FindEntityOfType@{FindEntityOfType}}
+\index{FindEntityOfType@{FindEntityOfType}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{FindEntityOfType()}{FindEntityOfType()}}
+{\footnotesize\ttfamily template$<$typename C $>$ \\
+C \texorpdfstring{$\ast$}{*} Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::\+Find\+Entity\+Of\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+~\newline
+ Finds a component of the given type attributed to any entity. \begin{DoxyReturn}{Returns}
+C\texorpdfstring{$\ast$}{*}\+: a pointer to a component of the given type. ~\newline
+ Returns nullptr if none is found. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a8caf771097c53048f45d20acf111c481}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a8caf771097c53048f45d20acf111c481} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!FindWithTag@{FindWithTag}}
+\index{FindWithTag@{FindWithTag}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{FindWithTag()}{FindWithTag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::\+Find\+With\+Tag (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{tag }\end{DoxyParamCaption})}
+
+~\newline
+ Fetches an entity with the given tag. \begin{DoxyReturn}{Returns}
+Entity\texorpdfstring{$\ast$}{*} -\/ a pointer to the first entity with a fitting tag. 
+\end{DoxyReturn}
+\Hypertarget{class_eis_engine_1_1ecs_1_1_entity_manager_a8317edbbe94594c80a3efbb05ecda4fb}\label{class_eis_engine_1_1ecs_1_1_entity_manager_a8317edbbe94594c80a3efbb05ecda4fb} 
+\index{EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}!getEntity@{getEntity}}
+\index{getEntity@{getEntity}!EisEngine::ecs::EntityManager@{EisEngine::ecs::EntityManager}}
+\doxysubsubsection{\texorpdfstring{getEntity()}{getEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}} \texorpdfstring{$\ast$}{*} Eis\+Engine\+::ecs\+::\+Entity\+Manager\+::get\+Entity (\begin{DoxyParamCaption}\item[{guid\+\_\+t}]{guid }\end{DoxyParamCaption})}
+
+~\newline
+ Fetches an entity using its unique ID. 
+\begin{DoxyParams}{Parameters}
+{\em guid} & -\/ guid\+\_\+t\+: the unique ID given to the wanted entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Entity\texorpdfstring{$\ast$}{*} -\/ a pointer to the corresponding entity. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/ecs/Entity\+Manager.\+h\end{DoxyCompactItemize}

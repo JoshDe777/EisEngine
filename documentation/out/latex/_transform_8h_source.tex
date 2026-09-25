@@ -1,0 +1,95 @@
+\doxysection{Transform.\+h}
+\hypertarget{_transform_8h_source}{}\label{_transform_8h_source}\index{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Transform.h@{C:/repositories/uni/27-\/gl3-\/odonnell/code/engine/include/engine/components/Transform.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}engine/ecs/Component.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}engine/Utilities.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{EisEngine::ecs::Component}};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{EisEngine::ecs::ComponentManager}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{EisEngine::ecs::Entity}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }EisEngine\{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{namespace\ }systems\{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater}{SceneGraphUpdater}};\}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{namespace\ }components\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d}{PhysicsBody2D}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ final:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component}{Component}}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_manager}{ComponentManager}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_entity}{Entity}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_physics_body2_d}{PhysicsBody2D}};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_eis_engine_1_1systems_1_1_scene_graph_updater}{systems::SceneGraphUpdater}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a0d2951adcb35829b5dbe5a61be498d09}{Transform}}(\mbox{\hyperlink{class_eis_engine_1_1_game}{Game}}\ \&\mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a16da6bf4027df906f46726d14ca45e89}{engine}},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ guid\_t\ \mbox{\hyperlink{class_eis_engine_1_1ecs_1_1_component_a7a70f5a97a7e8305766cbbf2f61fc1dd}{owner}},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *parentTransform\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ position\ =\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a74e7523c2e29153b82fce4e0a5b9c4e5}{Vector3::zero}},}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ rotation\ =\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a74e7523c2e29153b82fce4e0a5b9c4e5}{Vector3::zero}},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ scale\ =\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a4a3eb8768677840824e27a1b4fdf6889}{Vector3::one}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\&\ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\&\ operator\ =\ (\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\&\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}(\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ \&\&other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_ab347587b63a8d4234106d1aa59ab1834}{Invalidate}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a28d24d7be0a4c633d26fdb51eb1032d0}{GetGlobalPosition}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a627afa352cd9b9b1aa212eedde406840}{GetGlobalRotation}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_ac66b06d3f7d78b03cae3ae804a47003a}{GetGlobalScale}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a204fd90ca5f12b84bb1b05fd4b0c9a3f}{GetLocalPosition}}()\{\ \textcolor{keywordflow}{return}\ localPosition;\}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_ae255ca1a442cd621d84c6e3bf69add77}{GetLocalRotation}}()\{\ \textcolor{keywordflow}{return}\ localRotation;\}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a56f1e7d3650b32f23d5c153eb6e24913}{GetLocalScale}}()\{\ \textcolor{keywordflow}{return}\ localScale;\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ glm::mat4\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_ab973c2c5f9ce96b10b39bdd1dbd18051}{GetModelMatrix}}()\{\ \textcolor{keywordflow}{return}\ modelMatrix;\}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a0ba96cbb995f08552839cc45bcfc98a1}{SetGlobalPosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ pos);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_acf439bbc7a8af58c99658a625ddf8b1f}{SetGlobalRotation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ rotation);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a04bd4862836b4c7e9e7737cf959377dc}{SetGlobalScale}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ scale);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_aad3fc79e4029eecb51fe7201110b1425}{SetLocalPosition}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ pos);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a662c2175437620db58d54d808670de14}{SetLocalRotation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ rotation);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a54483fb89297ea03ada4271ed0bbe303}{SetLocalScale}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ scale);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<Transform\ *>\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a4ffb1184b7ac576fee5a8f2628cfc412}{getChildren}}()\ \{\ \textcolor{keywordflow}{return}\ children;\}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a19667c00ab1b5e045030b42d38357c8d}{parent}}()\ \{\ \textcolor{keywordflow}{return}\ m\_parent;\}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_add3cad70c9cb0e1db7bd3139b0854170}{SetParent}}(\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *transform);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_abae37d33b00e0ab70716e1ff1db5164d}{Translate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \&direction);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_acaa558159efe46ae6c2b42bf00cda7a3}{Rotate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \&vector);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_ad391f5ebdfb90138e17a97ab4cef4b36}{Rescale}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ scalingFactors);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ transform::Direction()\ functions\ assume\ objects\ are\ created\ facing\ negative\ Z.}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a6c5ac5c6cdf99741e51cd22f28e9b6ee}{Right}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_af7221606de1213e01cabad759dadf180}{Vector3::right}}.\mbox{\hyperlink{class_eis_engine_1_1_vector3_ae2fd37e3af7a74cd6661204df56efe52}{Rotate}}(localRotation);\}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a9aed0c607e5ac45267b5a512504a4fa8}{Up}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_a3a22e37059f01408a17448a7f449d861}{Vector3::up}}.\mbox{\hyperlink{class_eis_engine_1_1_vector3_ae2fd37e3af7a74cd6661204df56efe52}{Rotate}}(localRotation);\}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform_a1d48d1af29f6030bd393f53e01d2e425}{Forward}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3_ae1d39f260f2966046a04e53c6eed46c8}{Vector3::forward}}.\mbox{\hyperlink{class_eis_engine_1_1_vector3_ae2fd37e3af7a74cd6661204df56efe52}{Rotate}}(localRotation);\}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AddChild(\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *transform);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveChild(\mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *transform);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ localPosition;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ localRotation;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\ localScale;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ modelMatrix;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_positionChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_rotationChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_scaleChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eis_engine_1_1components_1_1_transform}{Transform}}\ *m\_parent\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<Transform\ *>\ children;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SyncPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ newPosition);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SyncRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ newRotation);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SyncScale(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ oldScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ newScale);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateChildPositionAfterRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ angleDifference);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ UpdateChildPositionAfterScaling(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ oldScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eis_engine_1_1_vector3}{Vector3}}\&\ newScale);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+
+\end{DoxyCode}
