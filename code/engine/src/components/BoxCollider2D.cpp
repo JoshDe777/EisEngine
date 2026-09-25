@@ -1,7 +1,7 @@
 #include "engine/components/BoxCollider2D.h"
 #include "engine/components/PhysicsBody2D.h"
-#include "engine/components/rendering/meshes/Mesh2D.h"
-#include "engine/components/rendering/meshes/SpriteMesh.h"
+#include "engine/components/meshes/Mesh2D.h"
+#include "engine/components/meshes/SpriteMesh.h"
 #include "engine/ecs/Entity.h"
 
 namespace EisEngine::components {

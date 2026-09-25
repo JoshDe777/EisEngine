@@ -1,11 +1,13 @@
 #version 460 core
+
 in vec2 TexCoords;
-out vec4 fragColor;
 
 uniform sampler2D image;
-uniform vec4 color;
+uniform vec4 diffuse;
+
+out vec4 fragColor;
 
 void main()
 {
-    fragColor = color * texture(image, TexCoords);
+    fragColor = diffuse * texture(image, TexCoords);
 }

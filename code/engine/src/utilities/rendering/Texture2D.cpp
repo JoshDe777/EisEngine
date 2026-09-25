@@ -2,8 +2,8 @@
 
 namespace EisEngine {
     Texture2D::Texture2D() :
-    Width(0), Height(0), internalFormat(GL_RGB), imageFormat(GL_RGB), wrapS(GL_CLAMP_TO_EDGE), wrapT(GL_CLAMP_TO_EDGE),
-    minFilterMode(GL_LINEAR), maxFilterMode(GL_LINEAR)
+    Width(0), Height(0), internalFormat(GL_RGB), imageFormat(GL_RGB), wrapS(GL_REPEAT), wrapT(GL_REPEAT),
+    minFilterMode(GL_LINEAR_MIPMAP_LINEAR), maxFilterMode(GL_LINEAR)
     { glGenTextures(1, &textureID);}
 
     void Texture2D::Generate(unsigned int width, unsigned int height, unsigned char *data) {
@@ -23,5 +23,8 @@ namespace EisEngine {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    void Texture2D::Bind() const { glBindTexture(GL_TEXTURE_2D, textureID);}
+    void Texture2D::Bind() const {
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+    }
 }

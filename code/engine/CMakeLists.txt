@@ -9,7 +9,7 @@ file(GLOB_RECURSE SOURCE_LIST CONFIGURE_DEPENDS "src/**.cpp")
 add_library(${ENGINE_NAME} ${HEADER_LIST} ${PRIVATE_HEADER_LIST} ${SOURCE_LIST})
 
 target_include_directories(${ENGINE_NAME} PUBLIC include/)
-target_link_libraries(${ENGINE_NAME} PUBLIC glad glfw glm soloud tinygltf box2d stb fastnoise)
+target_link_libraries(${ENGINE_NAME} PUBLIC glad glfw glm soloud tinygltf box2d stb fastnoise assimp::assimp)
 
 target_compile_definitions(${ENGINE_NAME} PRIVATE ASSET_ROOT=./assets/)
 

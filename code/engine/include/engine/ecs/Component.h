@@ -24,7 +24,7 @@ namespace EisEngine{
             /// \n Determines whether a component has been flagged for deletion.
             [[nodiscard]] bool isDeleted() const { return deleted; }
             /// \n A pointer to the entity owning this component.
-            Entity *entity();
+            Entity *entity() const;
         protected:
             /// \n A function made to encompass what needs to be done when a component is intentionally deleted.
             virtual void Invalidate() { deleted = true;}

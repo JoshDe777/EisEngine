@@ -4,7 +4,7 @@
 #include "../Vector3.h"
 
 namespace EisEngine::rendering {
-    /// \n {Abstract class}Contains vertex and edge data for meshes.
+    /// \n {Abstract class} Contains vertex and edge data for meshes.
     struct PrimitiveMesh {
     public:
         PrimitiveMesh(const std::vector<Vector3>& shapeVertices, const std::vector<unsigned int>& shapeIndices) :

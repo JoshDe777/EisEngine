@@ -2,6 +2,7 @@
 #include "engine/utilities/rendering/Shader.h"
 #include "engine/ResourceManager.h"
 #include "engine/utilities/Color.h"
+#include "engine/systems/Camera.h"
 
 namespace EisEngine::rendering {
     Shader::Shader(const unsigned int &vertexShaderProgram, const unsigned int &fragmentShaderProgram) :
@@ -26,25 +27,44 @@ namespace EisEngine::rendering {
         glDeleteShader(fragmentShader);
     }
 
-    void Shader::Apply(const glm::mat4& newVPMatrix) {
+    void Shader::Apply(Camera* camera) {
         glUseProgram(shaderProgram);
-        vpMatrix = newVPMatrix;
+        vpMatrix = camera->GetVPMatrix();
         setMatrix("mvp", vpMatrix);
-        setVector("color", (glm::vec4) Color::white);
+        setVector("camPos", camera->transform->GetGlobalPosition());
     }
 
-    void Shader::ApplyTexture(const Texture2D& texture) {
+    void Shader::ApplyTexture(const Texture2D& texture) const {
         glActiveTexture(GL_TEXTURE0);
         texture.Bind();
+        setInt("image", 0);
     }
 
-    void Shader::setMatrix(const std::string &uniformName, glm::mat4 matrix) const {
+    void Shader::setMatrix(const std::string &uniformName, glm::mat4 mat4) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat4));
     }
-    void Shader::setVector(const std::string &uniformName, glm::vec4 vector) const {
+    void Shader::setMatrix(const std::string &uniformName, glm::mat3 mat3) const {
         auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
-        glUniform4fv(uniformLocation, 1, glm::value_ptr(vector));
+        glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat3));
+    }
+    void Shader::setVector(const std::string &uniformName, glm::vec4 vec4) const {
+        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        glUniform4fv(uniformLocation, 1, glm::value_ptr(vec4));
+    }
+    void Shader::setVector(const std::string &uniformName, glm::vec3 vec3) const {
+        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        glUniform3fv(uniformLocation, 1, glm::value_ptr(vec3));
+    }
+
+    void Shader::setInt(const std::string &uniformName, const int &val) const {
+        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        glUniform1i(uniformLocation, val);
+    }
+
+    void Shader::setFloat(const std::string &uniformName, const float &val) const {
+        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        glUniform1f(uniformLocation, val);
     }
 
     const fs::path Shader::defaultVertexShaderPath = "shaders/vertexShader.vert";

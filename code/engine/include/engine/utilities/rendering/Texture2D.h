@@ -4,7 +4,7 @@
 
 namespace EisEngine {
     class ResourceManager;
-    /// \n A 2-dimensional texture.
+    /// \n A 2-dimensional texture. Is attached to a Renderer component to apply.
     class Texture2D {
         friend ResourceManager;
     public:

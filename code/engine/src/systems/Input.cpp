@@ -3,8 +3,36 @@
 
 namespace EisEngine {
     GLFWwindow *Input::window = nullptr;
+    Vector2 Input::_mousePos = Vector2();
+    Vector2 Input::_mouseDelta = Vector2();
+    float Input::_mouseScroll = 0;
 
-    Input::Input(EisEngine::Game &engine) : System(engine) { window = engine.getWindow();}
+    static bool firstCall = true;
+
+    void Input::MouseCallback() {
+        double x, y;
+        glfwGetCursorPos(window, &x, &y);
+        auto currentPos = Vector2((float) x, (float) y);
+        auto lastPos = _mousePos;
+
+        if(firstCall){
+            lastPos = currentPos;
+            firstCall = false;
+        }
+
+        _mouseDelta = lastPos - currentPos;
+        _mousePos = currentPos;
+    }
+
+    void Input::ScrollCallback(GLFWwindow *window, double x, double y) {_mouseScroll = (float) y;}
+
+    Input::Input(EisEngine::Game &engine) : System(engine) {
+        window = engine.getWindow();
+        glfwSetScrollCallback(window, Input::ScrollCallback);
+        engine.onBeforeUpdate.addListener([&] (Game& game){
+            MouseCallback();
+        });
+    }
 
     bool Input::GetKeyDown(EisEngine::KeyCode key) {
         if (window == nullptr) return false;

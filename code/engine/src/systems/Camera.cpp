@@ -3,9 +3,14 @@
 #include "engine/Game.h"
 
 namespace EisEngine::systems {
-    Camera::Camera(EisEngine::Game &engine, const Vector2& screenDimensions): System(engine),
-    m_screenWidth((int) screenDimensions.x), m_screenHeight((int) screenDimensions.y),
-    aspectRatio(screenDimensions.x / screenDimensions.y) {
+    Camera::Camera(EisEngine::Game &engine, const Vector2& screenDimensions, CameraMode cameraMode):
+    System(engine),
+    m_screenWidth((int) screenDimensions.x),
+    m_screenHeight((int) screenDimensions.y),
+    aspectRatio(screenDimensions.x / screenDimensions.y),
+    nearClip(cameraMode == PERSPECTIVE ? 0.1f : -1),
+    farClip(100)
+    {
         entity = &engine.entityManager.createEntity("Camera");
         transform = entity->transform;
         engine.onUpdate.addListener([&] (Game &game){
@@ -26,6 +31,12 @@ namespace EisEngine::systems {
         });
     }
 
+    void Camera::SetCameraMode(const EisEngine::systems::CameraMode &newMode) {
+        mode = newMode;
+
+        nearClip = mode == PERSPECTIVE ? 0.1f : -1;
+    }
+
     glm::mat4 Camera::GetVPMatrix() {
         auto view = CalculateViewMatrix();
         auto projection = GetProjectionMatrix();
@@ -33,9 +44,10 @@ namespace EisEngine::systems {
     }
 
     glm::mat4 Camera::CalculateViewMatrix() const {
+        // zoom pos offsets here!
         glm::vec3 cameraPos = (glm::vec3) transform->GetGlobalPosition();
         // (facing negative Z at rotation (0, 0, 0))
-        glm::vec3 cameraDir = -(glm::vec3) transform->Forward();
+        glm::vec3 cameraDir = (glm::vec3) transform->Forward();
         glm::vec3 upDir = (glm::vec3) transform->Up();
         glm::vec3 viewVector = cameraPos + cameraDir;
 
@@ -43,11 +55,17 @@ namespace EisEngine::systems {
     }
 
     glm::mat4 Camera::GetProjectionMatrix() const {
-        return glm::ortho(-aspectRatio / m_zoom,
-                          aspectRatio / m_zoom,
-                          -1.0f / m_zoom,
-                          1.0f / m_zoom,
-                          nearClip,
-                          farClip);
+        switch(mode){
+            case PERSPECTIVE:
+                return glm::perspective(Math::DegreesToRadians(fov), aspectRatio, nearClip, farClip);
+            case ORTHO:
+                return glm::ortho(-aspectRatio / m_zoom,
+                                  aspectRatio / m_zoom,
+                                  -1.0f / m_zoom,
+                                  1.0f / m_zoom,
+                                  nearClip,
+                                  farClip);
+        }
+        return glm::mat4(1.0f);
     }
 }

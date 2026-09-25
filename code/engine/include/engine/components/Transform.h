@@ -52,9 +52,12 @@ namespace EisEngine{
             [[nodiscard]]Vector3 GetLocalRotation(){ return localRotation;}
             /// \n Returns the object's scale relative to its parent object.
             [[nodiscard]] Vector3 GetLocalScale(){ return localScale;}
+            [[nodiscard]] bool IsDirty() const { return dirty;}
 
             /// \n Returns the transform's model matrix, condensing full transform data in one object.
             [[nodiscard]] glm::mat4 GetModelMatrix(){ return modelMatrix;}
+            /// \n Returns a transform's local model matrix, condensing local transform data into one object.
+            glm::mat4 GetLocalMatrix();
 
             /// \n Sets transform position in world space.
             void SetGlobalPosition(const Vector3& pos);
@@ -118,6 +121,8 @@ namespace EisEngine{
             Transform *m_parent = nullptr;
             /// \n a set of transform pointers assigned as the current transform's children.
             std::set<Transform *> children;
+            /// \n flags whether the object was changed directly in the world.
+            bool dirty = true;
 
             /// \n Syncs global position to the physics body's.
             void SyncPosition(const Vector3& newPosition);
@@ -125,10 +130,8 @@ namespace EisEngine{
             void SyncRotation(const Vector3& newRotation);
             /// \n Syncs global scale to the collider's.
             void SyncScale(const Vector3& oldScale, const Vector3& newScale);
-            /// \n Rotates all child transforms around the local axis after rotation.
-            void UpdateChildPositionAfterRotation(const Vector3& angleDifference);
-            /// \n Recalculates the distance to all child transforms after rescaling.
-            void UpdateChildPositionAfterScaling(const Vector3& oldScale, const Vector3& newScale);
+
+            void MarkDirty();
         };
     }
 }

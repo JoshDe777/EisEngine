@@ -53,6 +53,7 @@ namespace EisEngine{
     Vector2::operator b2Vec2() const { return {x, y};}
     Vector2::operator std::string() const { return "("+std::to_string(x)+", "+std::to_string(y)+")";}
 
+    Vector2 Vector2::operator-() const {return Vector2(-x, -y);}
     Vector2 Vector2::operator+(const EisEngine::Vector2 &v) const { return Vector2(x + v.x, y + v.y);}
     Vector2 Vector2::operator-(const EisEngine::Vector2 &v) const {return Vector2(x - v.x, y - v.y);}
     Vector2 Vector2::operator*(const int &c) const {return Vector2(x * (float) c, y * (float) c);}

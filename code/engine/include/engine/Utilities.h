@@ -14,6 +14,7 @@
 #include "engine/utilities/Bounds2D.h"
 
 #include "engine/utilities/rendering/PrimitiveMesh2D.h"
+#include "engine/utilities/rendering/PrimitiveMesh3D.h"
 #include "engine/utilities/rendering/PrimitiveSpriteMesh.h"
 #include "engine/utilities/rendering/Texture2D.h"
 
@@ -23,6 +24,7 @@ using Color = EisEngine::Color;
 using DebugLine = EisEngine::DebugLine;
 using Bounds2D = EisEngine::Bounds2D;
 using PrimitiveMesh2D = EisEngine::rendering::PrimitiveMesh2D;
+using PrimitiveMesh3D = EisEngine::rendering::PrimitiveMesh3D;
 using PrimitiveSpriteMesh = EisEngine::rendering::PrimitiveSpriteMesh;
 using Texture2D = EisEngine::Texture2D;
 
@@ -112,5 +114,28 @@ namespace EisEngine{
     template<typename T>
     bool ListContains(const std::vector<T>& list, const T& item){
         return std::find(list.begin(), list.end(), item) != list.end();
+    }
+
+    inline std::vector<Vector3> AiVector3DToVector3(std::vector<aiVector3D>& v){
+        std::vector<Vector3> result = {};
+
+        for(auto i : v)
+            result.emplace_back(i);
+
+        return result;
+    }
+
+    inline std::vector<glm::vec3> Vec3VectorToGlm(const std::vector<Vector3>& v){
+        std::vector<glm::vec3> out = {};
+        for(auto i : v)
+            out.emplace_back(i.x, i.y, i.z);
+        return out;
+    }
+
+    inline std::vector<glm::vec2> Vec2VectorToGlm(const std::vector<Vector2>& v){
+        std::vector<glm::vec2> out = {};
+        for(auto i : v)
+            out.emplace_back(i.x, i.y);
+        return out;
     }
 }

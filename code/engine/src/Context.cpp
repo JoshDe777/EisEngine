@@ -44,7 +44,7 @@ namespace EisEngine::ctx {
     void Context::run(const Context::Callback& update) {
         glfwSetTime(1.0 / 60);
         while(!glfwWindowShouldClose(window)) {
-            glClearColor(0.1608f, 0.5725f, 0.7804f, 1.0);
+            glClearColor(0.0f, 0.0f, 0.0f, 1.0);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             update(*this);
             glfwPollEvents();

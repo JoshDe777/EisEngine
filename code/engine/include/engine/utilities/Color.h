@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Vector3.h"
+
 #include <algorithm>
 #include <glm/glm.hpp>
 
@@ -16,6 +18,12 @@ namespace EisEngine {
         b(std::clamp(_b, 0.0f, 1.0f)),
         a(std::clamp(_a, 0.0f, 1.0f))
         { }
+        /// \n Creates a color form a vector3 + transparency value.
+        explicit Color(const Vector3& v, const float& a) :
+        r(v.x),
+        g(v.y),
+        b(v.z),
+        a(a) { }
 
         /// \n A float representing the colour's red values in % of 255.
         float r;

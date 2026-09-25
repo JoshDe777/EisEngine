@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <assimp/quaternion.h>
 
 namespace EisEngine {
     class Vector3;
@@ -15,6 +16,9 @@ namespace EisEngine {
         /// @param z: The z value of this quaternion
         /// @param r: The r value of this quaternion
         explicit Quaternion(float x = 0, float y = 0, float z = 0, float r = 0): x(x), y(y), z(z), r(r) {}
+        /// \n Creates a new Quaternion from an aiQuaternion object.
+        /// @param q - aiQuaternion: the quaternion data used to create this quaternion.
+        explicit Quaternion(const aiQuaternion& q) : x(q.x), y(q.y), z(q.z), r(q.w) {}
 
         /// \n The x value of this quaternion
         float x;
@@ -48,9 +52,9 @@ namespace EisEngine {
         float magnitude() const;
 
         /// The quaternion normalized to have the sum of its members squared be 1.
-        Quaternion normalized(){ return (*this * (1/this->magnitude()));}
+        Quaternion normalized() { return (*this * (1/this->magnitude()));}
 
         /// The conjugated value of this quaternion.
-        Quaternion conjugated(){ return Quaternion(r, -x, -y, -z);}
+        Quaternion conjugated() { return Quaternion(r, -x, -y, -z);}
     };
 }

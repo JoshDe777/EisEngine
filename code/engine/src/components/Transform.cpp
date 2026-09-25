@@ -23,7 +23,12 @@ namespace EisEngine::components{
     inline Vector3 ConvertMatrixToEuler(const glm::mat4& mat) {
         glm::vec3 euler;
         glm::extractEulerAngleYXZ(mat, euler.y, euler.x, euler.z);
-        return Vector3(euler);
+
+        return Vector3(
+                Math::RadiansToDegrees(euler.x),
+                Math::RadiansToDegrees(euler.y),
+                Math::RadiansToDegrees(euler.z)
+            );
     }
 
     // calculate the difference in rotation between two angles along each axis.
@@ -74,16 +79,23 @@ namespace EisEngine::components{
 
     // getters
     Vector3 Transform::GetGlobalPosition() {
-        if(m_parent)
-            return m_parent->GetGlobalPosition() + localPosition;
+        if(m_parent){
+            // I know this is bad practise but the system assumes scale invariant positions.
+            auto p_scale = m_parent->GetGlobalScale();
+            auto scaleInvariantParentMatrix = glm::scale(m_parent->modelMatrix, glm::vec3(1/p_scale.x, 1/p_scale.y, 1/p_scale.z));
+            // position by matrix instead of just adding parent pos for rotation variance.
+            glm::vec4 worldPos = m_parent->modelMatrix * glm::vec4((glm::vec3) localPosition, 1.0f);
+            return Vector3(worldPos.x, worldPos.y, worldPos.z);
+        }
         return localPosition;
     }
     Vector3 Transform::GetGlobalRotation() const{
         if (m_parent) {
+            auto p_rotation = m_parent->GetGlobalRotation();
             glm::mat4 parentGlobalRotationMatrix = glm::eulerAngleYXZ(
-                    glm::radians(m_parent->GetGlobalRotation().y),
-                    glm::radians(m_parent->GetGlobalRotation().x),
-                    glm::radians(m_parent->GetGlobalRotation().z)
+                    glm::radians(p_rotation.y),
+                    glm::radians(p_rotation.x),
+                    glm::radians(p_rotation.z)
             );
             glm::mat4 localRotationMatrix = glm::eulerAngleYXZ(
                     glm::radians(localRotation.y),
@@ -91,6 +103,7 @@ namespace EisEngine::components{
                     glm::radians(localRotation.z)
             );
             glm::mat4 globalRotationMatrix = parentGlobalRotationMatrix * localRotationMatrix;
+
             return ConvertMatrixToEuler(globalRotationMatrix);
         } else
             return localRotation;
@@ -116,7 +129,9 @@ namespace EisEngine::components{
         else
             localPosition = pos;
         m_positionChanged = true;
+        MarkDirty();
     }
+
     void Transform::SetGlobalRotation(const Vector3& newRotation) {
         Vector3 angularDiff;
         if (m_parent) {
@@ -140,7 +155,7 @@ namespace EisEngine::components{
             localRotation = NormalizeAngles(newRotation);
         }
         m_rotationChanged = true;
-        UpdateChildPositionAfterRotation(angularDiff);
+        MarkDirty();
     }
     void Transform::SetGlobalScale(const Vector3& scale) {
         auto oldScale = GetGlobalScale();
@@ -155,30 +170,32 @@ namespace EisEngine::components{
         else
             localScale = scale;
         SyncScale(oldScale, localScale);
-        UpdateChildPositionAfterScaling(oldScale, localScale);
+        MarkDirty();
     }
     void Transform::SetLocalPosition(const Vector3& pos) {
         localPosition = pos;
         m_positionChanged = true;
+        MarkDirty();
     }
     void Transform::SetLocalRotation(const Vector3& rotation) {
         auto newRotation = NormalizeAngles(rotation);
         auto angularDiff = CalculateAngularRotation(localRotation, newRotation);
         localRotation = newRotation;
         m_rotationChanged = true;
-        UpdateChildPositionAfterRotation(angularDiff);
+        MarkDirty();
     }
     void Transform::SetLocalScale(const Vector3& scale) {
         auto oldScale = GetGlobalScale();
         localScale = scale;
         SyncScale(oldScale, GetGlobalScale());
-        UpdateChildPositionAfterScaling(oldScale, localScale);
+        MarkDirty();
     }
 
     // transformations
     void Transform::Translate(const Vector3 &direction) { SetLocalPosition(localPosition + direction);}
-    void Transform::Rotate(const Vector3 &vector)
-    { SetLocalRotation(NormalizeAngles(localRotation.Rotate(vector)));}
+    void Transform::Rotate(const Vector3 &vector) {
+        SetLocalRotation(NormalizeAngles(localRotation + vector));
+    }
     void Transform::Rescale(const Vector3 &scalingFactors) {
         SetLocalScale(Vector3
         (localScale.x * scalingFactors.x,
@@ -196,53 +213,20 @@ namespace EisEngine::components{
     void Transform::AddChild(Transform *transform) {children.insert(transform);}
     void Transform::RemoveChild(Transform *transform) { children.erase(transform);}
 
-    // child transformations
-    void Transform::UpdateChildPositionAfterRotation(const Vector3& angleDifference) {
-        if(children.empty())
-            return;
-
-        glm::mat4 rotationMatrix = glm::eulerAngleXYZ(
-                glm::radians(angleDifference.x),
-                glm::radians(angleDifference.y),
-                glm::radians(angleDifference.z));
-
-        for (auto& child : children) {
-            auto childLocalPosition = child->GetLocalPosition();
-
-            glm::vec4 newGlobalPositionVec4 = rotationMatrix * glm::vec4((glm::vec3) childLocalPosition, 1.0f);
-
-            auto newGlobalPosition = Vector3(
-                    newGlobalPositionVec4.x,
-                    newGlobalPositionVec4.y,
-                    newGlobalPositionVec4.z
-                    );
-
-            child->SetLocalPosition(newGlobalPosition);
-
-            auto newRotation = child->GetLocalRotation() + angleDifference;
-            child->SetLocalRotation(newRotation);
-        }
-    }
-    void Transform::UpdateChildPositionAfterScaling(const Vector3& oldScale, const Vector3& newScale){
-        if(children.empty())
-            return;
-
-        for(auto child : children){
-            auto childLocalPos = child->GetLocalPosition();
-
-            auto normalizedPos = Vector3(
-                    childLocalPos.x / oldScale.x,
-                    childLocalPos.y / oldScale.y,
-                    childLocalPos.z / oldScale.z
-                    );
-            auto rescaledPos = Vector3(
-                    normalizedPos.x * newScale.x,
-                    normalizedPos.y * newScale.y,
-                    normalizedPos.z * newScale.z
-                    );
-
-            child->SetLocalPosition(rescaledPos);
-        }
+    glm::mat4 Transform::GetLocalMatrix() {
+        auto model = glm::mat4(1.0f);
+        model = glm::translate(model, (glm::vec3) GetLocalPosition());
+        // roll
+        model = glm::rotate(model, glm::radians(GetLocalRotation().z),
+                            glm::vec3(0.0f, 0.0f, 1.0f));
+        // pitch
+        model = glm::rotate(model, glm::radians(GetLocalRotation().x),
+                            glm::vec3(1.0f, 0.0f, 0.0f));
+        // yaw
+        model = glm::rotate(model, glm::radians(GetLocalRotation().y),
+                            glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, (glm::vec3) GetLocalScale());
+        return model;
     }
 
     // physics syncing
@@ -259,5 +243,14 @@ namespace EisEngine::components{
         if(!collider)
             return;
         collider->RescaleBounds(oldScale, newScale);
+    }
+
+    void Transform::MarkDirty() {
+        dirty = true;
+        if(children.empty())
+            return;
+
+        for(auto child:children)
+            child->MarkDirty();
     }
 }

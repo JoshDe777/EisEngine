@@ -5,7 +5,7 @@ namespace EisEngine::rendering{
 // helper functions:
 
     // converts a std::vector of Vector3's to a std::vector of glm::vec3's.
-    std::vector<glm::vec3> Vector3ToGlmVector(const std::vector<Vector3>& v){
+    inline std::vector<glm::vec3> Vector3ToGlmVector(const std::vector<Vector3>& v){
         std::vector<glm::vec3> result = {};
         for(auto i : v)
             result.emplace_back((glm::vec3) i);
