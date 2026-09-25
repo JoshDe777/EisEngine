@@ -170,3 +170,6 @@ _deps
 ### Documentation ###
 cmake-build-debug
 cmake-build-release
+
+### Visual Studio ###
+.vs/
