@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -14,82 +14,57 @@ namespace EisEngine {
 
     enum LogPriority{ InfoP = 0, DebugP = 1, WarnP = 2, ErrorP = 3, FatalP = 4};
 
-    /**
-     * @def DEBUG_INFO(message)
-     *
-     * Logs an informational message indicating the file and line number where the macro is called.
-     *
-     * @param message - std::string: A string to be displayed in the log message.
-     */
     #ifndef DEBUG_INFO
+    /// Logs an informational message indicating the file and line number where the macro is called.
+    /// @param message - std::string: A string to be displayed in the log message.
     #define DEBUG_INFO(message) Debug::Info(__FILE__, __LINE__, message);
     #endif
 
-    /**
-     * @def DEBUG_LOG(message)
-     *
-     * Logs a message indicating the file and line number where the macro is called.
-     *
-     * @param message - std::string: A string to be displayed in the log message.
-     */
+
     #ifndef DEBUG_LOG
+    /// Logs a message indicating the file and line number where the macro is called
+    /// @param message - std::string: A string to be displayed in the log message.
     #define DEBUG_LOG(message) Debug::Log(__FILE__, __LINE__, message);
     #endif
 
-    /**
-     * @def DEBUG_WARN(message)
-     *
-     * Logs a warning message indicating the file and line number where the macro is called.
-     *
-     * @param message - std::string: A string to be displayed in the warning message.
-     */
+
     #ifndef DEBUG_WARN
+    /// Logs a warning message indicating the file and line number where the macro is called.
+    /// @param message - std::string: A string to be displayed in the warning message.
     #define DEBUG_WARN(message) Debug::Warn(__FILE__, __LINE__, message);
     #endif
 
-    /**
-     * @def DEBUG_ERROR(message)
-     *
-     * Logs an error message indicating the file and line number where the macro is called.
-     * \n This **does not** interrupt the game, and should be used e.g. in error catching.
-     *
-     * @param message - std::string: A string to be displayed in the error message.
-     */
+
     #ifndef DEBUG_ERROR
+    /// Logs an error message indicating the file and line number where the macro is called.
+    /// This **does not** interrupt the game, and should be used e.g. in error catching.
+    /// @param message - std::string: A string to be displayed in the error message.
     #define DEBUG_ERROR(message) Debug::Error(__FILE__, __LINE__, message);
     #endif
 
 
-    /**
-     * @def DEBUG_RUNTIME_ERROR(message)
-     *
-     * Logs an error message indicating the file and line number where the macro is called.
-     * \n This **does** interrupt the game when called.
-     *
-     * @param message - std::string: A string to be displayed in the error message.
-     */
     #ifndef DEBUG_RUNTIME_ERROR
+    /// Logs an error message indicating the file and line number where the macro is called.
+    /// This **does** interrupt the game when called.
+    /// @param message - std::string: A string to be displayed in the error message.
     #define DEBUG_RUNTIME_ERROR(message) Debug::RuntimeError(__FILE__, __LINE__, message);
     #endif
 
-    /**
-     * @def DEBUG_OPENGL(entityName)
-     *
-     * Logs an error message indicating the file and line number where the macro is called.
-     *
-     * @param entityName - std::string: An identifier to the entity potentially triggering the error.
-     */
-#ifndef DEBUG_OPENGL
-#define DEBUG_OPENGL(entityName) Debug::Check_GL_Error(__FILE__, __LINE__, entityName);
-#endif
 
-    /// \n {DEPRECATED} A utility class used for debugging purposes -
-    /// provides more practical console inputs than the standard library's console interactions.\n
-    /// \n Deprecated - use provided macros instead (DEBUG_LOG(message) instead of
-    /// Debug::Log(__FILE__, __LINE__, message))
+    #ifndef DEBUG_OPENGL
+    /// Logs an error message indicating the file and line number where the macro is called.
+    /// @param entityName - std::string: An identifier to the entity potentially triggering the error.
+    #define DEBUG_OPENGL(entityName) Debug::Check_GL_Error(__FILE__, __LINE__, entityName);
+    #endif
+
+    /// A utility class used for debugging purposes - provides more practical console inputs than the standard library's console interactions.
+    /// /!\ STATIC CLASS ONLY! Use associated macros DEBUG_[TYPE]!
     class Debug {
     public:
-        /// \n sends a specific line of text to the console.
+        // Delete constructor, static-only class.
+        Debug() = delete;
+
+        /// sends a specific line of text to the console.
         /// @param file - [use __FILE__] -> gives file information to the file the statement is called from.
         /// @param line - [use __LINE__] -> gives the line the statement was called from.
         /// @param text - a string to be sent to the console.
@@ -97,7 +72,7 @@ namespace EisEngine {
             CreateLog(DebugP, file, line, text);
         }
 
-        /// \n sends an information message to the console.
+        /// sends an information message to the console.
         /// @param file - [use __FILE__] -> gives file information to the file the statement is called from.
         /// @param line - [use __LINE__] -> gives the line the statement was called from.
         /// @param text - a string to be displayed as information.
@@ -105,7 +80,7 @@ namespace EisEngine {
             CreateLog(InfoP, file, line, text);
         }
 
-        /// \n sends a warning message to the console
+        /// sends a warning message to the console
         /// @param file - [use __FILE__] -> gives file information to the file the statement is called from.
         /// @param line - [use __LINE__] -> gives the line the statement was called from.
         /// @param warning - a string to be displayed as a warning message.
@@ -113,7 +88,7 @@ namespace EisEngine {
             CreateLog(WarnP, file, line, warning);
         }
 
-        /// \n sends an error message to the console.
+        /// sends an error message to the console.
         /// @param file - [use __FILE__] -> gives file information to the file the statement is called from.
         /// @param line - [use __LINE__] -> gives the line the statement was called from.
         /// @param errorText - a string to be displayed as the explanation behind the error message.
@@ -121,7 +96,7 @@ namespace EisEngine {
             CreateLog(ErrorP, file, line, errorText);
         }
 
-        /// \n throws a runtime error, crashing the game and logging the error message in the process.
+        /// throws a runtime error, crashing the game and logging the error message in the process.
         /// @param file - [use __FILE__] -> gives file information to the file the statement is called from.
         /// @param line - [use __LINE__] -> gives the line the statement was called from.
         /// @param err - the error message to be displayed.
@@ -129,8 +104,10 @@ namespace EisEngine {
             CreateLog(FatalP, file, line, err);
         }
 
+        /// Fetches OpenGL errors and prints them if any are found.
         static void Check_GL_Error(const char* file, int line, const std::string& entityName) {
-            if(Priority < LogPriority::ErrorP)
+            // return early if priority is set to only map runtime errors.
+            if(LogPriority::ErrorP < Priority)
                 return;
 
             GLenum error = glGetError();
@@ -138,18 +115,22 @@ namespace EisEngine {
 
             if (error != GL_NO_ERROR) {
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                // set console colour to GL Error setting :)
                 SetConsoleTextAttribute(hConsole, 12);
 
+                // compile error message
                 std::stringstream logStream;
                 logStream << "["<< file <<"("<< line << ")]:\n";
                 logStream << "[OpenGL Error ("<< entityName << ")] - (" << time << "): ";
                 logStream << std::to_string(error);
 
+                // print error message & reset console colour to default.
                 std::cout << logStream.str() << std::endl;
                 SetConsoleTextAttribute(hConsole, 7);
             }
         }
 
+        /// Sets the minimum priority hurdle for debug messages.
         static void SetPriority(LogPriority val) {Priority = val;}
     private:
         /// \n Compiles the log info to a message in the console.
@@ -170,28 +151,29 @@ namespace EisEngine {
             logStream << message;
 
             switch(priority){
+                // Change console colour if severity is > info/debug, + print before throwing a runtime error when priority is fatal.
                 case DebugP:
                 case InfoP:
-                    std::cout << logStream.str() << std::endl;
                     break;
                 case WarnP:
                     SetConsoleTextAttribute(hConsole, 6);
-                    std::cout << logStream.str() << std::endl;
                     break;
                 case ErrorP:
                     SetConsoleTextAttribute(hConsole, 12);
-                    std::cout << logStream.str() << std::endl;
                     break;
                 case FatalP:
                     SetConsoleTextAttribute(hConsole, 12);
                     std::cout << logStream.str() << std::endl;
+                    SetConsoleTextAttribute(hConsole, 7);
                     throw std::runtime_error(logStream.str());
             }
 
+            // print message & reset console color
+            std::cout << logStream.str() << std::endl;
             SetConsoleTextAttribute(hConsole, 7);
         }
 
-        /// \n Maps every log priority to a string.
+        /// Maps every log priority to a string.
         static std::string PriorityToString(LogPriority p){
             switch (p) {
                 case InfoP:
@@ -208,7 +190,7 @@ namespace EisEngine {
             return "Unexpected log priority ";
         }
 
-        /// \n Get current system time.
+        /// Get current system time.
         static std::string GetTime(){
             time_t currentTime;
             struct tm* localTime;
@@ -221,14 +203,14 @@ namespace EisEngine {
             return CompileTimeToString(time);
         }
 
-        /// \n Converts an array of time values to a string displaying hh:mm:ss.
+        /// Converts an array of time values to a string displaying hh:mm:ss.
         static std::string CompileTimeToString(const std::array<int, 3> &time)
         {
             std::stringstream ss;
             ss <<
-                std::setw(2) << std::setfill('0') << to_string(time[0]) << ":" <<
-                std::setw(2) << std::setfill('0') << to_string(time[1]) << ":" <<
-                std::setw(2) << std::setfill('0') << to_string(time[2]);
+                std::setw(2) << std::setfill('0') << std::to_string(time[0]) << ":" <<
+                std::setw(2) << std::setfill('0') << std::to_string(time[1]) << ":" <<
+                std::setw(2) << std::setfill('0') << std::to_string(time[2]);
             return ss.str();
         }
 

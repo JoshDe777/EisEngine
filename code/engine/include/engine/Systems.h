@@ -1,4 +1,6 @@
-#pragma once
+﻿#pragma once
+
+// easy import file for all engine sub-systems
 
 #include "engine/systems/SceneGraphPruner.h"
 #include "engine/systems/SceneGraphUpdater.h"

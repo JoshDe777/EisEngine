@@ -1,6 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include <random>
+
+// easy import file for all utility classes + some operators and utility functions.
 
 #include "engine/utilities/Math.h"
 #include "engine/utilities/Debug.h"
@@ -29,8 +31,7 @@ using PrimitiveSpriteMesh = EisEngine::rendering::PrimitiveSpriteMesh;
 using Texture2D = EisEngine::Texture2D;
 
 namespace EisEngine{
-    /// \n Produces a string of the given vector of floats in the format\n
-    /// &lt;a, b, ..., n>.
+    /// Produces a string of the given vector of floats in the format [a, b, ..., n].
     inline std::string to_string(const std::vector<float> &v){
         std::ostringstream oss;
         oss.precision(6);
@@ -48,8 +49,7 @@ namespace EisEngine{
         return (std::string) oss.str();
     }
 
-    /// \n Produces a string of the given vector of unsigned ints in the format\n
-    /// &lt;a, b, ..., n>.
+    /// Produces a string of the given vector of unsigned ints in the format [a, b, ..., n].
     inline std::string to_string(const std::vector<unsigned int> &v){
         std::ostringstream oss;
         oss.precision(6);
@@ -67,7 +67,7 @@ namespace EisEngine{
         return (std::string) oss.str();
     }
 
-    /// \n Produces a string of the given b2Vec2, in the format (x, y)
+    /// Produces a string of the given b2Vec2, in the format (x, y)
     inline std::string to_string(const b2Vec2 &v){
         std::ostringstream oss;
         oss.precision(6);
@@ -75,8 +75,7 @@ namespace EisEngine{
         return (std::string) oss.str();
     }
 
-    /// \n Produces a string of the provided vector of b2Vec2's, in the format
-    /// &lt(x1, y1), (x2, y2), ..., (xn, yn)>.
+    /// Produces a string of the provided vector of b2Vec2's, in the format [(x1, y1), (x2, y2), ..., (xn, yn)].
     inline std::string to_string(const std::vector<b2Vec2> &v){
         std::ostringstream oss;
         oss.precision(6);
@@ -94,7 +93,7 @@ namespace EisEngine{
         return (std::string) oss.str();
     }
 
-    /// \n Provides a random float value x with\n min (incl.) &le x &lt max (excl.)
+    /// Provides a random float value x with min (incl.) lower equal to x lower than max (excl.)
     inline float RandomFloat(const float& min, const float& max){
         std::random_device rnd;
         std::mt19937 gen(rnd());
@@ -102,7 +101,7 @@ namespace EisEngine{
         return static_cast<float>(dis(gen));
     }
 
-    /// \n Provides a random integer value x within the range [min, max] (both inclusive).
+    /// Provides a random integer value x within the range [min, max] (both inclusive).
     inline int RandomInt(const int& min, const int& max){
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -110,35 +109,39 @@ namespace EisEngine{
         return distr(gen);
     }
 
-    /// \n Determines whether a vector contains a specific item.
+    /// Determines whether a vector contains a specific item.
     template<typename T>
     bool ListContains(const std::vector<T>& list, const T& item){
         return std::find(list.begin(), list.end(), item) != list.end();
     }
 
+    /// Converts a list of assimp vectors to a list of EisEngine vectors.
     inline std::vector<Vector3> AiVector3DToVector3(std::vector<aiVector3D>& v){
-        std::vector<Vector3> result = {};
+        std::vector<Vector3> result(v.size());
 
-        for(auto i : v)
+        for(auto& i : v)
             result.emplace_back(i);
 
         return result;
     }
 
+    /// Converts a list of EisEngine vectors to OpenGL vectors
     inline std::vector<glm::vec3> Vec3VectorToGlm(const std::vector<Vector3>& v){
-        std::vector<glm::vec3> out = {};
-        for(auto i : v)
+        std::vector<glm::vec3> out(v.size());
+        for(auto& i : v)
             out.emplace_back(i.x, i.y, i.z);
         return out;
     }
 
+    /// Converts a list of EisEngine 2D vectors to OpenGL vectors.
     inline std::vector<glm::vec2> Vec2VectorToGlm(const std::vector<Vector2>& v){
-        std::vector<glm::vec2> out = {};
-        for(auto i : v)
+        std::vector<glm::vec2> out(v.size());
+        for(auto& i : v)
             out.emplace_back(i.x, i.y);
         return out;
     }
 
+    // Scalar vector math
     inline Vector3 operator*(float const& f, const Vector3& v){
         return Vector3(f*v.x, f*v.y, f*v.z);
     }

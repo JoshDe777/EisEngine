@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "engine/ecs/Component.h"
 #include "engine/utilities/rendering/PrimitiveMesh3D.h"
@@ -6,7 +6,7 @@
 namespace EisEngine {
     using namespace ecs;
     namespace components {
-        /// \n This component represents an entity's shape in the 3D world.\n
+        /// This component represents an entity's shape in the 3D world.\n
         class Mesh3D : public Component {
         public:
             explicit Mesh3D(
@@ -17,17 +17,17 @@ namespace EisEngine {
             Mesh3D(const Mesh3D &other) = delete;
             Mesh3D(Mesh3D &&other) noexcept;
 
-            /// \n A function called when a component is intentionally deleted.
+            /// A function called when a component is intentionally deleted.
             void Invalidate() override;
 
-            /// \n Draws the mesh onto the screen once per frame.
+            /// Draws the mesh onto the screen once per frame.
             void draw(const unsigned int& shaderProgram);
-            /// \n primitive mesh definition, stores vertex and edge data.
+            /// primitive mesh definition, stores vertex and edge data.
             std::unique_ptr<PrimitiveMesh3D> primitive;
         private:
-            /// \n Vertex Buffer Object -> contains vertex attribute and index data.
+            /// Vertex Buffer Object -> contains vertex attribute and index data.
             unsigned int VBO = 0;
-            /// \n Element Buffer Object -> stores index data to avoid reusing coordinates in triangles.
+            /// Element Buffer Object -> stores index data to avoid reusing coordinates in triangles.
             unsigned int EBO = 0;
         };
 

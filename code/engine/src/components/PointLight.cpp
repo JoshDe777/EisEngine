@@ -1,4 +1,4 @@
-#include <utility>
+﻿#include <utility>
 
 #include "engine/Game.h"
 #include "engine/components/PointLight.h"
@@ -19,6 +19,7 @@ namespace EisEngine::components {
         std::swap(this->mat, other.mat);
     }
 
+    // I think this function is deprecated?
     void PointLight::Apply(rendering::Shader &shader, const int& index) const {
         std::stringstream loc;
         loc.str("");

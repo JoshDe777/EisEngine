@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <OpenGL/OpenGlInclude.h>
 
@@ -9,30 +9,35 @@ namespace EisEngine {
     public:
         void Bind() const;
     private:
-        /// \n Creates a new Cubemap object
+        /// Creates a new Cubemap object
         Cubemap();
 
+        /// Generate cubemap data from source
         void Generate(unsigned int& index, unsigned int width, unsigned int height, unsigned char* data);
-        void SetParams();
+        /// Set the rendering parameters in the OpenGL texture object
+        void SetParams() const;
+        /// The texture ID in the rendering storage system.
         unsigned int textureID;
 
+        /// The width of the cubemap's individual textures.
         int width = -1;
+        /// The height of the cubemap's individual textures.
         int height = -1;
 
-        /// \n texture object format.
+        /// texture object format.
         unsigned int internalFormat;
-        /// \n source image format.
+        /// source image format.
         unsigned int imageFormat;
 
-        /// \n Wrapping mode on s-Axis.
+        /// Wrapping mode on s-Axis.
         unsigned int wrapS;
-        /// \n Wrapping mode on t-Axis.
+        /// Wrapping mode on t-Axis.
         unsigned int wrapT;
-        /// \n Wrapping mode on r-Axis.
+        /// Wrapping mode on r-Axis.
         unsigned int wrapR;
-        /// \n Filtering mode if texture can be fully displayed on screen.
+        /// Filtering mode if texture can be fully displayed on screen.
         unsigned int minFilterMode;
-        /// \n Filtering mode if texture cannot be fully displayed on screen (n(texture.pixels) > n(screen.pixels)
+        /// Filtering mode if texture cannot be fully displayed on screen (n(texture.pixels) > n(screen.pixels)
         unsigned int maxFilterMode;
     };
 }

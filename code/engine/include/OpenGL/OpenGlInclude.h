@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 // this file exists because of some issues including opengl libs with the input system.
-// this works for some reason so it stays.
+// locks problematic includes behind a #ifndef clause, to avoid redefining things.
 
 #ifndef OPENGL_INCLUDED
 #define OPENGL_INCLUDED

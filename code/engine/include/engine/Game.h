@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <memory>
 #include <stdexcept>
@@ -25,79 +25,79 @@ namespace EisEngine {
     using components::Transform;
     using ctx::Context;
 
-    /// \n The central class for games created using Eis-Engine.
-    /// \n Runs the game loop and holds references to all systems required for running a game.
+    /// The central class for games created using Eis-Engine.
+    /// Runs the game loop and holds references to all systems required for running a game.
     class Game {
     public:
-        /// \n Creates an instance of a game.
+        /// Creates an instance of a game.
         /// @param title - game window title.
         Game(const std::string &title);
-        /// \n Terminates the instance of the game.
+        /// Terminates the instance of the game.
         virtual ~Game();
 
-        /// \n Runs the game life until demanded to terminate.
+        /// Runs the game life until demanded to terminate.
         virtual void run();
-        /// \n Signals the engine to close the game window.
+        /// Signals the engine to close the game window.
         void Quit();
 
-        /// \n Fetches the game window.
+        /// Fetches the game window.
         /// @return @a GLFWwindow* - a pointer to a GLFW window.
         [[nodiscard]] GLFWwindow *getWindow();
 
-        /// \n an event invoked right at the start of the game's lifetime.
+        /// an event invoked right at the start of the game's lifetime.
         event_t onStartup;
-        /// \n an event invoked right before the first iteration of the game loop.
+        /// an event invoked right before the first iteration of the game loop.
         event_t onAfterStartup;
-        /// \n an event invoked at the beginning of every frame.
+        /// an event invoked at the beginning of every frame.
         event_t onBeforeUpdate;
-        /// \n an event invoked in the middle of every frame.
+        /// an event invoked in the middle of every frame.
         event_t onUpdate;
-        /// \n an event invoked at the end of every frame.
+        /// an event invoked at the end of every frame.
         event_t onAfterUpdate;
-        /// \n an event invoked right after the game has been asked to terminate.
+        /// an event invoked right after the game has been asked to terminate.
         event_t onBeforeShutdown;
-        /// \n an event invoked right before fully shutting down the game.
+        /// an event invoked right before fully shutting down the game.
         event_t onShutdown;
-        /// \n an event invoked every frame when a behaviour is instantiated.
+        /// an event invoked every frame when a behaviour is instantiated.
         event_t onEntityStart;
 
     private:
-        /// \n The EisEngine time manager.
+        /// The EisEngine time manager.
         Time time;
 
     public:
-        /// \n the game's component manager.
+        /// the game's component manager.
         unique_ptr<ComponentManager> componentManager;
-        /// \n the game's entity manager.
+        /// the game's entity manager.
         unique_ptr<EntityManager> entityManager;
-        /// \n The game context. Gives information about the window / software side of the game.
+        /// The game context. Gives information about the window / software side of the game.
         unique_ptr<Context> context;
-        /// \n the main camera rendering the scene.
+        /// the main camera rendering the scene.
         unique_ptr<Camera> camera;
-        /// \n The system running game physics.
+        /// The system running game physics.
         unique_ptr<PhysicsSystem> physics;
-        /// \n The system synchronizing transforms and rigidbodies.
+        /// The system synchronizing transforms and rigidbodies.
         unique_ptr<PhysicsUpdater> physicsUpdater;
-        /// \n A system used to update light positions
+        /// A system used to update light positions
         unique_ptr<LightSystem> lightSystem;
     protected:
-        /// \n Utility function called every frame.
+        /// Utility function called every frame.
         virtual void update(GLFWwindow *window);
-        /// \n Utility function called once at the start of the game's lifetime.
+        /// Utility function called once at the start of the game's lifetime.
         virtual void start() {}
-        /// \n Called every frame. Defines conditions for game termination.
+        /// Called every frame. Defines conditions for game termination.
         void CheckForCloseWindowSignal();
-        /// \n The game loop, defines the sequence of actions.
+        /// The game loop, defines the sequence of actions.
         void GameLoop();
 
-        /// \n A system used to draw lines.
+        /// A system used to draw lines.
         unique_ptr<RenderingSystem> renderingSystem;
-        /// \n A system tasked with managing transform relations.
+        /// A system tasked with managing transform relations.
         unique_ptr<SceneGraphPruner> sceneGraphPruner;
-        /// \n A system tasked with updating transforms.
+        /// A system tasked with updating transforms.
         unique_ptr<SceneGraphUpdater> sceneGraphUpdater;
     private:
-        /// \n The EisEngine input manager.
+        /// The EisEngine input manager.
         unique_ptr<Input> input;
     };
 }

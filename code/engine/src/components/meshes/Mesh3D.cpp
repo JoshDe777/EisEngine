@@ -1,18 +1,10 @@
-#include "engine/components/meshes/Mesh3D.h"
+﻿#include "engine/components/meshes/Mesh3D.h"
+#include "engine/utilities/rendering/MeshUtilities.h"
+#include "engine/Utilities.h"
 #include "engine/ecs/Entity.h"
 
 namespace EisEngine::components {
 #pragma region buffers & mesh lifetime
-    // create and fill an openGL buffer object of the specified type.
-    template<typename T>
-    GLuint CreateBuffer(GLuint bufferType, const std::vector<T> &bufferData) {
-        unsigned int buffer = 0;
-        glGenBuffers(1, &buffer);
-        glBindBuffer(bufferType, buffer);
-        glBufferData(bufferType, bufferData.size() * sizeof(T), bufferData.data(), GL_STATIC_DRAW);
-        return buffer;
-    }
-
     GLuint CreateVBO(PrimitiveMesh3D* primitive){
         // buffer initialization
         unsigned int buffer = 0;
@@ -32,7 +24,7 @@ namespace EisEngine::components {
         auto bitansize = bitans.size() * sizeof(glm::vec3);
         auto total_buffer_size = GLsizeiptr(vsize + nsize + uvsize + tansize + bitansize);
 
-        // buffer population
+        // buffer population - sequential filling of each property instead of cross-pollinating per vertex.
         glBufferData(GL_ARRAY_BUFFER, total_buffer_size, nullptr, GL_STATIC_DRAW);
         long long offset = 0;
         glBufferSubData(GL_ARRAY_BUFFER, offset, vsize, vertices.data());
@@ -61,9 +53,7 @@ namespace EisEngine::components {
     Component(engine, owner),
     primitive(std::make_unique<PrimitiveMesh3D>(_primitive)),
     VBO(CreateVBO(&_primitive)),
-    EBO(CreateBuffer(GL_ELEMENT_ARRAY_BUFFER, _primitive.indices)) {
-
-    }
+    EBO(CreateBuffer(GL_ELEMENT_ARRAY_BUFFER, _primitive.indices)) { }
 
     Mesh3D::Mesh3D(EisEngine::components::Mesh3D &&other)  noexcept  :
             Component(other),
@@ -83,7 +73,7 @@ namespace EisEngine::components {
 
     void Mesh3D::draw(const unsigned int& shaderProgram) {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        DEBUG_OPENGL(entity()->name())
+        DEBUG_OPENGL(entity()->name())              // in case of error binding VBO, but also to clear any previous error messages.
         unsigned long long offset = 0;
         auto nVerts = primitive->GetVertexCount();
 
@@ -135,7 +125,6 @@ namespace EisEngine::components {
                                   0, (GLvoid*)offset);
             DEBUG_OPENGL(entity()->name())
         }
-        //offset += nVerts * sizeof(glm::vec3);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         DEBUG_OPENGL(entity()->name())

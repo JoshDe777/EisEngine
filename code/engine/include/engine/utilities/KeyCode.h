@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include <OpenGL/OpenGlInclude.h>
 
 namespace EisEngine {
-    /// \n maps OpenGL Key definitions to EisEngine, more user-friendly codes.
+    /// maps OpenGL Key definitions to EisEngine, more user-friendly codes.
+    /// This enum was created by ChatGPT and reviewed for accuracy and usefulness.
     enum class KeyCode {
         Space = GLFW_KEY_SPACE,
         Apostrophe = GLFW_KEY_APOSTROPHE, /* ' */

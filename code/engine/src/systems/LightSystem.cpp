@@ -1,4 +1,4 @@
-#include "engine/Game.h"
+﻿#include "engine/Game.h"
 #include "engine/components/meshes/Mesh3D.h"
 #include "engine/systems/LightSystem.h"
 
@@ -130,7 +130,7 @@ namespace EisEngine::systems {
             // bypass distance check if newly registered
             auto it = lastKnownWorldPos.find((int) id);
             if(it != lastKnownWorldPos.end()){
-                auto last = lastKnownWorldPos.at((int) id);
+                auto& last = lastKnownWorldPos.at((int) id);
 
                 // don't update if not within voxel change dist of previously known pos.
                 if (Vector3::Distance(last, pos) < CELL_SIZE) {

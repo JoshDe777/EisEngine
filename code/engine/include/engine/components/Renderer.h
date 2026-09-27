@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "engine/ecs/Component.h"
 #include "engine/utilities/rendering/Shader.h"
@@ -11,44 +11,46 @@ namespace EisEngine {
     using rendering::Shader;
 
     namespace components {
-        /// \n *deprecated* Contains rendering data for any type of mesh.
-        /// \n Use specialized renderers tailored to a specific mesh type instead.
+        /// Contains rendering data for any type of mesh.
         class Renderer : public Component {
             friend class ecs::Entity;
         public:
-            /// \n Creates a renderer.
+            /// Creates a renderer.
             /// @param diffTex - Texture2D*: A pointer to a texture item. Can be null.
-            /// @param mat - Material*: A pointer to a material item.
+            /// @param mat - Material*: A pointer to a material item. Can be null.
             /// @param layer - std::string: The rendering layer for meshes paired with a renderer.
             /// \n Currently supported: {"UI" for UI Elements, and [any other string] for regular rendering}.
+            /// @param normMap: Texture2D* - A pointer to a normal map. Can be null.
             Renderer(Game &engine, guid_t owner,
                      Texture2D* diffTex = nullptr,
                      Material* mat = nullptr,
-                     std::string  layer = "Background",
+                     std::string  layer = "default",
                      Texture2D* normMap = nullptr);
             Renderer(const Renderer &renderer) = delete;
             Renderer(Renderer &&other) noexcept;
 
-            /// \n Applies rendering data to the active shader before drawing meshes.
+            /// Applies rendering data to the active shader before drawing meshes.
             virtual void ApplyData(Shader& shader);
-            /// \n returns a renderer's rendering layer.
+            /// returns a renderer's rendering layer.
             [[nodiscard]] std::string GetLayer() { return m_layer;}
 
-            /// \n Sets a new texture for the corresponding sprite.
+            /// Sets a new diffuse texture for the corresponding object.
             void SetDiffuseTexture(Texture2D* newTexture) { diffuseTexture = newTexture;}
+            /// Sets a new normal map for the corresponding object.
             void SetNormalMap(Texture2D* newTexture) { normalMap = newTexture;}
-            /// \n Returns a pointer to the texture assigned to a renderer.
+            /// Returns a pointer to the texture assigned to a renderer.
             Texture2D* GetDiffuseTexture() { return diffuseTexture;}
+            /// Returns a pointer to the normal map assigned to a renderer.
             Texture2D* GetNormalMap(){ return normalMap;}
 
-            /// \n The material attributed to the associated mesh.
+            /// The material attributed to the associated mesh.
             Material* material;
         protected:
-            /// \n the diffuse/albedo texture attributed to the associated mesh.
+            /// the diffuse/albedo texture attributed to the associated mesh.
             Texture2D* diffuseTexture;
-            /// \n the normal map attributed to the associated mesh.
+            /// the normal map attributed to the associated mesh.
             Texture2D* normalMap;
-            /// \n The rendering layer of the associated mesh.
+            /// The rendering layer of the associated mesh.
             std::string m_layer;
         };
     }

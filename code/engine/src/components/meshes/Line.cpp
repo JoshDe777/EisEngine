@@ -1,24 +1,12 @@
-#include "engine/components/meshes/Line.h"
+﻿#include "engine/components/meshes/Line.h"
+#include "engine/utilities/rendering/MeshUtilities.h"
 #include "engine/ecs/Entity.h"
 
 namespace EisEngine::components {
-    // helper functions:
-
-    // create and fill an openGL buffer object of the specified type.
-    template<typename T>
-    GLuint CreateBuffer(GLuint bufferType, const std::vector<T> &bufferData) {
-        unsigned int buffer = 0;
-        glGenBuffers(1, &buffer);
-        glBindBuffer(bufferType, buffer);
-        glBufferData(bufferType,
-                     bufferData.size() * sizeof(glm::vec3),
-                     bufferData.data(),
-                     GL_STATIC_DRAW);
-        return buffer;
-    }
-
+    #pragma region helper functions:
     // creates a standard vector of openGL vectors.
     std::vector<glm::vec3> VectorsToGlmVec3s(const Vector3 &start, const Vector3 &end){ return {start, end};}
+    #pragma endregion
 
     // line methods:
     Line::Line(Game &engine, guid_t owner, const Vector3& start, const Vector3& end):

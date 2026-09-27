@@ -1,4 +1,4 @@
-#include "engine/utilities/rendering/Cubemap.h"
+﻿#include "engine/utilities/rendering/Cubemap.h"
 #include "engine/utilities/rendering/Shader.h"
 #include "engine/utilities/Debug.h"
 
@@ -38,7 +38,7 @@ namespace EisEngine {
         glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
     }
 
-    void Cubemap::SetParams() {
+    void Cubemap::SetParams() const {
         glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, (GLint) maxFilterMode);

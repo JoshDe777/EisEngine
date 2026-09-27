@@ -1,4 +1,6 @@
-#pragma once
+﻿#pragma once
+
+// easy import file for all components.
 
 #include "engine/components/BoxCollider2D.h"
 #include "engine/components/PhysicsBody2D.h"

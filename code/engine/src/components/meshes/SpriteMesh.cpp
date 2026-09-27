@@ -1,23 +1,11 @@
-#include <utility>
+﻿#include <utility>
 
 #include "engine/components/meshes/SpriteMesh.h"
+#include "engine/utilities/rendering/MeshUtilities.h"
 #include "engine/ecs/Entity.h"
 
 namespace EisEngine::components {
     using EisEngine::rendering::SpriteVertex;
-
-    // helper functions:
-
-    // create and fill an openGL buffer object of the specified type.
-    template<typename T>
-    GLuint CreateBuffer(GLuint bufferType, const std::vector<T> &bufferData) {
-        unsigned int buffer = 0;
-        glGenBuffers(1, &buffer);
-        glBindBuffer(bufferType, buffer);
-        glBufferData(bufferType, bufferData.size() * sizeof(T),
-                     bufferData.data(), GL_STATIC_DRAW);
-        return buffer;
-    }
 
     // sprite mesh methods:
 

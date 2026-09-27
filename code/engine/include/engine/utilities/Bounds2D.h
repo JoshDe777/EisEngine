@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Vector3.h"
 #include "Vector2.h"
@@ -6,9 +6,13 @@
 
 namespace EisEngine {
 
-    /// \n Defines the boundaries of a 2D-rectangular object.
+    /// Defines the boundaries of a rectangle covering a given area.
     struct Bounds2D {
-        /// \n Creates a new bounds object.
+        /// Creates a new 2D bounds object, with bounds defined in clockwise order from the top.
+        /// @param topBound: float - the upper y coordinate of the bounded area
+        /// @param rightBound: float - the upper x coordinate of the bounded area
+        /// @param bottomBound: float - the lower y coordinate of the bounded area
+        /// @param leftBound: float - the lower x coordinate of the bounded area
         explicit Bounds2D(float topBound = 0.5f,
                           float rightBound = 0.5f,
                           float bottomBound = -0.5f,
@@ -20,39 +24,51 @@ namespace EisEngine {
             ReevaluateSize();
         }
 
-        /// \n the top boundary of the box shape (y-axis).
+        /// Creates a new 2D bounds object, with bounds defined in clockwise order from the top.
+        /// @param bounds: float[4] - the four coordinates defining the boundaries in clockwise order from the top (top-right-bottom-left)
+        explicit Bounds2D(std::array<float, 4>& bounds) : 
+                top(bounds[0]),
+                right(bounds[1]),
+                bottom(bounds[2]),
+                left(bounds[3]) {
+            ReevaluateSize();
+        }
+
+        /// the top boundary of the box shape (y-axis).
         float top;
-        /// \n the right boundary of the box shape (x-axis).
+        /// the right boundary of the box shape (x-axis).
         float right;
-        /// \n the bottom boundary of the box shape (y-axis).
+        /// the bottom boundary of the box shape (y-axis).
         float bottom;
-        /// \n the left boundary of the box shape (x-axis).
+        /// the left boundary of the box shape (x-axis).
         float left;
 
-        /// \n the size of the box shape.
+        /// the size of the box shape.
         Vector2 size;
 
-        /// \n normalizes the bounds.
+        /// normalizes the bounds.
         Bounds2D& normalize(const Vector3& scale);
 
-        /// \n classic 1x1 square bounds.
+        /// classic 1x1 square bounds.
         static const Bounds2D Square1x1;
+
+        /// Recalculates the size vectors for the bounds.
+        void ReevaluateSize() { size = Vector2(Math::Dist(left, right), Math::Dist(top, bottom));}
+
+        /// Determines whether a point is within the bounds or not.
+        [[nodiscard]] bool Contains(const Vector3& v) const { return (v.x >= left) && (v.x <= right) && (v.y <= top) && (v.y >= bottom);}
+
+        #pragma region operators
 
         Bounds2D& operator *= (const Vector3& v);
 
         operator std::string() const {
             return "Bounds: (top) " + std::to_string(top) +
-            ", (right) " + std::to_string(right) +
-            ", (bottom) " + std::to_string(bottom) +
-            ", (left) " + std::to_string(left) +
-            " -> size: " + (std::string) size;
+                ", (right) " + std::to_string(right) +
+                ", (bottom) " + std::to_string(bottom) +
+                ", (left) " + std::to_string(left) +
+                " -> size: " + (std::string)size;
         }
-
-        /// \n Recalculates the size vectors for the bounds.
-        void ReevaluateSize()
-        { size = Vector2(Math::Dist(left, right), Math::Dist(top, bottom));}
-        /// \n Determines whether a point is within the bounds or not.
-        [[nodiscard]] bool Contains(const Vector3& v) const
-        { return (v.x >= left) && (v.x <= right) && (v.y <= top) && (v.y >= bottom);}
+        #pragma endregion
     };
 }
