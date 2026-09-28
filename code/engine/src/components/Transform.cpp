@@ -1,43 +1,15 @@
-#include <glm/gtc/matrix_transform.hpp>
+﻿#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
 
 #include "engine/components/Transform.h"
 #include "engine/Game.h"
 #include "engine/components/BoxCollider2D.h"
+#include "engine/utilities/MatrixUtils.h"
 
 #include "engine/components/PointLight.h"
 #include "engine/systems/LightSystem.h"
 
 namespace EisEngine::components{
-// helper functions:
-
-    // normalize an angle to the range [0, 360].
-    float NormalizeAngle(const float& angle){
-        float modAngle = fmod(angle, 360.0f);               // clamp to 360 degrees
-        return modAngle < 0 ? modAngle + 360.0f : modAngle;         // ensure positive value
-    }
-
-    // normalize all angles in a vector to [0, 360].
-    Vector3 NormalizeAngles(const Vector3& v){
-        return Vector3( NormalizeAngle(v.x),NormalizeAngle(v.y), NormalizeAngle(v.z));
-    }
-
-    // extract euler rotation data from a matrix.
-    inline Vector3 ConvertMatrixToEuler(const glm::mat4& mat) {
-        glm::vec3 euler;
-        glm::extractEulerAngleYXZ(mat, euler.y, euler.x, euler.z);
-
-        return Vector3(
-                Math::RadiansToDegrees(euler.x),
-                Math::RadiansToDegrees(euler.y),
-                Math::RadiansToDegrees(euler.z)
-            );
-    }
-
-    // calculate the difference in rotation between two angles along each axis.
-    Vector3 CalculateAngularRotation(const Vector3& v1, const Vector3& v2)
-    { return NormalizeAngles(Vector3(v2.x - v1.x, v2.y - v1.y, v2.z - v1.z));}
-
 // Transform functions:
 
     // constructors and destructors
@@ -139,7 +111,7 @@ namespace EisEngine::components{
         MarkDirty();
     }
 
-    void Transform::SetGlobalRotation(const Vector3& newRotation) {
+    void Transform::SetGlobalRotation(Vector3& newRotation) {
         Vector3 angularDiff;
         if (m_parent) {
             glm::mat4 parentGlobalRotationMatrix = glm::eulerAngleYXZ(
@@ -154,12 +126,12 @@ namespace EisEngine::components{
                     glm::radians(newRotation.z)
             );
             glm::mat4 localRotationMatrix = inverseParentRotationMatrix * globalRotationMatrix;
-            auto newEulerRotation = NormalizeAngles(ConvertMatrixToEuler(localRotationMatrix));
-            angularDiff = CalculateAngularRotation(localRotation, newEulerRotation);
+            auto newEulerRotation = ConvertMatrixToEuler(localRotationMatrix).NormalizeAngles();
+            angularDiff = Vector3::CalculateAngularRotation(localRotation, newEulerRotation);
             localRotation = newRotation;
         } else {
-            angularDiff = CalculateAngularRotation(localRotation, NormalizeAngles(newRotation));
-            localRotation = NormalizeAngles(newRotation);
+            angularDiff = Vector3::CalculateAngularRotation(localRotation, newRotation.NormalizeAngles());
+            localRotation = newRotation;
         }
         m_rotationChanged = true;
         MarkDirty();
@@ -184,8 +156,8 @@ namespace EisEngine::components{
         m_positionChanged = true;
         MarkDirty();
     }
-    void Transform::SetLocalRotation(const Vector3& rotation) {
-        auto newRotation = NormalizeAngles(rotation);
+    void Transform::SetLocalRotation(Vector3& rotation) {
+        auto newRotation = rotation.NormalizeAngles();
         localRotation = newRotation;
         m_rotationChanged = true;
         MarkDirty();
@@ -200,7 +172,7 @@ namespace EisEngine::components{
     // transformations
     void Transform::Translate(const Vector3 &direction) { SetLocalPosition(localPosition + direction);}
     void Transform::Rotate(const Vector3 &vector) {
-        SetLocalRotation(NormalizeAngles(localRotation + vector));
+        SetLocalRotation((localRotation + vector).NormalizeAngles());
     }
     void Transform::Rescale(const Vector3 &scalingFactors) {
         SetLocalScale(Vector3
@@ -240,7 +212,7 @@ namespace EisEngine::components{
         SetGlobalPosition(newPosition);
         m_positionChanged = false;
     }
-    void Transform::SyncRotation(const Vector3& newRotation) {
+    void Transform::SyncRotation(Vector3& newRotation) {
         SetGlobalRotation(newRotation);
         m_rotationChanged = false;
     }

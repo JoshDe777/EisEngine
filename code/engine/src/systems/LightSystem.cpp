@@ -22,9 +22,10 @@ namespace EisEngine::systems {
     float LightSystem::ERROR_STRETCH = 0.001f;
     float LightSystem::BASE_THRESHOLD = 0.1f;
 #pragma endregion
-
+    // static list of lights to update, to avoid requiring a reference to the LS
     std::vector<unsigned int> LightSystem::lightsToUpdate = {};
 
+    // constructor
     LightSystem::LightSystem(EisEngine::Game &engine) : System(engine) {
         // on before draw -> update light reference (dynamic 3D SDS)
         engine.onAfterUpdate.addListener([&](Game& engine){
@@ -33,17 +34,19 @@ namespace EisEngine::systems {
     }
 
 #pragma region light grid handling
-
+    // marks an entity's light source for update.
     void LightSystem::MarkLightForUpdate(const int &entityID) {
         lightsToUpdate.push_back(entityID);
     }
 
+    // introduce a new light source at a given position.
     void LightSystem::InsertEntityAt(const int &entityID, const Vector3 &pos) {
         lastKnownWorldPos.insert({entityID, pos});
         InsertEntityToGrid(entityID, pos);
         InsertEntityToBHTree(entityID, pos);
     }
 
+    // remove an entity as a light source.
     void LightSystem::RemoveEntity(const int &entityID) {
         RemoveEntityFromGrid(entityID);
         auto cluster = entityTreePos.at(entityID);
@@ -53,6 +56,7 @@ namespace EisEngine::systems {
         }
     }
 
+    // [Deprecated] insert a new entitiy to its position on the world voxel grid.
     void LightSystem::InsertEntityToGrid(const int &entityID, const EisEngine::Vector3 &pos) {
         // remove entity from grid if exists already
         auto it = entityGridPos.find(entityID);
@@ -64,6 +68,7 @@ namespace EisEngine::systems {
         entityGridPos[entityID] = cell;
     }
 
+    // [Deprecated] remove an entity from the world voxel grid
     void LightSystem::RemoveEntityFromGrid(const int &entityID) {
         auto it = entityGridPos.find(entityID);
         if(it == entityGridPos.end()){
@@ -80,6 +85,7 @@ namespace EisEngine::systems {
         entityGridPos.erase(it);
     }
 
+    // [Deprecated] Get the all adjacent light sources in the world voxel grid.
     std::vector<int> LightSystem::QueryNearbyLights(const glm::vec3& objectPos) {
         Vector3 c = WorldToCell(objectPos);
 
@@ -90,12 +96,14 @@ namespace EisEngine::systems {
         // 3*3*3 = 27 queries.
         for (int dx = -1; dx <= 1; dx++)
             for (int dy = -1; dy <= 1; dy++)
-                for (int dz = -1; dz <= 1; dz++) {
+                for (int dz = -1; dz <= 1; dz++) {\
+                    // get voxel coordinates of the given voxel.
                     Vector3 nc{c.x + dx, c.y + dy, c.z + dz};
 
                     auto it = LightGrid.find(nc);
                     if (it != LightGrid.end()) {
                         const auto &list = it->second;
+                        // insert all lights in the voxel to the list.
                         result.insert(result.end(), list.begin(), list.end());
                     }
                 }
@@ -105,22 +113,23 @@ namespace EisEngine::systems {
 
     Vector3 LightSystem::FindEntityVoxel(const int &entityID) {
         auto it = entityGridPos.find(entityID);
-        if (it == entityGridPos.end()){
-            //DEBUG_ERROR("Couldn't resolve entity " + std::to_string(entityID) + " in light grid")
-            auto NaN = std::numeric_limits<float>::quiet_NaN();
-            return Vector3(NaN, NaN, NaN);
-        }
-
-        return it->second;
+        // if no voxel found, return <NaN, NaN, NaN>.
+        if (it != entityGridPos.end())
+            return it->second; 
+        //DEBUG_ERROR("Couldn't resolve entity " + std::to_string(entityID) + " in light grid")
+        float NaN = std::numeric_limits<float>::quiet_NaN();
+        return Vector3(NaN, NaN, NaN);
+        // otherwise return the voxel pos.
     }
 #pragma endregion
 
 #pragma region dynamic SDS stuff
     void LightSystem::UpdateLightSDS() {
         // no updates to make if no lights in scene or to update
-        if(!engine.componentManager->hasComponentOfType<PointLight>() || lightsToUpdate.empty())
+        if(lightsToUpdate.empty() || !engine.componentManager->hasComponentOfType<PointLight>())
             return;
 
+        // check whether the light source underwent a voxel change. If so, rebuild the entire B-H tree as well.
         bool updateTree = false;
         for(auto id : lightsToUpdate){
             auto entity = engine.entityManager->getEntity((int) id);
@@ -144,9 +153,11 @@ namespace EisEngine::systems {
             UpdateInGrid(entity);
         }
 
+        // rebuild only once
         if(updateTree)
             root = BuildBHTree();
 
+        // reset the lightsToUpdate lookup :D!
         lightsToUpdate.clear();
     }
 
@@ -169,6 +180,7 @@ namespace EisEngine::systems {
             if (oldPos == newPos)
                 return;
 
+            // otherwise remove entity from grid, to be readded afterwards (O(1)).
             RemoveEntityFromGrid(owner);
         }
 
@@ -176,6 +188,11 @@ namespace EisEngine::systems {
     }
 
     void LightSystem::UpdateInBHTree(EisEngine::systems::LightSystem::Entity *entity) {
+        // function under construction. This attempt doesn't work at the minute!
+        // Current state, the tree just adds the point light to the highest available cluster, making it an entirely one-sided tree.
+
+        // try looking up the closest light source - O(n) + then add it to the tree by simply 
+        // substituting that branch, then propagate up the bounding box & intensity updates?
         auto light = entity->GetComponent<PointLight>();
         if(light == nullptr)
             return;
@@ -204,25 +221,18 @@ namespace EisEngine::systems {
 
 #pragma region barnes-hut stuff
     float LightSystem::threshold1D(const float& dist){
+        // gives the accuracy threshold value in one dimension (distance to drawn entity OR distance to loader entity)
+        // function designed for control over pace of accuracy loss [ERROR_STEEPNESS] 
+        // and accuracy stabilization at greater distance [ERROR_STRETCH]
         return (float) (ERROR_STEEPNESS * pow(dist, 2.0f)) / (1 + ERROR_STRETCH * pow(dist, 2));
     }
 
     float LightSystem::thresholdFunc(const float& lodDist, const float& clusterDist){
+        // gives the accuracy threshold value in two dimensions (distance to drawn entity AND distance to loader entity)
+        // function designed for control over pace of accuracy loss [ERROR_STEEPNESS],
+        // and accuracy stabilization at greater distance [ERROR_STRETCH],
+        // + a direct offset [BASE_THRESHOLD].
         return BASE_THRESHOLD + threshold1D(lodDist) + threshold1D(clusterDist);
-    }
-
-    float LightCluster::estimateError(const Vector3 &pos) const {
-        // get closest point from bounding box to pos
-        Vector3 closest = bounding_box.GetClosestPointTo(pos);
-        auto d_min = max(Vector3::Distance(closest, pos), Math::EPSILON);
-
-        // square attenuation 1 / d^2:
-        auto geom = 1.0f / (d_min*d_min);
-
-        // maximum value of specular lobe
-        auto brdf = RenderingSystem::GetMaxBRDF();
-
-        return total_intensity * geom * brdf;
     }
 
     // custom comparison metric for clusters to ensure priority queues select the cluster with the min cost.
@@ -237,7 +247,7 @@ namespace EisEngine::systems {
     std::vector<LightCluster*> LightSystem::ComputeLightCut(
             EisEngine::Vector3 &pos,
             const float &LODDist
-    ) {
+    ) const {
         // return an empty list if there are no lights registered.
         if(root == nullptr)
             return {};
@@ -251,6 +261,7 @@ namespace EisEngine::systems {
                 std::pair<LightCluster*, float>,
                 std::vector<std::pair<LightCluster*, float>>,
                 decltype(compareClustersRun)>(compareClustersRun);
+        // init q with the root and its estimated accuracy/error value.
         q.push({root.get(), root->estimateError(pos)});
 
         int counter = 0;
@@ -265,7 +276,7 @@ namespace EisEngine::systems {
             auto clusterDist = Vector3::Distance(closest, pos);
             auto error = r.second;
 
-            // calculate threshold dynamically based on cluster distance and object distance from loaders.
+            // calculate threshold dynamically based on cluster distance and object distance from loaders (see RenderingSystem.cpp).
             auto threshold = thresholdFunc(LODDist, clusterDist);
 
             // if the cluster's computed error factor is good enough,
@@ -304,6 +315,7 @@ namespace EisEngine::systems {
             lights.push_back(&light);
         });
 
+        // divide & conquer for a balanced light tree for O(log(n)) lookups
         return BuildBalancedTree(lights, 0, (int) lights.size());
     }
 
@@ -359,6 +371,9 @@ namespace EisEngine::systems {
 
 
     void LightSystem::RemoveClusterFromBHTree(EisEngine::systems::LightCluster *cluster) {
+        // again, this function is still under construction.
+        // Currently prunes the cluster and attaches its sibling to its grandparent (pruning indirectly kills the direct father cluster)
+        // if the parent cluster is the root, the sibling is named the root, and if the cluster to be removed is the root cluster, all lights are dereferenced from the scene.
         auto affectedLight = cluster->representative;
 
         // edge case: cluster is root:

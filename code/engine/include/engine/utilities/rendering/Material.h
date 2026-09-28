@@ -38,7 +38,7 @@ namespace EisEngine {
         void ApplyMatData(Shader& shader);
 
         /// Prints out the material's values for debugging purposes.
-        void Print();
+        void Print() const;
 
         #pragma region getters
         /// Get the material's diffuse colour in RGB [0, 1].

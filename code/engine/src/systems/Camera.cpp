@@ -1,33 +1,29 @@
-
+﻿
 #include "engine/systems/Camera.h"
 #include "engine/Game.h"
+#include "engine/utilities/MatrixUtils.h"
 
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtc/quaternion.hpp>
 
 namespace EisEngine::systems {
-    inline Vector3 ConvertMatrixToEuler(const glm::mat4& mat) {
-        glm::vec3 euler;
-        glm::extractEulerAngleYXZ(mat, euler.y, euler.x, euler.z);
 
-        return Vector3(
-                Math::RadiansToDegrees(euler.x),
-                Math::RadiansToDegrees(euler.y),
-                Math::RadiansToDegrees(euler.z)
-        );
-    }
-
-    Camera::Camera(EisEngine::Game &engine, const Vector2& screenDimensions, CameraMode cameraMode):
-    System(engine),
-    m_screenWidth((int) screenDimensions.x),
-    m_screenHeight((int) screenDimensions.y),
-    aspectRatio(screenDimensions.x / screenDimensions.y),
-    nearClip(cameraMode == PERSPECTIVE ? 0.1f : -1),
-    farClip(100)
-    {
+    Camera::Camera(
+        Game &engine, 
+        const Vector2& screenDimensions, 
+        CameraMode cameraMode
+    ) : System(engine),
+        m_screenWidth((int) screenDimensions.x),
+        m_screenHeight((int) screenDimensions.y),
+        aspectRatio(screenDimensions.x / screenDimensions.y),
+        nearClip(cameraMode == PERSPECTIVE ? 0.1f : -1),
+        farClip(100) {
+        // give the camera a digital presence in the scene:
         entity = engine.entityManager->createEntity("Camera");
         transform = entity->transform;
         engine.onUpdate.addListener([&] (Game &game){
+            // THIS SHOULD BE A CALLBACK TO GLFW Window
+
             // save old known window dimensions.
             int oldWidth = m_screenWidth;
             int oldHeight = m_screenHeight;
@@ -46,8 +42,8 @@ namespace EisEngine::systems {
     }
 
     void Camera::SetCameraMode(const EisEngine::systems::CameraMode &newMode) {
+        // updates nearclip based on what mode is chosen.
         mode = newMode;
-
         nearClip = mode == PERSPECTIVE ? 0.1f : -1;
     }
 
@@ -58,7 +54,7 @@ namespace EisEngine::systems {
     void Camera::LookAt(const EisEngine::Vector3 &pos) const {
         auto q = glm::quatLookAt((glm::vec3) (pos - transform->GetGlobalPosition()).normalized(),
                                  (glm::vec3) Vector3::up);
-        auto res = Vector3(eulerAngles(q));
+        Vector3 res = Vector3(eulerAngles(q));
         transform->SetLocalRotation(res);
     }
 
@@ -95,6 +91,6 @@ namespace EisEngine::systems {
     }
 
     Camera::~Camera(){
-        //DEBUG_INFO("DELETING CAMERA!!!!!")
+        //DEBUG_INFO("DELETING CAMERA.")
     }
 }

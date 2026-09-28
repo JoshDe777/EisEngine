@@ -7,8 +7,7 @@
 namespace EisEngine::components {
     using EisEngine::rendering::SpriteVertex;
 
-    // sprite mesh methods:
-
+    // constructor
     SpriteMesh::SpriteMesh(Game &engine,
                            guid_t owner,
                            PrimitiveSpriteMesh _primitive) :
@@ -17,6 +16,14 @@ namespace EisEngine::components {
                            VBO(CreateBuffer(GL_ARRAY_BUFFER, _primitive.vertices)),
                            EBO(CreateBuffer(GL_ELEMENT_ARRAY_BUFFER, _primitive.indices)) { }
 
+    // destructor
+    void SpriteMesh::Invalidate() {
+        glDeleteBuffers(1, &VBO);
+        glDeleteBuffers(1, &EBO);
+        Component::Invalidate();
+    }
+
+    // draw
     void SpriteMesh::draw(const unsigned int& shader) {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
@@ -42,11 +49,5 @@ namespace EisEngine::components {
 
         glDrawElements(GL_TRIANGLES, primitive.indexCount, GL_UNSIGNED_INT, nullptr);
         DEBUG_OPENGL(entity()->name())
-    }
-
-    void SpriteMesh::Invalidate() {
-        glDeleteBuffers(1, &VBO);
-        glDeleteBuffers(1, &EBO);
-        Component::Invalidate();
     }
 }

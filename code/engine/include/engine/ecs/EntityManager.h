@@ -68,7 +68,7 @@ namespace EisEngine{
             /// @param entity - a reference to the entity to be deleted.
             void deleteEntity(Entity &entity);
         private:
-            /// Removes all entities from the game.
+            /// Erases entities marked for deletion.
             void purgeEntities();
 
             /// A reference to the component manager.

@@ -50,7 +50,7 @@ namespace EisEngine {
             std::vector<LightCluster*> ComputeLightCut(
                     Vector3& pos,
                     const float& LODDist
-                );
+                ) const;
 
             /// (Voxel grid) [OBSOLETE - use ComputeLightCut() instead!] Checks the surroundings of an object for effecting light sources.
             std::vector<int> QueryNearbyLights(const glm::vec3 &objectPos);
@@ -91,7 +91,7 @@ namespace EisEngine {
             /// A lookup table mapping each entity to the light cluster it is located at.
             std::unordered_map<int, LightCluster*> entityTreePos = {};
 
-            /// \n (Voxel grid) Find the voxel a given entity is in.
+            /// (Voxel grid) Find the voxel a given entity is in.
             /// Returns (NaN, NaN, NaN) if the entity is not in the grid, please check against it!
             /// -> std::isnan(result.x) == True if invalid.
             Vector3 FindEntityVoxel(const int& entityID);

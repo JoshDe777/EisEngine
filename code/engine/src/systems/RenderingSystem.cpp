@@ -1,8 +1,11 @@
-#include "engine/systems/RenderingSystem.h"
+﻿#include "engine/systems/RenderingSystem.h"
 #include "engine/Game.h"
 #include "engine/Components.h"
 
 #include <algorithm>
+
+// This script needs a complete redo :) - 28/09/26
+
 
 // DO NOT UPDATE WITHOUT ALSO UPDATING SAME NAMED MACRO IN FRAGMENT SHADERS!
 #define MAX_LIGHTS 5

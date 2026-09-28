@@ -1,4 +1,4 @@
-#include <utility>
+﻿#include <utility>
 
 #include "engine/utilities/rendering/Material.h"
 #include "engine/utilities/rendering/Shader.h"
@@ -21,7 +21,7 @@ namespace EisEngine {
         shader.setFloat("roughness", roughness);
     }
 
-    void Material::Print() {
+    void Material::Print() const {
         DEBUG_INFO("Material \"" + name + "\" properties:\nDiffuse (vec3)=" + (std::string)diffuse +
         "\nEmission (vec3)=" + (std::string)emission +
         "\nOpacity (float)=" + std::to_string(opacity) +

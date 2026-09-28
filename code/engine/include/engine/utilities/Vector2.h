@@ -97,4 +97,12 @@ namespace EisEngine {
         bool operator!=(Vector2 const &v) const;
         #pragma endregion
     };
+
+    /// Converts a list of EisEngine 2D vectors to OpenGL vectors.
+    inline std::vector<glm::vec2> Vec2VectorToGlm(const std::vector<Vector2>& v) {
+        std::vector<glm::vec2> out(v.size());
+        for (auto& i : v)
+            out.emplace_back(i.x, i.y);
+        return out;
+    }
 }

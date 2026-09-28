@@ -3,6 +3,7 @@
 #include "engine/ecs/Entity.h"
 
 namespace EisEngine::components {
+    // constructors
     Mesh2D::Mesh2D(Game &engine, guid_t owner, const PrimitiveMesh2D &_primitive):
             Component(engine, owner),
             primitive(_primitive),
@@ -19,6 +20,7 @@ namespace EisEngine::components {
         std::swap(this->EBO, other.EBO);
     }
 
+    // destructor
     void Mesh2D::Invalidate() {
         // formally delete buffers, then call superclass invalidate.
         glDeleteBuffers(1, &VBO);
@@ -26,6 +28,7 @@ namespace EisEngine::components {
         Component::Invalidate();
     }
 
+    // draw
     void Mesh2D::draw() const {
         // bind vertex buffer, enable the VAO pointer & point it to element 0 on the shader.
         glBindBuffer(GL_ARRAY_BUFFER, VBO);

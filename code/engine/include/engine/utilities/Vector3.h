@@ -1,6 +1,9 @@
 ﻿#pragma once
 
+// stdlib includes
 #include <string>
+#include <vector>
+// external lib includes
 #include <glm/glm.hpp>
 #include <box2d/box2d.h>
 #include <assimp/vector3.h>
@@ -35,8 +38,10 @@ namespace EisEngine {
 
         /// the size of the vector. returns the square root of all vector values squared.
         [[nodiscard]] float magnitude() const;
-        /// Normalizes the vector to have the same direction but with magnitude 0.
+        /// Returns a copy of the vector with the same direction but with magnitude 1.
         [[nodiscard]] Vector3 normalized() const;
+        /// Normalizes the vector to keep its direction, but with magnitude 1.
+        Vector3 Normalize();
         /// Clamps a Vector3's magnitude and returns a vector scaled to fit the given range.
         [[nodiscard]] Vector3 ClampMagnitude(const float& minMagnitude, const float& maxMagnitude);
 
@@ -52,6 +57,12 @@ namespace EisEngine {
 
         /// Calculates the angle between both vectors in radians.
         [[nodiscard]] static float Angle(const Vector3& v1, const Vector3& v2);
+
+        /// Calculates the rotation necessary to go from v1 to v2
+        [[nodiscard]] static Vector3 CalculateAngularRotation(const Vector3& v1, const Vector3& v2);
+
+        /// Normalizes vector values to [0, 360]/[0, 2*pi], to represent angular vectors.
+        Vector3 NormalizeAngles(const AngleType& type = AngleType::DEGREES);
 
         /// A Vector3 constant with values (0, 0, 0).
         static const Vector3 zero;
@@ -100,4 +111,32 @@ namespace EisEngine {
         bool operator!=(Vector2 const &v) const { return !(*this == v);}
         #pragma endregion
     };
+
+    // Scalar vector math
+    inline Vector3 operator*(float const& f, const Vector3& v) {
+        return Vector3(f * v.x, f * v.y, f * v.z);
+    }
+
+    inline Vector3 operator*(int const& i, const Vector3& v) {
+        return Vector3(i * v.x, i * v.y, i * v.z);
+    }
+    
+    // interoperability of lists
+    /// Converts a list of assimp vectors to a list of EisEngine vectors.
+    inline std::vector<Vector3> AiVector3DToVector3(std::vector<aiVector3D>& v) {
+        std::vector<Vector3> result(v.size());
+
+        for (auto& i : v)
+            result.emplace_back(i);
+
+        return result;
+    }
+
+    /// Converts a list of EisEngine vectors to OpenGL vectors
+    inline std::vector<glm::vec3> Vec3VectorToGlm(const std::vector<Vector3>& v) {
+        std::vector<glm::vec3> out(v.size());
+        for (auto& i : v)
+            out.emplace_back(i.x, i.y, i.z);
+        return out;
+    }
 }

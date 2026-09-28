@@ -4,9 +4,20 @@
 using namespace EisEngine::systems;
 
 namespace EisEngine::components {
-    Animator::Animator(Game& engine, guid_t owner, std::vector<std::shared_ptr<AnimState>>& animStates) :
-    Component(engine, owner), states(animStates) { }
+    // constructor
+    Animator::Animator(
+        Game& engine, 
+        guid_t owner, 
+        std::vector<std::shared_ptr<AnimState>>& animStates
+    ) : Component(engine, owner), 
+        states(animStates) { }
 
+    // destructor
+    void Animator::Invalidate() {
+        Component::Invalidate();
+    }
+
+    // update
     void Animator::Update(){
         auto activeState = states[currentState].get();
 
@@ -23,9 +34,5 @@ namespace EisEngine::components {
             currentState++;
         }
         elapsedTime += Time::deltaTime;
-    }
-
-    void Animator::Invalidate() {
-        Component::Invalidate();
     }
 }

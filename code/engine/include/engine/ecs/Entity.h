@@ -13,7 +13,7 @@ namespace EisEngine::ecs {
         friend class EntityManager;
         using Transform = EisEngine::components::Transform;
     public:
-        ~Entity();
+        ~Entity() = default;
 
         /// Gets the entity's unique ID.
         [[nodiscard]] guid_t guid() const { return m_id; }

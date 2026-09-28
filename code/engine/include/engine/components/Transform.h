@@ -67,13 +67,13 @@ namespace EisEngine{
             /// Sets transform position in world space.
             void SetGlobalPosition(const Vector3& pos);
             /// Sets transform rotation in world space.
-            void SetGlobalRotation(const Vector3& rotation);
+            void SetGlobalRotation(Vector3& rotation);
             /// Sets transform scale in world space.
             void SetGlobalScale(const Vector3& scale);
             /// Sets transform position relative to its parent object.
             void SetLocalPosition(const Vector3& pos);
             /// Sets transform rotation relative to its parent object.
-            void SetLocalRotation(const Vector3& rotation);
+            void SetLocalRotation(Vector3& rotation);
             /// Sets transform scale relative to its parent object.
             void SetLocalScale(const Vector3& scale);
 
@@ -137,7 +137,7 @@ namespace EisEngine{
             /// Syncs global position to the physics body's.
             void SyncPosition(const Vector3& newPosition);
             /// Syncs global rotation to the physics body's.
-            void SyncRotation(const Vector3& newRotation);
+            void SyncRotation(Vector3& newRotation);
             /// Syncs global scale to the collider's.
             void SyncScale(const Vector3& oldScale, const Vector3& newScale);
 

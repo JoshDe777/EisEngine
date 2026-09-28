@@ -1,14 +1,36 @@
-#include "engine/utilities/Quaternion.h"
+﻿#include "engine/utilities/Quaternion.h"
 #include "engine/utilities/Vector3.h"
 #include "engine/utilities/Vector2.h"
 #include "engine/utilities/Debug.h"
 #include "engine/utilities/Math.h"
 
 namespace EisEngine{
+#pragma region Helper functions
+    // normalize an angle to the range [0, 360] / [0 / 2*PI].
+    inline float NormalizeAngle(const float& angle, const AngleType& type) {
+        float maxAngle = type == AngleType::DEGREES ? 360.0f : 2 * Math::PI;        // select which benchmark to normalize around.
+        float modAngle = fmod(angle, maxAngle);                                     // clamp to 360 degrees/2*pi
+        return modAngle < 0 ? modAngle + maxAngle : modAngle;                       // ensure positive value
+    }
+
+    // normalize all angles in a vector to [0, 360].
+    Vector3 Vector3::NormalizeAngles(const AngleType& type) {
+        x = NormalizeAngle(x, type);
+        y = NormalizeAngle(y, type);
+        z = NormalizeAngle(z, type);
+        return *this;
+    }
+#pragma endregion
+
     float Vector3::magnitude() const
     { return (float) sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));}
 
     Vector3 Vector3::normalized() const { return (*this * (1/ this->magnitude()));}
+
+    Vector3 Vector3::Normalize() {
+        *this = this->normalized();
+        return *this;
+    }
 
     Vector3 Vector3::ClampMagnitude(const float& minMagnitude, const float& maxMagnitude) {
         float currentMagnitude = magnitude();
@@ -44,6 +66,8 @@ namespace EisEngine{
         auto angleSin = CrossProduct(v1, v2).magnitude() / (v1.magnitude() * v2.magnitude());
         return Math::Arctan(angleSin, angleCos);
     }
+
+    Vector3 Vector3::CalculateAngularRotation(const Vector3& v1, const Vector3& v2) { return Vector3(v2.x - v1.x, v2.y - v1.y, v2.z - v1.z).NormalizeAngles(); }
 
     Vector3::operator Vector2() const { return Vector2(x, y);}
     Vector3::operator Quaternion() const { return Quaternion(x, y, z);}

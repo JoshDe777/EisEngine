@@ -4,7 +4,8 @@
 #include "engine/ecs/Entity.h"
 
 namespace EisEngine::components {
-#pragma region buffers & mesh lifetime
+#pragma region buffers - mesh lifetime
+    // vertex buffer definition
     GLuint CreateVBO(PrimitiveMesh3D* primitive){
         // buffer initialization
         unsigned int buffer = 0;
@@ -45,6 +46,7 @@ namespace EisEngine::components {
         return buffer;
     }
 
+    // constructors
     Mesh3D::Mesh3D(
             EisEngine::Game &engine,
             EisEngine::ecs::guid_t owner,
@@ -64,6 +66,7 @@ namespace EisEngine::components {
         std::swap(this->EBO, other.EBO);
     }
 
+    // destructor
     void Mesh3D::Invalidate() {
         glDeleteBuffers(1, &VBO);
         glDeleteBuffers(1, &EBO);
@@ -71,6 +74,7 @@ namespace EisEngine::components {
     }
 #pragma endregion
 
+    // draw
     void Mesh3D::draw(const unsigned int& shaderProgram) {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         DEBUG_OPENGL(entity()->name())              // in case of error binding VBO, but also to clear any previous error messages.

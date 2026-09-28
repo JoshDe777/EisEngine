@@ -1,4 +1,4 @@
-#include "engine/components/Renderer.h"
+﻿#include "engine/components/Renderer.h"
 #include "engine/components/PointLight.h"
 #include "engine/ResourceManager.h"
 
@@ -14,6 +14,7 @@ namespace EisEngine::components {
             material(mat),
             m_layer(std::move(layer)),
             normalMap(normMap) {
+        // assigns default blank textures & materials if none are passed in.
         if(!diffTex)
             diffuseTexture = ResourceManager::GetTexture("default");
         if(!mat)
