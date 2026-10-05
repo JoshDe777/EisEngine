@@ -1,11 +1,11 @@
 ﻿#include "engine/components/meshes/Line.h"
-#include "engine/utilities/rendering/MeshUtilities.h"
+#include "engine/utilities/meshes/MeshUtilities.h"
 #include "engine/ecs/Entity.h"
 
 namespace EisEngine::components {
     // constructors & destructors
     Line::Line(Game &engine, guid_t owner, const Vector3& start, const Vector3& end):
-            Component(engine, owner),
+            Mesh(engine, owner),
             startPoint(start),
             endPoint(end),
         lineCoordinates({ start, end }),
@@ -17,7 +17,9 @@ namespace EisEngine::components {
     }
 
     // draw
-    void Line::draw() const {
+    void Line::draw(const unsigned int& shaderProgram) const {
+
+        // use shader program for attrib locations in case of shader mix & match.
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
         glEnableVertexAttribArray(0);

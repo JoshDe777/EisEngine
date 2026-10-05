@@ -1,8 +1,9 @@
-#include "glm/gtc/type_ptr.hpp"
+﻿#include "glm/gtc/type_ptr.hpp"
 #include "engine/utilities/rendering/Shader.h"
 #include "engine/ResourceManager.h"
 #include "engine/utilities/Color.h"
 #include "engine/systems/Camera.h"
+#include "engine/components/Renderer.h"
 
 namespace EisEngine::rendering {
     Shader::Shader(
@@ -43,20 +44,22 @@ namespace EisEngine::rendering {
         std::swap(this->fragmentShader, other.fragmentShader);
     }
 
-    void Shader::Invalidate() const {
+    void Shader::Invalidate() {
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
+        // release the assigned renderers pointers.
+        assignedRenderers.clear();
     }
 
     void Shader::Apply(Camera* camera) {
         glUseProgram(shaderProgram);
         DEBUG_OPENGL("Shader " + name)
         vpMatrix = camera->GetVPMatrix();
-        auto mvpLoc = glGetUniformLocation(shaderProgram, "mvp");
+        GLint mvpLoc = glGetUniformLocation(shaderProgram, "mvp");
         if(mvpLoc != -1)
             setMatrix("mvp", vpMatrix);
         DEBUG_OPENGL("Shader " + name)
-        auto camPosLoc = glGetUniformLocation(shaderProgram, "camPos");
+            GLint camPosLoc = glGetUniformLocation(shaderProgram, "camPos");
         if(camPosLoc != -1)
             setVector("camPos", camera->transform->GetGlobalPosition());
         DEBUG_OPENGL("Shader " + name)
@@ -89,35 +92,52 @@ namespace EisEngine::rendering {
     }
 
     void Shader::setMatrix(const std::string &uniformName, glm::mat4 mat4) const {
-        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        GLint uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
         if(uniformLocation != -1)
             glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat4));
     }
     void Shader::setMatrix(const std::string &uniformName, glm::mat3 mat3) const {
-        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        GLint uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
         if(uniformLocation != -1)
             glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat3));
     }
     void Shader::setVector(const std::string &uniformName, glm::vec4 vec4) const {
-        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        GLint uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
         if(uniformLocation != -1)
             glUniform4fv(uniformLocation, 1, glm::value_ptr(vec4));
     }
     void Shader::setVector(const std::string &uniformName, glm::vec3 vec3) const {
-        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        GLint uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
         if(uniformLocation != -1)
             glUniform3fv(uniformLocation, 1, glm::value_ptr(vec3));
     }
 
     void Shader::setInt(const std::string &uniformName, const int &val) const {
-        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        GLint uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
         if(uniformLocation != -1)
             glUniform1i(uniformLocation, val);
     }
 
     void Shader::setFloat(const std::string &uniformName, const float &val) const {
-        auto uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
+        GLint uniformLocation = glGetUniformLocation(shaderProgram, uniformName.c_str());
         if(uniformLocation != -1)
             glUniform1f(uniformLocation, val);
+    }
+
+    void Shader::_register(Renderer* renderer) {
+        assignedRenderers.push_back(renderer);
+        nRenderers++;
+    }
+
+    void Shader::_deregister(Renderer* renderer) {
+        //nothing to remove if no renderers assigned
+        if (nRenderers == 0)
+            return;
+
+        std::vector<Renderer*>::iterator& it = std::find(assignedRenderers.begin(), assignedRenderers.end(), renderer);
+        if (it != assignedRenderers.end()) {
+            assignedRenderers.erase(it);
+            nRenderers--;
+        }
     }
 }

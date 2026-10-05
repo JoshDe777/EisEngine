@@ -2,7 +2,7 @@
 
 #include "engine/ecs/System.h"
 #include "engine/utilities/Vector3.h"
-#include "engine/utilities/rendering/Material.h"
+#include "engine/utilities/materials/Material.h"
 #include "engine/utilities/rendering/LightCluster.h"
 #include "engine/components/PointLight.h"
 

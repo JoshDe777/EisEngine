@@ -1,5 +1,5 @@
 ﻿#include "engine/components/meshes/Mesh3D.h"
-#include "engine/utilities/rendering/MeshUtilities.h"
+#include "engine/utilities/meshes/MeshUtilities.h"
 #include "engine/Utilities.h"
 #include "engine/ecs/Entity.h"
 
@@ -52,13 +52,13 @@ namespace EisEngine::components {
             EisEngine::ecs::guid_t owner,
             PrimitiveMesh3D& _primitive)
     :
-    Component(engine, owner),
+    Mesh(engine, owner),
     primitive(std::make_unique<PrimitiveMesh3D>(_primitive)),
     VBO(CreateVBO(&_primitive)),
     EBO(CreateBuffer(GL_ELEMENT_ARRAY_BUFFER, _primitive.indices)) { }
 
     Mesh3D::Mesh3D(EisEngine::components::Mesh3D &&other)  noexcept  :
-            Component(other),
+            Mesh(other),
             primitive(std::move(other.primitive))
     {
         owner = other.owner;
@@ -75,7 +75,7 @@ namespace EisEngine::components {
 #pragma endregion
 
     // draw
-    void Mesh3D::draw(const unsigned int& shaderProgram) {
+    void Mesh3D::draw(const unsigned int& shaderProgram) const {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         DEBUG_OPENGL(entity()->name())              // in case of error binding VBO, but also to clear any previous error messages.
         unsigned long long offset = 0;

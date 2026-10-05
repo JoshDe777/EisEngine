@@ -4,15 +4,17 @@
 #include <OpenGL/OpenGlInclude.h>
 #include "glm/glm.hpp"
 
-#include "engine/utilities/rendering/Texture2D.h"
-#include "engine/utilities/rendering/Cubemap.h"
+#include "engine/utilities/materials/Texture2D.h"
+#include "engine/utilities/materials/Cubemap.h"
 
 namespace fs = std::filesystem;
 
 namespace EisEngine{
     namespace systems{ class Camera;}
+    namespace components { class Renderer;}
 
     using namespace systems;
+    using EisEngine::components::Renderer;
 
     /// Enum for better organization of sampler types in shaders.
     enum UniformSamplerIndices{
@@ -80,9 +82,15 @@ namespace EisEngine{
             [[nodiscard]] glm::mat4 CalculateMVPMatrix(const glm::mat4& modelMatrix) const { return vpMatrix * modelMatrix;}
 
             /// A function called when an object is intentionally deleted.
-            void Invalidate() const;
+            void Invalidate();
             /// gets the shader program ID.
             unsigned int GetShaderID() const {return shaderProgram;}
+
+            void _register(Renderer* renderer);
+            void _deregister(Renderer* renderer);
+
+            bool IsUnused() const { return nRenderers == 0; }
+            std::vector<Renderer*>& GetSubscribedRenderers() { return assignedRenderers; }
 
             /// The shader program's given name.
             const std::string name;
@@ -96,6 +104,8 @@ namespace EisEngine{
 
             /// The last saved view-projection matrix.
             glm::mat4 vpMatrix = glm::mat4(1.0f);
+            std::vector<Renderer*> assignedRenderers = {};
+            unsigned int nRenderers = 0;
         };
     }
 }

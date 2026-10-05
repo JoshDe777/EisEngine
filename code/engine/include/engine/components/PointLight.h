@@ -2,14 +2,14 @@
 
 #include "engine/ecs/Component.h"
 #include "engine/utilities/Vector3.h"
-#include "engine/utilities/rendering/Material.h"
+#include "engine/utilities/materials/Material.h"
 
 namespace EisEngine{
     namespace rendering { class Shader; }
     namespace systems { class LightSystem; }
     namespace components {
-        using Component = EisEngine::ecs::Component;
-        using Shader = EisEngine::rendering::Shader;
+        using EisEngine::ecs::Component;
+        using EisEngine::rendering::Shader;
 
         /// This component represents a point light source, emitting its light evenly in all possible directions.
         class PointLight : public Component {

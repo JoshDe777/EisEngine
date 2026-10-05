@@ -1,4 +1,6 @@
-﻿#include "OpenGL/OpenGlInclude.h"
+﻿#pragma once
+
+#include "OpenGL/OpenGlInclude.h"
 
 template<typename T>
 GLuint CreateBuffer(GLuint bufferType, const std::vector<T>& bufferData) {

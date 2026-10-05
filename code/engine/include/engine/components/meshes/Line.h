@@ -3,14 +3,13 @@
 #include <vector>
 #include "glm/glm.hpp"
 #include "OpenGL/OpenGlInclude.h"
-#include "engine/ecs/Component.h"
+#include "engine/components/meshes/Mesh.h"
 
 namespace EisEngine::components{
-    using Component = ecs::Component;
 
     /// A line between two points.
     /// It is recommended to add a Renderer component for colors.
-    class Line : public Component {
+    class Line : public Mesh {
     public:
         /// Creates a line between two points in the given color.
         /// @param start - Vector3: the start point of the line in world space.
@@ -35,7 +34,7 @@ namespace EisEngine::components{
         void SetPoints(const Vector3& start, const Vector3& end);
 
         /// draws the line onto the screen (called once per frame).
-        void draw() const;
+        void draw(const unsigned int& shaderProgram) const override;
     private:
         /// updates the OpenGL buffer data to current points values
         void UpdateBufferData();

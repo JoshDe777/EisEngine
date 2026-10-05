@@ -1,4 +1,6 @@
-﻿namespace EisEngine {
+﻿#pragma once
+
+namespace EisEngine {
     /// Provides a random float value x with min (incl.) lower equal to x lower than max (excl.)
     inline float RandomFloat(const float& min, const float& max) {
         std::random_device rnd;

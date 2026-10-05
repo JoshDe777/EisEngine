@@ -15,10 +15,10 @@
 #include "engine/utilities/DebugLine.h"
 #include "engine/utilities/Bounds2D.h"
 
-#include "engine/utilities/rendering/PrimitiveMesh2D.h"
-#include "engine/utilities/rendering/PrimitiveMesh3D.h"
-#include "engine/utilities/rendering/PrimitiveSpriteMesh.h"
-#include "engine/utilities/rendering/Texture2D.h"
+#include "engine/utilities/meshes/PrimitiveMesh2D.h"
+#include "engine/utilities/meshes/PrimitiveMesh3D.h"
+#include "engine/utilities/meshes/PrimitiveSpriteMesh.h"
+#include "engine/utilities/materials/Texture2D.h"
 
 #include "engine/utilities/ToStringExtensions.h"
 #include "engine/utilities/ListUtils.h"

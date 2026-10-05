@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-#include "engine/ecs/Component.h"
-#include "engine/utilities/rendering/PrimitiveMesh3D.h"
+#include "engine/components/meshes/Mesh.h"
+#include "engine/utilities/meshes/PrimitiveMesh3D.h"
 
 namespace EisEngine {
     using namespace ecs;
     namespace components {
         /// This component represents an entity's shape in the 3D world.\n
-        class Mesh3D : public Component {
+        class Mesh3D : public Mesh {
         public:
             explicit Mesh3D(
                     Game& engine,
@@ -21,7 +21,7 @@ namespace EisEngine {
             void Invalidate() override;
 
             /// Draws the mesh onto the screen once per frame.
-            void draw(const unsigned int& shaderProgram);
+            void draw(const unsigned int& shaderProgram) const override;
             /// primitive mesh definition, stores vertex and edge data.
             std::unique_ptr<PrimitiveMesh3D> primitive;
         private:

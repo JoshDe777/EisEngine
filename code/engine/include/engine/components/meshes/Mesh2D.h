@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#include "engine/ecs/Component.h"
-#include "engine/utilities/rendering/PrimitiveMesh2D.h"
+#include "engine/components/meshes/Mesh.h"
+#include "engine/utilities/meshes/PrimitiveMesh2D.h"
 
 namespace EisEngine {
     using namespace ecs;
     namespace components {
         /// This component represents an entity's shape in the game world, without depth.
         /// It is recommended to define a Renderer to provide a color and/or texture.
-        class Mesh2D : public Component {
+        class Mesh2D : public Mesh {
         public:
             /// Creates a 2D Mesh component.
             /// @param _primitive - a primitive mesh containing vertex and edge data.
@@ -20,7 +20,7 @@ namespace EisEngine {
             void Invalidate() override;
 
             /// Draws the mesh onto the screen once per frame.
-            void draw() const;
+            void draw(const unsigned int& shaderProgram) const override;
             /// primitive mesh definition, stores vertex and edge data.
             const PrimitiveMesh2D primitive;
         private:

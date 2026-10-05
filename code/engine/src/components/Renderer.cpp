@@ -4,11 +4,13 @@
 
 namespace EisEngine::components {
     Renderer::Renderer(EisEngine::Game &engine,
-                       EisEngine::ecs::guid_t owner,
+                       EisEngine::ecs::guid_t owner, 
+                       EisEngine::rendering::ShaderType shader,
                        EisEngine::Texture2D* diffTex,
                        EisEngine::Material* mat,
                        std::string layer,
                        Texture2D* normMap) :
+            shader(shader),
             Component(engine, owner),
             diffuseTexture(diffTex),
             material(mat),
@@ -21,10 +23,13 @@ namespace EisEngine::components {
             material = ResourceManager::CreateMaterialInstance("default");
         if(!normMap)
             normalMap = ResourceManager::GetTexture("default_normal");
+
+        ResourceManager::GetShader(EisEngine::rendering::to_string(shader))->_register(this);
     }
 
     Renderer::Renderer(EisEngine::components::Renderer &&other) noexcept :
             Component(other),
+            shader(std::move(other.shader)),
             diffuseTexture(std::move(other.diffuseTexture)),
             normalMap(std::move(other.normalMap)),
             material(std::move(other.material)),
@@ -52,5 +57,9 @@ namespace EisEngine::components {
                 DEBUG_INFO(entity()->name() + " normal map applied.")
             }
         }
+    }
+
+    void Renderer::Invalidate() {
+        ResourceManager::GetShader(EisEngine::rendering::to_string(shader))->_deregister(this);
     }
 }

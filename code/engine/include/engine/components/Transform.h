@@ -6,7 +6,6 @@
 #include "engine/Utilities.h"
 
 using EisEngine::ecs::Component;
-using EisEngine::ecs::ComponentManager;
 using EisEngine::ecs::Entity;
 
 namespace EisEngine{

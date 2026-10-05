@@ -1,4 +1,6 @@
-﻿namespace EisEngine {
+﻿#pragma once
+
+namespace EisEngine {
     // extract euler rotation data from a matrix.
     inline Vector3 ConvertMatrixToEuler(const glm::mat4& mat) {
         glm::vec3 euler;

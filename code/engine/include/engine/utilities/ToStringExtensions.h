@@ -1,4 +1,6 @@
-﻿namespace EisEngine {
+﻿#pragma once
+
+namespace EisEngine {
     /// Produces a string of the given vector of floats in the format [a, b, ..., n].
     inline std::string to_string(const std::vector<float>& v) {
         std::ostringstream oss;
