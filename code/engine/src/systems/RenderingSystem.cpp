@@ -91,12 +91,6 @@ namespace EisEngine::systems {
         glfwSetWindowSizeCallback(engine.getWindow(), [](GLFWwindow* window, int width, int height){
             RenderingSystem::onResize.invoke(Vector2((float) width, (float) height));
         });
-
-        // init SSBO
-        glGenBuffers(1, &lightCutSSBO);
-        glBindBuffer(GL_SHADER_STORAGE_BUFFER, lightCutSSBO);
-        glBufferData(GL_SHADER_STORAGE_BUFFER, 0, nullptr, GL_DYNAMIC_DRAW);
-        glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
         #pragma endregion
 
         #pragma region shader program creation
@@ -339,7 +333,7 @@ namespace EisEngine::systems {
     void RenderingSystem::ApplyLightEntriesToShader(std::vector<ShaderLightStruct>& entries, Shader* activeShader) const{
         glBindBuffer(GL_SHADER_STORAGE_BUFFER, lightCutSSBO);
 
-        size_t newSize = entries.size() * sizeof(LightEntry);
+        size_t newSize = entries.size() * sizeof(ShaderLightStruct);
         // clear & resize buffer to fit
         glBufferData(
                 GL_SHADER_STORAGE_BUFFER,
@@ -376,7 +370,7 @@ namespace EisEngine::systems {
             }
 
         // calculate light cuts based on LOD level & activate cuts.
-        auto results = lightSystem->ComputeLightCut(pos, lodDist);
+        auto results = lightSystem->ComputeAndApplyLightCuts(pos, lodDist);
         std::vector<ShaderLightStruct> entries = {};
         entries.reserve(results.size());
 
@@ -385,11 +379,11 @@ namespace EisEngine::systems {
         // but fills 12 bytes -> next vec3 xval essentially discarded if no padding apparently)
         for(auto cluster: results){
             entries.push_back({
-                  cluster->representative->position(),
-                  0,
-                  cluster->representative->GetEmission(),
-                  cluster->total_intensity
-          });
+                cluster->representative->position(),
+                0,
+                cluster->representative->GetEmission(),
+                cluster->total_intensity
+            });
         }
         // apply light cuts & return.
         // this automatically applies LOD, should we just ignore it? -> yes

@@ -7,22 +7,26 @@
 #include "engine/ResourceManager.h"
 #include "engine/utilities/rendering/Shader.h"
 #include "engine/utilities/rendering/RenderingUtils.h"
+#include "engine/systems/LightSystem.h"
+#include "engine/systems/RenderingSystem.h"
 
 namespace EisEngine::rendering {
     using EisEngine::rendering::Shader;
     using EisEngine::ResourceManager;
     using EisEngine::rendering::ShaderType;
     using EisEngine::components::Mesh;
+    using EisEngine::systems::LightSystem;
 
 	void RP_BlinnPhong::Execute() {
         Shader* activeShader = ResourceManager::GetShaderOfType(ShaderType::BLINN_PHONG);
         // early exit if no renderer is paired with Blinn-Phong rendering.
         if (activeShader->IsUnused())
-            return;
+            return;  
 
         std::vector<Renderer*>& assignedRenderers = activeShader->GetSubscribedRenderers();
         for (Renderer*& renderer : assignedRenderers) {
             Mesh* mesh = renderer->GetMesh();
+            Vector3 pos = mesh->entity()->transform->GetGlobalPosition();
 
             glm::mat4 model = mesh->entity()->transform->GetModelMatrix();
             activeShader->setMatrix("mvp", activeShader->CalculateMVPMatrix(model));
@@ -45,7 +49,11 @@ namespace EisEngine::rendering {
             renderer->ApplyData(*activeShader);
 
             // lighting - compute light cuts & apply to shader
-            LightSystem::GetLightClusters(mesh, activeShader);
+            // pass the light system reference into the constructor.
+            LightSystem::ComputeAndApplyLightCuts(
+                pos,
+                RenderingSystem::GetLODDist(pos),
+                activeShader);
 
             mesh->draw(activeShader->GetShaderID());
         }

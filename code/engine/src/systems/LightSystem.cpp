@@ -22,6 +22,8 @@ namespace EisEngine::systems {
     float LightSystem::ERROR_STRETCH = 0.001f;
     float LightSystem::BASE_THRESHOLD = 0.1f;
 #pragma endregion
+
+#pragma region constructors & static members
     // static list of lights to update, to avoid requiring a reference to the LS
     std::vector<unsigned int> LightSystem::lightsToUpdate = {};
 
@@ -31,9 +33,16 @@ namespace EisEngine::systems {
         engine.onAfterUpdate.addListener([&](Game& engine){
             UpdateLightSDS();
         });
-    }
 
-#pragma region light grid handling
+        // init SSBO
+        glGenBuffers(1, &lightCutSSBO);
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, lightCutSSBO);
+        glBufferData(GL_SHADER_STORAGE_BUFFER, 0, nullptr, GL_DYNAMIC_DRAW);
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+    }
+#pragma endregion
+
+#pragma region light update handling
     // marks an entity's light source for update.
     void LightSystem::MarkLightForUpdate(const int &entityID) {
         lightsToUpdate.push_back(entityID);
@@ -42,84 +51,16 @@ namespace EisEngine::systems {
     // introduce a new light source at a given position.
     void LightSystem::InsertEntityAt(const int &entityID, const Vector3 &pos) {
         lastKnownWorldPos.insert({entityID, pos});
-        InsertEntityToGrid(entityID, pos);
         InsertEntityToBHTree(entityID, pos);
     }
 
     // remove an entity as a light source.
     void LightSystem::RemoveEntity(const int &entityID) {
-        RemoveEntityFromGrid(entityID);
         auto cluster = entityTreePos.at(entityID);
         if (cluster != nullptr) {
             RemoveClusterFromBHTree(cluster);
             entityTreePos.erase(entityID);
         }
-    }
-
-    // [Deprecated] insert a new entitiy to its position on the world voxel grid.
-    void LightSystem::InsertEntityToGrid(const int &entityID, const EisEngine::Vector3 &pos) {
-        // remove entity from grid if exists already
-        auto it = entityGridPos.find(entityID);
-        if(it != entityGridPos.end())
-            RemoveEntityFromGrid(entityID);
-
-        auto cell = WorldToCell(pos);
-        LightGrid[cell].push_back(entityID);
-        entityGridPos[entityID] = cell;
-    }
-
-    // [Deprecated] remove an entity from the world voxel grid
-    void LightSystem::RemoveEntityFromGrid(const int &entityID) {
-        auto it = entityGridPos.find(entityID);
-        if(it == entityGridPos.end()){
-            DEBUG_WARN("Attempting to remove non-existent entity " + std::to_string(entityID) +
-                " from light grid.")
-                return;
-        }
-
-        auto cell = it->second;
-        auto& sources = LightGrid[cell];
-        sources.erase(std::remove(sources.begin(), sources.end(), entityID),
-                      sources.end());
-
-        entityGridPos.erase(it);
-    }
-
-    // [Deprecated] Get the all adjacent light sources in the world voxel grid.
-    std::vector<int> LightSystem::QueryNearbyLights(const glm::vec3& objectPos) {
-        Vector3 c = WorldToCell(objectPos);
-
-        std::vector<int> result;
-        result.reserve(16); // fast
-
-        // neighbourhood traversal: get all light sources from the direct surrounding voxels.
-        // 3*3*3 = 27 queries.
-        for (int dx = -1; dx <= 1; dx++)
-            for (int dy = -1; dy <= 1; dy++)
-                for (int dz = -1; dz <= 1; dz++) {\
-                    // get voxel coordinates of the given voxel.
-                    Vector3 nc{c.x + dx, c.y + dy, c.z + dz};
-
-                    auto it = LightGrid.find(nc);
-                    if (it != LightGrid.end()) {
-                        const auto &list = it->second;
-                        // insert all lights in the voxel to the list.
-                        result.insert(result.end(), list.begin(), list.end());
-                    }
-                }
-
-        return result;
-    }
-
-    Vector3 LightSystem::FindEntityVoxel(const int &entityID) {
-        auto it = entityGridPos.find(entityID);
-        // if no voxel found, return <NaN, NaN, NaN>.
-        if (it != entityGridPos.end())
-            return it->second; 
-        //DEBUG_ERROR("Couldn't resolve entity " + std::to_string(entityID) + " in light grid")
-        float NaN = std::numeric_limits<float>::quiet_NaN();
-        return Vector3(NaN, NaN, NaN);
-        // otherwise return the voxel pos.
     }
 #pragma endregion
 
@@ -150,7 +91,6 @@ namespace EisEngine::systems {
             // if changed voxel mark tree for rebuild (expensive, I know)
             updateTree = true;
             lastKnownWorldPos[(int) id] = pos;
-            UpdateInGrid(entity);
         }
 
         // rebuild only once
@@ -159,32 +99,6 @@ namespace EisEngine::systems {
 
         // reset the lightsToUpdate lookup :D!
         lightsToUpdate.clear();
-    }
-
-    void LightSystem::UpdateInGrid(Entity *entity) {
-
-        // technically means the light will always be a frame forward on transform
-        // -> transforms (model matrices) synced before logic update, this is called after logic update.
-        // update still works since GetGlobalPosition doesn't reference transform's model matrix
-        // ignore entity if not attached to a point light.
-        if (entity->GetComponent<PointLight>() == nullptr)
-            return;
-
-        auto owner = entity->guid();
-
-        auto oldPos = FindEntityVoxel(owner);
-        auto newPos = entity->transform->GetGlobalPosition();
-
-        if(!std::isnan(oldPos.x)) {
-            // no updates if position didn't change (rotation change also marks as dirty).
-            if (oldPos == newPos)
-                return;
-
-            // otherwise remove entity from grid, to be readded afterwards (O(1)).
-            RemoveEntityFromGrid(owner);
-        }
-
-        InsertEntityToGrid(owner, newPos);
     }
 
     void LightSystem::UpdateInBHTree(EisEngine::systems::LightSystem::Entity *entity) {
@@ -244,9 +158,10 @@ namespace EisEngine::systems {
         return a.second < b.second;
     };
 
-    std::vector<LightCluster*> LightSystem::ComputeLightCut(
+    std::vector<LightCluster*> LightSystem::ComputeAndApplyLightCuts(
             EisEngine::Vector3 &pos,
-            const float &LODDist
+            const float &LODDist,
+            Shader* activeShader
     ) const {
         // return an empty list if there are no lights registered.
         if(root == nullptr)
@@ -299,8 +214,32 @@ namespace EisEngine::systems {
         }
 
         //DEBUG_LOG("Computed light cut containing " + std::to_string(results.size()) + " clusters, having explored " + std::to_string(counter) + " clusters.")
+        vector<ShaderLightStruct> entries = LightSystem::ToShaderEntries(results);
 
-        // return list of valid clusters for the light cut.
+        // apply clusters to shader
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, lightCutSSBO);
+
+        size_t newSize = entries.size() * sizeof(ShaderLightStruct);
+        // clear & resize buffer to fit
+        glBufferData(
+            GL_SHADER_STORAGE_BUFFER,
+            (GLsizeiptr)newSize,
+            nullptr,
+            GL_DYNAMIC_DRAW
+        );
+
+        // apply data & bind to base location 0.
+        glBufferSubData(
+            GL_SHADER_STORAGE_BUFFER,
+            0,
+            (GLsizeiptr)newSize,
+            entries.data()
+        );
+        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, lightCutSSBO);
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+
+        activeShader->setInt("nLights", (int)entries.size());
+
         return results;
     }
 
@@ -416,5 +355,25 @@ namespace EisEngine::systems {
         grandparent->ChooseRepresentative();
     }
 
+#pragma endregion
+
+#pragma region helper functions
+    vector<ShaderLightStruct> LightSystem::ToShaderEntries(vector<LightCluster*>& clusters) {
+        // pre-allocate memory, target size is known.
+        vector<ShaderLightStruct> entries = {};
+        entries.reserve(clusters.size());
+
+
+        for (auto& cluster : clusters) {
+            entries.push_back({
+                cluster->representative->position(),        // light source direction
+                0,                                          // memory padding for SSBO readability
+                cluster->representative->GetEmission(),     // material data from representative light source
+                cluster->total_intensity                    // cluster intensity - rework to query its current sum of intensities instead of the cached value, or update the cache once per frame.
+            });
+        }
+
+        return entries;
+    }
 #pragma endregion
 }

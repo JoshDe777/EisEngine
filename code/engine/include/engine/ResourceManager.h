@@ -39,10 +39,10 @@ namespace EisEngine {
         char infoLog[GL_INFO_LOG_LENGTH];
     };
 
-    using Shader = rendering::Shader;
 
     /// \n Manages files associated with the engine.
     class ResourceManager {
+        using Shader = rendering::Shader;
         friend class Game;                  // access to private constructor - needed for object storage.    
     public:
         /// Loads a 3D-object (any extension supported by assimp) as a mesh + renderer combination.

@@ -20,6 +20,13 @@ namespace EisEngine {
     namespace systems {
         using PointLight = EisEngine::components::PointLight;
 
+        struct ShaderLightStruct {
+            glm::vec3 pos;
+            float _padding;
+            glm::vec3 em;
+            float I;
+        };
+
         class RenderingSystem;
 
         /// A hash map, 3D voxel-based Spatial Data Structure (=SDS) for storing light sources.
@@ -47,13 +54,11 @@ namespace EisEngine {
             /// Computes a list of light clusters that provide an adequately accurate lighting calculation for the given position.
             /// @param pos: Vector3 - the position in world space for the light approximation.
             /// @param LODDist: float - the distance in world space to the nearest loader object. The smaller the distance, the more accurate the lighting approximation.
-            std::vector<LightCluster*> ComputeLightCut(
+            std::vector<LightCluster*> ComputeAndApplyLightCuts(
                     Vector3& pos,
-                    const float& LODDist
+                    const float& LODDist,
+                    Shader* activeShader
                 ) const;
-
-            /// (Voxel grid) [OBSOLETE - use ComputeLightCut() instead!] Checks the surroundings of an object for effecting light sources.
-            std::vector<int> QueryNearbyLights(const glm::vec3 &objectPos);
 
             /// (Voxel grid) Signals to the light system that an emitting entity has changed position.
             static void MarkLightForUpdate(const int& entityID);
@@ -91,19 +96,10 @@ namespace EisEngine {
             /// A lookup table mapping each entity to the light cluster it is located at.
             std::unordered_map<int, LightCluster*> entityTreePos = {};
 
-            /// (Voxel grid) Find the voxel a given entity is in.
-            /// Returns (NaN, NaN, NaN) if the entity is not in the grid, please check against it!
-            /// -> std::isnan(result.x) == True if invalid.
-            Vector3 FindEntityVoxel(const int& entityID);
-
             /// Updates any light sources that have moved since the last frame.
             void UpdateLightSDS();
-            /// (Voxel grid) moves the entity from its current to its new voxel.
-            void UpdateInGrid(Entity *entity);
             /// (Light cuts) currently marks the tree for a complete rebuild. Plans to make it simply prune the branch it is in, and reinsert the light source elsewhere.
             void UpdateInBHTree(Entity* entity);
-            /// (Voxel grid) inserts a new light source to the grid.
-            void InsertEntityToGrid(const int& entityID, const Vector3& pos);
             /// (Light cuts) inserts a new light source to the tree.
             void InsertEntityToBHTree(const int& entityID, const Vector3& pos);
             /// Builds a Barnes-Hut tree with all light sources in scene.
@@ -113,8 +109,6 @@ namespace EisEngine {
                     std::vector<PointLight*>& lights,
                     int start,
                     int end);
-            /// (Voxel grid) Deregisters a light source from the light grid.
-            void RemoveEntityFromGrid(const int& entityID);
             /// (Light Cuts) Prunes a branch from the tree.
             void RemoveClusterFromBHTree(LightCluster* cluster);
 
@@ -123,8 +117,13 @@ namespace EisEngine {
             /// Calculates the light accuracy threshold value.
             static float thresholdFunc(const float& lodDist, const float& clusterDist);
 
+            /// Converts a list of LightCuts to a shader-readable struct
+            static vector<ShaderLightStruct> ToShaderEntries(vector<LightCluster*>& clusters);
+
             /// (Voxel grid) A static reference list of entities whose light sources might need an updated voxel placement.
             static std::vector<unsigned int> lightsToUpdate;
+            /// SSBO object used for passing light cluster data to the shader.
+            GLuint lightCutSSBO;
 
             /// Lighting parameter designating how fast lighting accuracy may deteriorate when going further from maximum accuracy requirements.
             /// The higher this value, the sharper the decline in accuracy around loader objects.

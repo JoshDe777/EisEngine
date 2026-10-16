@@ -21,13 +21,6 @@ namespace EisEngine{
         using LightSystem = EisEngine::systems::LightSystem;
         using LightCluster = EisEngine::systems::LightCluster;
 
-        struct ShaderLightStruct{
-            glm::vec3 pos;
-            float _padding;
-            glm::vec3 em;
-            float I;
-        };
-
         using namespace rendering;
         /// The system drawing objects onto the display.
         class RenderingSystem : public System {
@@ -61,6 +54,8 @@ namespace EisEngine{
             static float GetMaxBRDF(const std::string& brdfFunc = "Blinn-Phong");
             /// [DEPRECATING] Sets whether to calculate lighting based on voxel nearest-neighbours, or light-cut global approximation. 
             static void SetLightMode(bool& _useVoxelGrid) {useVoxelGrid = _useVoxelGrid;}
+            /// Establishes how far an entity is from the nearest loader object.
+            static float GetLODDist(const Vector3& pos);
         private:
             // FBO functions
             /// Initializes the framebuffer object for depth mapping.
@@ -94,8 +89,6 @@ namespace EisEngine{
             std::array<GLuint, 2> FBO;
             /// FBO array storing a depth-mapping RBO.
             std::array<GLuint, 2> RBO;
-            /// SSBO object used for passing light cluster data to the shader.
-            GLuint lightCutSSBO;
             /// Texture index storing depth data.
             std::array<GLuint, 2> depthTex;
             /// The name (human-readable) of the default shader for the rendering system.\n
