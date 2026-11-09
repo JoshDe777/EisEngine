@@ -6,7 +6,7 @@ namespace EisEngine{
 	namespace rendering {
 		class RP_BlinnPhong : public RenderingPass {
 		public:
-			void Execute() override;
+			void Execute(Camera* camera) override;
 		};
 	}
 }

@@ -3,7 +3,7 @@
 #define MAX_LIGHTS 1
 #define PI 3.1415
 
-struct PointLight{
+struct PointLight {             // unused in shader... keeping for future support of lighting but yeah...
     vec3 pos;
     vec3 emission;
     float I;

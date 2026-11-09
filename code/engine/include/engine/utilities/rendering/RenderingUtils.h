@@ -14,10 +14,11 @@ namespace EisEngine::rendering {
         COOK_TORRANCE = 1,
         /// Cartoonish finite color gradients.
         TOON = 2,
-        /// 2D sprite displayed in world space.
-        WORLD_SPRITE = 3,
         /// 2D object displayed in screen space.
-        SCREEN_UI = 4,
+        SCREEN_UI = 3,
+        /// Depth-mapping shader used with glassy shader.
+        /// /!\ THIS SHADER DOES NOT HAVE AN INDEPENDENT RENDERING PASS. FOR GLASSY RENDERING USE ShaderType::GLASSY!
+        DEPTH = 4,
         /// Translucent object with light distortion properties.
         GLASSY = 5,
         /// Cubemap for 'infinite' rendering.
@@ -29,8 +30,8 @@ namespace EisEngine::rendering {
         {ShaderType::BLINN_PHONG, {"shaders/vert-shader3D.vert", "shaders/frag-blinn_phong.frag"}},
         {ShaderType::COOK_TORRANCE, {"shaders/vert-shader3D.vert", "shaders/frag-cook_torrance.frag"}},
         {ShaderType::TOON, {"shaders/vert-shader3D.vert", "shaders/frag-toon.frag"}},
-        {ShaderType::WORLD_SPRITE, {"shaders/vert-shader3D.vert", "shaders/frag-sprite_unlit.frag"}},
         {ShaderType::SCREEN_UI, {"shaders/vert-no_normals.vert", "shaders/frag-sprite_unlit.frag"}},
+        {ShaderType::DEPTH, {"shaders/vert-geometry_debug.vert", "shaders/frag-depth_mapping.frag"}},
         {ShaderType::GLASSY, {"shaders/vert-shader3D.vert", "shaders/frag-glassy.frag"}},
         {ShaderType::SKYBOX, {"shaders/vert-skybox.vert", "shaders/frag-skybox.frag"}}
     };
@@ -40,8 +41,8 @@ namespace EisEngine::rendering {
             case BLINN_PHONG: return "Blinn-Phong";
             case COOK_TORRANCE: return "Cook-Torrance";
             case TOON: return "Toon";
-            case WORLD_SPRITE: return "World-Sprite";
             case SCREEN_UI: return "Screen-UI";
+            case DEPTH: return "Depth-Mapping";
             case GLASSY: return "Glassy";
             case SKYBOX: return "Skybox";
             default: return "Unsupported";

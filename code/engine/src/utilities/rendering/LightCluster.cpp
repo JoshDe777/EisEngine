@@ -14,4 +14,11 @@ namespace EisEngine::systems {
 
         return total_intensity * geom * brdf;
     }
+
+    float LightSystem::GetMaxBRDF(const std::string& brdfFunc) {
+
+        // specular lobe in shader = angle ^ (specularFactor) where the max value angle can take is 1
+        // --> 1^n = 1
+        return 1.0f;
+    }
 }

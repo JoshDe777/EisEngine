@@ -30,7 +30,7 @@ uniform float specular;
 uniform sampler2D image;
 
 // Lighting-related Input
-layout(std430, binding=0) readonly buffer LightBuffer{
+layout(std430, binding=0) readonly buffer LightBuffer {
     PointLight[] lights;
 };
 uniform int nLights;

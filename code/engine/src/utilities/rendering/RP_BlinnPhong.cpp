@@ -1,12 +1,14 @@
 ﻿#include "engine/utilities/rendering/RP_BlinnPhong.h"
 
+// top-level
+#include "engine/ResourceManager.h"
 // components
 #include "engine/components/meshes/Mesh.h"
 #include "engine/components/Renderer.h"
-
-#include "engine/ResourceManager.h"
+// rendering
 #include "engine/utilities/rendering/Shader.h"
 #include "engine/utilities/rendering/RenderingUtils.h"
+// systems
 #include "engine/systems/LightSystem.h"
 #include "engine/systems/RenderingSystem.h"
 
@@ -17,15 +19,25 @@ namespace EisEngine::rendering {
     using EisEngine::components::Mesh;
     using EisEngine::systems::LightSystem;
 
-	void RP_BlinnPhong::Execute() {
+	void RP_BlinnPhong::Execute(Camera* camera) {
+
         Shader* activeShader = ResourceManager::GetShaderOfType(ShaderType::BLINN_PHONG);
         // early exit if no renderer is paired with Blinn-Phong rendering.
         if (activeShader->IsUnused())
             return;  
 
+        glBindVertexArray(VAO);
+        activeShader->Apply(camera);
+        activeShader->setFloat("ambient", RenderingSystem::GetAmbientLevel());
+        activeShader->setFloat("specular", RenderingSystem::GetSpecularFactor());
+
         std::vector<Renderer*>& assignedRenderers = activeShader->GetSubscribedRenderers();
         for (Renderer*& renderer : assignedRenderers) {
             Mesh* mesh = renderer->GetMesh();
+            // if renderer has no associated mesh, skip.
+            if (mesh == nullptr)
+                continue;
+
             Vector3 pos = mesh->entity()->transform->GetGlobalPosition();
 
             glm::mat4 model = mesh->entity()->transform->GetModelMatrix();
