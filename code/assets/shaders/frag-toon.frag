@@ -1,9 +1,23 @@
-#version 460 core
+﻿#version 460 core
+
+// This Fragment Shader is a non-photorealistic renderer that colours objects in 
+//      steps of lighting, based on their illumination on a given fragment.
+// Any shader using this FS MUST use vert-shader3D.vert 
+//      or an equivalent vertex shader outputting complex geometric assets.
+// Lighting is calculated from PointLight structs established from the 
+//      Barnes-Hut light cuts in the Lighting System, which are accessed via a 
+//      Shader Storage Buffer Object (SSBO).
+// Required Material properties include:
+//      - texture tiling (directly used for texture repetition)
+//      - alpha [transparency] (directly applied to the entire object)
+//      - metallic
+//      - roughness [r] (used to establish shininess as 1 - r in [0, 1] range.)
 
 #define MAX_LIGHTS 1
 
 struct PointLight{
     vec3 pos;
+    float _padding;
     vec3 emission;
     float I;
 };
@@ -42,22 +56,26 @@ uniform int n_levels;
 // output(s)
 out vec4 fragColor;
 
+// calculate the normal from the normal map in tangent space.
 vec3 getNormalInWorldSpace(){
+    // retrieve value from normal map. Without an assigned normal map this is a straight up vector.
     vec3 mapNormal = texture(nMap, TexCoords).xyz;
     mapNormal = normalize(2 * (mapNormal - vec3(0.5)));
 
+    // normalize all tangent space vectors and make a matrix from them.
     vec3 normal = normalize(fragNormal);
     vec3 tan = normalize(fragTan);
     vec3 bitan = normalize(fragBitan);
 
     mat3 tanSpaceMat = mat3(tan, bitan, normal);
 
+    // transform the mapped normal with the tangent space matrix & return.
     return normalize(tanSpaceMat * mapNormal);
 }
 
 vec3 calculateFragColor(vec4 base){
 
-    float shiny = 1 - roughness;
+    float shiny = 1.0 - roughness;
     vec3 result = ambient * base.xyz;
     // calculate normal accounting for nMap
     vec3 normal = getNormalInWorldSpace();
