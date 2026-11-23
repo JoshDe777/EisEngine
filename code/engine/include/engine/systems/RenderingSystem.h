@@ -70,7 +70,7 @@ namespace EisEngine{
             static float specularFactor;
             /// the amount of brightness levels available to the toon shader.
             static int n_toon_levels;
-            /// Introduced as a chromatic aberration factor. Unused outside of glassy shader.
+            /// Introduced as a chromatic aberration factor. Unused outside of glassy shader. Should ALSO be a material property.
             static Vector3 eta;
             /// Proportion of ambient lighting.\n
             /// ambient = 1 -> fully lit scene.

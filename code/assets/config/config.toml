@@ -1,0 +1,25 @@
+﻿# This serves as a config file for EisEngine's systems!
+
+# Currently only contains rendering & lighting defaults, but can be expanded to include values for physics etc.
+
+[rendering]
+# [only used for rendering with the ShaderType::TOON shader] the amount of steps of lighting applied to rendered objects.
+nToonLevels = 8
+
+# The base percent any object in the scene will be lit. Value must be in the range [0, 1] (values will be clamped on load).
+ambientFactor = 0.15
+
+[lighting]
+# The minimum error threshold for any object to be considered sufficiently accurately rendered. Raising the value may result in more artifacty lighting, while lowering it may result in a higher computational load while rendering lit objects.
+# value can be any positive float value (x >= 0.0)
+baseThreshold = 0.1
+
+# controls how accurately objects at greater distance are rendered. The lower this value, the less accurate the rendering of objects far from a light source.
+# lowering this value results in reduced computational load for reduced lighting accuracy at greater distance, whilst raising it increases load for greatly improved accuracy.
+# this value must be within the range of ]0, 1].
+errorSpread = 0.075
+
+# controls how fast the distance between object and light source deteriorates its accuracy. The lower this value, the more accurately objects will be lit at greater distance, and vice-versa.
+# lowering this value results in increasing computational load for greater accuracy, whilst raising it reduces load for greatly reduced accuracy.
+# this value must be within the range of [0, 1].
+errorSteepness = 0.05

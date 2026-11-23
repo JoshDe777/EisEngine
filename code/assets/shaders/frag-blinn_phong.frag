@@ -36,9 +36,9 @@ uniform vec3 camPos;        // camera position in world space for view vectors (
 uniform float tiling;       // tiling factor for texture repetition.
 uniform float alpha;        // object transparency
 uniform float roughness;    // object roughness; inversely proportional to shininess.
+uniform float specular;     // specular factor influencing the sharpness of the BRDF's specular lobe.
                             // -------------- WORLD DATA --------------
 uniform float ambient;      // ambient lighting level. applied as base illumination before complex calculation.
-uniform float specular;     // specular factor influencing the sharpness of the BRDF's specular lobe.
 
 // sampler2Ds
 uniform sampler2D image;    // diffuse map/texture applied to the geometry (alters colour).
@@ -50,7 +50,7 @@ layout(std430, binding=0) readonly buffer LightBuffer {
 };
 uniform int nLights;        // amount of effecting clusters. Will render in ambient only if set to 0.
 
-// Output(s)
+// Output
 out vec4 fragColor;         // fragment colour after illumination & texturing.
 
 // calculate the normal from the normal map in tangent space.
@@ -90,7 +90,7 @@ vec3 calculateFragColor(vec4 base){
         float NdotL = dot(normal, lightDir);
         // only render specular lobe if light in front of fragment
         // applied as a mask rather than branching - if NdotL <= 0 -> mask = 0
-        // result += 0*[the rest of the computation]
+        // result += 0*[the rest of the computation] else result += 1*[result].
         float mask = step(0.0, NdotL);
 
         vec3 view = normalize(camPos - fragPos);

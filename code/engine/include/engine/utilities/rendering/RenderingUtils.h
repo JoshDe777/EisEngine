@@ -3,6 +3,9 @@
 #include <unordered_map>
 #include <filesystem>
 #include <string>
+#include <memory>
+
+#include <toml.hpp>
 
 namespace EisEngine::rendering {
     using namespace std;
@@ -38,14 +41,35 @@ namespace EisEngine::rendering {
 
     inline string to_string(const ShaderType& type) {
         switch (type) {
-            case BLINN_PHONG: return "Blinn-Phong";
-            case COOK_TORRANCE: return "Cook-Torrance";
-            case TOON: return "Toon";
-            case SCREEN_UI: return "Screen-UI";
-            case DEPTH: return "Depth-Mapping";
-            case GLASSY: return "Glassy";
-            case SKYBOX: return "Skybox";
-            default: return "Unsupported";
+        case BLINN_PHONG: return "Blinn-Phong";
+        case COOK_TORRANCE: return "Cook-Torrance";
+        case TOON: return "Toon";
+        case SCREEN_UI: return "Screen-UI";
+        case DEPTH: return "Depth-Mapping";
+        case GLASSY: return "Glassy";
+        case SKYBOX: return "Skybox";
+        default: return "Unsupported";
         }
     }
+
+    struct RenderingConfig {
+    public:
+        // singleton pattern
+        static RenderingConfig& GetInstance();
+        void Load(); 
+        
+        // no copy constructors
+        RenderingConfig(const RenderingConfig&) = delete;
+        RenderingConfig& operator=(const RenderingConfig&) = delete;
+
+        unsigned int GetToonLevelCount() const { return nToonLevels; }
+        float GetAmbientFactor() const { return ambientFactor; }
+    private:
+        RenderingConfig();
+
+        unsigned int nToonLevels = 8;
+        float ambientFactor = 0.15f;
+
+        static const std::string configPath;
+    };
 }

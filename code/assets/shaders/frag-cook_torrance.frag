@@ -1,41 +1,56 @@
-#version 460 core
+﻿#version 460 core
 
-#define MAX_LIGHTS 1
 #define PI 3.1415
 
+// This fragment shader is a different illumination model basing upon fresnel light approximations.
+// Any shader using this FS MUST use vert-shader3D.vert 
+//      or an equivalent vertex shader outputting complex geometric assets.
+// Lighting is calculated from PointLight structs established from the 
+//      Barnes-Hut light cuts in the Lighting System, which are accessed via a 
+//      Shader Storage Buffer Object (SSBO).
+// Material properties required include:
+//      - diffuse colour (object's base colour irrespective of texture.)
+//      - texture tiling (directly used for texture repetition)
+//      - alpha [transparency] (directly applied to the entire object)
+//      - roughness [r] (used to establish shininess as 1 - r in [0, 1] range.)
+// Supported textures include:
+//      diffuse/albedo, normal/bump map (TODO), specular map (TODO)
+
 struct PointLight{
-    vec3 pos;
-    vec3 emission;
-    float I;
+    vec3 pos;               // light centre in world space for illumination direction & attenuation.
+    float _padding;         // required because of memory reading method according to Claude... (vec3 expected to start 16bit sequence so vec3 usage could read into the next struct)
+    vec3 emission;          // light emission colour.
+    float I;                // aggregated illumination strength of the light cluster.
 };
 
 // VS inputs
-in vec3 fragPos;
-in vec2 TexCoords;
-in vec3 fragNormal;
-in vec3 fragTan;
-in vec3 fragBitan;
+in vec3 fragPos;            // fragment position in world space for lighting vectors.
+in vec2 TexCoords;          // fragment texture coords in texture space.
+in vec3 fragNormal;         // fragment normal in model space.
+in vec3 fragTan;            // fragment tangent in model space.
+in vec3 fragBitan;          // fragment bitangent in model space.
 
 // vec3s
-uniform vec3 diffuse;
-uniform vec3 camPos;
+uniform vec3 diffuse;       // object base colour [RGB].
+uniform vec3 camPos;        // camera position in world space for view vectors (specularity).
 
-// floats
-uniform float tiling;       // -------------- MATERIAL DATA --------------
-uniform float alpha;
-uniform float metallic;
-uniform float roughness;
-uniform float ambient;      // -------------- WORLD DATA --------------
-uniform float specular;
+// floats                   // -------------- MATERIAL DATA --------------
+uniform float tiling;       // tiling factor for texture repetition.
+uniform float alpha;        // object transparency
+uniform float roughness;    // object roughness; inversely proportional to shininess.
+uniform float specular;     // specular factor influencing the sharpness of the BRDF's specular lobe. Represents the fresnel factor F0
+                            // -------------- WORLD DATA --------------
+uniform float ambient;      // ambient lighting level. applied as base illumination before complex calculation.
 
 // sampler2Ds
-uniform sampler2D image;
-uniform sampler2D nMap;
+uniform sampler2D image;    // diffuse map/texture applied to the geometry (alters colour).
+uniform sampler2D nMap;     // normal map/texture applied to the geometry (alters light effect directions).
 
 // Lighting-related Input
-uniform PointLight[MAX_LIGHTS] lights;
-uniform int nLights;
-uniform int LOD;
+layout(std430, binding=0) readonly buffer LightBuffer {
+    PointLight[] lights;    // array/list of light clusters effecting on the object.
+};
+uniform int nLights;        // amount of effecting clusters. Will render in ambient only if set to 0.
 
 // output(s)
 out vec4 fragColor;
@@ -103,13 +118,6 @@ vec3 calculateFragColor(vec4 base){
     return result;
 }
 
-void main()
-{
-    if(LOD == 0) {
-        vec4 base_color = ambient * vec4(diffuse.xyz, alpha) * texture(image, TexCoords * tiling);
-        fragColor = vec4(base_color.xyz, alpha) ;
-        return;
-    }
-
+void main() {
     fragColor = vec4(calculateFragColor(vec4(diffuse, 1.0)).xyz, alpha) * texture(image, TexCoords * tiling);
 }

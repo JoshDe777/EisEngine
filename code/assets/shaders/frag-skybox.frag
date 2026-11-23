@@ -1,4 +1,8 @@
-#version 460 core
+﻿#version 460 core
+
+// This fragment shader is used to draw a skybox to the background of the scene. 
+// The skybox does not interact with light in the scene, therefore needs no material properties. 
+// Any program using this FS MUST also use the vertex shader 'vert-skybox.vert'.
 
 in vec3 TexCoords;
 

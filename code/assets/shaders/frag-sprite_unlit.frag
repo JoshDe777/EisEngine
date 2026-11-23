@@ -1,4 +1,7 @@
-#version 460 core
+﻿#version 460 core
+
+// This fragment shader is used for simple objects with a texture and no lighting calculation.
+// Programs using this FS should use the vertex shader 'vert-geometry_uvs.vert'.
 
 in vec2 TexCoords;
 

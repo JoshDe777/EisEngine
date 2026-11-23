@@ -1,12 +1,30 @@
-#version 460 core
+﻿#version 460 core
 
-#define MAX_LIGHTS 1
-#define PI 3.1415
+// This fragment shader draws objects with glassy properties, i.e. light deformation with reflection, 
+//      refraction & chromatic aberration
+// Any shader using this FS MUST use vertex shader vert-shader3D.vert
+//      or an equivalent vertex shader outputting complex geometric assets.
+// Influence from light sources is (ironically) not yet supported 
+//      -> seems like it could be just blinn-phong with a fresnel instead of specular factor.
+// Influence from surrounding objects is also not yet supported.
+// This shader must not be called before a two-pass depth mapping shader was used for the objects to render, 
+//      otherwise this may result in heavy artifacts if it doesn't break altogether 
+//      (samplers point to the wrong maps or incompatible memory).
+// Glassy objects will sample from a cubemap (by default the skybox) to find an object to sample.
+// Supported material properties include:
+//      - surface [diffuse, normal] mapping
+//      - transparency [dampens the light effects]
+//      - fresnel factor F0
+// Supported textures include:
+//      - diffuse/albedo, normal map, depth map (two-pass, through FBO)
+// Required environment properties:
+//      - Specular factor / Fresnel factor F0 -> Maybe make a separate property.
 
-struct PointLight {             // unused in shader... keeping for future support of lighting but yeah...
-    vec3 pos;
-    vec3 emission;
-    float I;
+struct PointLight{
+    vec3 pos;               // light centre in world space for illumination direction & attenuation.
+    float _padding;         // required because of memory reading method according to Claude... (vec3 expected to start 16bit sequence so vec3 usage could read into the next struct)
+    vec3 emission;          // light emission colour.
+    float I;                // aggregated illumination strength of the light cluster.
 };
 
 // VS inputs
@@ -22,18 +40,16 @@ uniform vec3 eta;
 uniform vec3 camPos;
 
 // floats
-uniform float tiling;
 uniform float alpha;
-uniform float metallic;
-uniform float roughness;
-uniform float ambient;
-uniform float specular;
+uniform float tiling;
+uniform float specular;         // stand-in for Fresnel number F0
+uniform float ambient;          // stand-in for the absorption factor. Should this be a material property?? Yes it should.
 
 // integers
 uniform int screenWidth;
 uniform int screenHeight;
 
-// Samplers (broken)
+// Samplers
 uniform sampler2D image;
 uniform sampler2D nMap;
 uniform samplerCube cubeMap;
@@ -44,7 +60,7 @@ uniform sampler2D frontDepthMap;
 out vec4 fragColor;
 
 vec3 getNormalInWorldSpace(){
-    vec3 mapNormal = texture(nMap, TexCoords).xyz;
+    vec3 mapNormal = texture(nMap, TexCoords * tiling).xyz;
     mapNormal = normalize(2 * (mapNormal - vec3(0.5)));
 
     vec3 normal = normalize(fragNormal);
@@ -57,12 +73,23 @@ vec3 getNormalInWorldSpace(){
 }
 
 vec3 calculateFragColor(vec4 base){
-    // establish reflection dir [reflect(-view, normal)]
-    // calculate normal accounting for nMap
+    // surface-mapped texture for e.g. window stickers
+    vec3 texColor = texture(image, TexCoords * tiling).xyz * base.xyz;
+
+    // depth component for transmittance effects
+    vec2 screenUV = gl_FragCoord.xy / vec2(screenWidth, screenHeight);
+    float zb = texture(backDepthMap, screenUV).r;
+    float zf = texture(frontDepthMap, screenUV).r;
+
+    float depth = abs(zf - zb);
+    if(depth < 0.001)
+        depth = 0.001;
+
+    // establish reflection dir [reflect(-view, mapped normal)]
     vec3 normal = getNormalInWorldSpace();
     vec3 view = normalize(camPos - fragPos);
     vec3 reflectionDir = reflect(-view, normal);
-    vec3 reflection = texture(cubeMap, reflectionDir).xyz;
+    vec3 reflection = exp(-ambient * depth) * texture(cubeMap, reflectionDir).xyz;
 
     // refraction - chromatic aberrations by scattering the refraction angles by color channel
     vec3 rRefractDir = refract(-view, normal, eta.r);
@@ -81,29 +108,18 @@ vec3 calculateFragColor(vec4 base){
         texture(cubeMap, gRefractDir).g,
         texture(cubeMap, bRefractDir).b
     );
+    // apply texture & tainting to the refracted light.
+    refraction = refraction * exp(-ambient * depth) * texColor;
 
-    // m should be view.normal?
+    // fresnel factor calculation
     float m = max(0, dot(view, normal));
     float F = pow((1 - m), 5) * (1 - specular) + specular;
 
     // reflection color calculation; blended using Fresnel approximation.
-    vec3 cLight = mix(refraction, reflection, F);
-
-    // depth component for transmittance effects
-    vec2 screenUV = gl_FragCoord.xy / vec2(screenWidth, screenHeight);
-    float zb = texture(backDepthMap, screenUV).r;
-    float zf = texture(frontDepthMap, screenUV).r;
-
-    float depth = abs(zf - zb);
-    if(depth < 0.001)
-        depth = 0.001;
-
-    vec3 result = exp(-ambient * depth) * cLight * base.xyz;
-    return result;
+    return mix(refraction, reflection, F);
 }
 
 void main()
 {
-    // maybe add the alpha value somewhere to make the surface glassier?
     fragColor = vec4(calculateFragColor(vec4(diffuse, 1.0)).xyz, alpha);
 }

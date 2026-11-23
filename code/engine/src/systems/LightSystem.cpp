@@ -19,7 +19,7 @@ namespace EisEngine::systems {
 
 // tuned by hand with some trial and error.
     float LightSystem::ERROR_STEEPNESS = 0.075f;
-    float LightSystem::ERROR_STRETCH = 0.001f;
+    float LightSystem::ERROR_SPREAD = 0.001f;
     float LightSystem::BASE_THRESHOLD = 0.1f;
 #pragma endregion
 
@@ -137,14 +137,14 @@ namespace EisEngine::systems {
     float LightSystem::threshold1D(const float& dist){
         // gives the accuracy threshold value in one dimension (distance to drawn entity OR distance to loader entity)
         // function designed for control over pace of accuracy loss [ERROR_STEEPNESS] 
-        // and accuracy stabilization at greater distance [ERROR_STRETCH]
-        return (float) (ERROR_STEEPNESS * pow(dist, 2.0f)) / (1 + ERROR_STRETCH * pow(dist, 2));
+        // and accuracy stabilization at greater distance [ERROR_SPREAD]
+        return (float) (ERROR_STEEPNESS * pow(dist, 2.0f)) / (1 + ERROR_SPREAD * pow(dist, 2));
     }
 
     float LightSystem::thresholdFunc(const float& lodDist, const float& clusterDist){
         // gives the accuracy threshold value in two dimensions (distance to drawn entity AND distance to loader entity)
         // function designed for control over pace of accuracy loss [ERROR_STEEPNESS],
-        // and accuracy stabilization at greater distance [ERROR_STRETCH],
+        // and accuracy stabilization at greater distance [ERROR_SPREAD],
         // + a direct offset [BASE_THRESHOLD].
         return BASE_THRESHOLD + threshold1D(lodDist) + threshold1D(clusterDist);
     }

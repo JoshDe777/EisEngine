@@ -13,8 +13,6 @@
 //      - metallic
 //      - roughness [r] (used to establish shininess as 1 - r in [0, 1] range.)
 
-#define MAX_LIGHTS 1
-
 struct PointLight{
     vec3 pos;
     float _padding;
@@ -40,17 +38,15 @@ uniform sampler2D nMap;
 // floats
 uniform float tiling;
 uniform float alpha;
-uniform float metallic;
 uniform float roughness;
 uniform float ambient;
 uniform float specular;
 
-// Lighting
-uniform PointLight[MAX_LIGHTS] lights;
-
-// integers
-uniform int nLights;
-uniform int LOD;
+// Lighting-related Input
+layout(std430, binding=0) readonly buffer LightBuffer {
+    PointLight[] lights;    // array/list of light clusters effecting on the object.
+};
+uniform int nLights;        // amount of effecting clusters. Will render in ambient only if set to 0.
 uniform int n_levels;
 
 // output(s)
@@ -74,7 +70,6 @@ vec3 getNormalInWorldSpace(){
 }
 
 vec3 calculateFragColor(vec4 base){
-
     float shiny = 1.0 - roughness;
     vec3 result = ambient * base.xyz;
     // calculate normal accounting for nMap
@@ -88,28 +83,23 @@ vec3 calculateFragColor(vec4 base){
         float intensity = min(1.0, light.I);
 
         result += intensity * light.emission * base.xyz * diff_brightness;
-
-        // specular
+        
+        // specular:
         float NdotL = dot(normal, lightDir);
-        // only render if light in front of fragment
-        if(NdotL > 0.0){
-            vec3 view = normalize(camPos - fragPos);
-            vec3 vHalf = normalize(lightDir + view);
-            float shinyFactor = mix(1.0, specular, shiny);
-            float angle = max(0.001, dot(normal, vHalf));
-            result += intensity * light.emission * pow(angle, shinyFactor);
-        }
+        // only render specular lobe if light in front of fragment
+        // applied as a mask rather than branching - if NdotL <= 0 -> mask = 0
+        // result += 0*[the rest of the computation] else result += 1*[result].
+        float mask = step(0.0, NdotL);
+
+        vec3 view = normalize(camPos - fragPos);
+        vec3 vHalf = normalize(lightDir + view);
+        float shinyFactor = mix(1.0, specular, shiny);
+        float angle = max(0.001, dot(normal, vHalf));
+        result += intensity * light.emission * pow(angle, shinyFactor);
     }
     return result;
 }
 
-void main()
-{
-    if(LOD == 0) {
-        vec4 base_color = ambient * vec4(diffuse.xyz, alpha) * texture(image, TexCoords * tiling);
-        fragColor = vec4(base_color.xyz, alpha) ;
-        return;
-    }
-
+void main() {
     fragColor = vec4(calculateFragColor(vec4(diffuse, 1.0)).xyz, alpha) * texture(image, TexCoords * tiling);
 }

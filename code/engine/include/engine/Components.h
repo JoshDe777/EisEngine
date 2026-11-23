@@ -10,7 +10,6 @@
 #include "engine/components/meshes/Mesh2D.h"
 #include "engine/components/meshes/Mesh3D.h"
 #include "engine/components/meshes/Line.h"
-#include "engine/components/meshes/SpriteMesh.h"
 
 #include "engine/components/Renderer.h"
 #include "engine/components/CubemapRenderer.h"
@@ -24,7 +23,6 @@ using Script = EisEngine::components::Script;
 
 using Mesh2D = EisEngine::components::Mesh2D;
 using Mesh3D = EisEngine::components::Mesh3D;
-using SpriteMesh = EisEngine::components::SpriteMesh;
 using Line = EisEngine::components::Line;
 
 using Renderer = EisEngine::components::Renderer;

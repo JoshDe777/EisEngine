@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+﻿cmake_minimum_required(VERSION 3.21)
 project(rtr-project)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -16,6 +16,7 @@ add_subdirectory(extern/soloud)
 add_subdirectory(extern/stb)
 add_subdirectory(extern/fastnoise)
 add_subdirectory(extern/assimp)
+add_subdirectory(extern/toml++)
 
 # Triggers an error because some external dependencies changed stuff around otherwise.
 if(MSVC)

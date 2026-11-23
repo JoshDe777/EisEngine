@@ -83,7 +83,7 @@ namespace EisEngine {
             /// Stretch controls how the accuracy evens out, the further an object is from maximum accuracy 
             /// (stretch = 0 => there is no stabilization of the accuracy, stretch -> 1 => Accuracy evens out almost immediately)
             /// @param val: float - the new stretch value. 
-            static void SetBHThresholdStretch(const float& val) { ERROR_STRETCH = val;}
+            static void SetBHThresholdStretch(const float& val) { ERROR_SPREAD = val;}
         private:
             /// (Voxel grid) A lookup table for lights' world positions, to determine whether an update is needed.
             std::unordered_map<int, Vector3> lastKnownWorldPos = {};
@@ -131,7 +131,7 @@ namespace EisEngine {
             static float ERROR_STEEPNESS;
             /// Lighting parameter designating how fast, and how low lighting accuracy stabilizes the further you go from maximum accuracy requirements.
             /// The higher this value, the faster accuracy thresholds stabilize, and the higher the overall required accuracy around the scene.
-            static float ERROR_STRETCH;
+            static float ERROR_SPREAD;
             /// Lighting parameter designating an offset for lighting accuracy requirements. 
             /// The higher this value, the lower accuracy is required to consider lighting approximation adequate.
             static float BASE_THRESHOLD;
