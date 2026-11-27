@@ -28,27 +28,25 @@ in vec3 fragNormal;         // fragment normal in model space.
 in vec3 fragTan;            // fragment tangent in model space.
 in vec3 fragBitan;          // fragment bitangent in model space.
 
-// vec3s
+// material properties
 uniform vec3 diffuse;       // object base colour [RGB].
-uniform vec3 camPos;        // camera position in world space for view vectors (specularity).
-
-// floats                   // -------------- MATERIAL DATA --------------
 uniform float tiling;       // tiling factor for texture repetition.
 uniform float alpha;        // object transparency
 uniform float roughness;    // object roughness; inversely proportional to shininess.
 uniform float specular;     // specular factor influencing the sharpness of the BRDF's specular lobe.
-                            // -------------- WORLD DATA --------------
-uniform float ambient;      // ambient lighting level. applied as base illumination before complex calculation.
-
-// sampler2Ds
-uniform sampler2D image;    // diffuse map/texture applied to the geometry (alters colour).
+uniform sampler2D diffMap;  // diffuse map/texture applied to the geometry (alters colour).
 uniform sampler2D nMap;     // normal map/texture applied to the geometry (alters light effect directions).
 
-// Lighting-related Input
+// global variables
+uniform float ambient;      // ambient lighting level. applied as base illumination before complex calculation.
+uniform float maxShininess; // maximum value the Shiny exponent can take on. The higher this value the pointier and shinier specular lobes will be.
+
+// Lighting
 layout(std430, binding=0) readonly buffer LightBuffer {
     PointLight[] lights;    // array/list of light clusters effecting on the object.
 };
 uniform int nLights;        // amount of effecting clusters. Will render in ambient only if set to 0.
+uniform vec3 camPos;        // camera position in world space for view vectors (specularity).
 
 // Output
 out vec4 fragColor;         // fragment colour after illumination & texturing.
@@ -71,7 +69,7 @@ vec3 getNormalInWorldSpace(){
 }
 
 vec3 calculateFragColor(vec4 base){
-    float shiny = 1.0 - roughness;
+    float shinyPercent = 1.0 - roughness;
     vec3 result = ambient * base.xyz;
 
     // calculate normal accounting for nMap
@@ -95,14 +93,19 @@ vec3 calculateFragColor(vec4 base){
 
         vec3 view = normalize(camPos - fragPos);
         vec3 vHalf = normalize(lightDir + view);
-        float shinyFactor = mix(1.0, specular, shiny);
+        float shinyFactor = shinyPercent * maxShininess;
         float angle = max(0.001, dot(normal, vHalf));
-        result += light.emission * pow(angle, shinyFactor) * attenuation * mask;
+
+        // Blinn-Phong Specular lobe I_n^out = p_s * dot(h, n)^shiny * I_s^in [with mask as described above]
+        // - I_s^in = emission * attenuation (incoming light intensity)
+        // - p_s = specular (material-based max % specular in range [0, 1])
+        // - shiny = (1-roughness) * maxShininess
+        result += light.emission * specular * pow(angle, shinyFactor) * attenuation * mask;
     }
     return result;
 }
 
 void main()
 {
-    fragColor = vec4(calculateFragColor(vec4(diffuse, 1.0)).xyz, alpha) * texture(image, TexCoords * tiling);
+    fragColor = vec4(calculateFragColor(vec4(diffuse, 1.0)).xyz, alpha) * texture(diffMap, TexCoords * tiling);
 }

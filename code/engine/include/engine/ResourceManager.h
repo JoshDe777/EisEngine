@@ -69,6 +69,7 @@ namespace EisEngine {
 
         /// fetches a shader using its name.
         static Shader* GetShader(const std::string& name);
+        static Shader* GetShaderOfType(const ShaderType& type);
 
         /// Generates a shader program from the given file.
         /// @param vertexShaderPath - std::filesystem::path: the relative path from the assets folder

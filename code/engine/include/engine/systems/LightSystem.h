@@ -19,6 +19,7 @@ namespace EisEngine {
 
     namespace systems {
         using PointLight = EisEngine::components::PointLight;
+        using EisEngine::rendering::Shader;
 
         struct ShaderLightStruct {
             glm::vec3 pos;
@@ -54,7 +55,7 @@ namespace EisEngine {
             /// Computes a list of light clusters that provide an adequately accurate lighting calculation for the given position.
             /// @param pos: Vector3 - the position in world space for the light approximation.
             /// @param LODDist: float - the distance in world space to the nearest loader object. The smaller the distance, the more accurate the lighting approximation.
-            std::vector<LightCluster*> ComputeAndApplyLightCuts(
+            std::vector<LightCluster*> ApproximateLighting(
                     Vector3& pos,
                     const float& LODDist,
                     Shader* activeShader
@@ -85,12 +86,6 @@ namespace EisEngine {
             /// @param val: float - the new stretch value. 
             static void SetBHThresholdStretch(const float& val) { ERROR_SPREAD = val;}
         private:
-            /// (Voxel grid) A lookup table for lights' world positions, to determine whether an update is needed.
-            std::unordered_map<int, Vector3> lastKnownWorldPos = {};
-            /// (Voxel grid) A reference of Point Lights by approximate position in world 3D (x, y, z) space.
-            std::unordered_map<Vector3, std::vector<int>, GridCoordHashMap> LightGrid = {};
-            /// (Voxel grid) A reverse-reference of entity IDs to their bounding voxel.
-            std::unordered_map<int, Vector3> entityGridPos = {};
             /// The light cluster computed to represent the root of the SDS tree.
             std::unique_ptr<LightCluster> root = nullptr;
             /// A lookup table mapping each entity to the light cluster it is located at.

@@ -1,6 +1,8 @@
 ﻿#include "engine/components/Renderer.h"
 #include "engine/components/PointLight.h"
 #include "engine/ResourceManager.h"
+#include "engine/utilities/rendering/Shader.h"
+#include "engine/components/meshes/Mesh.h"
 
 namespace EisEngine::components {
     Renderer::Renderer(EisEngine::Game &engine,
@@ -45,7 +47,7 @@ namespace EisEngine::components {
         if(diffuseTexture != nullptr){
             auto diffPos = glGetUniformLocation(shader.GetShaderID(), "image");
             if(diffPos != -1) {
-                shader.ApplyTexture2D(*diffuseTexture, DIFFUSE);
+                shader.ApplyTexture2D(*diffuseTexture, UniformSamplerIndices::DIFFUSE);
             }
         }
 
@@ -53,10 +55,43 @@ namespace EisEngine::components {
         if(normalMap != nullptr) {
             auto nPos = glGetUniformLocation(shader.GetShaderID(), "nMap");
             if(nPos != -1) {
-                shader.ApplyTexture2D(*normalMap, NORMAL);
+                shader.ApplyTexture2D(*normalMap, UniformSamplerIndices::NORMAL);
                 DEBUG_INFO(entity()->name() + " normal map applied.")
             }
         }
+    }
+
+    void Renderer::ApplyTextureOfType(Shader* shader, const UniformSamplerIndices& type, const std::string& uniformLocation) {
+        // Cubemaps not supported with base Renderer (see CubemapRenderer), & depth maps stored differently as well.
+        std::unordered_map<UniformSamplerIndices, Texture2D*> textures = {
+            {UniformSamplerIndices::DIFFUSE, diffuseTexture},
+            {UniformSamplerIndices::NORMAL, normalMap}
+        };
+
+        // try getting the sought after map.
+        Texture2D* sampler;
+        try {
+            sampler = textures.at(type);
+        }
+        catch (const std::exception& e) {
+            // if the texture is unsupported, return.
+            DEBUG_ERROR("[Renderer::ApplyTextureOfType( '" + to_string(type) + "' )] ERROR: " + e.what())
+            return;
+        }
+
+        if (sampler == nullptr)
+            // maybe here get/assign a default texture then continue. Returning for now.
+            return;
+
+        GLint location = glGetUniformLocation(shader->GetShaderID(), uniformLocation.c_str());
+        if (location != -1)
+            shader->ApplyTexture2D(*sampler, type);
+        else
+            DEBUG_WARN("Could not find texture '" + uniformLocation + "' in Shader Program!")
+    }
+
+    Mesh* Renderer::GetMesh() const {
+        return entity()->GetComponent<Mesh>();
     }
 
     void Renderer::Invalidate() {

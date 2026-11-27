@@ -9,8 +9,15 @@
 namespace EisEngine {
     using ecs::Component;
     using rendering::ShaderType;
+    using rendering::UniformSamplerIndices;
+
+    namespace rendering {
+        class Shader;
+    }
 
     namespace components {
+        class Mesh;
+
         /// Contains rendering data for any type of mesh.
         class Renderer : public Component {
             friend class ecs::Entity;
@@ -19,7 +26,7 @@ namespace EisEngine {
             /// @param shader - ShaderType: The shader drawing meshes connected to this renderer.
             /// @param diffTex - Texture2D*: A pointer to a texture item. Can be null.
             /// @param mat - Material*: A pointer to a material item. Can be null.
-            /// @param layer - std::string: The rendering layer for meshes paired with a renderer.
+            /// @param layer - std::string: The rendering layer for meshes paired with a renderer. [deprecating, assign the renderer to ShaderType::SCREEN_UI]
             /// \n Currently supported: {"UI" for UI Elements, and [any other string] for regular rendering}.
             /// @param normMap: Texture2D* - A pointer to a normal map. Can be null.
             Renderer(Game &engine, guid_t owner, ShaderType shader = ShaderType::BLINN_PHONG,
@@ -30,8 +37,9 @@ namespace EisEngine {
             Renderer(const Renderer &renderer) = delete;
             Renderer(Renderer &&other) noexcept;
 
-            /// Applies rendering data to the active shader before drawing meshes.
-            virtual void ApplyData(Shader& shader);
+            /// [DEPRECATED] Applies rendering data to the active shader before drawing meshes.
+            /// @deprecation: Maps are individually assigned by Rendering Passes using ApplyTextureOfType as of EisEngine v3.1
+            [[deprecated("Assign maps individually using ApplyTextureOfType")]] virtual void ApplyData(rendering::Shader& shader);
             /// returns a renderer's rendering layer.
             [[nodiscard]] std::string GetLayer() { return m_layer;}
 
@@ -42,7 +50,11 @@ namespace EisEngine {
             /// Returns a pointer to the texture assigned to a renderer.
             Texture2D* GetDiffuseTexture() { return diffuseTexture;}
             /// Returns a pointer to the normal map assigned to a renderer.
-            Texture2D* GetNormalMap(){ return normalMap;}
+            Texture2D* GetNormalMap() { return normalMap; }\
+
+            EisEngine::components::Mesh* GetMesh() const;
+
+            void ApplyTextureOfType(rendering::Shader* shader, const UniformSamplerIndices& type, const std::string& uniformLocation);
 
             /// The material attributed to the associated mesh.
             Material* material;
@@ -55,7 +67,7 @@ namespace EisEngine {
             /// the normal map attributed to the associated mesh.
             Texture2D* normalMap;
             /// The rendering layer of the associated mesh.
-            std::string m_layer;
+            [[deprecated("Functionality is replaced by the assigned ShaderType")]] std::string m_layer;
             /// The shader associated with this renderer component.
             const ShaderType shader;
         };

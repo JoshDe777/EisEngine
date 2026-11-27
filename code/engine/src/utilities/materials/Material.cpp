@@ -1,6 +1,6 @@
 ﻿#include <utility>
 
-#include "engine/utilities/rendering/Material.h"
+#include "engine/utilities/materials/Material.h"
 #include "engine/utilities/rendering/Shader.h"
 #include "engine/utilities/Debug.h"
 #include "engine/utilities/Math.h"
@@ -12,14 +12,6 @@ namespace EisEngine {
                        const float &roughness) :
                        name(std::move(name)), diffuse(diffuse), emission(emission),
                        opacity(opacity), metallic(metallic), roughness(roughness) {}
-
-    void Material::ApplyMatData(Shader &shader) {
-        shader.setVector("diffuse", diffuse);
-        shader.setFloat("alpha", opacity);
-        shader.setFloat("tiling", tiling);
-        shader.setFloat("metallic", metallic);
-        shader.setFloat("roughness", roughness);
-    }
 
     void Material::Print() const {
         DEBUG_INFO("Material \"" + name + "\" properties:\nDiffuse (vec3)=" + (std::string)diffuse +

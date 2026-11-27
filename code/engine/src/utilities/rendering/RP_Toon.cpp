@@ -1,4 +1,4 @@
-#include "engine/utilities/rendering/RP_Toon.h"
+﻿#include "engine/utilities/rendering/RP_Toon.h"
 
 // top-level
 #include "engine/ResourceManager.h"
@@ -63,7 +63,7 @@ namespace EisEngine::rendering {
 
             // lighting - compute light cuts & apply to shader
             // pass the light system reference into the constructor.
-            LightSystem::ComputeAndApplyLightCuts(
+            LightSystem::ApproximateLighting(
                 pos,
                 RenderingSystem::GetLODDist(pos),
                 activeShader);

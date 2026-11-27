@@ -6,26 +6,19 @@
 
 #include "engine/utilities/materials/Texture2D.h"
 #include "engine/utilities/materials/Cubemap.h"
+#include "engine/utilities/rendering/RenderingUtils.h"
 
 namespace fs = std::filesystem;
 
 namespace EisEngine{
-    namespace systems{ class Camera;}
     namespace components { class Renderer;}
 
     using namespace systems;
     using EisEngine::components::Renderer;
 
-    /// Enum for better organization of sampler types in shaders.
-    enum UniformSamplerIndices{
-        DIFFUSE = 0,
-        NORMAL = 1,
-        CUBEMAP = 2,
-        DEPTH_BACK_FACE = 3,
-        DEPTH_FRONT_FACE = 4
-    };
-
     namespace rendering {
+        using rendering::UniformSamplerIndices;
+
         /// Intermediary system from engine code to pixels on screen.
         class Shader {
         public:
@@ -39,7 +32,7 @@ namespace EisEngine{
             Shader(Shader&& other) noexcept;
 
             /// Applies the shader to the rendering pipeline.
-            void Apply(Camera* camera);
+            void Apply();
             /// Applies a texture to the rendering pipeline.
             void ApplyTexture2D(const Texture2D& texture, UniformSamplerIndices type) const;
             /// Applies a cubemap texture to the rendering pipeline.

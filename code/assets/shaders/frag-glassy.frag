@@ -34,24 +34,24 @@ in vec3 fragNormal;
 in vec3 fragTan;
 in vec3 fragBitan;
 
-// Vec3s
-uniform vec3 diffuse;
-uniform vec3 eta;
-uniform vec3 camPos;
+// material properties
+uniform vec3 diffuse;           // Glass Tint
+uniform vec3 eta;               // Chromatic Aberration vector [RGB 255]
+uniform float alpha;            // Object transparency (unrelated to glassy, just makes the object more passthrough (i.e. less reflection & refraction)
+uniform float tiling;           // Repetition in x & y direction (uniform value, not separate) of textures.
+uniform float F0;               // Fresnel number
+uniform float absorption;       // The density of the object's interior
+uniform sampler2D diffMap;
+uniform sampler2D nMap;
 
-// floats
-uniform float alpha;
-uniform float tiling;
-uniform float specular;         // stand-in for Fresnel number F0
-uniform float ambient;          // stand-in for the absorption factor. Should this be a material property?? Yes it should.
+// View math
+uniform vec3 camPos;            // Camera position in world space.
 
-// integers
+// integers - screen dimensions for screen-space coordinates of depth maps.
 uniform int screenWidth;
 uniform int screenHeight;
 
-// Samplers
-uniform sampler2D image;
-uniform sampler2D nMap;
+// depth & environment maps
 uniform samplerCube cubeMap;
 uniform sampler2D backDepthMap;
 uniform sampler2D frontDepthMap;
@@ -74,7 +74,7 @@ vec3 getNormalInWorldSpace(){
 
 vec3 calculateFragColor(vec4 base){
     // surface-mapped texture for e.g. window stickers
-    vec3 texColor = texture(image, TexCoords * tiling).xyz * base.xyz;
+    vec3 texColor = texture(diffMap, TexCoords * tiling).xyz * base.xyz;
 
     // depth component for transmittance effects
     vec2 screenUV = gl_FragCoord.xy / vec2(screenWidth, screenHeight);
@@ -89,7 +89,7 @@ vec3 calculateFragColor(vec4 base){
     vec3 normal = getNormalInWorldSpace();
     vec3 view = normalize(camPos - fragPos);
     vec3 reflectionDir = reflect(-view, normal);
-    vec3 reflection = exp(-ambient * depth) * texture(cubeMap, reflectionDir).xyz;
+    vec3 reflection = exp(-absorption * depth) * texture(cubeMap, reflectionDir).xyz;
 
     // refraction - chromatic aberrations by scattering the refraction angles by color channel
     vec3 rRefractDir = refract(-view, normal, eta.r);
@@ -109,11 +109,11 @@ vec3 calculateFragColor(vec4 base){
         texture(cubeMap, bRefractDir).b
     );
     // apply texture & tainting to the refracted light.
-    refraction = refraction * exp(-ambient * depth) * texColor;
+    refraction = refraction * exp(-absorption * depth) * texColor;
 
     // fresnel factor calculation
     float m = max(0, dot(view, normal));
-    float F = pow((1 - m), 5) * (1 - specular) + specular;
+    float F = pow((1 - m), 5) * (1 - F0) + F0;
 
     // reflection color calculation; blended using Fresnel approximation.
     return mix(refraction, reflection, F);

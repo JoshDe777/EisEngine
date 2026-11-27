@@ -9,14 +9,6 @@
 namespace EisEngine::systems {
 
 #pragma region non-class utilities:
-    inline Vector3 WorldToCell(const glm::vec3& pos) {
-        return Vector3{
-                floor(pos.x / LightSystem::CELL_SIZE),
-                floor(pos.y / LightSystem::CELL_SIZE),
-                floor(pos.z / LightSystem::CELL_SIZE)
-        };
-    }
-
 // tuned by hand with some trial and error.
     float LightSystem::ERROR_STEEPNESS = 0.075f;
     float LightSystem::ERROR_SPREAD = 0.001f;
@@ -50,7 +42,6 @@ namespace EisEngine::systems {
 
     // introduce a new light source at a given position.
     void LightSystem::InsertEntityAt(const int &entityID, const Vector3 &pos) {
-        lastKnownWorldPos.insert({entityID, pos});
         InsertEntityToBHTree(entityID, pos);
     }
 
@@ -77,20 +68,8 @@ namespace EisEngine::systems {
 
             auto pos = entity->transform->GetGlobalPosition();
 
-            // bypass distance check if newly registered
-            auto it = lastKnownWorldPos.find((int) id);
-            if(it != lastKnownWorldPos.end()){
-                auto& last = lastKnownWorldPos.at((int) id);
-
-                // don't update if not within voxel change dist of previously known pos.
-                if (Vector3::Distance(last, pos) < CELL_SIZE) {
-                    continue;
-                }
-            }
-
             // if changed voxel mark tree for rebuild (expensive, I know)
             updateTree = true;
-            lastKnownWorldPos[(int) id] = pos;
         }
 
         // rebuild only once
@@ -158,7 +137,7 @@ namespace EisEngine::systems {
         return a.second < b.second;
     };
 
-    std::vector<LightCluster*> LightSystem::ComputeAndApplyLightCuts(
+    std::vector<LightCluster*> LightSystem::ApproximateLighting(
             EisEngine::Vector3 &pos,
             const float &LODDist,
             Shader* activeShader

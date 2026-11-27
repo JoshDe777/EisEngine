@@ -1,4 +1,5 @@
 ﻿#include "engine/utilities/rendering/RenderingUtils.h"
+#include "engine/systems/RenderingSystem.h"
 
 #include <filesystem>
 
@@ -21,8 +22,10 @@ namespace EisEngine::rendering {
 	void RenderingConfig::Load() {
 		auto path = resolveAssetPath(RenderingConfig::configPath);
 		// if the given config path is invalid, throw an error message and exit with default hard-coded values.
-		if (path == fs::path("Invalid"))
+		if (path == fs::path("Invalid")) {
+			DEBUG_ERROR("Couldn't find config file at " + configPath)
 			return;
+		}
 
 		toml::table tbl;
 		try {
@@ -30,6 +33,7 @@ namespace EisEngine::rendering {
 			
 			nToonLevels = tbl.at_path("rendering.nToonLevels").value_or(nToonLevels);
 			ambientFactor = tbl.at_path("rendering.ambientFactor").value_or(ambientFactor);
+			maxShininess = tbl.at_path("rendering.maxShininess").value_or(maxShininess);
 		}
 		catch (const toml::parse_error& err) {
 			// throw an error if the parsing didn't load and exit with default values.

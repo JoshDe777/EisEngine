@@ -51,17 +51,8 @@ namespace EisEngine::rendering {
         assignedRenderers.clear();
     }
 
-    void Shader::Apply(Camera* camera) {
+    void Shader::Apply() {
         glUseProgram(shaderProgram);
-        DEBUG_OPENGL("Shader " + name)
-        vpMatrix = camera->GetVPMatrix();
-        GLint mvpLoc = glGetUniformLocation(shaderProgram, "mvp");
-        if(mvpLoc != -1)
-            setMatrix("mvp", vpMatrix);
-        DEBUG_OPENGL("Shader " + name)
-            GLint camPosLoc = glGetUniformLocation(shaderProgram, "camPos");
-        if(camPosLoc != -1)
-            setVector("camPos", camera->transform->GetGlobalPosition());
         DEBUG_OPENGL("Shader " + name)
 
         setInt("image", UniformSamplerIndices::DIFFUSE);

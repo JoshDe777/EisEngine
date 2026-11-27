@@ -9,6 +9,9 @@ nToonLevels = 8
 # The base percent any object in the scene will be lit. Value must be in the range [0, 1] (values will be clamped on load).
 ambientFactor = 0.15
 
+# The maximum value the shiny exponent of Blinn-Phong BRDFs can take on for specular highlights.
+maxShininess = 10.0
+
 [lighting]
 # The minimum error threshold for any object to be considered sufficiently accurately rendered. Raising the value may result in more artifacty lighting, while lowering it may result in a higher computational load while rendering lit objects.
 # value can be any positive float value (x >= 0.0)

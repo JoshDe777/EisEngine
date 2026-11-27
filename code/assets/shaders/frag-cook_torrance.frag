@@ -30,27 +30,25 @@ in vec3 fragNormal;         // fragment normal in model space.
 in vec3 fragTan;            // fragment tangent in model space.
 in vec3 fragBitan;          // fragment bitangent in model space.
 
-// vec3s
+// material properties
 uniform vec3 diffuse;       // object base colour [RGB].
-uniform vec3 camPos;        // camera position in world space for view vectors (specularity).
-
-// floats                   // -------------- MATERIAL DATA --------------
-uniform float tiling;       // tiling factor for texture repetition.
 uniform float alpha;        // object transparency
+uniform float tiling;       // tiling factor for texture repetition.
 uniform float roughness;    // object roughness; inversely proportional to shininess.
-uniform float specular;     // specular factor influencing the sharpness of the BRDF's specular lobe. Represents the fresnel factor F0
-                            // -------------- WORLD DATA --------------
+uniform float F0;           // Fresnel factor F0 influencing the sharpness of the BRDF's specular lobe.
+uniform sampler2D diffMap;  // diffuse map/texture applied to the geometry (alters colour).
+uniform sampler2D nMap;     // normal map/texture applied to the geometry (alters light effect directions).
+
+// world properties
 uniform float ambient;      // ambient lighting level. applied as base illumination before complex calculation.
 
-// sampler2Ds
-uniform sampler2D image;    // diffuse map/texture applied to the geometry (alters colour).
-uniform sampler2D nMap;     // normal map/texture applied to the geometry (alters light effect directions).
 
 // Lighting-related Input
 layout(std430, binding=0) readonly buffer LightBuffer {
     PointLight[] lights;    // array/list of light clusters effecting on the object.
 };
 uniform int nLights;        // amount of effecting clusters. Will render in ambient only if set to 0.
+uniform vec3 camPos;        // camera position in world space for view vectors (specularity).
 
 // output(s)
 out vec4 fragColor;
@@ -90,16 +88,14 @@ vec3 calculateFragColor(vec4 base){
         vec3 vHalf = normalize(lightDir + view);
 
         // fresnel reflectance approximation
-        float m = max(0, dot(lightDir, vHalf));
-        float F = pow((1 - m), 5) * (1 - specular) + specular;
+        float m = max(1e-4, dot(lightDir, vHalf));
+        float F = pow((1 - m), 5) * (1 - F0) + F0;
 
         // beckmann facet vis - surface scattering approximation
-        float angle = max(0, dot(normal, vHalf));
-        float r1 = 1 / (4 * roughness * roughness * pow(angle, 4));
-        float r2 = 0;
-        if (angle > 0.001)
-            // need alt value if roughness = 0
-            r2 = (angle * angle - 1) / (roughness * roughness * angle * angle);
+        float angle = max(0.02, dot(normal, vHalf));
+        float clamped_roughness = max(0.02, roughness);
+        float r1 = 1 / (4 * clamped_roughness * clamped_roughness * pow(angle, 4));
+        float r2 = (angle * angle - 1) / (clamped_roughness * clamped_roughness * angle * angle);
         float D = r1 * exp(r2);
 
         // Geometric shadowing (specular attenuation)
@@ -119,5 +115,5 @@ vec3 calculateFragColor(vec4 base){
 }
 
 void main() {
-    fragColor = vec4(calculateFragColor(vec4(diffuse, 1.0)).xyz, alpha) * texture(image, TexCoords * tiling);
+    fragColor = vec4(calculateFragColor(vec4(diffuse, 1.0)).xyz, alpha) * texture(diffMap, TexCoords * tiling);
 }
